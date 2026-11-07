@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { guardProblems, privateHits, folderDiff } from "./check.mjs";
+import { guardProblems, hookProblems, gitHookProblems, privateHits, folderDiff } from "./check.mjs";
 import { lint, BANNED } from "./voice-lint.mjs";
 import { evaluate, clean } from "./vet-package.mjs";
 
@@ -22,7 +22,15 @@ const GOOD = {
     "strictDepBuilds: true", "allowBuilds: {}", "ignoreScripts: true", "verifyDepsBeforeRun: error", "autoInstallPeers: false",
     "pmOnFail: error", "saveExact: true", "  # Remove this entry on or after 2026-11-29, when 1.2.2 is 60 days old.",
   ].join("\n"),
-  settingsJson: JSON.stringify({ hooks: { PreToolUse: [{ hooks: [{ command: "node package-guard.mjs" }, { command: "node security-guard.mjs" }] }] } }),
+  settingsJson: JSON.stringify({
+    hooks: {
+      PreToolUse: [
+        { matcher: "*", hooks: [{ type: "command", command: 'node "$CLAUDE_PROJECT_DIR/.claude/hooks/quiet-hours-guard.mjs"', onFailure: "block" }] },
+        { matcher: "Bash|PowerShell", hooks: [{ type: "command", command: 'node "$CLAUDE_PROJECT_DIR/.claude/hooks/package-guard.mjs"', onFailure: "block" }] },
+        { matcher: "Bash|PowerShell|WebFetch|mcp__.*", hooks: [{ type: "command", command: 'node "$CLAUDE_PROJECT_DIR/.claude/hooks/security-guard.mjs"', onFailure: "block" }] },
+      ],
+    },
+  }),
 };
 const BEFORE_EXPIRY = new Date("2026-11-07T12:00:00Z");
 
@@ -42,10 +50,36 @@ const weaken = {
   "pnpm self-download": (g) => ({ ...g, workspaceYaml: g.workspaceYaml.replace("pmOnFail: error", "pmOnFail: download") }),
   "trust policy off": (g) => ({ ...g, workspaceYaml: g.workspaceYaml.replace("no-downgrade", "off") }),
   "a removed hook": (g) => ({ ...g, settingsJson: g.settingsJson.replace("security-guard.mjs", "x.mjs") }),
+  "a removed quiet-hours hook": (g) => ({ ...g, settingsJson: g.settingsJson.replace("quiet-hours-guard.mjs", "x.mjs") }),
+  // The forms the adversarial review showed a substring check would miss:
+  "quiet-hours hook on a matcher that matches nothing": (g) => ({ ...g, settingsJson: g.settingsJson.replace('"matcher":"*"', '"matcher":"NoSuchTool"') }),
+  "quiet-hours hook moved to PostToolUse": (g) => {
+    const s = JSON.parse(g.settingsJson);
+    s.hooks.PostToolUse = [s.hooks.PreToolUse.shift()];
+    return { ...g, settingsJson: JSON.stringify(s) };
+  },
+  "a guard command that only echoes its name": (g) => ({ ...g, settingsJson: g.settingsJson.replace('node \\"$CLAUDE_PROJECT_DIR/.claude/hooks/quiet-hours-guard.mjs\\"', "echo quiet-hours-guard.mjs") }),
+  "a guard that fails open": (g) => ({ ...g, settingsJson: g.settingsJson.replace('"onFailure":"block"', '"onFailure":"continue"') }),
+  "the security guard not on WebFetch": (g) => ({ ...g, settingsJson: g.settingsJson.replace("Bash|PowerShell|WebFetch|mcp__.*", "Bash|PowerShell|mcp__.*") }),
+  "the security guard not on MCP tools": (g) => ({ ...g, settingsJson: g.settingsJson.replace("|mcp__.*", "") }),
 };
 for (const [name, f] of Object.entries(weaken)) {
   test(`a weakened guard is caught: ${name}`, () => assert.ok(guardProblems(f(GOOD), BEFORE_EXPIRY).length > 0));
 }
+
+test("the git hooks must call git-guard before the checks", () => {
+  const ok = ["node tools/git-guard.mjs pre-commit || exit 1\nexec node tools/check.mjs fast\n", 'node tools/git-guard.mjs pre-push "$@" || exit 1\nexec node tools/check.mjs full\n'];
+  assert.deepEqual(gitHookProblems(...ok), []);
+  assert.equal(gitHookProblems("exec node tools/check.mjs fast\n", ok[1]).length, 1);
+  assert.equal(gitHookProblems(ok[0], "exec node tools/check.mjs full\n").length, 1);
+  assert.equal(gitHookProblems(ok[0], 'node tools/git-guard.mjs pre-push "$@"\nexec node tools/check.mjs full\n').length, 1); // no "|| exit 1"
+});
+
+test("the real settings and git hooks pass the structure checks", () => {
+  const read = (p) => fs.readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
+  assert.deepEqual(hookProblems(read(".claude/settings.json")), []);
+  assert.deepEqual(gitHookProblems(read(".githooks/pre-commit"), read(".githooks/pre-push")), []);
+});
 
 test("an expired security exception fails", () => {
   assert.match(guardProblems(GOOD, new Date("2026-11-29T00:00:01Z")).join("\n"), /expired on 2026-11-29/);

@@ -85,7 +85,7 @@ async function main() {
   process.exit(rules.every((r) => r.ok) ? 0 : 1);
 }
 
-const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+const isMain = process.argv[1] && path.basename(process.argv[1]) === "vet-package.mjs";
 if (isMain) {
   main().catch((e) => {
     console.error(`vet-package could not run: ${clean(e.message, 300)}`);

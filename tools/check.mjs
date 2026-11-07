@@ -45,8 +45,38 @@ export function guardProblems({ packageJson, workspaceYaml, settingsJson }, toda
     if (new Date(`${m[1]}T00:00:00Z`) <= today) p.push(`a minimumReleaseAgeExclude entry expired on ${m[1]}; remove it (decision 0002)`);
   }
 
-  const hooks = JSON.stringify(JSON.parse(settingsJson).hooks ?? {});
-  for (const h of ["package-guard.mjs", "security-guard.mjs"]) if (!hooks.includes(h)) p.push(`.claude/settings.json does not run ${h}`);
+  p.push(...hookProblems(settingsJson));
+  return p;
+}
+
+// Each guard must run as a PreToolUse hook, on the tools it guards, as "node <the guard>", and block on failure.
+const REQUIRED_HOOKS = [
+  { file: "package-guard.mjs", tools: ["Bash", "PowerShell"] },
+  { file: "security-guard.mjs", tools: ["Bash", "PowerShell", "WebFetch", "mcp__.*"] },
+  { file: "quiet-hours-guard.mjs", tools: ["*"] },
+];
+
+/** Problems with the guard hooks in .claude/settings.json. An empty list means each guard runs as required. */
+export function hookProblems(settingsJson) {
+  const groups = JSON.parse(settingsJson).hooks?.PreToolUse ?? [];
+  const problems = [];
+  for (const req of REQUIRED_HOOKS) {
+    const cmd = new RegExp(`^node\\s+"?\\$CLAUDE_PROJECT_DIR/\\.claude/hooks/${req.file.replace(".", "\\.")}"?$`);
+    const ok = groups.some((g) => {
+      const matcher = g.matcher ?? "*";
+      const covers = req.tools[0] === "*" ? matcher === "*" || matcher === "" : matcher === "*" || req.tools.every((t) => matcher.split("|").includes(t));
+      return covers && (g.hooks ?? []).some((h) => h.type === "command" && cmd.test(h.command ?? "") && h.onFailure === "block");
+    });
+    if (!ok) problems.push(`.claude/settings.json must run ${req.file} as a PreToolUse hook on ${req.tools.join(", ")}, as "node $CLAUDE_PROJECT_DIR/.claude/hooks/${req.file}", with onFailure "block"`);
+  }
+  return problems;
+}
+
+/** Problems with the git hooks: each must run git-guard before the checks. */
+export function gitHookProblems(preCommit, prePush) {
+  const p = [];
+  if (!/node tools\/git-guard\.mjs pre-commit[^\n]*\|\| exit 1[\s\S]*node tools\/check\.mjs fast/.test(preCommit)) p.push(".githooks/pre-commit must run git-guard pre-commit, then check.mjs fast");
+  if (!/node tools\/git-guard\.mjs pre-push[^\n]*\|\| exit 1[\s\S]*node tools\/check\.mjs full/.test(prePush)) p.push(".githooks/pre-push must run git-guard pre-push, then check.mjs full");
   return p;
 }
 
@@ -103,6 +133,7 @@ function guards() {
     workspaceYaml: read("bench/token-count/pnpm-workspace.yaml"),
     settingsJson: read(".claude/settings.json"),
   });
+  problems.push(...gitHookProblems(read(".githooks/pre-commit"), read(".githooks/pre-push")));
   record("package guards intact (decision 0002)", problems.length === 0, problems.join("\n"));
 }
 
@@ -165,7 +196,8 @@ function updateGolden() {
 }
 
 const mode = process.argv[2];
-const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+// By file name, so a symlinked or junctioned checkout still runs the checks (a path comparison would skip them).
+const isMain = process.argv[1] && path.basename(process.argv[1]) === "check.mjs";
 if (isMain) {
   if (mode === "update-golden") updateGolden();
   else if (["fast", "full", "gate"].includes(mode)) {
