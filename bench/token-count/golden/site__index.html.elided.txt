@@ -1,0 +1,94 @@
+doctype html
+html[lang=en]
+  head
+    meta[charset=utf-8]
+    meta[name=viewport content="width=device-width, initial-scale=1"]
+    title Acme – Invoices that pay themselves
+    meta[name=description content="Acme sends, tracks and reconciles your invoices so you get paid faster."]
+    link[rel=icon href=/favicon.svg type=image/svg+xml]
+    link[rel=stylesheet href=/styles.css]
+  body
+    header#top.site-header > nav.navbar[aria-label=Main]
+      a.navbar__brand[href=/]
+        svg.navbar__logo (32x32, 1 path, 336 chars elided)
+        span Acme
+      ul.navbar__links
+        li.navbar__item > a.navbar__link[href=/features] Features
+        li.navbar__item > a.navbar__link.navbar__link--active[href=/pricing] Pricing
+        li.navbar__item > a.navbar__link[href=/customers] Customers
+        li.navbar__item > a.navbar__link[href=/docs] Docs
+      .navbar__actions
+        a.button.button--ghost[href=/login] Log in
+        a.button.button--primary[href=/signup] Start free trial
+    main
+      section.hero
+        .hero__content
+          h1.hero__title Invoices that pay themselves
+          p.hero__lead Acme sends your invoices, chases late payments politely and reconciles every payment with your books, so you spend your time on the work instead of the paperwork.
+          .hero__actions
+            a.button.button--primary.button--large[href=/signup] Start your free trial
+            a.button.button--ghost.button--large[href=#how-it-works] See how it works
+        img.hero__image[src=/images/dashboard.png alt="The Acme dashboard showing paid and overdue invoices" width=1200 height=800]
+      section#how-it-works.features
+        h2.section-title Everything you need to get paid
+        .features__grid
+          article.feature
+            svg.feature__icon (24x24, 1 path, 518 chars elided)
+            h3.feature__title Invoices in seconds
+            p.feature__text Create an invoice from a template, add your line items and send it by email or link.
+          article.feature
+            svg.feature__icon (24x24, 1 path, 450 chars elided)
+            h3.feature__title Polite reminders
+            p.feature__text Acme reminds your customers before and after the due date, in a tone you choose.
+          article.feature
+            svg.feature__icon (24x24, 1 path, 732 chars elided)
+            h3.feature__title Automatic reconciliation
+            p.feature__text Payments are matched to invoices and booked in your accounting software overnight.
+      section#pricing.pricing
+        h2.section-title Simple pricing
+        .pricing__grid
+          .pricing-card
+            h3.pricing-card__name Starter
+            p.pricing-card__price
+              span.pricing-card__amount $9
+              span.pricing-card__period /month
+            ul.pricing-card__features
+              li.pricing-card__feature 20 invoices a month
+              li.pricing-card__feature Email reminders
+              li.pricing-card__feature One user
+            a.button.button--ghost.pricing-card__cta[href=/signup?plan=starter] Choose Starter
+          .pricing-card.pricing-card--highlighted
+            h3.pricing-card__name
+              | Business
+              span.badge.badge--accent Most popular
+            p.pricing-card__price
+              span.pricing-card__amount $29
+              span.pricing-card__period /month
+            ul.pricing-card__features
+              li.pricing-card__feature Unlimited invoices
+              li.pricing-card__feature Reminders by email and SMS
+              li.pricing-card__feature Automatic reconciliation
+              li.pricing-card__feature Five users
+            a.button.button--primary.pricing-card__cta[href=/signup?plan=business] Choose Business
+      section#signup.signup
+        h2.section-title Try Acme free for 30 days
+        form.signup__form[action=/api/signup method=post]
+          label.field
+            span.field__label Work email
+            input.field__input[type=email name=email required autocomplete=email placeholder=you@company.com]
+          label.field
+            span.field__label Company name
+            input.field__input[type=text name=company required autocomplete=organization]
+          button.button.button--primary[type=submit] Create my account
+          p.signup__note No credit card needed. Cancel at any time.
+    footer.site-footer
+      .site-footer__columns
+        ul.site-footer__list
+          li > a[href=/about] About
+          li > a[href=/careers] Careers
+          li > a[href=/blog] Blog
+        ul.site-footer__list
+          li > a[href=/privacy] Privacy
+          li > a[href=/terms] Terms
+          li > a[href=/security] Security
+      p.site-footer__copy © 2026 Acme Inc.

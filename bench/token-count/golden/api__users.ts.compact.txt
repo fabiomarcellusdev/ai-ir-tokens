@@ -1,0 +1,66 @@
+import { z } from "zod"
+import type { Db, UserRow } from "../db/types"
+import { NotFoundError, ValidationError } from "../errors"
+@i1 export interface User
+  id: string
+  email: string
+  displayName: string
+  createdAt: Date
+  roles: Role[]
+@t2 export type Role = "admin" | "editor" | "viewer"
+@v3 const CreateUserInput = z.object({
+  email: z.string().email(),
+  displayName: z.string().min(1).max(80),
+  roles: z.array(z.enum(["admin", "editor", "viewer"])).default(["viewer"]),
+})
+@t4 export type CreateUserInput = z.infer<typeof CreateUserInput>
+@f5 function toUser(row: UserRow): User
+  return {
+    id: row.id,
+    email: row.email,
+    displayName: row.display_name,
+    createdAt: new Date(row.created_at),
+    roles: row.roles.split(",") as Role[],
+  }
+@f6 export async function getUser(id: string, db: Db): Promise<User | null>
+  const row = await db.query<UserRow>("SELECT * FROM users WHERE id = $1", [id])
+  if !row
+    return null
+  return toUser(row)
+@f7 export async function listUsers(
+  db: Db,
+  options: { limit?: number; cursor?: string } = {},
+): Promise<{ users: User[]; nextCursor: string | null }>
+  const limit = Math.min(options.limit ?? 20, 100)
+  const rows = await db.queryMany<UserRow>(
+    "SELECT * FROM users WHERE ($1::text IS NULL OR created_at < $1) ORDER BY created_at DESC LIMIT $2",
+    [options.cursor ?? null, limit + 1],
+  )
+  const hasMore = rows.length > limit
+  const page = hasMore ? rows.slice(0, limit) : rows
+  return {
+    users: page.map(toUser),
+    nextCursor: hasMore ? page[page.length - 1].created_at : null,
+  }
+@f8 export async function createUser(input: unknown, db: Db): Promise<User>
+  const parsed = CreateUserInput.safeParse(input)
+  if !parsed.success
+    throw new ValidationError(parsed.error.issues.map((issue) => issue.message).join("; "))
+  const existing = await db.query<UserRow>("SELECT id FROM users WHERE email = $1", [
+    parsed.data.email,
+  ])
+  if existing
+    throw new ValidationError(`Email ${parsed.data.email} is already registered`)
+  const row = await db.query<UserRow>(
+    "INSERT INTO users (email, display_name, roles) VALUES ($1, $2, $3) RETURNING *",
+    [parsed.data.email, parsed.data.displayName, parsed.data.roles.join(",")],
+  )
+  if !row
+    throw new Error("Insert returned no row")
+  return toUser(row)
+@f9 export async function deleteUser(id: string, db: Db): Promise<void>
+  const result = await db.execute("DELETE FROM users WHERE id = $1", [id])
+  if result.rowCount === 0
+    throw new NotFoundError(`User ${id} not found`)
+@f10 export function hasRole(user: User, ...roles: Role[]): boolean
+  return user.roles.some((role) => roles.includes(role))

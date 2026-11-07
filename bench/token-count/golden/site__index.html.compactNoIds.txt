@@ -1,0 +1,94 @@
+doctype html
+html[lang=en]
+  head
+    meta[charset=utf-8]
+    meta[name=viewport content="width=device-width, initial-scale=1"]
+    title Acme – Invoices that pay themselves
+    meta[name=description content="Acme sends, tracks and reconciles your invoices so you get paid faster."]
+    link[rel=icon href=/favicon.svg type=image/svg+xml]
+    link[rel=stylesheet href=/styles.css]
+  body
+    header#top.site-header > nav.navbar[aria-label=Main]
+      a.navbar__brand[href=/]
+        svg.navbar__logo[width=32 height=32 viewBox="0 0 32 32" aria-hidden=true] > path[fill=#4f46e5 d="M16 2.5c7.456 0 13.5 6.044 13.5 13.5S23.456 29.5 16 29.5 2.5 23.456 2.5 16 8.544 2.5 16 2.5zm0 5.25a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5zm0 3.75a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"]
+        span Acme
+      ul.navbar__links
+        li.navbar__item > a.navbar__link[href=/features] Features
+        li.navbar__item > a.navbar__link.navbar__link--active[href=/pricing] Pricing
+        li.navbar__item > a.navbar__link[href=/customers] Customers
+        li.navbar__item > a.navbar__link[href=/docs] Docs
+      .navbar__actions
+        a.button.button--ghost[href=/login] Log in
+        a.button.button--primary[href=/signup] Start free trial
+    main
+      section.hero
+        .hero__content
+          h1.hero__title Invoices that pay themselves
+          p.hero__lead Acme sends your invoices, chases late payments politely and reconciles every payment with your books, so you spend your time on the work instead of the paperwork.
+          .hero__actions
+            a.button.button--primary.button--large[href=/signup] Start your free trial
+            a.button.button--ghost.button--large[href=#how-it-works] See how it works
+        img.hero__image[src=/images/dashboard.png alt="The Acme dashboard showing paid and overdue invoices" width=1200 height=800]
+      section#how-it-works.features
+        h2.section-title Everything you need to get paid
+        .features__grid
+          article.feature
+            svg.feature__icon[width=24 height=24 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 aria-hidden=true] > path[stroke-linecap=round stroke-linejoin=round d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"]
+            h3.feature__title Invoices in seconds
+            p.feature__text Create an invoice from a template, add your line items and send it by email or link.
+          article.feature
+            svg.feature__icon[width=24 height=24 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 aria-hidden=true] > path[stroke-linecap=round stroke-linejoin=round d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"]
+            h3.feature__title Polite reminders
+            p.feature__text Acme reminds your customers before and after the due date, in a tone you choose.
+          article.feature
+            svg.feature__icon[width=24 height=24 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 aria-hidden=true] > path[stroke-linecap=round stroke-linejoin=round d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"]
+            h3.feature__title Automatic reconciliation
+            p.feature__text Payments are matched to invoices and booked in your accounting software overnight.
+      section#pricing.pricing
+        h2.section-title Simple pricing
+        .pricing__grid
+          .pricing-card
+            h3.pricing-card__name Starter
+            p.pricing-card__price
+              span.pricing-card__amount $9
+              span.pricing-card__period /month
+            ul.pricing-card__features
+              li.pricing-card__feature 20 invoices a month
+              li.pricing-card__feature Email reminders
+              li.pricing-card__feature One user
+            a.button.button--ghost.pricing-card__cta[href=/signup?plan=starter] Choose Starter
+          .pricing-card.pricing-card--highlighted
+            h3.pricing-card__name
+              | Business
+              span.badge.badge--accent Most popular
+            p.pricing-card__price
+              span.pricing-card__amount $29
+              span.pricing-card__period /month
+            ul.pricing-card__features
+              li.pricing-card__feature Unlimited invoices
+              li.pricing-card__feature Reminders by email and SMS
+              li.pricing-card__feature Automatic reconciliation
+              li.pricing-card__feature Five users
+            a.button.button--primary.pricing-card__cta[href=/signup?plan=business] Choose Business
+      section#signup.signup
+        h2.section-title Try Acme free for 30 days
+        form.signup__form[action=/api/signup method=post]
+          label.field
+            span.field__label Work email
+            input.field__input[type=email name=email required autocomplete=email placeholder=you@company.com]
+          label.field
+            span.field__label Company name
+            input.field__input[type=text name=company required autocomplete=organization]
+          button.button.button--primary[type=submit] Create my account
+          p.signup__note No credit card needed. Cancel at any time.
+    footer.site-footer
+      .site-footer__columns
+        ul.site-footer__list
+          li > a[href=/about] About
+          li > a[href=/careers] Careers
+          li > a[href=/blog] Blog
+        ul.site-footer__list
+          li > a[href=/privacy] Privacy
+          li > a[href=/terms] Terms
+          li > a[href=/security] Security
+      p.site-footer__copy © 2026 Acme Inc.

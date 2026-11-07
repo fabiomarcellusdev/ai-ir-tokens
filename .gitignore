@@ -1,0 +1,9 @@
+node_modules/
+bench/token-count/out/
+*.log
+.env
+.env.*
+.claude/settings.local.json
+.claude/local/
+CLAUDE.local.md
+private-docs/

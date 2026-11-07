@@ -1,0 +1,64 @@
+api/users.ts
+  imports zod, ../db/types, ../errors
+  @i1 export interface User { id, email, displayName, createdAt, roles }
+  @t2 export type Role = "admin" | "editor" | "viewer"
+  @v3 const CreateUserInput = CallExpression…  L19-23
+  @t4 export type CreateUserInput = z.infer<typeof CreateUserInput>
+  @f5 fn toUser(row: UserRow): User  L28-36
+  @f6 export async fn getUser(id: string, db: Db): Promise<User | null>  L41-47
+  @f7 export async fn listUsers(db: Db, options: { limit?: number; cursor?: string } = {}): Promise<{ users: User[]; nextCursor: string | null }>  L52-67
+  @f8 export async fn createUser(input: unknown, db: Db): Promise<User>  L73-92
+  @f9 export async fn deleteUser(id: string, db: Db): Promise<void>  L97-102
+  @f10 export fn hasRole(user: User, ...roles: Role[]): boolean  L105-107
+components/Navbar.tsx
+  imports react, react-router-dom
+  @v1 const links = ArrayLiteralExpression…  L4-9
+  @f2 export fn Navbar()  L12-69
+components/PricingCard.tsx
+  imports react, ../utils/format, ./icons
+  @i1 export interface Plan { id, name, monthlyPrice, yearlyPrice, features, highlighted }
+  @i2 interface PricingCardProps { plan, billing, onSelect }
+  @f3 export fn PricingCard({ plan, billing, onSelect }: PricingCardProps)  L21-62
+store/cart.ts
+  imports ../utils/format
+  @i1 export interface CartItem { sku, name, unitPrice, quantity }
+  @i2 export interface Discount { code, percentOff, amountOff, minimumSubtotal }
+  @t3 type Listener = (cart: Cart) => void
+  @c4 export class Cart  L23-114
+    private items
+    private discount
+    private listeners
+    constructor(private readonly currency: string = "USD")
+    add(item: Omit<CartItem, "quantity">, quantity = 1): void
+    remove(sku: string): void
+    setQuantity(sku: string, quantity: number): void
+    applyDiscount(discount: Discount): boolean
+    subtotal(): number
+    discountAmount(): number
+    total(): number
+    totalText(): string
+    subscribe(listener: Listener): () => void
+    private emit(): void
+utils/format.ts
+  @v1 const priceFormatters = new Map<string, Intl.NumberFormat>()  L5-5
+  @f2 export fn formatPrice(cents: number, currency = "USD", locale = "en-US"): string  L11-19
+  @f3 export fn formatRelative(date: Date, now: Date = new Date(), locale = "en-US"): string  L24-41
+  @f4 export fn truncate(text: string, max: number): string  L44-49
+  @f5 export fn slugify(text: string): string  L52-59
+  @f6 export fn formatBytes(bytes: number, decimals = 1): string  L62-70
+export async function createUser(input: unknown, db: Db): Promise<User>
+  const parsed = CreateUserInput.safeParse(input)
+  if !parsed.success
+    throw new ValidationError(parsed.error.issues.map((issue) => issue.message).join("; "))
+  const existing = await db.query<UserRow>("SELECT id FROM users WHERE email = $1", [
+    parsed.data.email,
+  ])
+  if existing
+    throw new ValidationError(`Email ${parsed.data.email} is already registered`)
+  const row = await db.query<UserRow>(
+    "INSERT INTO users (email, display_name, roles) VALUES ($1, $2, $3) RETURNING *",
+    [parsed.data.email, parsed.data.displayName, parsed.data.roles.join(",")],
+  )
+  if !row
+    throw new Error("Insert returned no row")
+  return toUser(row)

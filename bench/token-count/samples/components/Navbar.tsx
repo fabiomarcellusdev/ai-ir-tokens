@@ -1,0 +1,69 @@
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/docs", label: "Docs" },
+];
+
+/** The site's top navigation bar, with a menu button on small screens. */
+export function Navbar() {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  // Close the menu whenever the route changes.
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-slate-900">
+          <img src="/logo.svg" alt="" className="h-8 w-8" />
+          Acme
+        </Link>
+        <ul className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                to={link.href}
+                className={
+                  location.pathname === link.href
+                    ? "text-sm font-medium text-indigo-600"
+                    : "text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+                }
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-3">
+          <Link to="/login" className="hidden text-sm font-medium text-slate-600 hover:text-slate-900 md:block">
+            Log in
+          </Link>
+          <Link
+            to="/signup"
+            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Sign up
+          </Link>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md p-2 text-slate-600 hover:bg-slate-100 md:hidden"
+            aria-expanded={open}
+            aria-label="Open menu"
+            onClick={() => setOpen(!open)}
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+}

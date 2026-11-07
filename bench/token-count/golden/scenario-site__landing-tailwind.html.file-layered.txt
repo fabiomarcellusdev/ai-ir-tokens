@@ -1,0 +1,30 @@
+site/landing-tailwind.html
+  title Acme Analytics
+  @n1 .relative  h1 "Know what your users do, not just where they click"  3 link, 1 img
+  @n2 section.bg-white  h2 "Ship faster"  4 svg
+  @n3 footer.bg-slate-900  3 link
+dl.grid.max-w-xl.grid-cols-1.gap-x-8.gap-y-10.lg:max-w-none.lg:grid-cols-2.lg:gap-y-16
+  .relative.pl-16
+    dt.text-base.font-semibold.leading-7.text-slate-900
+      .absolute.left-0.top-0.flex.h-10.w-10.items-center.justify-center.rounded-lg.bg-indigo-600
+        svg.h-6.w-6.text-white (1 path, 678 chars elided)
+      | Funnels
+    dd.mt-2.text-base.leading-7.text-slate-600 See where users drop off between any two steps, broken down by any property.
+  .relative.pl-16
+    dt.text-base.font-semibold.leading-7.text-slate-900
+      .absolute.left-0.top-0.flex.h-10.w-10.items-center.justify-center.rounded-lg.bg-indigo-600
+        svg.h-6.w-6.text-white (1 path, 397 chars elided)
+      | Retention
+    dd.mt-2.text-base.leading-7.text-slate-600 Find out which features bring users back, week after week.
+  .relative.pl-16
+    dt.text-base.font-semibold.leading-7.text-slate-900
+      .absolute.left-0.top-0.flex.h-10.w-10.items-center.justify-center.rounded-lg.bg-indigo-600
+        svg.h-6.w-6.text-white (1 path, 304 chars elided)
+      | Paths
+    dd.mt-2.text-base.leading-7.text-slate-600 Follow the routes real users take through your product, not the ones you designed.
+  .relative.pl-16
+    dt.text-base.font-semibold.leading-7.text-slate-900
+      .absolute.left-0.top-0.flex.h-10.w-10.items-center.justify-center.rounded-lg.bg-indigo-600
+        svg.h-6.w-6.text-white (1 path, 405 chars elided)
+      | Private by default
+    dd.mt-2.text-base.leading-7.text-slate-600 No cookies, no personal data, hosted in the EU.

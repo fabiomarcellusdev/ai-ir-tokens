@@ -1,0 +1,86 @@
+{
+  "enableAllProjectMcpServers": false,
+  "permissions": {
+    "deny": [
+      "Bash(npm install*)",
+      "Bash(npm i *)",
+      "Bash(npm ci*)",
+      "Bash(npm add*)",
+      "Bash(npm update*)",
+      "Bash(npm exec*)",
+      "Bash(npx *)",
+      "Bash(yarn *)",
+      "Bash(bun *)",
+      "Bash(bunx *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.netrc)",
+      "Read(~/.config/gh/**)"
+    ],
+    "ask": [
+      "Bash(pnpm add*)",
+      "Bash(pnpm install*)",
+      "Bash(pnpm i*)",
+      "Bash(pnpm update*)",
+      "Bash(pnpm up*)",
+      "Bash(pnpm dlx*)",
+      "Bash(pnpm create*)",
+      "Bash(pnpm fetch*)",
+      "Bash(pnpm self-update*)",
+      "Bash(pnpm publish*)",
+      "Bash(pnpx *)",
+      "Bash(corepack *)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git remote*)",
+      "Bash(git config*)",
+      "Bash(gh release*)",
+      "Bash(gh repo*)",
+      "Read(./private-docs/**)",
+      "Read(./CLAUDE.local.md)",
+      "Edit(./.claude/**)",
+      "Edit(./tools/**)",
+      "Edit(./.githooks/**)",
+      "Edit(./.gitattributes)",
+      "Edit(./.gitignore)",
+      "Edit(./bench/token-count/package.json)",
+      "Edit(./bench/token-count/pnpm-workspace.yaml)",
+      "Edit(./bench/token-count/golden/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/package-guard.mjs\"",
+            "timeout": 10,
+            "statusMessage": "Checking for package installs"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell|WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/security-guard.mjs\"",
+            "timeout": 10,
+            "statusMessage": "Checking for private files and outbound data"
+          }
+        ]
+      }
+    ]
+  }
+}

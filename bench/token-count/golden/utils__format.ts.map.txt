@@ -1,0 +1,7 @@
+utils/format.ts
+  @v1 const priceFormatters = new Map<string, Intl.NumberFormat>()  L5-5
+  @f2 export fn formatPrice(cents: number, currency = "USD", locale = "en-US"): string  L11-19
+  @f3 export fn formatRelative(date: Date, now: Date = new Date(), locale = "en-US"): string  L24-41
+  @f4 export fn truncate(text: string, max: number): string  L44-49
+  @f5 export fn slugify(text: string): string  L52-59
+  @f6 export fn formatBytes(bytes: number, decimals = 1): string  L62-70

@@ -1,0 +1,5 @@
+components/PricingCard.tsx
+  imports react, ../utils/format, ./icons
+  @i1 export interface Plan { id, name, monthlyPrice, yearlyPrice, features, highlighted }
+  @i2 interface PricingCardProps { plan, billing, onSelect }
+  @f3 export fn PricingCard({ plan, billing, onSelect }: PricingCardProps)  L21-62

@@ -1,0 +1,56 @@
+import { useState } from "react";
+import { formatPrice } from "../utils/format";
+import { CheckIcon } from "./icons";
+export interface Plan {
+  id: string;
+  name: string;
+  monthlyPrice: number;
+  yearlyPrice: number;
+  features: string[];
+  highlighted?: boolean;
+}
+interface PricingCardProps {
+  plan: Plan;
+  billing: "monthly" | "yearly";
+  onSelect: (planId: string) => void;
+}
+export function PricingCard({ plan, billing, onSelect }: PricingCardProps) {
+  const [pending, setPending] = useState(false);
+  const price = billing === "monthly" ? plan.monthlyPrice : plan.yearlyPrice;
+  async function handleClick() {
+    setPending(true);
+    try {
+      await onSelect(plan.id);
+    } finally {
+      setPending(false);
+    }
+  }
+  return (
+    <div className={plan.highlighted ? "pricing-card pricing-card--highlighted" : "pricing-card"}>
+      <div className="pricing-card__header">
+        <h3 className="pricing-card__name">{plan.name}</h3>
+        {plan.highlighted && <span className="badge badge--accent">Most popular</span>}
+      </div>
+      <p className="pricing-card__price">
+        <span className="pricing-card__amount">{formatPrice(price)}</span>
+        <span className="pricing-card__period">/{billing === "monthly" ? "month" : "year"}</span>
+      </p>
+      <ul className="pricing-card__features">
+        {plan.features.map((feature) => (
+          <li key={feature} className="pricing-card__feature">
+            <CheckIcon className="pricing-card__check" aria-hidden="true" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        className="button button--primary pricing-card__cta"
+        disabled={pending}
+        onClick={handleClick}
+      >
+        {pending ? "Loading…" : `Choose ${plan.name}`}
+      </button>
+    </div>
+  );
+}

@@ -1,0 +1,51 @@
+# Testing: the checks that must pass at each milestone
+
+A milestone is not reached until every check for it passes. A failing check is fixed or, if it is flaky, quarantined
+with a row in `docs/follow-ups.md`. It is never re-run until it passes, and never skipped (`--no-verify`) without the
+owner's yes.
+
+One command runs each level: `node tools/check.mjs <fast|full|gate>`. It uses Node's standard library only.
+
+## The milestones
+
+| Milestone | Level | Runs where | What it adds |
+|---|---|---|---|
+| Every commit | `fast` | `.githooks/pre-commit` | Unit tests; voice lint; package guards intact; expired security exceptions; privacy lint |
+| Every push and pull request | `full` | `.githooks/pre-push`; CI (`.github/workflows/checks.yml`) on Windows, macOS and Linux, and once a month | `fast` + golden sample views + known vulnerabilities (osv.dev) |
+| Every phase gate | `gate` | The `gate-check` skill | `full` + the gate tests in `tests/gates/` + the gate's measurement + independent reviews |
+| Every release (from 0.1) | `gate` + release checks | The release hat's checklist (`docs/future-hats.md`) | Install the packed tarball in a clean folder and run the CLI and the MCP server; the notices of every shipped dependency |
+
+Turn the git hooks on once per clone: `git config core.hooksPath .githooks`.
+
+## What each check proves, and its negative control
+
+Every check must be able to fail. The negative control is the broken input that shows it does.
+
+| Check | Proves | Negative control |
+|---|---|---|
+| Unit tests: `package-guard` | npm installs, npx, Yarn and Bun are refused; installs wait for the owner | Deny and ask cases (wrappers, `bash -c`, `$(...)`, quotes), and allow cases that must not be blocked |
+| Unit tests: `security-guard` | Sensitive files, data sent out, piped installers and publishing wait for the owner | Deny and ask cases (`curl ... \| sh`, `cat .env`, `git push`), and allow cases |
+| Unit tests: `osv-check` | The lockfile reader finds every package | A lockfile with no packages; a CRLF lockfile; an unrated advisory counts as a failure |
+| Unit tests: `vet-package` | Each vetting rule fails when it should | A young version, an install script, an unknown licence, a high advisory, a deprecated version, a publisher change |
+| Unit tests: `check` | A weakened guard or an expired exception fails `fast` | Ten weakenings (a caret range, a 30-day age, scripts allowed, a removed hook, ...) |
+| Voice lint | No banned term from `docs/voice.md` in the docs | A test line with a banned word; a sync test that every banned word is in `docs/voice.md` |
+| Package guards intact | Exact pins, pnpm by hash, 60-day age, no scripts, no automatic installs, both hooks on | The ten weakenings above |
+| Privacy lint | No private term in a file that git would publish | Runs only where `private-docs/privacy-terms.txt` exists (the owner's checkout); CI skips it |
+| Golden sample views | The views and counts of the 8 sample files are unchanged | Any change to `count.mjs` output; an intended change re-pins with `update-golden` in the same commit |
+| Known vulnerabilities | No locked package has a known vulnerability above low | `pnpm@10.0.0` (known advisories) fails the scanner |
+
+## Added by later phases
+
+Each phase adds its tests and, where it has a gate, a file in `tests/gates/`. The plan, from `CLAUDE.md` and
+`docs/roadmap.md`:
+
+| Phase | Tests added | Gate test |
+|---|---|---|
+| 1 | Vitest unit tests; fast-check property tests of the span patcher (CRLF, BOM, tabs, non-BMP, empty files); the module-boundary check; lint and format; CI on Windows, macOS and Linux | C1: every untouched byte identical over random edits |
+| 2 | Index and map tests; golden maps of the sample corpus; hostile input (syntax errors, deep nesting, minified code, JSX in `.js`) | C2: index time and update time, as a timed run outside the test suite |
+| 3 | A test per operation; a stale-edit refusal test per operation; rollback tests; formatter-range tests | C3: 200 scripted edits type-check or roll back |
+| 4 | Path-confinement tests (`..`, absolute, UNC, `CON`, alternate data streams); a hostile-config test with a negative control; a fake-secret test; error-text tests; the tool-description token budget | C4: tool descriptions within N tokens |
+| 5 | The benchmark harness's own tests | C5: tokens and pass rate (a measurement, checked by `analysis-checker`) |
+| 6-8 | HTML re-parse tests; whitespace tests with inline elements and `<pre>`; selector-filter tests with `:is()`, `:where()`, `:has()` and nesting; browser computed-style comparisons | C6, C7, C8 |
+| 9 | Fuzz targets for each parser input and the edit grammar; every crash becomes a regression test | – |
+| 10 | The packed-tarball install test; provenance | – |

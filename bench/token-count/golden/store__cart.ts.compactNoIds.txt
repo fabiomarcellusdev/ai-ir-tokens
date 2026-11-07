@@ -1,0 +1,67 @@
+import { formatPrice } from "../utils/format"
+export interface CartItem
+  sku: string
+  name: string
+  unitPrice: number;
+  quantity: number
+export interface Discount
+  code: string
+  percentOff?: number
+  amountOff?: number;
+  minimumSubtotal?: number
+type Listener = (cart: Cart) => void
+export class Cart
+  private items = new Map<string, CartItem>()
+  private discount: Discount | null = null
+  private listeners: Listener[] = []
+  constructor(private readonly currency: string = "USD")
+  add(item: Omit<CartItem, "quantity">, quantity = 1): void
+    if quantity <= 0
+      throw new RangeError("quantity must be positive")
+    const existing = this.items.get(item.sku)
+    if existing
+      existing.quantity += quantity
+    else
+      this.items.set(item.sku, { ...item, quantity })
+    this.emit()
+  remove(sku: string): void
+    if this.items.delete(sku)
+      this.emit()
+  setQuantity(sku: string, quantity: number): void
+    const item = this.items.get(sku)
+    if !item
+      return
+    if quantity <= 0
+      this.remove(sku)
+      return
+    item.quantity = quantity
+    this.emit()
+  applyDiscount(discount: Discount): boolean
+    if discount.minimumSubtotal && this.subtotal() < discount.minimumSubtotal
+      return false
+    this.discount = discount
+    this.emit()
+    return true
+  subtotal(): number
+    let sum = 0
+    for (const item of this.items.values())
+      sum += item.unitPrice * item.quantity
+    return sum
+  discountAmount(): number
+    if !this.discount
+      return 0
+    const subtotal = this.subtotal()
+    if this.discount.percentOff
+      return Math.round((subtotal * this.discount.percentOff) / 100)
+    return Math.min(this.discount.amountOff ?? 0, subtotal)
+  total(): number
+    return this.subtotal() - this.discountAmount()
+  totalText(): string
+    return formatPrice(this.total(), this.currency)
+  subscribe(listener: Listener): () => void
+    this.listeners.push(listener)
+    return () =>
+      this.listeners = this.listeners.filter((l) => l !== listener)
+  private emit(): void
+    for (const listener of this.listeners)
+      listener(this)

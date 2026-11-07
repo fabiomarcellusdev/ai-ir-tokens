@@ -1,0 +1,441 @@
+{
+  "tokenizers": [
+    "o200k_base",
+    "cl100k_base"
+  ],
+  "root": "C:\\Developer Stuff\\Projects\\Production Projects\\ai-ir-tokens\\bench\\token-count\\samples",
+  "rows": [
+    {
+      "file": "api/users.ts",
+      "kind": "ts",
+      "counts": {
+        "raw": {
+          "o200k_base": 850,
+          "cl100k_base": 829
+        },
+        "noComments": {
+          "o200k_base": 723,
+          "cl100k_base": 705
+        },
+        "plain": {
+          "o200k_base": 667,
+          "cl100k_base": 649
+        },
+        "compact": {
+          "o200k_base": 725,
+          "cl100k_base": 707
+        },
+        "compactNoIds": {
+          "o200k_base": 695,
+          "cl100k_base": 677
+        },
+        "map": {
+          "o200k_base": 261,
+          "cl100k_base": 253
+        }
+      }
+    },
+    {
+      "file": "components/Navbar.tsx",
+      "kind": "jsx",
+      "counts": {
+        "raw": {
+          "o200k_base": 685,
+          "cl100k_base": 675
+        },
+        "noComments": {
+          "o200k_base": 658,
+          "cl100k_base": 648
+        },
+        "plain": {
+          "o200k_base": 590,
+          "cl100k_base": 581
+        },
+        "compact": {
+          "o200k_base": 561,
+          "cl100k_base": 559
+        },
+        "compactNoIds": {
+          "o200k_base": 555,
+          "cl100k_base": 553
+        },
+        "map": {
+          "o200k_base": 44,
+          "cl100k_base": 45
+        }
+      }
+    },
+    {
+      "file": "components/PricingCard.tsx",
+      "kind": "jsx",
+      "counts": {
+        "raw": {
+          "o200k_base": 469,
+          "cl100k_base": 450
+        },
+        "noComments": {
+          "o200k_base": 460,
+          "cl100k_base": 441
+        },
+        "plain": {
+          "o200k_base": 405,
+          "cl100k_base": 387
+        },
+        "compact": {
+          "o200k_base": 380,
+          "cl100k_base": 371
+        },
+        "compactNoIds": {
+          "o200k_base": 371,
+          "cl100k_base": 362
+        },
+        "map": {
+          "o200k_base": 84,
+          "cl100k_base": 80
+        }
+      }
+    },
+    {
+      "file": "site/index.html",
+      "kind": "html",
+      "counts": {
+        "raw": {
+          "o200k_base": 2691,
+          "cl100k_base": 2691
+        },
+        "plain": {
+          "o200k_base": 2479,
+          "cl100k_base": 2471
+        },
+        "compact": {
+          "o200k_base": 2126,
+          "cl100k_base": 2123
+        },
+        "compactNoIds": {
+          "o200k_base": 2099,
+          "cl100k_base": 2096
+        },
+        "elided": {
+          "o200k_base": 1084,
+          "cl100k_base": 1083
+        },
+        "map": {
+          "o200k_base": 173,
+          "cl100k_base": 174
+        }
+      }
+    },
+    {
+      "file": "site/landing-tailwind.html",
+      "kind": "html",
+      "counts": {
+        "raw": {
+          "o200k_base": 2439,
+          "cl100k_base": 2460
+        },
+        "plain": {
+          "o200k_base": 2294,
+          "cl100k_base": 2307
+        },
+        "compact": {
+          "o200k_base": 2090,
+          "cl100k_base": 2120
+        },
+        "compactNoIds": {
+          "o200k_base": 2081,
+          "cl100k_base": 2111
+        },
+        "elided": {
+          "o200k_base": 1312,
+          "cl100k_base": 1344
+        },
+        "map": {
+          "o200k_base": 78,
+          "cl100k_base": 79
+        }
+      }
+    },
+    {
+      "file": "site/styles.css",
+      "kind": "css",
+      "counts": {
+        "raw": {
+          "o200k_base": 1908,
+          "cl100k_base": 1904
+        },
+        "noComments": {
+          "o200k_base": 1852,
+          "cl100k_base": 1849
+        },
+        "plain": {
+          "o200k_base": 1448,
+          "cl100k_base": 1447
+        },
+        "compact": {
+          "o200k_base": 1623,
+          "cl100k_base": 1620
+        },
+        "compactNoIds": {
+          "o200k_base": 1451,
+          "cl100k_base": 1448
+        },
+        "map": {
+          "o200k_base": 255,
+          "cl100k_base": 255
+        }
+      }
+    },
+    {
+      "file": "store/cart.ts",
+      "kind": "ts",
+      "counts": {
+        "raw": {
+          "o200k_base": 659,
+          "cl100k_base": 661
+        },
+        "noComments": {
+          "o200k_base": 569,
+          "cl100k_base": 571
+        },
+        "plain": {
+          "o200k_base": 486,
+          "cl100k_base": 488
+        },
+        "compact": {
+          "o200k_base": 517,
+          "cl100k_base": 518
+        },
+        "compactNoIds": {
+          "o200k_base": 505,
+          "cl100k_base": 507
+        },
+        "map": {
+          "o200k_base": 190,
+          "cl100k_base": 190
+        }
+      }
+    },
+    {
+      "file": "utils/format.ts",
+      "kind": "ts",
+      "counts": {
+        "raw": {
+          "o200k_base": 663,
+          "cl100k_base": 657
+        },
+        "noComments": {
+          "o200k_base": 543,
+          "cl100k_base": 538
+        },
+        "plain": {
+          "o200k_base": 498,
+          "cl100k_base": 493
+        },
+        "compact": {
+          "o200k_base": 538,
+          "cl100k_base": 533
+        },
+        "compactNoIds": {
+          "o200k_base": 520,
+          "cl100k_base": 515
+        },
+        "map": {
+          "o200k_base": 156,
+          "cl100k_base": 155
+        }
+      }
+    }
+  ],
+  "totals": {
+    "ts": {
+      "files": 3,
+      "raw": {
+        "o200k_base": 2172,
+        "cl100k_base": 2147
+      },
+      "noComments": {
+        "o200k_base": 1835,
+        "cl100k_base": 1814
+      },
+      "plain": {
+        "o200k_base": 1651,
+        "cl100k_base": 1630
+      },
+      "compact": {
+        "o200k_base": 1780,
+        "cl100k_base": 1758
+      },
+      "compactNoIds": {
+        "o200k_base": 1720,
+        "cl100k_base": 1699
+      },
+      "map": {
+        "o200k_base": 607,
+        "cl100k_base": 598
+      }
+    },
+    "jsx": {
+      "files": 2,
+      "raw": {
+        "o200k_base": 1154,
+        "cl100k_base": 1125
+      },
+      "noComments": {
+        "o200k_base": 1118,
+        "cl100k_base": 1089
+      },
+      "plain": {
+        "o200k_base": 995,
+        "cl100k_base": 968
+      },
+      "compact": {
+        "o200k_base": 941,
+        "cl100k_base": 930
+      },
+      "compactNoIds": {
+        "o200k_base": 926,
+        "cl100k_base": 915
+      },
+      "map": {
+        "o200k_base": 128,
+        "cl100k_base": 125
+      }
+    },
+    "html": {
+      "files": 2,
+      "raw": {
+        "o200k_base": 5130,
+        "cl100k_base": 5151
+      },
+      "plain": {
+        "o200k_base": 4773,
+        "cl100k_base": 4778
+      },
+      "compact": {
+        "o200k_base": 4216,
+        "cl100k_base": 4243
+      },
+      "compactNoIds": {
+        "o200k_base": 4180,
+        "cl100k_base": 4207
+      },
+      "elided": {
+        "o200k_base": 2396,
+        "cl100k_base": 2427
+      },
+      "map": {
+        "o200k_base": 251,
+        "cl100k_base": 253
+      }
+    },
+    "css": {
+      "files": 1,
+      "raw": {
+        "o200k_base": 1908,
+        "cl100k_base": 1904
+      },
+      "noComments": {
+        "o200k_base": 1852,
+        "cl100k_base": 1849
+      },
+      "plain": {
+        "o200k_base": 1448,
+        "cl100k_base": 1447
+      },
+      "compact": {
+        "o200k_base": 1623,
+        "cl100k_base": 1620
+      },
+      "compactNoIds": {
+        "o200k_base": 1451,
+        "cl100k_base": 1448
+      },
+      "map": {
+        "o200k_base": 255,
+        "cl100k_base": 255
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "name": "TS: createUser stores the email in lower case",
+      "file": "api/users.ts",
+      "context": {
+        "dump": 3353,
+        "repoLayered": 914,
+        "file": 850,
+        "plainFile": 667,
+        "fileLayered": 440
+      },
+      "output": {
+        "rewrite": 850,
+        "searchReplace": 162,
+        "ops": 40
+      }
+    },
+    {
+      "name": "JSX: PricingCard shows a yearly saving",
+      "file": "components/PricingCard.tsx",
+      "context": {
+        "dump": 3353,
+        "repoLayered": 1007,
+        "file": 469,
+        "plainFile": 405,
+        "fileLayered": 356
+      },
+      "output": {
+        "rewrite": 469,
+        "searchReplace": 109,
+        "ops": 38
+      }
+    },
+    {
+      "name": "HTML: Business plan costs $39 and gains a feature",
+      "file": "site/index.html",
+      "context": {
+        "dump": 5142,
+        "repoLayered": 514,
+        "file": 2691,
+        "plainFile": 2479,
+        "fileLayered": 436
+      },
+      "output": {
+        "rewrite": 2691,
+        "searchReplace": 143,
+        "ops": 40
+      }
+    },
+    {
+      "name": "HTML (Tailwind): reword the Retention feature",
+      "file": "site/landing-tailwind.html",
+      "context": {
+        "dump": 5142,
+        "repoLayered": 708,
+        "file": 2439,
+        "plainFile": 2294,
+        "fileLayered": 535
+      },
+      "output": {
+        "rewrite": 2439,
+        "searchReplace": 83,
+        "ops": 29
+      }
+    },
+    {
+      "name": "CSS: the highlighted pricing card gets a 2px border",
+      "file": "site/styles.css",
+      "context": {
+        "dump": 1913,
+        "repoLayered": 771,
+        "file": 1908,
+        "plainFile": 1448,
+        "fileLayered": 771
+      },
+      "output": {
+        "rewrite": 1908,
+        "searchReplace": 107,
+        "ops": 50
+      }
+    }
+  ]
+}

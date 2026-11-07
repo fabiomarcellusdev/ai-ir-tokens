@@ -1,0 +1,20 @@
+store/cart.ts
+  imports ../utils/format
+  @i1 export interface CartItem { sku, name, unitPrice, quantity }
+  @i2 export interface Discount { code, percentOff, amountOff, minimumSubtotal }
+  @t3 type Listener = (cart: Cart) => void
+  @c4 export class Cart  L23-114
+    private items
+    private discount
+    private listeners
+    constructor(private readonly currency: string = "USD")
+    add(item: Omit<CartItem, "quantity">, quantity = 1): void
+    remove(sku: string): void
+    setQuantity(sku: string, quantity: number): void
+    applyDiscount(discount: Discount): boolean
+    subtotal(): number
+    discountAmount(): number
+    total(): number
+    totalText(): string
+    subscribe(listener: Listener): () => void
+    private emit(): void

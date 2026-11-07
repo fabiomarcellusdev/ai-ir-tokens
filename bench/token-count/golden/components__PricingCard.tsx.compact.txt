@@ -1,0 +1,40 @@
+import { useState } from "react"
+import { formatPrice } from "../utils/format"
+import { CheckIcon } from "./icons"
+@i1 export interface Plan
+  id: string
+  name: string
+  monthlyPrice: number
+  yearlyPrice: number
+  features: string[]
+  highlighted?: boolean
+@i2 interface PricingCardProps
+  plan: Plan
+  billing: "monthly" | "yearly"
+  onSelect: (planId: string) => void
+@f3 export function PricingCard({ plan, billing, onSelect }: PricingCardProps)
+  const [pending, setPending] = useState(false)
+  const price = billing === "monthly" ? plan.monthlyPrice : plan.yearlyPrice
+  async function handleClick()
+    setPending(true)
+    try
+      await onSelect(plan.id)
+    finally
+      setPending(false)
+  return (
+    div className={plan.highlighted ? "pricing-card pricing-card--highlighted" : "pricing-card"}
+      div.pricing-card__header
+        h3.pricing-card__name {plan.name}
+        {plan.highlighted && span.badge.badge--accent Most popular}
+      p.pricing-card__price
+        span.pricing-card__amount {formatPrice(price)}
+        span.pricing-card__period /{billing === "monthly" ? "month" : "year"}
+      ul.pricing-card__features
+        {plan.features.map((feature) => (
+          li.pricing-card__feature key={feature}
+            CheckIcon.pricing-card__check aria-hidden="true"
+            span {feature}
+        ))}
+      button.button.button--primary.pricing-card__cta type="button" disabled={pending} onClick={handleClick}
+        {pending ? "Loading…" : `Choose ${plan.name}`}
+  )

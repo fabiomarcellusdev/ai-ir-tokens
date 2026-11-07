@@ -1,0 +1,36 @@
+# pnpm settings for the measurement script. Decision record: docs/decisions/0002-package-manager-and-supply-chain.md.
+# Phase 1 moves these settings to a workspace file at the repository root.
+# pnpm 12 reads these settings from this file, not from .npmrc.
+
+# A version must be published for 60 days (86,400 minutes) before pnpm installs it (owner, 2026-11-07).
+# Most malicious versions are found and removed within days. This applies to transitive dependencies too.
+minimumReleaseAge: 86400
+minimumReleaseAgeStrict: true
+
+# Security exceptions (decision 0002): a fix younger than 60 days for a known vulnerability, with the owner's yes.
+# Each entry has a removal date. pnpm matches by package name, so the lockfile's exact pin is what holds the version.
+minimumReleaseAgeExclude:
+  # source-map-js 1.2.1 has GHSA-68fv-2mgg-jv7q (high). The fix, 1.2.2, was published 2026-09-30.
+  # Remove this entry on or after 2026-11-29, when 1.2.2 is 60 days old.
+  - source-map-js
+
+# Fail if a package's publishing trust level goes down (for example, provenance lost).
+trustPolicy: no-downgrade
+
+# Only direct dependencies may come from git or tarball URLs.
+blockExoticSubdeps: true
+
+# No dependency runs an install script. An unreviewed build script fails the install.
+strictDepBuilds: true
+allowBuilds: {}
+ignoreScripts: true
+
+# Nothing is installed without a command that asks for it.
+verifyDepsBeforeRun: error
+autoInstallPeers: false
+strictPeerDependencies: true
+pmOnFail: error
+
+# Exact versions only; refuse packages that do not support this Node version.
+saveExact: true
+engineStrict: true

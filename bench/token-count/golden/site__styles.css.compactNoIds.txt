@@ -1,0 +1,55 @@
+:root  --color-accent #4f46e5; --color-accent-hover #4338ca; --color-text #0f172a; --color-muted #475569; --color-border #e2e8f0; --color-surface #ffffff; --radius 8px; --space-1 4px; --space-2 8px; --space-3 16px; --space-4 24px; --space-5 48px; --font-sans "Inter", system-ui, -apple-system, "Segoe UI", sans-serif
+*, *::before, *::after  box-sizing border-box
+body  margin 0; font-family var(--font-sans); color var(--color-text); background var(--color-surface); line-height 1.5
+.button  display inline-flex; align-items center; justify-content center; padding var(--space-2) var(--space-3); border 1px solid transparent; border-radius var(--radius); font-weight 600; text-decoration none; cursor pointer; transition background-color 0.15s ease, border-color 0.15s ease
+  &--primary  background var(--color-accent); color #fff
+  &--primary:hover  background var(--color-accent-hover)
+  &--ghost  background transparent; color var(--color-text); border-color var(--color-border)
+  &--large  padding 12px 20px; font-size 1.125rem
+.site-header  position sticky; top 0; z-index 50; background rgba(255, 255, 255, 0.85); backdrop-filter blur(8px); border-bottom 1px solid var(--color-border)
+.navbar  display flex; align-items center; justify-content space-between; max-width 1120px; margin 0 auto; padding var(--space-3)
+  &__brand  display flex; align-items center; gap var(--space-2); font-weight 700; color var(--color-text); text-decoration none
+  &__links  display flex; gap var(--space-4); margin 0; padding 0; list-style none
+  &__link  color var(--color-muted); text-decoration none
+  &__link:hover, .navbar__link--active  color var(--color-accent)
+  &__actions  display flex; gap var(--space-2)
+.hero  display grid; grid-template-columns 1fr 1fr; align-items center; gap var(--space-5); max-width 1120px; margin 0 auto; padding 96px var(--space-3)
+  &__title  font-size 3.5rem; line-height 1.1; letter-spacing -0.02em; margin 0 0 var(--space-3)
+  &__lead  font-size 1.25rem; color var(--color-muted)
+  &__actions  display flex; gap var(--space-3); margin-top var(--space-4)
+  &__image  width 100%; height auto; border-radius 12px; box-shadow 0 20px 50px rgba(15, 23, 42, 0.15)
+.section-title  font-size 2.25rem; text-align center; margin 0 0 var(--space-5)
+.features, .pricing, .signup  max-width 1120px; margin 0 auto; padding 80px var(--space-3)
+.features__grid  display grid; grid-template-columns repeat(3, 1fr); gap var(--space-4)
+.feature__icon  color var(--color-accent)
+.feature__title  font-size 1.125rem; margin var(--space-2) 0
+.feature__text  color var(--color-muted); margin 0
+.pricing__grid  display grid; grid-template-columns repeat(2, minmax(0, 360px)); justify-content center; gap var(--space-4)
+.pricing-card  display flex; flex-direction column; padding var(--space-4); border 1px solid var(--color-border); border-radius 12px; background var(--color-surface)
+  &--highlighted  border-color var(--color-accent); box-shadow 0 0 0 3px rgba(79, 70, 229, 0.15)
+  &__name  display flex; align-items center; gap var(--space-2); margin 0; font-size 1.25rem
+  &__price  margin var(--space-3) 0
+  &__amount  font-size 2.5rem; font-weight 700
+  &__period  color var(--color-muted)
+  &__features  flex 1; margin 0 0 var(--space-4); padding 0; list-style none
+  &__feature  padding var(--space-1) 0; border-bottom 1px solid var(--color-border)
+.badge  display inline-block; padding 2px 8px; border-radius 999px; font-size 0.75rem; font-weight 600
+  &--accent  background rgba(79, 70, 229, 0.1); color var(--color-accent)
+.signup__form  display grid; gap var(--space-3); max-width 420px; margin 0 auto
+.field  display grid; gap var(--space-1)
+  &__label  font-weight 600; font-size 0.875rem
+  &__input  padding 10px 12px; border 1px solid var(--color-border); border-radius var(--radius); font inherit
+  &__input:focus  outline 2px solid var(--color-accent); outline-offset 1px
+.signup__note  color var(--color-muted); font-size 0.875rem; text-align center
+.site-footer  border-top 1px solid var(--color-border); padding var(--space-5) var(--space-3); color var(--color-muted)
+  &__columns  display flex; gap var(--space-5); max-width 1120px; margin 0 auto
+  &__list  margin 0; padding 0; list-style none
+  &__copy  text-align center; font-size 0.875rem
+@media (max-width: 768px)
+  .navbar__links  display none
+  .hero  grid-template-columns 1fr; padding 48px var(--space-3)
+    &__title  font-size 2.25rem
+  .features__grid, .pricing__grid  grid-template-columns 1fr
+  .site-footer__columns  flex-direction column; gap var(--space-3)
+@media (prefers-reduced-motion: reduce)
+  .button  transition none

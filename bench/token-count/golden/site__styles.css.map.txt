@@ -1,0 +1,25 @@
+site/styles.css
+  @r1 :root (13 custom properties)
+  @r2 *, *::before, *::after
+  @r3 body
+  @r4-r8 .button* (5 rules)
+  @r9 .site-header
+  @r10-r15 .navbar* (6 rules)
+  @r16-r20 .hero* (5 rules)
+  @r21 .section-title
+  @r22-r23 .features* (2 rules)
+  @r24-r26 .feature* (3 rules)
+  @r27 .pricing
+  @r28-r35 .pricing-card* (8 rules)
+  @r36-r37 .badge* (2 rules)
+  @r38 .signup
+  @r39-r42 .field* (4 rules)
+  @r43 .signup
+  @r44-r47 .site-footer* (4 rules)
+  @media (max-width: 768px)
+    @r48 .navbar
+    @r49-r50 .hero* (2 rules)
+    @r51 .features
+    @r52 .site-footer
+  @media (prefers-reduced-motion: reduce)
+    @r53 .button

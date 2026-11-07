@@ -1,0 +1,61 @@
+// voice-lint.mjs: finds words that docs/voice.md says not to use, in the project's prose.
+//
+//   node tools/voice-lint.mjs
+//
+// Only words with one meaning are checked by machine. Words with other common meanings ("path", "version",
+// "command", "outline" in CSS, "skeleton" in a phase name) need a person's judgment and are not listed.
+// To keep a listed word on purpose, add the marker voice-ok anywhere on that line.
+
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+/** Each entry is a word from docs/voice.md ("Do not use" column or rule 5), and the term to use instead. */
+export const BANNED = [
+  ["changeset", "edit batch"],
+  ["etag", "hash"],
+  ["locator", "address"],
+  ["pruning", "selector filter"],
+  ["stripping", "elision"],
+  ["success rate", "pass rate"],
+  ["blazing", "(no marketing words)"],
+  ["revolutionary", "(no marketing words)"],
+  ["seamless", "(no marketing words)"],
+];
+
+/** Hits of banned words in a text: { line, word, use }. */
+export function lint(text, banned = BANNED) {
+  const hits = [];
+  text.split(/\r?\n/).forEach((line, i) => {
+    if (line.includes("voice-ok")) return;
+    for (const [word, use] of banned) {
+      if (new RegExp(`\\b${word}\\b`, "i").test(line)) hits.push({ line: i + 1, word, use });
+    }
+  });
+  return hits;
+}
+
+function files() {
+  const out = ["README.md", "CLAUDE.md"];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+      const rel = `${dir}/${e.name}`;
+      if (e.isDirectory()) walk(rel);
+      else if (e.name.endsWith(".md") && rel !== "docs/voice.md") out.push(rel);
+    }
+  })("docs");
+  return out.filter((f) => fs.existsSync(path.join(ROOT, f)));
+}
+
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain) {
+  const hits = [];
+  for (const f of files()) for (const h of lint(fs.readFileSync(path.join(ROOT, f), "utf8"))) hits.push(`${f}:${h.line}  "${h.word}": use ${h.use}`);
+  if (hits.length) {
+    console.log(hits.join("\n"));
+    process.exit(1);
+  }
+  console.log(`${files().length} files checked; no banned words.`);
+}

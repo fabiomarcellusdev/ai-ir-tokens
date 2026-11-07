@@ -1,0 +1,610 @@
+<title>Token-Lean Code Layer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column; a sticky contents rail on wide screens; code and tables scroll inside their own boxes. */
+:root {
+  --bg: #f3f4f6;
+  --surface: #ffffff;
+  --ink: #171b22;
+  --muted: #586172;
+  --line: #d9dee6;
+  --accent: #a94f0c;
+  --accent-soft: #f7e8da;
+  --good: #1d7349;
+  --good-soft: #dff1e7;
+  --warn: #8a5a00;
+  --warn-soft: #fbefd2;
+  --code-bg: #eceff3;
+  --tok-a: #dfe6f1;
+  --tok-b: #f4e2d2;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a; --surface: #1a1f27; --ink: #e8ebf0; --muted: #9ba4b3; --line: #2c333e;
+    --accent: #f29a50; --accent-soft: #3b2919; --good: #63c792; --good-soft: #17301f;
+    --warn: #f0c060; --warn-soft: #33290f; --code-bg: #20262f; --tok-a: #2a3444; --tok-b: #46301d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151a; --surface: #1a1f27; --ink: #e8ebf0; --muted: #9ba4b3; --line: #2c333e;
+  --accent: #f29a50; --accent-soft: #3b2919; --good: #63c792; --good-soft: #17301f;
+  --warn: #f0c060; --warn-soft: #33290f; --code-bg: #20262f; --tok-a: #2a3444; --tok-b: #46301d;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+}
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 1100px) {
+  .shell { grid-template-columns: 220px minmax(0, 1fr); }
+  .rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; }
+}
+main { min-width: 0; max-width: 860px; }
+
+header.top { padding-block: 48px 8px; display: grid; gap: 14px; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 30px; font-weight: 700; }
+h3 { font-size: 21px; font-weight: 600; }
+.lede { font-size: 20px; color: var(--muted); max-width: 62ch; margin: 0; }
+.meta { font-size: 14.5px; color: var(--muted); margin: 0; }
+
+section { padding-top: 56px; display: grid; gap: 18px; }
+section > p, section > ul, section > ol { margin: 0; max-width: 68ch; }
+.sub { display: grid; gap: 14px; padding-top: 22px; }
+.sub > p, .sub > ul { margin: 0; max-width: 68ch; }
+ul, ol { padding-left: 1.3em; }
+li + li { margin-top: 4px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+strong { font-weight: 600; }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+
+.rail nav { display: grid; gap: 2px; font-size: 14.5px; padding-top: 48px; }
+.rail nav a { color: var(--muted); text-decoration: none; padding: 4px 0 4px 12px; border-left: 2px solid var(--line); }
+.rail nav a:hover { color: var(--ink); border-left-color: var(--accent); }
+.rail .rail-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+@media (max-width: 1099px) {
+  .rail nav { display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 16px; }
+  .rail nav a { border-left: 0; padding: 0; }
+  .rail .rail-label { width: 100%; margin: 0; }
+}
+
+.verdict {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 22px 24px; display: grid; gap: 12px;
+}
+.verdict ol { margin: 0; padding-left: 1.3em; }
+.verdict li + li { margin-top: 8px; }
+
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; font-size: 13.5px; color: var(--muted); background: var(--code-bg); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.best { font-weight: 600; color: var(--good); }
+td.worse { color: var(--warn); font-weight: 600; }
+.caption { font-size: 14.5px; color: var(--muted); margin: 0; max-width: 72ch; }
+
+pre {
+  margin: 0; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.55;
+  background: var(--code-bg); border-radius: 8px; padding: 14px 16px; overflow-x: auto; white-space: pre;
+}
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.pair > div { min-width: 0; display: grid; gap: 6px; align-content: start; }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.label b { color: var(--accent); font-weight: 600; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 3px; font-family: var(--font-mono); font-size: 13px; }
+.chips span { padding: 2px 4px; border-radius: 3px; white-space: pre; }
+.chips span:nth-child(odd) { background: var(--tok-a); }
+.chips span:nth-child(even) { background: var(--tok-b); }
+.chips .ws { color: var(--muted); }
+.tokdemo { display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+.tokrow { display: grid; gap: 6px; }
+
+.pill { display: inline-block; font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+.pill.keep { background: var(--good-soft); color: var(--good); }
+.pill.cut { background: var(--warn-soft); color: var(--warn); }
+.pill.test { background: var(--accent-soft); color: var(--accent); }
+
+.decisions { display: grid; gap: 10px; }
+.decision { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; align-items: baseline; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; }
+.decision p { margin: 0; }
+
+.phases { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: phase -1; }
+.phase { counter-increment: phase; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+.phase-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.phase-head h3::before { content: "Phase " counter(phase) " · "; color: var(--accent); }
+.weeks { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.phase p { margin: 0; }
+.phase dl { margin: 0; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 6px 14px; }
+.phase dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+.phase dd { margin: 0; }
+.phase dd ul { margin: 0; padding-left: 1.1em; }
+@media (max-width: 560px) { .phase dl { grid-template-columns: 1fr; } .phase dt { padding-top: 6px; } }
+.gate { border-left: 3px solid var(--accent); padding-left: 12px; }
+
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+summary { cursor: pointer; padding: 12px 16px; font-weight: 600; }
+details pre { border-radius: 0 0 8px 8px; max-height: 640px; }
+.mermaid { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <nav aria-label="Contents">
+      <div class="rail-label">Contents</div>
+      <a href="#verdict">Verdict</a>
+      <a href="#idea">The idea</a>
+      <a href="#existing">What exists</a>
+      <a href="#views">The views by language</a>
+      <a href="#edits">Edits and addresses</a>
+      <a href="#roundtrip">The round trip</a>
+      <a href="#results">Measured results</a>
+      <a href="#decisions">Decisions</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#script">The script</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header class="top">
+      <div class="eyebrow">Open-source plan · TypeScript, JavaScript, JSX, HTML, CSS</div>
+      <h1>Token-Lean Code Layer</h1>
+      <p class="lede">An MCP server and CLI that let an AI model read a codebase through a compact map, read only the code a task needs, and change it with small edit operations that the server applies, formats and type-checks.</p>
+      <p class="meta">Working name. Plan written 6 November 2026, with token counts measured the same day on a sample corpus (method and limits in <a href="#results">Measured results</a>).</p>
+    </header>
+
+    <section id="verdict">
+      <h2>Verdict</h2>
+      <div class="verdict">
+        <p><strong>Build it, but not as a new language.</strong> The measurements on this page point to three conclusions:</p>
+        <ol>
+          <li><strong>Most of the saving comes from choosing what to send and from the edit format, not from the syntax.</strong> The map of a file is 69-97% smaller than the file. An edit operation is 53-75% smaller than SEARCH/REPLACE blocks and 92-99% smaller than rewriting the file.</li>
+          <li><strong>For TypeScript and CSS, real code beats a custom syntax.</strong> Valid code without comments and indentation saves 24%. The custom compact syntax saves 21% (TypeScript) and 24% (CSS), and the model would have to learn it. Ship real code.</li>
+          <li><strong>For HTML and JSX, a compact view pays.</strong> Pug-style markup saves 19-20% against 7-14% for plain markup. Eliding inline SVG takes HTML to 53%.</li>
+        </ol>
+        <p>The open question is accuracy. Token counts are measured; whether a model does the task as well with these views is not. Phase 5 of the roadmap answers it, and it is a go or no-go gate.</p>
+      </div>
+    </section>
+
+    <section id="idea">
+      <h2>The idea</h2>
+      <p>A model working on code spends tokens in two places. It <strong>reads</strong> files to find and understand the code, and it <strong>writes</strong> changes, often by repeating code it is not changing. Prompt caching makes repeated input cheap (a cached read costs about 10% of the normal input price on Anthropic's API), but it does not make it small. Every token still fills the context window and adds time. Output tokens cost about 5 times as much as input tokens and are never cached.</p>
+      <p>The layer sits between the model and the files. It gives the model three things:</p>
+      <ul>
+        <li><strong>A map</strong> (L0): one line per declaration, landmark or group of rules, with signatures and line ranges. The model reads it first to find what matters.</li>
+        <li><strong>Views on request</strong> (L1): only the symbol, section or rules the task needs, in the cheapest form the model reads well.</li>
+        <li><strong>Edit operations</strong>: small commands addressed by name. The server applies them to the original text, formats only what changed, type-checks, and rolls back on failure.</li>
+      </ul>
+      <p>The model never converts code back to TypeScript, HTML or CSS. The server does. Code that the model did not edit stays byte for byte as it was.</p>
+    </section>
+
+    <section id="existing">
+      <h2>What exists already</h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Project</th><th>What it does</th><th>Reported result</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://arxiv.org/abs/2404.16333v2">SimPy and DualCode</a> (ISSTA 2024)</td><td>An "AI-oriented grammar" for Python with the same syntax tree. DualCode converts it to normal code for people.</td><td>8.6-34.7% fewer tokens by tokenizer; 10.4% for GPT-4. Needed fine-tuning to keep accuracy.</td></tr>
+            <tr><td><a href="https://arxiv.org/html/2510.00446v1">LongCodeZip</a> (ASE 2025)</td><td>Keeps only the functions and blocks that matter for the task, ranked by the model's perplexity.</td><td>Up to 5.6x compression with no loss in quality.</td></tr>
+            <tr><td><a href="https://pypi.org/project/fastedits/0.2.8/">FastEdit</a></td><td>The model edits a function by name, found with tree-sitter, and does not repeat the old code.</td><td>44-54% fewer output tokens on the project's own benchmark.</td></tr>
+            <tr><td>Aider's repo map, Repomix <code>--compress</code></td><td>Signature-only views of a repository, built with tree-sitter.</td><td>Not checked for this page.</td></tr>
+            <tr><td>Serena</td><td>An MCP server that reads and edits code by symbol, through language servers.</td><td>Not checked for this page.</td></tr>
+            <tr><td>LLMLingua, TOON</td><td>General prompt compression; a compact notation for JSON data.</td><td>Not checked for this page.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">The first three were checked by web search on 6 November 2026, from abstracts and project pages. The others are from memory. <strong>How this project differs:</strong> one tool for reading and editing, built on the TypeScript compiler (types and references, not only syntax), a round trip checked by <code>tsc</code>, HTML and CSS views that know about each other, and a published benchmark with pass rates.</p>
+    </section>
+
+    <section id="views">
+      <h2>The views by language</h2>
+      <p>Every example below is the real output of the measurement script on the sample files.</p>
+
+      <div class="sub">
+        <h3>TypeScript and JavaScript</h3>
+        <p><span class="pill keep">Keep</span> The map lists each declaration with its signature and lines. <span class="pill keep">Keep</span> The view is real TypeScript with comments removed. <span class="pill test">Test</span> Also removing indentation saves 8 more points, but it may hurt the model's reading. Phase 5 decides.</p>
+        <div class="pair">
+          <div>
+            <div class="label">Map, L0 · <b>69% smaller</b> than the file</div>
+<pre>api/users.ts
+  imports zod, ../db/types, ../errors
+  @i1 export interface User { id, email, displayName, createdAt, roles }
+  @t2 export type Role = "admin" | "editor" | "viewer"
+  @f5 fn toUser(row: UserRow): User  L28-36
+  @f6 export async fn getUser(id: string, db: Db): Promise&lt;User | null&gt;  L41-47
+  @f8 export async fn createUser(input: unknown, db: Db): Promise&lt;User&gt;  L73-92
+  @f9 export async fn deleteUser(id: string, db: Db): Promise&lt;void&gt;  L97-102</pre>
+          </div>
+          <div>
+            <div class="label">Plain view, L1 · valid TypeScript · <b>22% smaller</b> (24% over the three files)</div>
+<pre>export async function getUser(id: string, db: Db): Promise&lt;User | null&gt; {
+const row = await db.query&lt;UserRow&gt;("SELECT * FROM users WHERE id = $1", [id]);
+if (!row) {
+return null;
+}
+return toUser(row);
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>JSX and TSX</h3>
+        <p><span class="pill test">Test</span> A Pug-style view: no angle brackets or closing tags, <code>className="a b"</code> becomes <code>.a.b</code>, and text lines start with <code>| </code>. It saves 20% against 14% for plain JSX. The 6-point gain is kept only if the model edits it as well as real JSX.</p>
+<pre>  return (
+    div className={plan.highlighted ? "pricing-card pricing-card--highlighted" : "pricing-card"}
+      div.pricing-card__header
+        h3.pricing-card__name {plan.name}
+        {plan.highlighted &amp;&amp; span.badge.badge--accent Most popular}
+      p.pricing-card__price
+        span.pricing-card__amount {formatPrice(price)}
+        span.pricing-card__period /{billing === "monthly" ? "month" : "year"}
+      button.button.button--primary.pricing-card__cta type="button" disabled={pending} onClick={handleClick}
+        {pending ? "Loading…" : `Choose ${plan.name}`}
+  )</pre>
+      </div>
+
+      <div class="sub">
+        <h3>HTML</h3>
+        <p><span class="pill keep">Keep</span> The compact view uses indentation, no closing tags, Emmet-style <code>#id</code> and <code>.class</code>, and <code>[attr=value]</code>. A <code>div</code> with a class drops its tag name. <span class="pill keep">Keep</span> Inline SVG and <code>data:</code> images are replaced by a stub that names their size, and the model can read the original on request. Elision is the largest saving in HTML.</p>
+        <div class="pair">
+          <div>
+            <div class="label">Map, L0 · <b>94% smaller</b></div>
+<pre>site/index.html
+  title Acme – Invoices that pay themselves
+  @n1 header#top.site-header
+    @n2 nav.navbar  7 link, 1 svg
+  @n3 main
+    @n4 section.hero  h1 "Invoices that pay themselves"  2 link, 1 img
+    @n5 section#how-it-works.features  h2 "Everything you need…"  3 svg, 3 article
+    @n6 section#pricing.pricing  h2 "Simple pricing"  2 link, 2 card
+    @n7 section#signup.signup  h2 "Try Acme free for 30 days"
+      @n8 form.signup__form  2 field
+  @n9 footer.site-footer  6 link</pre>
+          </div>
+          <div>
+            <div class="label">Compact view with SVG elided, L1 · <b>60% smaller</b></div>
+<pre>  a.navbar__brand[href=/]
+    svg.navbar__logo (32x32, 1 path, 336 chars elided)
+    span Acme
+  ul.navbar__links
+    li.navbar__item &gt; a.navbar__link[href=/features] Features
+    li.navbar__item &gt; a.navbar__link.navbar__link--active[href=/pricing] Pricing
+  .pricing-card.pricing-card--highlighted
+    h3.pricing-card__name
+      | Business
+      span.badge.badge--accent Most popular
+    p.pricing-card__price
+      span.pricing-card__amount $29
+      span.pricing-card__period /month</pre>
+          </div>
+        </div>
+        <p>Most "HTML" in a TypeScript project is JSX or a framework template, so the HTML rules are shared with the JSX view. Vue, Svelte and Astro templates come after version 1.0.</p>
+      </div>
+
+      <div class="sub">
+        <h3>CSS</h3>
+        <p><span class="pill keep">Keep</span> The view is real CSS, one rule a line, with no comments and no spaces that carry nothing (24% smaller). The custom compact syntax measured the same 24% and was dropped. <span class="pill keep">Keep</span> The large saving comes from <strong>selector filtering</strong>: send only the rules whose selectors use the classes of the element being edited, as the browser's Styles panel does. Rule order is kept, because the order decides which rule wins.</p>
+        <div class="pair">
+          <div>
+            <div class="label">Map, L0 · <b>87% smaller</b></div>
+<pre>site/styles.css
+  @r1 :root (13 custom properties)
+  @r4-r8 .button* (5 rules)
+  @r10-r15 .navbar* (6 rules)
+  @r16-r20 .hero* (5 rules)
+  @r28-r35 .pricing-card* (8 rules)
+  @r36-r37 .badge* (2 rules)
+  @media (max-width: 768px)
+    @r48 .navbar
+    @r49-r50 .hero* (2 rules)</pre>
+          </div>
+          <div>
+            <div class="label">Plain view, L1 · valid CSS · <b>24% smaller</b></div>
+<pre>.button--primary{background:var(--color-accent);color:#fff}
+.button--primary:hover{background:var(--color-accent-hover)}
+.pricing-card--highlighted{border-color:var(--color-accent);box-shadow:0 0 0 3px rgba(79, 70, 229, 0.15)}
+.pricing-card__amount{font-size:2.5rem;font-weight:700}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>Why syntax saves so little: what the tokenizer sees</h3>
+        <p>Each chip is one token in <code>o200k_base</code>. Keywords, runs of spaces and common punctuation are already single tokens, so removing them saves only a few. Names, strings and class names make up most of the code, and no view can remove them.</p>
+        <div class="tokdemo">
+<!--TOKEN_DEMO-->
+        </div>
+      </div>
+    </section>
+
+    <section id="edits">
+      <h2>Edits and addresses</h2>
+      <p>The model edits by naming what it changes. The measurement showed that numeric IDs written into every line of a view cost 1-9 points of saving (9 for CSS, where every rule carried one). So IDs live only in the map, and code is addressed by name:</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Language</th><th>Address</th><th>Example operation</th></tr></thead>
+          <tbody>
+            <tr><td>TypeScript</td><td><code>file:Symbol.member</code></td><td><code>users.ts:createUser insert-after stmt[1]: const email = parsed.data.email.toLowerCase()</code></td></tr>
+            <tr><td>JSX</td><td><code>file:Component</code> + element path</td><td><code>PricingCard.tsx:PricingCard insert-after p.pricing-card__price: …</code></td></tr>
+            <tr><td>HTML</td><td><code>file:</code> CSS-like path, or a map ID</td><td><code>index.html:#pricing .pricing-card[2] .pricing-card__amount text $39</code></td></tr>
+            <tr><td>CSS</td><td><code>file:selector[n]</code></td><td><code>styles.css:.pricing-card--highlighted set border 2px solid var(--color-accent)</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The operations are few and typed:</p>
+      <ul>
+        <li><code>replace</code>, <code>insert-before</code>, <code>insert-after</code> and <code>delete</code> on a symbol, statement, element or rule.</li>
+        <li><code>replace-in</code>, a text substitution limited to one symbol.</li>
+        <li><code>rename</code>, done by the TypeScript language service, so every reference in the project changes too.</li>
+        <li><code>set</code> and <code>unset</code> for CSS declarations and HTML attributes.</li>
+        <li><code>text</code>, <code>append</code> and <code>remove</code> for HTML content.</li>
+      </ul>
+      <p>Each read returns a short content hash for what was read. An edit carries the hash it was based on, and the server refuses it when the code has changed since. This stops an edit from landing on code the model never saw.</p>
+    </section>
+
+    <section id="roundtrip">
+      <h2>The round trip</h2>
+      <pre class="mermaid">
+flowchart LR
+  A[Project files] -->|parse, watch| B[Index: symbols, landmarks, rules, hashes]
+  B --> C[map]
+  B --> D[read by address]
+  C --> M((AI model))
+  D --> M
+  M -->|edit ops + hashes| E[Apply to original text spans]
+  E --> F[Format changed ranges only]
+  F --> G[tsc, ESLint, HTML and CSS parse]
+  G -->|pass| H[Write files, update index]
+  G -->|fail| R[Roll back, return errors by address]
+  R --> M
+  H --> M
+      </pre>
+      <ol>
+        <li><strong>Index.</strong> Parse TypeScript and JavaScript with the TypeScript compiler API, HTML with parse5 and CSS with PostCSS. Update the index when a file changes.</li>
+        <li><strong>Read.</strong> The model calls <code>map</code>, then <code>read</code> for the addresses it needs.</li>
+        <li><strong>Edit.</strong> The model sends edit operations with the hashes it read.</li>
+        <li><strong>Apply.</strong> The server changes only the text spans the operations name. Comments and formatting outside them stay exactly as they were.</li>
+        <li><strong>Format.</strong> The server runs Prettier or Biome on the changed ranges only, so it never reformats a file the user did not ask about.</li>
+        <li><strong>Check.</strong> The server runs <code>tsc</code> and ESLint for code, and parses HTML and CSS again. On failure it rolls back and returns the errors, mapped back to addresses.</li>
+      </ol>
+      <p><strong>Hazards to handle:</strong> JSX, decorators and comments attached to nodes; semicolon insertion when code is regenerated; whitespace inside inline HTML elements and <code>&lt;pre&gt;</code>; tags the HTML parser inserts (<code>&lt;tbody&gt;</code>); entities and boolean attributes; CSS rule order, <code>!important</code>, custom properties and <code>@layer</code>. Exclude vendor CSS, minified and generated files from the index.</p>
+    </section>
+
+    <section id="results">
+      <h2>Measured results</h2>
+      <p><strong>Method.</strong> The script builds each view with real parsers (the TypeScript compiler 5.9, parse5 7, PostCSS 8) and counts tokens with OpenAI's <code>o200k_base</code> and <code>cl100k_base</code> tokenizers through js-tiktoken. The corpus is 8 sample files written for this test, 10,364 tokens in all: three TypeScript modules, two React components (one with Tailwind), two HTML pages (one with Tailwind) and one stylesheet.</p>
+
+      <div class="sub">
+        <h3>Views: saving against the raw files</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Kind</th><th class="num">Files</th><th class="num">Raw tokens</th><th class="num">Comments removed</th><th class="num">Plain (valid code)</th><th class="num">Compact, inline IDs</th><th class="num">Compact, no IDs</th><th class="num">Compact + SVG elided</th><th class="num">Map</th></tr></thead>
+            <tbody>
+              <tr><td>TypeScript</td><td class="num">3</td><td class="num">2,172</td><td class="num">16%</td><td class="num best">24%</td><td class="num">18%</td><td class="num">21%</td><td class="num">–</td><td class="num">72%</td></tr>
+              <tr><td>JSX / TSX</td><td class="num">2</td><td class="num">1,154</td><td class="num">3%</td><td class="num">14%</td><td class="num">18%</td><td class="num best">20%</td><td class="num">–</td><td class="num">89%</td></tr>
+              <tr><td>HTML</td><td class="num">2</td><td class="num">5,130</td><td class="num">–</td><td class="num">7%</td><td class="num">18%</td><td class="num">19%</td><td class="num best">53%</td><td class="num">95%</td></tr>
+              <tr><td>CSS</td><td class="num">1</td><td class="num">1,908</td><td class="num">3%</td><td class="num best">24%</td><td class="num">15%</td><td class="num best">24%</td><td class="num">–</td><td class="num">87%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption"><code>o200k_base</code>. <code>cl100k_base</code> agrees within 1 point in every cell. Bold green marks the best reading view for each kind (the map is an index, not a reading view). The plain HTML page with SVG icons reaches 60% when elided, and the Tailwind page reaches 46%, because its class lists stay.</p>
+      </div>
+
+      <div class="sub">
+        <h3>Context: what the model reads for one task</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Task</th><th class="num">Whole repo dump</th><th class="num">Repo map + code needed</th><th class="num">vs dump</th><th class="num">Whole file</th><th class="num">File map + code needed</th><th class="num">vs file</th></tr></thead>
+            <tbody>
+              <tr><td>TS: <code>createUser</code> stores the email in lower case</td><td class="num">3,353</td><td class="num">914</td><td class="num best">73%</td><td class="num">850</td><td class="num">440</td><td class="num best">48%</td></tr>
+              <tr><td>JSX: <code>PricingCard</code> shows a yearly saving</td><td class="num">3,353</td><td class="num">1,007</td><td class="num best">70%</td><td class="num">469</td><td class="num">356</td><td class="num best">24%</td></tr>
+              <tr><td>HTML: the Business plan costs $39 and gains a feature</td><td class="num">5,142</td><td class="num">514</td><td class="num best">90%</td><td class="num">2,691</td><td class="num">436</td><td class="num best">84%</td></tr>
+              <tr><td>HTML, Tailwind: reword the Retention feature</td><td class="num">5,142</td><td class="num">708</td><td class="num best">86%</td><td class="num">2,439</td><td class="num">535</td><td class="num best">78%</td></tr>
+              <tr><td>CSS: the highlighted card gets a 2px border</td><td class="num">1,913</td><td class="num">771</td><td class="num best">60%</td><td class="num">1,908</td><td class="num">771</td><td class="num best">60%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption">"Whole repo dump" is every file of that kind, as a packing tool sends it. "Whole file" assumes the model already knows which file to open. <strong>Watch the JSX row:</strong> when the file is small and already known, the repo map (1,007) costs more than the file itself (469). The map pays when the model must find the code. When it already knows, the file's own map is enough.</p>
+      </div>
+
+      <div class="sub">
+        <h3>Output: what the model writes for the same tasks</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Task</th><th class="num">Rewrite whole file</th><th class="num">SEARCH/REPLACE</th><th class="num">Edit operations</th><th class="num">vs rewrite</th><th class="num">vs SEARCH/REPLACE</th></tr></thead>
+            <tbody>
+              <tr><td>TS: <code>createUser</code></td><td class="num">850</td><td class="num">162</td><td class="num">40</td><td class="num best">95%</td><td class="num best">75%</td></tr>
+              <tr><td>JSX: <code>PricingCard</code></td><td class="num">469</td><td class="num">109</td><td class="num">38</td><td class="num best">92%</td><td class="num best">65%</td></tr>
+              <tr><td>HTML: Business plan</td><td class="num">2,691</td><td class="num">143</td><td class="num">40</td><td class="num best">99%</td><td class="num best">72%</td></tr>
+              <tr><td>HTML, Tailwind: Retention</td><td class="num">2,439</td><td class="num">83</td><td class="num">29</td><td class="num best">99%</td><td class="num best">65%</td></tr>
+              <tr><td>CSS: highlighted card</td><td class="num">1,908</td><td class="num">107</td><td class="num">50</td><td class="num best">97%</td><td class="num best">53%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption">The rewrite is counted as the file's size. The SEARCH/REPLACE blocks and edit operations were written by hand for each task.</p>
+      </div>
+
+      <div class="sub">
+        <h3>What these numbers do not show</h3>
+        <ul>
+          <li><strong>Accuracy.</strong> No model ran a task. A smaller view that the model misreads is not a saving. Phase 5 measures pass rates.</li>
+          <li><strong>Claude's tokenizer.</strong> No Anthropic API key was available, so OpenAI's tokenizers stand in. The two agree within 1 point, which suggests, but does not prove, that Claude's counts are close.</li>
+          <li><strong>Real repositories.</strong> The 8 files were written for this test. They have typical comments, Tailwind and inline icons, but real code may have more or fewer of each. Phase 0 repeats this on 20 public repositories.</li>
+          <li><strong>Scale.</strong> The repo map here covers 5 code files. In a 500-file repository the map is larger, so the model reads a map of a folder, not of the whole repository.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <h2>Decisions</h2>
+      <div class="decisions">
+        <div class="decision"><span class="pill keep">In</span><p><strong>Map, views on request, edits by address, the server-side round trip.</strong> These carry most of the saving.</p></div>
+        <div class="decision"><span class="pill keep">In</span><p><strong>Real code as the reading view for TypeScript, JavaScript and CSS.</strong> Measured as good as or better than a custom syntax, at no learning cost.</p></div>
+        <div class="decision"><span class="pill keep">In</span><p><strong>Compact views for HTML, and SVG and data-URI elision.</strong> They save 12 points over plain HTML, and elision saves 34 more.</p></div>
+        <div class="decision"><span class="pill keep">In</span><p><strong>CSS selector filtering</strong>, cross-referenced with the classes in HTML and JSX.</p></div>
+        <div class="decision"><span class="pill test">Test</span><p><strong>Pug-style JSX</strong> (+6 points) and <strong>TypeScript without indentation</strong> (+8 points). Each stays only if pass rates hold in phase 5.</p></div>
+        <div class="decision"><span class="pill cut">Out</span><p><strong>The repetition view</strong> (template plus rows for repeated markup). Left out by your decision.</p></div>
+        <div class="decision"><span class="pill cut">Out</span><p><strong>Inline IDs in reading views.</strong> They cost 1-9 points. IDs stay in the map only.</p></div>
+        <div class="decision"><span class="pill cut">Out</span><p><strong>Abbreviated keywords and property names</strong> (<code>fn</code>, <code>bg</code>). Tokenizers already treat the full words as single tokens, and models know the full words better.</p></div>
+        <div class="decision"><span class="pill cut">Out</span><p><strong>A new language for the model to write.</strong> SimPy needed fine-tuning to keep accuracy, and its saving (about 10-14%) is smaller than what selection and edits give here.</p></div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2>Roadmap</h2>
+      <p>One repository, one npm package with a CLI and an MCP server. The estimates are for one developer working full time, about 27 weeks in all. They are estimates, not measurements.</p>
+
+      <div class="sub">
+        <h3>Repository layout</h3>
+<pre>token-lean/                      working name
+  src/
+    core/        addresses, edit-op grammar, span patcher, hashes, index store
+    lang/ts/     TypeScript compiler API: map, views, ops, rename, tsc check
+    lang/html/   parse5: map, compact view, elision, ops
+    lang/css/    PostCSS: map, plain view, selector filter, ops
+    format/      Prettier / Biome on changed ranges
+    server/      MCP server (tools: map, read, search, edit, check, undo)
+    cli/         same tools from the shell, plus `bench`
+  bench/
+    corpus/      pinned list of public repositories (by commit)
+    tasks/       task sets (SWE-PolyBench TypeScript subset, own HTML/CSS tasks)
+    count/       this page's script, grown into the token harness
+  tests/         unit, round-trip property tests (fast-check), fuzz targets
+  docs/          spec of the views and the edit grammar, benchmark reports</pre>
+      </div>
+
+      <div class="sub">
+        <h3>Phases</h3>
+        <ol class="phases">
+          <li class="phase">
+            <div class="phase-head"><h3>Measure before building</h3><span class="weeks">2 weeks</span></div>
+            <p>Repeat this page's measurement on real code before writing the product.</p>
+            <dl>
+              <dt>Work</dt><dd><ul><li>Run the script on 20 public repositories pinned by commit (React apps, Node services, static sites, a Tailwind site).</li><li>Count with Anthropic's token-counting endpoint as well as tiktoken.</li><li>Add the cases this sample lacked: decorators, enums, overloads, Vue and Svelte templates (to size later work).</li></ul></dd>
+              <dt>Deliverable</dt><dd>A results file in <code>bench/</code> and a short report.</dd>
+              <dt>Gate</dt><dd class="gate">Map plus code needed is at least 50% smaller than the files an agent opens for the same task, on the median repository. If not, stop or rescope.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>Skeleton and core</h3><span class="weeks">2 weeks</span></div>
+            <p>The parts every language shares.</p>
+            <dl>
+              <dt>Work</dt><dd><ul><li>Repository, TypeScript build, Vitest, CI on Windows, macOS and Linux, Apache-2.0 or MIT licence.</li><li>The address scheme and the edit-operation grammar, written as a spec first.</li><li>The span patcher: apply edits to original text, refuse overlaps, keep everything else byte for byte.</li><li>Content hashes and the stale-edit refusal.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">Property tests: random edits on random files leave untouched bytes identical, every time.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>TypeScript and JavaScript: reading</h3><span class="weeks">3 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>Index with the TypeScript compiler API, incremental on file change; respect <code>tsconfig</code>, <code>.gitignore</code> and generated files.</li><li>The map per file and per folder, with signatures, exports and line ranges.</li><li>The plain view, and a read by address (function, class, method, type).</li><li><code>search</code>: find symbols and references through the language service.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">The index of a 5,000-file repository builds in under 30 seconds and updates in under 200 ms after a save (targets, to be measured).</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>TypeScript and JavaScript: editing</h3><span class="weeks">3 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>The operations: replace, insert, delete, replace-in, and rename through the language service.</li><li>Formatting of changed ranges only, with the project's own Prettier or Biome settings.</li><li>The check: <code>tsc --noEmit</code> on the affected project, ESLint if configured, roll back on failure, errors mapped to addresses.</li><li>Undo of the last edit batch.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">On 200 scripted edits across the phase-0 repositories, every applied edit type-checks or is rolled back, and no untouched byte changes.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>MCP server and CLI</h3><span class="weeks">2 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>An MCP server over stdio with six tools: <code>map</code>, <code>read</code>, <code>search</code>, <code>edit</code>, <code>check</code>, <code>undo</code>. Short tool descriptions, since they are sent with every request.</li><li>The same tools as CLI commands.</li><li>Set-up guides for Claude Code, Cursor and VS Code.</li><li>Safety: confine paths to the workspace, never run project scripts, limit file sizes.</li></ul></dd>
+              <dt>Deliverable</dt><dd>A first preview release (0.1) for TypeScript and JavaScript only.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>Benchmark: tokens and accuracy</h3><span class="weeks">3 weeks</span></div>
+            <p>The phase that decides whether the project continues.</p>
+            <dl>
+              <dt>Work</dt><dd><ul><li>Run the TypeScript tasks of SWE-PolyBench with one agent twice: once with its normal file tools, once with this server. Use the same model and the same prompts.</li><li>Record input tokens, output tokens, cost (with caching), time and pass rate.</li><li>A/B the open choices: TypeScript with and without indentation, comments kept or removed.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">Total tokens at least 40% lower with a pass rate no more than 1 point lower (tentative thresholds; fix them before the run). If tokens fall but the pass rate falls more, simplify the views and run again.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>JSX and TSX</h3><span class="weeks">2 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>The Pug-style view for JSX, and element paths inside components as addresses.</li><li>Operations on JSX elements and attributes.</li><li>An A/B against plain JSX on the benchmark's React tasks.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">The compact view stays only if its pass rate is within 1 point of plain JSX.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>HTML</h3><span class="weeks">3 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>parse5 index, map of landmarks and headings, compact view.</li><li>Elision of inline SVG and <code>data:</code> URIs, readable on request.</li><li>Operations: text, attributes, append, insert, remove, by CSS-like path.</li><li>Whitespace-safe patching (inline elements, <code>&lt;pre&gt;</code>, entities).</li><li>A task set of 50 HTML edits, since no public benchmark covers HTML.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">Every edit re-parses to the intended tree, and the page's other bytes are unchanged.</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>CSS</h3><span class="weeks">2 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>PostCSS index, map by block (BEM roots, at-rules, custom properties), plain view.</li><li>Selector filtering: the rules that apply to an element in HTML or JSX, plus the custom properties they use.</li><li>Operations: set and unset declarations, add and remove rules, in source order.</li></ul></dd>
+              <dt>Gate</dt><dd class="gate">For each filtered element, a browser's computed style is the same with and without the rules the filter left out (checked with a headless browser on the task pages).</dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>Hardening</h3><span class="weeks">3 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>Watch mode, large repositories and monorepos, memory limits.</li><li>Fuzz the parsers' inputs and the edit grammar; hostile file sizes and paths.</li><li>Windows paths and line endings (CRLF kept as found).</li><li>Telemetry off by default; no code leaves the machine.</li></ul></dd>
+            </dl>
+          </li>
+          <li class="phase">
+            <div class="phase-head"><h3>Release 1.0</h3><span class="weeks">2 weeks</span></div>
+            <dl>
+              <dt>Work</dt><dd><ul><li>Publish on npm, with the spec of the views and the edit grammar.</li><li>Publish the benchmark report with its method, so others can reproduce it.</li><li>Contribution guide, issue templates, a public roadmap.</li></ul></dd>
+              <dt>After 1.0</dt><dd><ul><li>Vue, Svelte and Astro templates; SCSS and Less; Tailwind-aware class views.</li><li>Python, the most requested next language for agents.</li><li>A study of fine-tuning on a compact syntax (the SimPy route), only if the benchmark shows a gap worth it.</li></ul></dd>
+            </dl>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="script">
+      <h2>The script</h2>
+      <p>The measurement script is <code>count.mjs</code>, about 670 lines of JavaScript. It needs Node 20 or later and four packages: <code>js-tiktoken</code>, <code>typescript</code>, <code>parse5</code> and <code>postcss</code>.</p>
+      <ol>
+        <li>Run <code>pnpm install --frozen-lockfile --ignore-scripts</code> in the script's folder. It installs the pinned versions. The project uses pnpm only.</li>
+        <li>Run <code>node count.mjs</code> to measure the sample files and the five tasks.</li>
+        <li>Run <code>node count.mjs &lt;folder&gt;</code> to measure the views of any project folder. The task tables run only on the samples.</li>
+        <li>Read the views it writes to <code>out/</code>, and the numbers in <code>out/results.json</code>.</li>
+      </ol>
+      <details>
+        <summary>Show the full source of count.mjs</summary>
+<pre><!--SCRIPT_SOURCE--></pre>
+      </details>
+    </section>
+  </main>
+</div>

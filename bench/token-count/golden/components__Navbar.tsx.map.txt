@@ -1,0 +1,4 @@
+components/Navbar.tsx
+  imports react, react-router-dom
+  @v1 const links = ArrayLiteralExpression…  L4-9
+  @f2 export fn Navbar()  L12-69

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Runs the push milestone's checks (docs/testing.md): the commit checks, the golden sample views and the
+# vulnerability scan. A failure stops the push. Never skip it with --no-verify without the owner's yes.
+exec node tools/check.mjs full

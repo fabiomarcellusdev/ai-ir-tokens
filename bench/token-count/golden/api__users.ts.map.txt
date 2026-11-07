@@ -1,0 +1,12 @@
+api/users.ts
+  imports zod, ../db/types, ../errors
+  @i1 export interface User { id, email, displayName, createdAt, roles }
+  @t2 export type Role = "admin" | "editor" | "viewer"
+  @v3 const CreateUserInput = CallExpression…  L19-23
+  @t4 export type CreateUserInput = z.infer<typeof CreateUserInput>
+  @f5 fn toUser(row: UserRow): User  L28-36
+  @f6 export async fn getUser(id: string, db: Db): Promise<User | null>  L41-47
+  @f7 export async fn listUsers(db: Db, options: { limit?: number; cursor?: string } = {}): Promise<{ users: User[]; nextCursor: string | null }>  L52-67
+  @f8 export async fn createUser(input: unknown, db: Db): Promise<User>  L73-92
+  @f9 export async fn deleteUser(id: string, db: Db): Promise<void>  L97-102
+  @f10 export fn hasRole(user: User, ...roles: Role[]): boolean  L105-107
