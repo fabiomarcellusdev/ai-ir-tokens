@@ -38,8 +38,8 @@ this file.
 
 Phase 0 (measure before building) has not started. The only code is the measurement script in `bench/token-count/`.
 It measures token counts on 8 sample files written for the test. **No model has run a task with these views, so
-accuracy is unmeasured.** The project name is `ai-ir-tokens`. The npm package name and the licence are not chosen
-(`docs/follow-ups.md`).
+accuracy is unmeasured.** The project name is `ai-ir-tokens`. The licence is Apache-2.0 (decision 0006). The npm
+package name is not chosen (`docs/follow-ups.md`).
 
 **The plan page.** `docs/page/template.html` is the source of a page that shows the plan. `docs/page/build.mjs` puts the
 real token splits and the script's source into it:
@@ -372,6 +372,7 @@ Phase 1 adds the package build, Vitest and CI; update this section then.
 ```
 CLAUDE.md               This file
 README.md               The public summary
+LICENSE, NOTICE         Apache-2.0 (decision 0006)
 .gitattributes          LF line endings for every text file
 .githooks/              The commit and push hooks (tools/check.mjs fast and full)
 .claude/settings.json   Claude Code settings: the guard hooks and the permission rules
@@ -391,7 +392,7 @@ docs/
   testing.md            The checks that must pass at each milestone
   decisions/            Decision records (0001: the shape of the layer; 0002: pnpm and the supply chain;
                         0003: the agents and the security defences; 0004: branches; 0005: the task pipeline,
-                        owner approval and quiet hours)
+                        owner approval and quiet hours; 0006: the licence)
   measurements/         One file per measurement run
   prior-art.md          Existing tools and papers, and how this project differs
   algorithm-targets.md  Hat 5's register of methods

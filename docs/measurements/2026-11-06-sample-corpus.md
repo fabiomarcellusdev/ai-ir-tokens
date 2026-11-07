@@ -13,7 +13,8 @@
 - **Corpus:** 8 sample files written for this test, 10,364 tokens in all: three TypeScript modules, two React
   components (one with Tailwind), two HTML pages (one with Tailwind) and one stylesheet.
 - **Edit operations and SEARCH/REPLACE blocks** for the five tasks were written by hand.
-- **Raw numbers:** `2026-11-06-sample-corpus.json`, beside this file.
+- **Raw numbers:** `2026-11-06-sample-corpus.json`, beside this file. On 2026-11-07 the owner had its `root` field
+  changed from an absolute local path to `samples`, the form the script writes now. No number changed.
 
 ## Views: saving against the raw files (o200k_base)
 

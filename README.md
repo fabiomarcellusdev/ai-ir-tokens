@@ -94,4 +94,4 @@ It prints the token counts of each view of the files in `<folder>` and writes th
 
 ## Licence
 
-Not chosen yet (Apache-2.0 or MIT).
+Apache License 2.0. See [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE).

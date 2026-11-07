@@ -4,12 +4,10 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Branch `p0/chore-owner-workflow`:** the task pipeline, the owner's approval, local checks first, quiet hours, UTC
-commit dates and the ASD-STE100 output style (decision 0005). Reviewed by the `adversarial-reviewer` and
-`security-reviewer` agents; their findings are fixed and tested. Waiting for the owner's merge.
-
-The repository is on GitHub, private (2026-11-07). Before it becomes public, the owner completes the rows "Making the
-repository public" and "The first commits show the owner's UTC offset" in `docs/follow-ups.md`.
+**Branch `p0/docs-public-ready`:** ready the repository to be public (owner, 2026-11-07). The licence is Apache-2.0
+(decision 0006). The measurement record's local path is now relative, and the history stays as it is (decision 0005,
+amendment "the history stays as it is"). After the merge, the owner makes the repository public and turns on branch
+protection, secret scanning and push protection (`docs/follow-ups.md`, "Making the repository public").
 
 ## Next: phase 0, measure before building
 
@@ -29,3 +27,5 @@ other than Claude Code read them too.
 - 2026-11-07: the review before the first commit; pnpm only, pinned and vetted packages (decision 0002); the agent
   setup and the security defences (decision 0003); the milestone checks (`docs/testing.md`); the sample re-runs
   (`docs/measurements/2026-11-07-pnpm-rerun.md`); CI and the branch strategy (decision 0004).
+- 2026-11-07: the task pipeline, the owner's approval, local checks first, quiet hours, UTC commit dates and the
+  ASD-STE100 output style (decision 0005).

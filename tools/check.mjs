@@ -146,10 +146,8 @@ function privacy() {
   const terms = fs.readFileSync(termsFile, "utf8").split(/\r?\n/).map((t) => t.trim()).filter((t) => t && !t.startsWith("#"));
   const git = spawnSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], { cwd: ROOT, encoding: "utf8" });
   if (git.status !== 0) return record("privacy lint", false, "git ls-files failed");
-  const allowed = new Set(["docs/measurements/2026-11-06-sample-corpus.json"]); // raw record, kept as measured
   const hits = [];
   for (const f of git.stdout.split("\n").filter(Boolean)) {
-    if (allowed.has(f)) continue;
     const buf = fs.readFileSync(path.join(ROOT, f));
     if (buf.includes(0)) continue; // binary
     for (const h of privateHits(buf.toString("utf8"), terms)) hits.push(`${f}:${h.line} contains "${h.term}"`);
