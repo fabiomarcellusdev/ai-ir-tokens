@@ -3,7 +3,7 @@
     "o200k_base",
     "cl100k_base"
   ],
-  "root": "C:\\Developer Stuff\\Projects\\Production Projects\\ai-ir-tokens\\bench\\token-count\\samples",
+  "root": "samples",
   "rows": [
     {
       "file": "api/users.ts",

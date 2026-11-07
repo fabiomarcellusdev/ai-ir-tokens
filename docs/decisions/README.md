@@ -10,6 +10,7 @@ what was decided.
 | [0003](0003-agents-and-security.md) | The agent setup, and the defences against prompt injection | Accepted 2026-11-07 |
 | [0004](0004-branch-strategy.md) | Branch strategy: a protected main, short task branches, tags for phases | Accepted 2026-11-07 |
 | [0005](0005-task-pipeline-and-owner-approval.md) | The task pipeline, the owner's approval, local checks first, and quiet hours | Accepted 2026-11-07 |
+| [0006](0006-licence.md) | Licence: Apache-2.0 | Accepted 2026-11-07 |
 
 ## Template
 

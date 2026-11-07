@@ -64,7 +64,7 @@ The parts every language shares.
 
 **Work**
 - The package: TypeScript build, Vitest, ESLint, a formatter, the module-boundary check, CI on Windows, macOS and
-  Linux, and the licence (Apache-2.0 or MIT; not chosen).
+  Linux, and the licence field in `package.json` (Apache-2.0, decision 0006).
 - The address scheme and the edit-operation grammar, written as a spec in `docs/spec/` first.
 - The span patcher: it applies edits to the original text, refuses overlaps, and keeps everything else byte for byte.
 - Content hashes and the refusal of a stale edit.

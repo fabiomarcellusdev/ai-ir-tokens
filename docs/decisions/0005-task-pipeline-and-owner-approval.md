@@ -100,9 +100,8 @@ Option B. Option C stays open (`docs/follow-ups.md`).
   push hook checks every pushed commit for private files, private terms, `.github/` changes, UTC dates, a
   fast-forward and the pinned URL; commits must use UTC dates; every guard hook blocks on failure; the hooks check
   is structural; quiet hours support windows past midnight and `24:00`, need a real zone name, accept a BOM, and
-  never print the zone or hours. Each finding is now a test (278 in all at the time of writing). The two commits
-  already pushed (`f33ec72` here and the template's first commit) still carry the offset; rewriting them is the
-  owner's decision (`docs/follow-ups.md`).
+  never print the zone or hours. Each finding is now a test (278 in all at the time of writing). The commits
+  already pushed still carried the offset; see the amendment "the history stays as it is" below.
 - **2026-11-07, after a second security review of the rewritten guards.** It confirmed about 30 more bypasses:
   quotes or escapes inside a word (`git pu""sh`, `g""h pr merge`, `ALLOW_MAIN_""PUSH=1`), shell grammar (`! git`,
   `if ... then git`, `<(...)`, `| bash`), programs that run programs (`xargs`, `timeout`, `find -exec`,
@@ -121,3 +120,10 @@ Option B. Option C stays open (`docs/follow-ups.md`).
   appears but no clean git or gh command was read. The push hook reads the remote's real branches, merge commits,
   raw file names and history without attributes, and refuses every push when its config is missing. Each confirmed
   bypass is a test (361 in all at the time of writing).
+- **2026-11-07, the history stays as it is** (owner). Before the repository became public, a scan of every commit
+  found two minor details: a local folder path in a measurement record, and the owner's UTC offset in the first
+  commit's dates. The path is now relative in the files, and the privacy lint's exception for that record is
+  removed. The first commit keeps both. A force push cannot remove them, because GitHub keeps the commits of every
+  pull request, and a new repository was judged not worth its cost. GitHub's own squash merges (from the web page
+  and from `gh pr merge`) record the owner's local offset too, so the offset is not a privacy control: it shows a
+  time zone that many millions of people share. Agents' commits stay UTC, because the rule costs nothing.
