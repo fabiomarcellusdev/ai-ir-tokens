@@ -1,7 +1,12 @@
 {
+  "outputStyle": "ASD-STE100",
   "enableAllProjectMcpServers": false,
   "permissions": {
     "deny": [
+      "Bash(gh pr merge*)",
+      "Bash(gh pr review*--approve*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
       "Bash(npm install*)",
       "Bash(npm i *)",
       "Bash(npm ci*)",
@@ -39,8 +44,6 @@
       "Bash(pnpm publish*)",
       "Bash(pnpx *)",
       "Bash(corepack *)",
-      "Bash(git commit*)",
-      "Bash(git push*)",
       "Bash(git remote*)",
       "Bash(git config*)",
       "Bash(gh release*)",
@@ -54,11 +57,26 @@
       "Edit(./.gitignore)",
       "Edit(./bench/token-count/package.json)",
       "Edit(./bench/token-count/pnpm-workspace.yaml)",
-      "Edit(./bench/token-count/golden/**)"
+      "Edit(./bench/token-count/golden/**)",
+      "Edit(./.github/**)",
+      "Edit(./.local/**)",
+      "Read(./.local/**)"
     ]
   },
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/quiet-hours-guard.mjs\"",
+            "timeout": 10,
+            "onFailure": "block",
+            "statusMessage": "Checking the quiet hours"
+          }
+        ]
+      },
       {
         "matcher": "Bash|PowerShell",
         "hooks": [
@@ -66,17 +84,19 @@
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/package-guard.mjs\"",
             "timeout": 10,
+            "onFailure": "block",
             "statusMessage": "Checking for package installs"
           }
         ]
       },
       {
-        "matcher": "Bash|PowerShell|WebFetch",
+        "matcher": "Bash|PowerShell|WebFetch|mcp__.*",
         "hooks": [
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/security-guard.mjs\"",
             "timeout": 10,
+            "onFailure": "block",
             "statusMessage": "Checking for private files and outbound data"
           }
         ]

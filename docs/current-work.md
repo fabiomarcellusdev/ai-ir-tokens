@@ -4,11 +4,12 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**The repository is on GitHub, private** (2026-11-07). Before it becomes public, the owner completes the row
-"Making the repository public" in `docs/follow-ups.md` (licence, email privacy, branch protection, security alerts).
+**Branch `p0/chore-owner-workflow`:** the task pipeline, the owner's approval, local checks first, quiet hours, UTC
+commit dates and the ASD-STE100 output style (decision 0005). Reviewed by the `adversarial-reviewer` and
+`security-reviewer` agents; their findings are fixed and tested. Waiting for the owner's merge.
 
-From here, every change follows decision 0004: a short task branch, a pull request, CI green on three systems, a
-squash merge by the owner.
+The repository is on GitHub, private (2026-11-07). Before it becomes public, the owner completes the rows "Making the
+repository public" and "The first commits show the owner's UTC offset" in `docs/follow-ups.md`.
 
 ## Next: phase 0, measure before building
 

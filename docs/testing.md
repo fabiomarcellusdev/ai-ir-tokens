@@ -10,8 +10,9 @@ One command runs each level: `node tools/check.mjs <fast|full|gate>`. It uses No
 
 | Milestone | Level | Runs where | What it adds |
 |---|---|---|---|
-| Every commit | `fast` | `.githooks/pre-commit` | Unit tests; voice lint; package guards intact; expired security exceptions; privacy lint |
-| Every push and pull request | `full` | `.githooks/pre-push`; CI (`.github/workflows/checks.yml`) on Windows, macOS and Linux, and once a month | `fast` + golden sample views + known vulnerabilities (osv.dev) |
+| Every commit | `fast` | `.githooks/pre-commit`, after `git-guard` (no commit on `main`, none in the quiet hours) | Unit tests; voice lint; package guards intact; expired security exceptions; privacy lint |
+| Every push and pull request | `full` | `.githooks/pre-push`, after `git-guard` (no push to `main`, no deletion, none in the quiet hours); then CI (`.github/workflows/checks.yml`) on Windows, macOS and Linux, and once a month | `fast` + golden sample views + known vulnerabilities (osv.dev) |
+| Every merge | The owner's review | GitHub | The owner merges only after the local checks and CI passed (decision 0005) |
 | Every phase gate | `gate` | The `gate-check` skill | `full` + the gate tests in `tests/gates/` + the gate's measurement + independent reviews |
 | Every release (from 0.1) | `gate` + release checks | The release hat's checklist (`docs/future-hats.md`) | Install the packed tarball in a clean folder and run the CLI and the MCP server; the notices of every shipped dependency |
 
@@ -28,6 +29,8 @@ Every check must be able to fail. The negative control is the broken input that 
 | Unit tests: `osv-check` | The lockfile reader finds every package | A lockfile with no packages; a CRLF lockfile; an unrated advisory counts as a failure |
 | Unit tests: `vet-package` | Each vetting rule fails when it should | A young version, an install script, an unknown licence, a high advisory, a deprecated version, a publisher change |
 | Unit tests: `check` | A weakened guard or an expired exception fails `fast` | Ten weakenings (a caret range, a 30-day age, scripts allowed, a removed hook, ...) |
+| Unit tests: `quiet-hours` and `git-guard` | The quiet hours by time zone and weekday (also past midnight), fail-closed on a bad config; no commit on `main`; in every pushed commit no private file, private term, `.github/` change or non-UTC date; no push to `main`, deletion, rewrite or foreign URL | The edge minutes; daylight-saving cases that a fixed-offset version fails; a bad zone, a BOM; end-to-end runs of `git-guard pre-push` in throwaway repositories with a secret file, a workflow change, a `-0600` date, an unrelated history and a foreign URL |
+| Structure checks | Each guard runs as a PreToolUse hook on its tools, as `node <guard>`, blocking on failure; each git hook runs `git-guard` before the checks | A matcher that matches nothing, a hook moved to PostToolUse, a command that only echoes, `onFailure: continue`, a git hook without `git-guard` |
 | Voice lint | No banned term from `docs/voice.md` in the docs | A test line with a banned word; a sync test that every banned word is in `docs/voice.md` |
 | Package guards intact | Exact pins, pnpm by hash, 60-day age, no scripts, no automatic installs, both hooks on | The ten weakenings above |
 | Privacy lint | No private term in a file that git would publish | Runs only where `private-docs/privacy-terms.txt` exists (the owner's checkout); CI skips it |

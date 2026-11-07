@@ -49,7 +49,7 @@ function files() {
   return out.filter((f) => fs.existsSync(path.join(ROOT, f)));
 }
 
-const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+const isMain = process.argv[1] && path.basename(process.argv[1]) === "voice-lint.mjs";
 if (isMain) {
   const hits = [];
   for (const f of files()) for (const h of lint(fs.readFileSync(path.join(ROOT, f), "utf8"))) hits.push(`${f}:${h.line}  "${h.word}": use ${h.use}`);
