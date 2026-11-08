@@ -133,3 +133,8 @@ fixed procedure at a fraction of an agent's cost.
   licence, changed where they conflicted with this project's rules, and reviewed like any other change.
   **Rejected:** the install with a rule that the project's rules win (the automatic skills still start on ordinary
   tasks); no copy at all (it loses methods that fit the project).
+- **2026-11-08, Anthropic's token counter** (owner). `bench/token-count/corpus.mjs` may call
+  `https://api.anthropic.com/v1/messages/count_tokens` (rule 6: a network call to a new host), with the owner's API key
+  from the environment only. It sends the text of public repositories, never a file of this repository or a private
+  file. The endpoint is free. The security guard's allow list is unchanged: the guard sees only `node corpus.mjs`, so
+  this decision, not the guard, is the control.

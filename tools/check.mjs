@@ -119,9 +119,10 @@ const run = (args, opts = {}) => spawnSync(process.execPath, args, { cwd: ROOT, 
 const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
 
 function unitTests() {
-  const r = run(["--test", ".claude/hooks/*.test.mjs", "tools/*.test.mjs"]);
-  const summary = (r.stdout ?? "").split("\n").filter((l) => /^ℹ (tests|pass|fail)|^# (tests|pass|fail)|✖/.test(l)).join("\n");
-  record("unit tests (guards and tools)", r.status === 0, r.status === 0 ? summary : `${summary}\n${r.stderr ?? ""}`.trim());
+  // bench/token-count's tests skip themselves where its packages are not installed (a fresh worktree, for example).
+  const r = run(["--test", ".claude/hooks/*.test.mjs", "tools/*.test.mjs", "bench/token-count/*.test.mjs"]);
+  const summary = (r.stdout ?? "").split("\n").filter((l) => /^ℹ (tests|pass|fail|skipped)|^# (tests|pass|fail)|✖/.test(l)).join("\n");
+  record("unit tests (guards, tools and the measurement library)", r.status === 0, r.status === 0 ? summary : `${summary}\n${r.stderr ?? ""}`.trim());
 }
 
 function voiceLint() {
