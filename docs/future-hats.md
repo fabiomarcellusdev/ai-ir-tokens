@@ -1,6 +1,6 @@
 # Future hats
 
-Hats drafted now and moved into `CLAUDE.md` when their trigger arrives. When a trigger arrives, say so, run the check
+Hats drafted now and moved into `AGENTS.md` when their trigger arrives. When a trigger arrives, say so, run the check
 below on the draft, and offer to move it in. When a task would be done better by a waiting hat, offer to wear its
 draft for that task.
 

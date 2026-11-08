@@ -44,7 +44,7 @@ Every check must be able to fail. The negative control is the broken input that 
 
 ## Added by later phases
 
-Each phase adds its tests and, where it has a gate, a file in `tests/gates/`. The plan, from `CLAUDE.md` and
+Each phase adds its tests and, where it has a gate, a file in `tests/gates/`. The plan, from `AGENTS.md` and
 `docs/roadmap.md`:
 
 | Phase | Tests added | Gate test |

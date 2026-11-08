@@ -201,7 +201,7 @@ function privacy() {
 
 function golden() {
   if (!fs.existsSync(path.join(BENCH, "node_modules"))) {
-    return record("golden sample views", false, "bench/token-count/node_modules is missing. Install with the owner's yes (CLAUDE.md, Packages).");
+    return record("golden sample views", false, "bench/token-count/node_modules is missing. Install with the owner's yes (AGENTS.md, Packages).");
   }
   const r = run([path.join(BENCH, "count.mjs")], { cwd: BENCH });
   if (r.status !== 0) return record("golden sample views", false, r.stderr);

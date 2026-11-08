@@ -10,6 +10,6 @@ description: Write or amend a decision record in docs/decisions/. Use for a sign
    reopen it.
 2. Name who decided and when ("owner, 2026-11-07"). A proposal is "Proposed" until the owner agrees.
 3. Name the prior art the design builds on (`docs/prior-art.md`), and say what this design does better.
-4. Write 80% of the way to ASD-STE100 (`CLAUDE.md`), with the terms in `docs/voice.md`.
+4. Write 80% of the way to ASD-STE100 (`AGENTS.md`, "Working agreements"), with the terms in `docs/voice.md`.
 5. Add the record to the table in `docs/decisions/README.md`.
 6. **Amend, never rewrite:** a later change is a dated note under "Amendments" at the end of the record.

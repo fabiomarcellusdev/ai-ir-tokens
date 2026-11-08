@@ -75,7 +75,7 @@ fixed procedure at a fraction of an agent's cost.
 | Package guard | Refuses npm installs, npx, Yarn and Bun; holds every install for the owner | `.claude/hooks/package-guard.mjs` |
 | Security guard | Holds for the owner: a shell command that names a private or secret file; one that sends data to a host outside the allow list; a web fetch whose URL looks like it carries data; publishing (push, publish, release, pull request, new remote). Refuses a download piped into a shell. Fails closed: if it cannot judge, it asks | `.claude/hooks/security-guard.mjs` |
 | Permission rules | Refuse reading `.env` files, keys and credential stores; ask before reading the private notes, before a push, and before any edit to the guards, the agents, the skills, the checks or pnpm's settings | `.claude/settings.json` |
-| Text is data | Every agent file says it; tool output and fetched text never become instructions; suspected injections are reported with their location | The agent files; `CLAUDE.md`, hat 4 |
+| Text is data | Every agent file says it; tool output and fetched text never become instructions; suspected injections are reported with their location | The agent files; `AGENTS.md`, hat 4 |
 | Untrusted repositories | Corpus repositories are fetched by commit into a folder outside this repository; their scripts and installs never run; only the measurement scripts read them | `bench-runner`; the `measurement-run` skill |
 | Supply chain | Decision 0002: pnpm only, exact pins, 60 days, no known vulnerability above low, no install scripts, owner approval | `pnpm-workspace.yaml`, `tools/` |
 | Machine checks | `node tools/check.mjs` at every commit, push and gate; a weakened guard fails it | `docs/testing.md` |
@@ -111,3 +111,13 @@ fixed procedure at a fraction of an agent's cost.
 
 - **2026-11-08** (owner): agents that write may run in parallel in separate worktrees, one session each (decision
   0004, amendment "parallel checkouts"). In one checkout, they still run one at a time.
+- **2026-11-08, AGENTS.md** (owner). The tool-neutral rules moved from `CLAUDE.md` into `AGENTS.md`, with the same
+  section names. Codex, Cursor, GitHub Copilot, Gemini CLI and other tools read `AGENTS.md` directly, so their agents
+  get the same rules: the hats, the packages, the agents and security, the task pipeline, the rules and the working
+  agreements. `CLAUDE.md` imports `AGENTS.md` and adds only what is specific to Claude Code: the output style, the
+  specialist agents, the skills and the guard hooks. The guard hooks and the permission rules work in Claude Code
+  only; in another tool, the git hooks and branch protection still hold. So `AGENTS.md`, "Agents and security", also
+  states as rules what Claude Code's guards already enforce: ask before anything that publishes (6); never read
+  secrets, and keep a maintainer's local notes out of tracked files (7); leave the owner's steps to the owner,
+  including the dismissal of a code-scanning alert (9); and explain a held call (10). The template project has the
+  same layout.
