@@ -106,3 +106,8 @@ fixed procedure at a fraction of an agent's cost.
 - A suspected or real prompt injection, in this project or a public report about Claude Code.
 - An agent whose cost is higher than its value in practice (for example, a reviewer that finds nothing for a phase).
 - The sandbox trial passes, so a hard limit can replace an instruction.
+
+## Amendments
+
+- **2026-11-08** (owner): agents that write may run in parallel in separate worktrees, one session each (decision
+  0004, amendment "parallel checkouts"). In one checkout, they still run one at a time.

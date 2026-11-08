@@ -11,6 +11,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { mainCheckout, privatePath } from "./main-checkout.mjs";
+import { worktreeProblems, loadConfig as loadWorktreeConfig } from "./worktree.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BENCH = path.join(ROOT, "bench", "token-count");
@@ -134,11 +136,53 @@ function guards() {
     settingsJson: read(".claude/settings.json"),
   });
   problems.push(...gitHookProblems(read(".githooks/pre-commit"), read(".githooks/pre-push")));
+  problems.push(...worktreeConfigProblems(read("tools/worktree.config.json")));
   record("package guards intact (decision 0002)", problems.length === 0, problems.join("\n"));
 }
 
+/**
+ * Problems with tools/worktree.config.json that would weaken a worktree: a limit above 3, or a copy list without the
+ * files that turn on the owner's local notes and guards (decision 0004, amendment "parallel checkouts").
+ */
+const WORKTREE_COPY = ["CLAUDE.local.md", ".claude/settings.local.json", ".claude/local"];
+export function worktreeConfigProblems(configJson) {
+  let cfg;
+  try { cfg = JSON.parse(configJson); } catch { return ["tools/worktree.config.json is not valid JSON"]; }
+  const p = [];
+  if (!Number.isInteger(cfg.maxWorktrees) || cfg.maxWorktrees < 1 || cfg.maxWorktrees > 3) p.push("worktree.config.json: maxWorktrees must be 1 to 3");
+  const list = cfg.copyFromMain;
+  if (!Array.isArray(list) || list.length !== WORKTREE_COPY.length || !WORKTREE_COPY.every((f) => list.includes(f))) {
+    p.push(`worktree.config.json: copyFromMain must be exactly ${JSON.stringify(WORKTREE_COPY)}`);
+  }
+  return p;
+}
+
+/** [name, ok, detail] for the worktree setup check of `root`. Every error fails the check (fail closed). */
+export function worktreeSetupResult(root = ROOT) {
+  try {
+    const main = mainCheckout(root);
+    if (path.resolve(main) === path.resolve(root)) return ["worktree setup (this is the main checkout)", true, ""];
+    const problems = worktreeProblems(main, root, loadWorktreeConfig(root).copyFromMain);
+    return ["worktree setup (the owner's local files are here)", problems.length === 0,
+      problems.length ? `${problems.join("\n")}\nRun: node tools/worktree.mjs sync` : ""];
+  } catch (e) {
+    return ["worktree setup", false, `This checkout could not be checked: ${e.message}. Create worktrees with tools/worktree.mjs.`];
+  }
+}
+
+// A linked worktree must hold the owner's local files that Claude Code reads per checkout (tools/worktree.mjs).
+function worktreeSetup() {
+  record(...worktreeSetupResult(ROOT));
+}
+
 function privacy() {
-  const termsFile = path.join(ROOT, "private-docs", "privacy-terms.txt");
+  // The terms are git-ignored, so they live in the main checkout only; a linked worktree reads them from there.
+  let termsFile;
+  try {
+    termsFile = privatePath("private-docs", "privacy-terms.txt");
+  } catch {
+    return record("privacy lint", false, "The main checkout could not be found, so the private terms could not be read.");
+  }
   if (!fs.existsSync(termsFile)) {
     record("privacy lint (skipped: no private-docs/privacy-terms.txt here)", true);
     return;
@@ -200,7 +244,7 @@ if (isMain) {
   if (mode === "update-golden") updateGolden();
   else if (["fast", "full", "gate"].includes(mode)) {
     console.log(`ai-ir-tokens checks: ${mode}\n`);
-    unitTests(); voiceLint(); guards(); privacy();
+    unitTests(); voiceLint(); guards(); worktreeSetup(); privacy();
     if (mode !== "fast") { golden(); osv(); }
     if (mode === "gate") gateTests();
     const failed = results.filter((r) => !r.ok);

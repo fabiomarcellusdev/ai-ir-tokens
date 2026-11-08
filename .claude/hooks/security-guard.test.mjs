@@ -114,6 +114,19 @@ const cases = {
     "gh api --cache 1h -X PUT repos/o/r/pulls/3/merge",
   ],
   ask: [
+    // Parallel checkouts (security review, 2026-11-08): worktrees only through tools/worktree.mjs, no git in another
+    // session's folder, no links that redirect a write or a guard's lookup
+    "git worktree add ../x -b p0/feat-z",
+    "git worktree remove --force ../x",
+    "git worktree prune",
+    "git -C ../other commit -m x",
+    "git -C \"C:/other/checkout\" status",
+    "cmd /c mklink /J a b",
+    "mklink /D a b",
+    "ln -s ../x link",
+    "ln target hardlink",
+    "New-Item -ItemType Junction -Path a -Target b",
+    "powershell -Command \"New-Item -ItemType SymbolicLink -Path a -Target b\"",
     // Private and secret files, also through wildcards
     "cat private-docs/plan.md",
     "type CLAUDE.local.md",
@@ -228,6 +241,11 @@ const cases = {
     "git add docs/current-work.md",
     "git commit -m \"Explain why\"",
     "git switch -c p0/chore-x",
+    "git worktree list",
+    "git -C ./ status",
+    "node tools/worktree.mjs add p0/feat-x",
+    "node tools/worktree.mjs remove p0/feat-x",
+    "New-Item -ItemType Directory -Path out",
     "node tools/check.mjs fast",
     "curl -s -X POST https://api.osv.dev/v1/query -d '{\"package\":{\"name\":\"pnpm\"}}'",
     "curl -s https://registry.npmjs.org/postcss",

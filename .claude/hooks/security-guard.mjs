@@ -157,6 +157,10 @@ function judgeGit(args) {
   if (cfgValues.some((v) => DANGEROUS_CONFIG.test(v.split("=")[0]))) return { decision: "deny", reason: "This git command changes the hooks path, an alias, a push URL, a mirror setting, a program git runs or the included configuration. Only the owner may do this." };
   let ask = global.some((g) => g === "-c" || /^--(config-env|exec-path|git-dir|work-tree)/.test(g))
     ? { decision: "ask", reason: "This git command changes git's configuration or repository for one command. The owner approves it." } : null;
+  // `-C <folder>` runs git in another folder, which may be another session's checkout. Only `-C .` passes.
+  if (!ask && global.some((g, k) => global[k - 1] === "-C" && !/^\.[\\/]?$/.test(g))) {
+    ask = { decision: "ask", reason: "git -C runs git in another folder, which may be another session's checkout. The owner approves it." };
+  }
 
   let r;
   if (sub === "push") r = judgePush(rest);
@@ -169,6 +173,8 @@ function judgeGit(args) {
     r = { decision: "ask", reason: "This git command moves references directly. The owner approves it." };
   } else if (GIT_NETWORK.has(sub)) {
     r = sub === "remote" && !/^(add|set-url|rename|remove|rm|set-head|set-branches|prune|update)$/.test(rest[0] ?? "") ? { decision: "allow" } : { decision: "ask", reason: "This git command contacts a remote or changes one. The owner approves it." };
+  } else if (sub === "worktree" && (rest[0] ?? "list") !== "list") {
+    r = { decision: "ask", reason: "Create and remove worktrees with node tools/worktree.mjs, which copies the owner's local files and keeps the limit. The owner approves a direct git worktree command." };
   } else if (GIT_READS.has(sub) || GIT_LOCAL.has(sub) || sub === "") r = { decision: "allow" };
   else r = { decision: "ask", reason: `"git ${sub}" is not a known git command; it may be an alias. The owner approves it.` };
 
@@ -300,6 +306,11 @@ const INLINE_CODE = { node: /^(-e|-p|--eval|--print|-pe)$/, deno: /^(eval)$/, py
 const SYSTEM_REACH = /require|import|process|child|fetch|globalThis|global\s*\[|Function|eval|Deno|Bun|http|net|dns|fs|spawn|exec|open\(|os\.|subprocess|socket|urllib|system/i;
 
 function judgeOther(prog, args) {
+  // A link or junction can send a write, or a guard's file lookup, to another folder (decision 0004, amendment
+  // "parallel checkouts").
+  if (/^(ln|mklink|link)$/.test(prog) || (/^(new-item|ni)$/.test(prog) && args.some((a) => /^["']?(junction|symboliclink|hardlink)["']?$/i.test(a)))) {
+    return { decision: "ask", reason: "This creates a link or a junction, which can send writes or a guard's lookup to another folder. The owner approves it." };
+  }
   if (SHELLS.test(prog)) {
     const at = args.findIndex((a) => /^(\/c|\/k|-command|-commandwithargs|-c|-encodedcommand|-enc|-e|-ec)$/i.test(a) || /^-[a-zA-Z]*c[a-zA-Z]*$/.test(a) || /^-com/i.test(a));
     if (args.some((a) => /^-(f|file)$/i.test(a))) return { decision: "ask", reason: "This runs a script file through a shell. The owner approves it." };

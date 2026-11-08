@@ -9,6 +9,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { inQuietHours, validate, status } from "./quiet-hours.mjs";
 import { pushProblems, commitProblem, urlAllowed, offsetProblems, pathProblems, addedLineHits } from "./git-guard.mjs";
+import { privatePath } from "./main-checkout.mjs";
 
 const CFG = { timeZone: "Europe/Berlin", days: ["Mon", "Tue", "Wed", "Thu", "Fri"], start: "09:00", end: "17:00" };
 
@@ -118,13 +119,21 @@ test("added lines with a private term are found; removed lines are not", () => {
 
 const GUARD = fileURLToPath(new URL("./git-guard.mjs", import.meta.url));
 
+// Git gives a hook GIT_DIR, GIT_INDEX_FILE and other GIT_* variables. These tests also run inside the pre-commit hook,
+// and a git command that inherits those variables acts on the real repository. So drop every GIT_* variable.
+function isolatedEnv(extra = {}) {
+  const env = {};
+  for (const [key, value] of Object.entries(process.env)) if (!/^GIT_/i.test(key)) env[key] = value;
+  return { ...env, ...extra };
+}
+
 // Each throwaway repository has a local bare repository as its remote, so nothing reaches the network.
 function repo() {
   const base = fs.mkdtempSync(path.join(os.tmpdir(), "git-guard-"));
   const dir = path.join(base, "work"), remote = path.join(base, "remote.git");
   fs.mkdirSync(dir);
-  spawnSync("git", ["init", "-q", "--bare", remote]);
-  const run = (args, env = {}) => spawnSync("git", args, { cwd: dir, encoding: "utf8", env: { ...process.env, ...env } });
+  spawnSync("git", ["init", "-q", "--bare", remote], { env: isolatedEnv() });
+  const run = (args, env = {}) => spawnSync("git", args, { cwd: dir, encoding: "utf8", env: isolatedEnv(env) });
   run(["init", "-q", "-b", "p0/feat-x"]);
   run(["config", "user.email", "test@example.invalid"]);
   run(["config", "user.name", "test"]);
@@ -140,9 +149,49 @@ const commit = (r, file, text, date = "2026-11-07T15:00:00+0000") => {
   return r.run(["rev-parse", "HEAD"]).stdout.trim();
 };
 const prePush = (r, input, env = {}, url = r.remote) =>
-  spawnSync(process.execPath, [GUARD, "pre-push", "origin", url], { cwd: r.dir, input, encoding: "utf8", env: { ...process.env, QUIET_HOURS_APPROVED: "1", ...env } });
+  spawnSync(process.execPath, [GUARD, "pre-push", "origin", url], { cwd: r.dir, input, encoding: "utf8", env: isolatedEnv({ QUIET_HOURS_APPROVED: "1", ...env }) });
 const pushLine = (sha) => `refs/heads/p0/feat-x ${sha} refs/heads/p0/feat-x ${ZERO}\n`;
 const cleanup = (...rs) => { for (const r of rs) fs.rmSync(r.base, { recursive: true, force: true }); };
+
+// This test runs first among the end-to-end tests, so a regression fails here before the tests below run. It detects a
+// leak; isolatedEnv() is what prevents one.
+test("end to end: inside a hook, the throwaway repositories and git-guard leave the real repository alone", () => {
+  // A decoy stands in for the real repository. GIT_DIR and GIT_INDEX_FILE point at it, as git sets them for a hook.
+  const decoy = repo();
+  commit(decoy, "a.md", "decoy\n");
+  const gitDir = path.join(decoy.dir, ".git");
+  const snapshot = () => ({
+    head: decoy.run(["rev-parse", "HEAD"]).stdout,
+    refs: decoy.run(["for-each-ref"]).stdout,
+    config: fs.readFileSync(path.join(gitDir, "config"), "utf8"),
+  });
+  const before = snapshot();
+  const saved = { GIT_DIR: process.env.GIT_DIR, GIT_INDEX_FILE: process.env.GIT_INDEX_FILE };
+  process.env.GIT_DIR = gitDir;
+  process.env.GIT_INDEX_FILE = path.join(gitDir, "index");
+  let r, clean, secret, afterHelpers, leaked;
+  try {
+    r = repo();
+    const sha = commit(r, "b.md", "throwaway\n");
+    // git-guard must read the throwaway repository: a clean commit passes, and a secret file is refused.
+    clean = prePush(r, pushLine(sha));
+    secret = prePush(r, pushLine(commit(r, ".env", "TOKEN=fake\n")));
+    afterHelpers = snapshot();
+    // Negative control: a git command that keeps the inherited variables does reach the decoy.
+    fs.writeFileSync(path.join(r.dir, "c.md"), "leak\n");
+    spawnSync("git", ["add", "c.md"], { cwd: r.dir, env: { ...process.env } });
+    leaked = spawnSync("git", ["commit", "-q", "-m", "leak"], { cwd: r.dir, env: { ...process.env } });
+  } finally {
+    for (const [k, v] of Object.entries(saved)) if (v === undefined) delete process.env[k]; else process.env[k] = v;
+  }
+  assert.deepEqual(afterHelpers, before, "a throwaway repository changed the decoy");
+  assert.equal(r.run(["log", "--format=%s", "-1"]).stdout.trim(), "x", "the throwaway commit is missing");
+  assert.equal(clean.status, 0, `git-guard did not read the throwaway repository: ${clean.stderr}`);
+  assert.match(secret.stderr, /private or secret/, "git-guard did not see the secret in the throwaway repository");
+  assert.equal(leaked.status, 0, "the negative control did not commit");
+  assert.notEqual(snapshot().head, before.head, "the negative control did not reach the decoy");
+  cleanup(decoy, r);
+});
 
 test("end to end: a clean UTC commit on a task branch passes; main, a foreign URL, a non-UTC date, a private file and a workflow change are refused", () => {
   const r = repo();
@@ -210,7 +259,7 @@ test("end to end: a non-ASCII file name is read correctly", () => {
   cleanup(r);
 });
 
-const TERMS_FILE = new URL("../private-docs/privacy-terms.txt", import.meta.url);
+const TERMS_FILE = privatePath("private-docs", "privacy-terms.txt"); // in the main checkout, also from a worktree
 test("end to end: a .gitattributes line does not hide a private term (runs where the private terms file exists)", { skip: !fs.existsSync(TERMS_FILE) }, () => {
   const term = fs.readFileSync(TERMS_FILE, "utf8").split(/\r?\n/).map((t) => t.trim()).find((t) => t && !t.startsWith("#"));
   const r = repo();

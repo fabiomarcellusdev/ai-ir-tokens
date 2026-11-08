@@ -60,7 +60,17 @@
       "Edit(./bench/token-count/golden/**)",
       "Edit(./.github/**)",
       "Edit(./.local/**)",
-      "Read(./.local/**)"
+      "Read(./.local/**)",
+      "Edit(./.git)",
+      "Edit(./.git/**)",
+      "Edit(**/.git)",
+      "Edit(**/.git/**)",
+      "Read(**/private-docs/**)",
+      "Edit(**/private-docs/**)",
+      "Read(**/.local/**)",
+      "Edit(**/.local/**)",
+      "Read(**/CLAUDE.local.md)",
+      "Edit(**/CLAUDE.local.md)"
     ]
   },
   "hooks": {

@@ -53,3 +53,29 @@ Option B.
 
 - More than one person works here (review rules change).
 - Releases must be maintained in parallel (option C).
+
+## Amendments
+
+- **2026-11-08, parallel checkouts** (owner). Point 6 ("one checkout, no worktrees") is replaced. Sessions may work
+  in parallel, each in its own git worktree on its own task branch, one session per checkout, at most 3 worktrees.
+  **The reason:** another session worked in a shared checkout, and two sessions in one checkout can overwrite each
+  other's work. Separate worktrees make parallel work safe.
+  **What had to change first:** three guards read git-ignored files from their own checkout, so in a new worktree
+  they turned off without a word: the private-term scan before a push, the quiet hours, and the local guards that
+  Claude Code loads from `.claude/settings.local.json`. Now the push hook, the privacy lint and the quiet hours read
+  the private files from the main checkout (`tools/main-checkout.mjs`, which reads the `.git` file and starts no
+  process). `tools/worktree.mjs add` copies the files that Claude Code reads per checkout (`copyFromMain` in
+  `tools/worktree.config.json`), and `check.mjs fast` fails in a worktree where one is missing or differs. If the
+  main checkout cannot be found, the guards fail closed. The end-to-end tests also drop git's `GIT_*` variables, so
+  a test inside a hook cannot change the real repository (seen first from a worktree in the template project).
+  **Rejected:** a second clone (it shares nothing, so each guard needs its own copy of the private files, and a stale
+  copy goes unnoticed); Claude Code's own worktree tool (it does not copy the owner's local files).
+  **Security review of the first version** (`security-reviewer`, 2026-11-08). The first version trusted the
+  worktree's `.git` pointer file. A session in the worktree can rewrite or delete that file, and in three tested ways
+  the guards then read an empty folder: no quiet hours, and no private terms in the push scan. Now the main checkout
+  comes from the folder layout (`<name>.worktrees/<branch>` beside `<name>`), and git's records must agree in both
+  directions, with links resolved. Every other case throws, and the guards fail closed. One test per attack shows
+  quiet hours on and the push refused; all four tests fail with the first version. The review also led to: the
+  security guard asks for a direct `git worktree` command (other than `list`), for `git -C` into another folder, and
+  for creating a link or junction; `sync` refuses to write through a link; the copy list must be exactly the three
+  local files; and the permission rules ask before an edit of any `.git` file or folder.
