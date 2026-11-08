@@ -4,12 +4,10 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Phase 0, gate C0.** The proxy-only run of all 20 repositories (2026-11-08,
-`docs/measurements/2026-11-08-phase0-corpus-proxy.md`) gives a median saving of -187% (o200k_base); the code needed alone
-saves 28.6%. The gate has no result until the owner's run with Anthropic's counter. Before that run: replace
-`raouf-b-dev/ecommerce-store-api` (2 tasks) with the reserve `haiweilian/vivy-nest-admin`, and replace
-`alphagov/govuk-design-system` (0 tasks) with the new reserve `GrapheneOS/grapheneos.org` (chosen by the rules alone). Then the owner decides to
-rescope or stop.
+**Phase 0, gate C0: missed** (2026-11-08; `docs/contract.md`, "The result of gate C0"). The median saving is -165.8%
+with Anthropic's counter, against +50%; the code needed alone saves 28.6%. Next: the owner decides to rescope or stop,
+with a decision record. Options to prepare: a map with a token budget, the writing side (edit operations), finer code
+views, or stopping.
 
 ## Next: phase 0, measure before building
 

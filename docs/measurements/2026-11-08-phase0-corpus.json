@@ -1,0 +1,3920 @@
+{
+  "meta": {
+    "date": "2026-11-08",
+    "commit": "8b249b0276e5c14912bfd0a0d23744df8390a287",
+    "dirty": false,
+    "node": "v24.22.1",
+    "git": "2.56.0.windows.2",
+    "tokenizers": [
+      "o200k_base",
+      "Anthropic count_tokens (claude-opus-5-5, anthropic-version 2023-06-01)"
+    ],
+    "model": "claude-opus-5-5",
+    "proxyOnly": false,
+    "proxyReason": null,
+    "replacements": [
+      {
+        "replaced": "raouf-b-dev/ecommerce-store-api",
+        "by": "haiweilian/vivy-nest-admin",
+        "reason": "only 2 qualifying commits in its whole history"
+      },
+      {
+        "replaced": "alphagov/govuk-design-system",
+        "by": "GrapheneOS/grapheneos.org",
+        "reason": "0 qualifying commits in 500; its commits change templates and content"
+      }
+    ],
+    "tasksPerRepo": 5,
+    "walkLimit": 500,
+    "gateSize": 17,
+    "maxFileBytes": 1048576,
+    "repositoriesSelected": "all"
+  },
+  "summary": {
+    "gateRepositories": 17,
+    "gate": {
+      "result": "miss",
+      "median": -1.6582487414376494,
+      "threshold": 0.5
+    },
+    "claude": {
+      "spread": {
+        "median": -1.6582487414376494,
+        "q1": -2.7936046511627906,
+        "q3": -0.6373551465576006
+      },
+      "byCategory": {
+        "react-app": -1.4747245404530844,
+        "node-service-decorators": -1.559925093632959,
+        "node-service": -7.447148194224817,
+        "static-site": -1.1877827534368306,
+        "tailwind-site": -1.7154798988601956
+      },
+      "byBand": {
+        "small": -0.6373551465576006,
+        "medium": -2.4678747940691927,
+        "large": -2.0258996103598443
+      },
+      "worst": {
+        "repository": {
+          "repo": "payloadcms/payload",
+          "median": -10.533532934131737
+        },
+        "task": {
+          "repo": "payloadcms/payload",
+          "commit": "e71e91c66f492f807fc25b62267fbf6268cb7945",
+          "saving": -77.18255813953489
+        }
+      }
+    },
+    "o200k": {
+      "spread": {
+        "median": -1.872611464968153,
+        "q1": -3.1848101265822786,
+        "q3": -0.5698659139026112
+      },
+      "byCategory": {
+        "react-app": -1.4355177878585665,
+        "node-service-decorators": -1.872611464968153,
+        "node-service": -7.294592086423794,
+        "static-site": -1.1927778177791035,
+        "tailwind-site": -1.877338020242445
+      },
+      "byBand": {
+        "small": -0.5698659139026112,
+        "medium": -2.256544502617801,
+        "large": -2.0580683389294885
+      },
+      "worst": {
+        "repository": {
+          "repo": "payloadcms/payload",
+          "median": -10.399073120494336
+        },
+        "task": {
+          "repo": "payloadcms/payload",
+          "commit": "e71e91c66f492f807fc25b62267fbf6268cb7945",
+          "saving": -53.55070422535211
+        }
+      }
+    },
+    "o200kWholeMap": {
+      "median": -29.94406142275149,
+      "q1": -69.85217391304347,
+      "q3": -6.360019646365423
+    },
+    "o200kCodeOnly": {
+      "median": 0.2858276044420941,
+      "q1": 0.20648464163822522,
+      "q3": 0.44408774745853397
+    },
+    "unresolvedNames": 29,
+    "sizing": [
+      {
+        "repo": "Smaug6739/Alexandrie",
+        "tasks": 5,
+        "median": -0.5374449339207048,
+        "unsupportedFiles": 8
+      },
+      {
+        "repo": "talen8/FlecBlog",
+        "tasks": 5,
+        "median": -0.2852252650176679,
+        "unsupportedFiles": 9
+      },
+      {
+        "repo": "syntaxfm/website",
+        "tasks": 5,
+        "median": -1.3390928725701943,
+        "unsupportedFiles": 2
+      }
+    ],
+    "needReserve": []
+  },
+  "repositories": [
+    {
+      "repo": "dh1011/subscription-manager",
+      "sha": "6b07d95b174bfb5b3c8f89a9ed5cd530ccdabc4e",
+      "category": "react-app",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 50,
+      "band": "small",
+      "walked": 12,
+      "tasks": [
+        {
+          "commit": "93502c0b57981102080520b3bd9d69c7b6f014cf",
+          "parent": "45dceb19998c27be85d597cf72f711228c6ab993",
+          "files": [
+            "next.config.js",
+            "src/app/api/ntfy-settings/route.ts",
+            "src/app/api/test-notification/route.ts",
+            "src/components/ConfigurationModal.tsx",
+            "src/lib/notifications.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 5123,
+            "layer": 7877,
+            "overview": 118,
+            "folderMaps": 4701,
+            "code": 2691,
+            "signatures": 352,
+            "unresolvedCharge": 15,
+            "wholeMap": 5954
+          },
+          "claude": {
+            "baseline": 8838,
+            "layer": 13036
+          },
+          "saving": {
+            "o200k": -0.5375756392738629,
+            "claude": -0.47499434261145046,
+            "o200kWholeMap": -0.7591255123950811,
+            "o200kCodeOnly": 0.40308413039234825
+          }
+        },
+        {
+          "commit": "45dceb19998c27be85d597cf72f711228c6ab993",
+          "parent": "e91b42c2ba1ed1d3fbee3e48c74756f1fb2c048b",
+          "files": [
+            "next.config.js",
+            "src/app/api/test-notification/route.ts",
+            "src/components/SubscriptionModal.tsx",
+            "src/lib/dateUtils.ts",
+            "src/lib/db.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 4655,
+            "layer": 8014,
+            "overview": 113,
+            "folderMaps": 3915,
+            "code": 3775,
+            "signatures": 199,
+            "unresolvedCharge": 12,
+            "wholeMap": 5245
+          },
+          "claude": {
+            "baseline": 7915,
+            "layer": 13311
+          },
+          "saving": {
+            "o200k": -0.7215896885069817,
+            "claude": -0.6817435249526216,
+            "o200kWholeMap": -0.9830290010741138,
+            "o200kCodeOnly": 0.14371643394199785
+          }
+        },
+        {
+          "commit": "e91b42c2ba1ed1d3fbee3e48c74756f1fb2c048b",
+          "parent": "8680576d4676fff2b03dfc436c1c48101d33dda2",
+          "files": [
+            "src/components/SubscriptionModal.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 3136,
+            "layer": 6106,
+            "overview": 107,
+            "folderMaps": 3335,
+            "code": 2530,
+            "signatures": 125,
+            "unresolvedCharge": 9,
+            "wholeMap": 5151
+          },
+          "claude": {
+            "baseline": 5094,
+            "layer": 9950
+          },
+          "saving": {
+            "o200k": -0.9470663265306123,
+            "claude": -0.9532783667059286,
+            "o200kWholeMap": -1.4920280612244898,
+            "o200kCodeOnly": 0.15051020408163263
+          }
+        },
+        {
+          "commit": "f827dee8de3f41fef5f17b423ebbfeba11a397fe",
+          "parent": "26ef0382cb9071cb8d2240e6085cdf3a06e9e964",
+          "files": [
+            "src/app/page.tsx",
+            "src/components/SubscriptionList.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 6774,
+            "layer": 9120,
+            "overview": 97,
+            "folderMaps": 3688,
+            "code": 4666,
+            "signatures": 669,
+            "unresolvedCharge": 0,
+            "wholeMap": 4794
+          },
+          "claude": {
+            "baseline": 11507,
+            "layer": 15328
+          },
+          "saving": {
+            "o200k": -0.3463241806908768,
+            "claude": -0.33205874684974357,
+            "o200kWholeMap": -0.4952760555063478,
+            "o200kCodeOnly": 0.2124298789489224
+          }
+        },
+        {
+          "commit": "26ef0382cb9071cb8d2240e6085cdf3a06e9e964",
+          "parent": "edf40f5fcc564eb95a398de575b5d32af2e84193",
+          "files": [
+            "src/app/page.tsx",
+            "src/components/SubscriptionList.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 6706,
+            "layer": 9006,
+            "overview": 97,
+            "folderMaps": 3688,
+            "code": 4516,
+            "signatures": 705,
+            "unresolvedCharge": 0,
+            "wholeMap": 4794
+          },
+          "claude": {
+            "baseline": 11363,
+            "layer": 15109
+          },
+          "saving": {
+            "o200k": -0.342976439009842,
+            "claude": -0.3296664613218341,
+            "o200kWholeMap": -0.49343871160155084,
+            "o200kCodeOnly": 0.22144348344765885
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -0.5375756392738629,
+        "claude": -0.47499434261145046,
+        "o200kWholeMap": -0.7591255123950811,
+        "o200kCodeOnly": 0.2124298789489224
+      },
+      "layerShare": {
+        "overview": 0.014100324432243573,
+        "folderMaps": 0.4885200898427751,
+        "code": 0.47105066134265033,
+        "signatures": 0.044687063602894504,
+        "unresolvedCharge": 0.001473960039305601
+      }
+    },
+    {
+      "repo": "excalidraw/excalidraw",
+      "sha": "701b901a0f1ba3d0b390d9cdf63d112e25abac4b",
+      "category": "react-app",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 723,
+      "band": "medium",
+      "walked": 9,
+      "tasks": [
+        {
+          "commit": "8bcdca4526867433f99fdfcb55a063668db0c9dc",
+          "parent": "2610ebae0cbd26d8148e70f6144cacbb81e8b156",
+          "files": [
+            "packages/element/src/frame.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 7142,
+            "layer": 45019,
+            "overview": 1066,
+            "folderMaps": 43776,
+            "code": 105,
+            "signatures": 72,
+            "unresolvedCharge": 0,
+            "wholeMap": 195688
+          },
+          "claude": {
+            "baseline": 12307,
+            "layer": 75673
+          },
+          "saving": {
+            "o200k": -5.303416409969197,
+            "claude": -5.148777118712927,
+            "o200kWholeMap": -26.42439092691123,
+            "o200kCodeOnly": 0.9752170260431252
+          }
+        },
+        {
+          "commit": "2610ebae0cbd26d8148e70f6144cacbb81e8b156",
+          "parent": "a758e93d6a03e9f995973703cb886850a398a6d3",
+          "files": [
+            "packages/element/src/flowchart.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 5443,
+            "layer": 46912,
+            "overview": 1066,
+            "folderMaps": 43839,
+            "code": 1375,
+            "signatures": 632,
+            "unresolvedCharge": 0,
+            "wholeMap": 195751
+          },
+          "claude": {
+            "baseline": 9086,
+            "layer": 78728
+          },
+          "saving": {
+            "o200k": -7.6187764100679765,
+            "claude": -7.6647589698437155,
+            "o200kWholeMap": -35.33253720374793,
+            "o200kCodeOnly": 0.6312695204850267
+          }
+        },
+        {
+          "commit": "a758e93d6a03e9f995973703cb886850a398a6d3",
+          "parent": "b99a49dbebd25fbf85ad9ae33c9e361a16d5a39e",
+          "files": [
+            "packages/element/src/flowchart.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 5261,
+            "layer": 45696,
+            "overview": 1066,
+            "folderMaps": 43839,
+            "code": 581,
+            "signatures": 210,
+            "unresolvedCharge": 0,
+            "wholeMap": 195751
+          },
+          "claude": {
+            "baseline": 8787,
+            "layer": 76857
+          },
+          "saving": {
+            "o200k": -7.685801178483178,
+            "claude": -7.746671218846023,
+            "o200kWholeMap": -36.35829690172971,
+            "o200kCodeOnly": 0.8496483558258886
+          }
+        },
+        {
+          "commit": "b99a49dbebd25fbf85ad9ae33c9e361a16d5a39e",
+          "parent": "e7b534668a60add7f725531f3c9abf32508c7b4e",
+          "files": [
+            "excalidraw-app/components/AI.tsx",
+            "packages/excalidraw/components/TTDDialog/TTDDialog.tsx",
+            "packages/excalidraw/components/TTDDialog/utils/mermaidError.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 6382,
+            "layer": 10704,
+            "overview": 1066,
+            "folderMaps": 7808,
+            "code": 1024,
+            "signatures": 806,
+            "unresolvedCharge": 0,
+            "wholeMap": 195655
+          },
+          "claude": {
+            "baseline": 10566,
+            "layer": 17438
+          },
+          "saving": {
+            "o200k": -0.6772171732999059,
+            "claude": -0.6503880371001325,
+            "o200kWholeMap": -29.94406142275149,
+            "o200kCodeOnly": 0.713256032591664
+          }
+        },
+        {
+          "commit": "e7b534668a60add7f725531f3c9abf32508c7b4e",
+          "parent": "14bb42edee3d6fee6be264e3ee78670b3b9cee79",
+          "files": [
+            "scripts/stats/perf.mjs",
+            "scripts/stats/post.mjs"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 9611,
+            "layer": 4556,
+            "overview": 1066,
+            "folderMaps": 1386,
+            "code": 1776,
+            "signatures": 328,
+            "unresolvedCharge": 0,
+            "wholeMap": 195575
+          },
+          "claude": {
+            "baseline": 15274,
+            "layer": 7158
+          },
+          "saving": {
+            "o200k": 0.5259598376859849,
+            "claude": 0.5313604818646065,
+            "o200kWholeMap": -19.567995005722608,
+            "o200kCodeOnly": 0.7810841743835188
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -5.303416409969197,
+        "claude": -5.148777118712927,
+        "o200kWholeMap": -29.94406142275149,
+        "o200kCodeOnly": 0.7810841743835188
+      },
+      "layerShare": {
+        "overview": 0.023678891134854173,
+        "folderMaps": 0.934494372442019,
+        "code": 0.02931019781718963,
+        "signatures": 0.013472032742155525,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "amicalhq/amical",
+      "sha": "029290c0424ea59bb0f91ab89e2cb4e3be63774d",
+      "category": "react-app",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 790,
+      "band": "medium",
+      "walked": 10,
+      "tasks": [
+        {
+          "commit": "d57a13ee1d8f3c5d90b83bf144b61bc91bd16264",
+          "parent": "ed0cb0c9d905e6ea9052c69e1b03a9ab41a3f1df",
+          "files": [
+            "apps/desktop/src/constants/models.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-provider.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-worker-fork.ts",
+            "apps/desktop/src/services/model-service.ts",
+            "packages/whisper-wrapper/src/index.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 18964,
+            "layer": 37869,
+            "overview": 1563,
+            "folderMaps": 18728,
+            "code": 13059,
+            "signatures": 4519,
+            "unresolvedCharge": 0,
+            "wholeMap": 139032
+          },
+          "claude": {
+            "baseline": 32806,
+            "layer": 68766
+          },
+          "saving": {
+            "o200k": -0.9968888420164521,
+            "claude": -1.096140949826251,
+            "o200kWholeMap": -7.258278844125712,
+            "o200kCodeOnly": 0.07308584686774944
+          }
+        },
+        {
+          "commit": "367a006457f0988a74e0f7c9faf6c9241db137b0",
+          "parent": "9ece02e6c909b140c18f565048d76af999c26033",
+          "files": [
+            "apps/desktop/src/pipeline/providers/transcription/simple-fork-wrapper.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-worker-fork.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2381,
+            "layer": 9017,
+            "overview": 1563,
+            "folderMaps": 6259,
+            "code": 1051,
+            "signatures": 144,
+            "unresolvedCharge": 0,
+            "wholeMap": 139031
+          },
+          "claude": {
+            "baseline": 4027,
+            "layer": 16469
+          },
+          "saving": {
+            "o200k": -2.7870642587148255,
+            "claude": -3.089644896945617,
+            "o200kWholeMap": -57.893742125157495,
+            "o200kCodeOnly": 0.498110037799244
+          }
+        },
+        {
+          "commit": "9ece02e6c909b140c18f565048d76af999c26033",
+          "parent": "ac6ea10f4b24e8ba73c71d6d98d5b25fefac6da8",
+          "files": [
+            "apps/desktop/src/services/model-service.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 10812,
+            "layer": 23704,
+            "overview": 1563,
+            "folderMaps": 11252,
+            "code": 8013,
+            "signatures": 2877,
+            "unresolvedCharge": 0,
+            "wholeMap": 139011
+          },
+          "claude": {
+            "baseline": 18853,
+            "layer": 43196
+          },
+          "saving": {
+            "o200k": -1.1923788383277838,
+            "claude": -1.2912003394685194,
+            "o200kWholeMap": -12.864317425083241,
+            "o200kCodeOnly": -0.007214206437291981
+          }
+        },
+        {
+          "commit": "01959ecbb26f8bed9906996d3322eb5d1443c716",
+          "parent": "c3f9ed9646b30ab606445076a047045e4673f864",
+          "files": [
+            "apps/desktop/src/main/lifecycle/tuning.ts",
+            "apps/desktop/src/pipeline/providers/transcription/grpc-dictation-client.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 8024,
+            "layer": 10340,
+            "overview": 1563,
+            "folderMaps": 8537,
+            "code": 195,
+            "signatures": 45,
+            "unresolvedCharge": 0,
+            "wholeMap": 139011
+          },
+          "claude": {
+            "baseline": 14760,
+            "layer": 18757
+          },
+          "saving": {
+            "o200k": -0.2886340977068793,
+            "claude": -0.27079945799458005,
+            "o200kWholeMap": -16.354312063808575,
+            "o200kCodeOnly": 0.9700897308075773
+          }
+        },
+        {
+          "commit": "e978bc03bf547324a111047dbffb64b6441f8352",
+          "parent": "55ab4e30fd3f166974807cc74b2123e60334e6fd",
+          "files": [
+            "apps/desktop/src/components/auth-button.tsx",
+            "apps/desktop/src/components/nav-secondary.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1869,
+            "layer": 4990,
+            "overview": 1563,
+            "folderMaps": 2388,
+            "code": 1012,
+            "signatures": 27,
+            "unresolvedCharge": 0,
+            "wholeMap": 138880
+          },
+          "claude": {
+            "baseline": 3308,
+            "layer": 8561
+          },
+          "saving": {
+            "o200k": -1.669876939539861,
+            "claude": -1.5879685610640872,
+            "o200kWholeMap": -73.86302835741039,
+            "o200kCodeOnly": 0.44408774745853397
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -1.1923788383277838,
+        "claude": -1.2912003394685194,
+        "o200kWholeMap": -16.354312063808575,
+        "o200kCodeOnly": 0.44408774745853397
+      },
+      "layerShare": {
+        "overview": 0.1511605415860735,
+        "folderMaps": 0.4945469909424595,
+        "code": 0.2028056112224449,
+        "signatures": 0.015969834756570923,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "AmruthPillai/Reactive-Resume",
+      "sha": "09553e35b093b6555d40507c72785c9a3cb928b5",
+      "category": "react-app",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 2103,
+      "band": "large",
+      "walked": 34,
+      "tasks": [
+        {
+          "commit": "61c7bbe84aaaccee33e6417788885b59d8f259ba",
+          "parent": "9948ffe6e06e7d7795c931cb155778b49dd303ae",
+          "files": [
+            "tooling/android/export-scaled-layout.mjs"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2108,
+            "layer": 4091,
+            "overview": 2584,
+            "folderMaps": 201,
+            "code": 1250,
+            "signatures": 56,
+            "unresolvedCharge": 0,
+            "wholeMap": 478920
+          },
+          "claude": {
+            "baseline": 3396,
+            "layer": 6893
+          },
+          "saving": {
+            "o200k": -0.9407020872865275,
+            "claude": -1.0297408716136633,
+            "o200kWholeMap": -226.8111954459203,
+            "o200kCodeOnly": 0.3804554079696395
+          }
+        },
+        {
+          "commit": "826dde2bd7ca35020e885368d0771d91584fc194",
+          "parent": "ef2aa643042036efb48bccf069bd8774718b77c4",
+          "files": [
+            "apps/web/src/main.tsx",
+            "packages/ui/src/styles/globals.css",
+            "packages/ui/src/styles/typeset.css"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 8211,
+            "layer": 9714,
+            "overview": 2577,
+            "folderMaps": 4172,
+            "code": 2940,
+            "signatures": 26,
+            "unresolvedCharge": 0,
+            "wholeMap": 479967
+          },
+          "claude": {
+            "baseline": 11447,
+            "layer": 16209
+          },
+          "saving": {
+            "o200k": -0.18304713189623678,
+            "claude": -0.4160041932384031,
+            "o200kWholeMap": -57.81536962611131,
+            "o200kCodeOnly": 0.6387772500304469
+          }
+        },
+        {
+          "commit": "ef2aa643042036efb48bccf069bd8774718b77c4",
+          "parent": "c1e37df34cab0eb636ba22f5a2cc56b7efd212c7",
+          "files": [
+            "apps/web/src/features/career/coach-thread.tsx",
+            "apps/web/src/features/career/coach.tsx",
+            "apps/web/src/features/career/shared.tsx",
+            "apps/web/src/features/career/workspace/apply.tsx",
+            "apps/web/src/features/resume/editor/chrome.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 2,
+          "o200k": {
+            "baseline": 33492,
+            "layer": 32137,
+            "overview": 2577,
+            "folderMaps": 20937,
+            "code": 6543,
+            "signatures": 2034,
+            "unresolvedCharge": 46,
+            "wholeMap": 479967
+          },
+          "claude": {
+            "baseline": 52449,
+            "layer": 51044
+          },
+          "saving": {
+            "o200k": 0.04045742266809982,
+            "claude": 0.026787927319872673,
+            "o200kWholeMap": -13.588259882957123,
+            "o200kCodeOnly": 0.7425355308730444
+          }
+        },
+        {
+          "commit": "c560233b9e077cf1f7987c0e5c8e113c6e3e4814",
+          "parent": "b45cdecc984f53a7f40eefbaa0dbe99473f117bc",
+          "files": [
+            "packages/resume/src/proposals.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 8026,
+            "layer": 9292,
+            "overview": 2577,
+            "folderMaps": 6262,
+            "code": 335,
+            "signatures": 118,
+            "unresolvedCharge": 0,
+            "wholeMap": 479949
+          },
+          "claude": {
+            "baseline": 13104,
+            "layer": 14970
+          },
+          "saving": {
+            "o200k": -0.15773735360079733,
+            "claude": -0.14239926739926734,
+            "o200kWholeMap": -58.85571891353102,
+            "o200kCodeOnly": 0.9435584350859706
+          }
+        },
+        {
+          "commit": "49c3fcd5d24bd70acd718161d59998751d5a3b9c",
+          "parent": "1da5e1822a4e3d94b56223e6958fb7cae27dcd9e",
+          "files": [
+            "tooling/mobile/release.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 978,
+            "layer": 3274,
+            "overview": 2577,
+            "folderMaps": 269,
+            "code": 386,
+            "signatures": 42,
+            "unresolvedCharge": 0,
+            "wholeMap": 479937
+          },
+          "claude": {
+            "baseline": 1819,
+            "layer": 5777
+          },
+          "saving": {
+            "o200k": -2.347648261758691,
+            "claude": -2.175920835623969,
+            "o200kWholeMap": -490.1707566462168,
+            "o200kCodeOnly": 0.5623721881390593
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -0.18304713189623678,
+        "claude": -0.4160041932384031,
+        "o200kWholeMap": -58.85571891353102,
+        "o200kCodeOnly": 0.6387772500304469
+      },
+      "layerShare": {
+        "overview": 0.27733534222987516,
+        "folderMaps": 0.4294832200947087,
+        "code": 0.20359709991598468,
+        "signatures": 0.012828344532681736,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "homarr-labs/homarr",
+      "sha": "38cfcb3fa1a391aaf86ef5722068bed12bd32b3a",
+      "category": "react-app",
+      "role": "gate",
+      "licence": "Apache-2.0",
+      "files": 3064,
+      "band": "large",
+      "walked": 137,
+      "tasks": [
+        {
+          "commit": "445e191490ba0115150c39ba69469b9860569133",
+          "parent": "52c624addb477e7c385d7f3e594cb2bb32ca87f8",
+          "files": [
+            "packages/api/src/router/widgets/options.ts",
+            "packages/definitions/src/docs/homarr-docs-sitemap.ts",
+            "packages/widgets/src/beszel-system-stats/component.module.css",
+            "packages/widgets/src/beszel-system-stats/component.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 2,
+          "o200k": {
+            "baseline": 7117,
+            "layer": 19064,
+            "overview": 7697,
+            "folderMaps": 4156,
+            "code": 6398,
+            "signatures": 777,
+            "unresolvedCharge": 36,
+            "wholeMap": 199414
+          },
+          "claude": {
+            "baseline": 12117,
+            "layer": 32210
+          },
+          "saving": {
+            "o200k": -1.6786567373893493,
+            "claude": -1.6582487414376494,
+            "o200kWholeMap": -28.032598004777295,
+            "o200kCodeOnly": -0.013207812280455311
+          }
+        },
+        {
+          "commit": "5a1967bdd4c1af2b30ff2ddc005516e70d16c1ee",
+          "parent": "a4f0eda4a0bf0bec35401b6e3bda2174f532fd07",
+          "files": [
+            "packages/definitions/src/docs/homarr-docs-sitemap.ts",
+            "packages/definitions/src/integration.ts",
+            "packages/integrations/src/base/creator.ts",
+            "packages/integrations/src/index.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 12826,
+            "layer": 30667,
+            "overview": 7650,
+            "folderMaps": 5477,
+            "code": 9260,
+            "signatures": 8280,
+            "unresolvedCharge": 0,
+            "wholeMap": 196748
+          },
+          "claude": {
+            "baseline": 22907,
+            "layer": 54598
+          },
+          "saving": {
+            "o200k": -1.3910026508654294,
+            "claude": -1.3834635700877462,
+            "o200kWholeMap": -15.707313269920473,
+            "o200kCodeOnly": -0.36753469515047565
+          }
+        },
+        {
+          "commit": "58058f2ea6a67259676228f7f791230b0e33f57a",
+          "parent": "6881b8355c7e940360a0fb582787f0a770430c5b",
+          "files": [
+            "packages/integrations/src/glances/glances-integration.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1406,
+            "layer": 9646,
+            "overview": 7650,
+            "folderMaps": 194,
+            "code": 996,
+            "signatures": 806,
+            "unresolvedCharge": 0,
+            "wholeMap": 196579
+          },
+          "claude": {
+            "baseline": 2375,
+            "layer": 16735
+          },
+          "saving": {
+            "o200k": -5.860597439544808,
+            "claude": -6.0463157894736845,
+            "o200kWholeMap": -140.09601706970128,
+            "o200kCodeOnly": -0.2816500711237553
+          }
+        },
+        {
+          "commit": "6881b8355c7e940360a0fb582787f0a770430c5b",
+          "parent": "7837b6fa6be6e363aad6b565135958e8734be09b",
+          "files": [
+            "apps/docs/docs/widgets/dns-hole-controls/index.ts",
+            "apps/docs/docs/widgets/dns-hole-summary/index.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 351,
+            "layer": 8043,
+            "overview": 7650,
+            "folderMaps": 90,
+            "code": 303,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 196557
+          },
+          "claude": {
+            "baseline": 627,
+            "layer": 13952
+          },
+          "saving": {
+            "o200k": -21.914529914529915,
+            "claude": -21.251993620414673,
+            "o200kWholeMap": -559.8547008547008,
+            "o200kCodeOnly": 0.1367521367521367
+          }
+        },
+        {
+          "commit": "e9142c0dbcaca6cd9215b5292a2d139d96919b51",
+          "parent": "4635c51fe1b47d1112ed4fdc64f526609dab8124",
+          "files": [
+            "packages/widgets/src/downloads/component.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 7597,
+            "layer": 6104,
+            "overview": 5424,
+            "folderMaps": 503,
+            "code": 133,
+            "signatures": 44,
+            "unresolvedCharge": 0,
+            "wholeMap": 158653
+          },
+          "claude": {
+            "baseline": 13175,
+            "layer": 10285
+          },
+          "saving": {
+            "o200k": 0.1965249440568646,
+            "claude": 0.21935483870967742,
+            "o200kWholeMap": -19.90693694879558,
+            "o200kCodeOnly": 0.97670132947216
+          }
+        }
+      ],
+      "skipped": [],
+      "note": "the history ends after 361 commits (the repository is younger, or the clone is too shallow)",
+      "median": {
+        "o200k": -1.6786567373893493,
+        "claude": -1.6582487414376494,
+        "o200kWholeMap": -28.032598004777295,
+        "o200kCodeOnly": -0.013207812280455311
+      },
+      "layerShare": {
+        "overview": 0.7930748496786233,
+        "folderMaps": 0.08240498034076016,
+        "code": 0.10325523533070703,
+        "signatures": 0.04075744859420898,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "plasmicapp/plasmic",
+      "sha": "9ad5048494afee5ef1fc7d92fa3153c7b50ea73f",
+      "category": "react-app",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 6152,
+      "band": "large",
+      "walked": 10,
+      "tasks": [
+        {
+          "commit": "9ad5048494afee5ef1fc7d92fa3153c7b50ea73f",
+          "parent": "6471e638a16bee92fc92bfa0d53e8b170f3a0ccd",
+          "files": [
+            "platform/wab/src/wab/server/AppServer.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 15534,
+            "layer": 18497,
+            "overview": 13104,
+            "folderMaps": 5213,
+            "code": 180,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 1448187
+          },
+          "claude": {
+            "baseline": 27695,
+            "layer": 31031
+          },
+          "saving": {
+            "o200k": -0.19074288657139182,
+            "claude": -0.1204549557681891,
+            "o200kWholeMap": -92.23850907686365,
+            "o200kCodeOnly": 0.9884125144843569
+          }
+        },
+        {
+          "commit": "abe23a361a641ef7ee07163ce3d4d14bcbaca0fa",
+          "parent": "f3da1377e0316e90bb8ef64bcfa0a5cbaa48db62",
+          "files": [
+            "platform/wab/src/wab/server/__testonly__/backend-util.ts",
+            "platform/wab/src/wab/server/code-components/code-components.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 5063,
+            "layer": 15483,
+            "overview": 13089,
+            "folderMaps": 2283,
+            "code": 111,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 1436900
+          },
+          "claude": {
+            "baseline": 8726,
+            "layer": 26404
+          },
+          "saving": {
+            "o200k": -2.0580683389294885,
+            "claude": -2.0258996103598443,
+            "o200kWholeMap": -282.8259924945684,
+            "o200kCodeOnly": 0.9780762393837645
+          }
+        },
+        {
+          "commit": "f3da1377e0316e90bb8ef64bcfa0a5cbaa48db62",
+          "parent": "8c879f4584ca6d8036e95ba964e549f700b9d4b3",
+          "files": [
+            "platform/wab/src/wab/server/routes/loader.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 7879,
+            "layer": 30152,
+            "overview": 13089,
+            "folderMaps": 16822,
+            "code": 190,
+            "signatures": 51,
+            "unresolvedCharge": 0,
+            "wholeMap": 1436900
+          },
+          "claude": {
+            "baseline": 13325,
+            "layer": 49035
+          },
+          "saving": {
+            "o200k": -2.826881583957355,
+            "claude": -2.679924953095685,
+            "o200kWholeMap": -181.40144688412235,
+            "o200kCodeOnly": 0.9694123619748699
+          }
+        },
+        {
+          "commit": "8c879f4584ca6d8036e95ba964e549f700b9d4b3",
+          "parent": "763e0f8d0c471bf7567fa5527511e52881f40451",
+          "files": [
+            "platform/wab/src/wab/shared/codegen/react-p/server-queries/collect.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2198,
+            "layer": 16562,
+            "overview": 13089,
+            "folderMaps": 3293,
+            "code": 180,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 1436850
+          },
+          "claude": {
+            "baseline": 3924,
+            "layer": 28560
+          },
+          "saving": {
+            "o200k": -6.535031847133758,
+            "claude": -6.2782874617737,
+            "o200kWholeMap": -652.7898089171974,
+            "o200kCodeOnly": 0.9181073703366697
+          }
+        },
+        {
+          "commit": "763e0f8d0c471bf7567fa5527511e52881f40451",
+          "parent": "bdd7c4d363f9972bbafe615e40d2bf6d39b79f68",
+          "files": [
+            "platform/wab/src/wab/shared/common.ts",
+            "platform/wab/src/wab/shared/refactoring.ts",
+            "platform/wab/src/wab/shared/site-diffs/merge-core.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 42323,
+            "layer": 92829,
+            "overview": 13089,
+            "folderMaps": 78269,
+            "code": 1114,
+            "signatures": 357,
+            "unresolvedCharge": 0,
+            "wholeMap": 1436781
+          },
+          "claude": {
+            "baseline": 70338,
+            "layer": 155320
+          },
+          "saving": {
+            "o200k": -1.1933464073907802,
+            "claude": -1.2081947169382126,
+            "o200kWholeMap": -32.982751695295704,
+            "o200kCodeOnly": 0.9652434846301066
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -2.0580683389294885,
+        "claude": -2.0258996103598443,
+        "o200kWholeMap": -181.40144688412235,
+        "o200kCodeOnly": 0.9694123619748699
+      },
+      "layerShare": {
+        "overview": 0.7084392063577878,
+        "folderMaps": 0.2818294858625723,
+        "code": 0.009731307779639941,
+        "signatures": 0,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "kyhsa93/nestjs-rest-cqrs-example",
+      "sha": "da66be5d5868b88f631df354e5d26af310618bcb",
+      "category": "node-service-decorators",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 132,
+      "band": "small",
+      "note": null,
+      "walked": 37,
+      "tasks": [
+        {
+          "commit": "e3cf45b17e817b9a603264c97159378a462f16a3",
+          "parent": "2178d972c032133f6024346591588f59cf5c53a6",
+          "files": [
+            "src/main.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 314,
+            "layer": 902,
+            "overview": 291,
+            "folderMaps": 346,
+            "code": 99,
+            "signatures": 166,
+            "unresolvedCharge": 0,
+            "wholeMap": 10312
+          },
+          "claude": {
+            "baseline": 613,
+            "layer": 1572
+          },
+          "saving": {
+            "o200k": -1.872611464968153,
+            "claude": -1.564437194127243,
+            "o200kWholeMap": -32.68471337579618,
+            "o200kCodeOnly": 0.1560509554140127
+          }
+        },
+        {
+          "commit": "d86874cd3b9d284e17e91c76a092d1d1910ffefa",
+          "parent": "6a36207852592f2753031ffdc7bf5ea8c303b203",
+          "files": [
+            "src/account/accounts-module.ts",
+            "src/notification/interface/integration-event/account-integration-event-controller.ts",
+            "src/notification/notification-module.ts",
+            "src/outbox/outbox-module.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1618,
+            "layer": 3837,
+            "overview": 284,
+            "folderMaps": 1161,
+            "code": 707,
+            "signatures": 1686,
+            "unresolvedCharge": 0,
+            "wholeMap": 9815
+          },
+          "claude": {
+            "baseline": 3076,
+            "layer": 6797
+          },
+          "saving": {
+            "o200k": -1.3714462299134733,
+            "claude": -1.2096879063719115,
+            "o200kWholeMap": -6.545117428924598,
+            "o200kCodeOnly": -0.47898640296662554
+          }
+        },
+        {
+          "commit": "552d3eb396f7ecb08b041a1f67354d8f0afb5871",
+          "parent": "75b3c99978794eed6b2291ef3e8f2e5359b74e40",
+          "files": [
+            "src/notification/infrastructure/query/notification-query-implement.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 283,
+            "layer": 819,
+            "overview": 284,
+            "folderMaps": 99,
+            "code": 174,
+            "signatures": 263,
+            "unresolvedCharge": 0,
+            "wholeMap": 9788
+          },
+          "claude": {
+            "baseline": 534,
+            "layer": 1367
+          },
+          "saving": {
+            "o200k": -1.893992932862191,
+            "claude": -1.559925093632959,
+            "o200kWholeMap": -35.130742049469966,
+            "o200kCodeOnly": -0.5441696113074206
+          }
+        },
+        {
+          "commit": "71ee1c20dec7247550f651b581e3c1dc174a1cd8",
+          "parent": "a7d520983249085a092fcff4dfb8364bd5737896",
+          "files": [
+            "libs/database-module.ts",
+            "src/app-module.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1120,
+            "layer": 3119,
+            "overview": 245,
+            "folderMaps": 2014,
+            "code": 410,
+            "signatures": 450,
+            "unresolvedCharge": 0,
+            "wholeMap": 9752
+          },
+          "claude": {
+            "baseline": 2194,
+            "layer": 5320
+          },
+          "saving": {
+            "o200k": -1.7848214285714286,
+            "claude": -1.4247948951686418,
+            "o200kWholeMap": -8.475,
+            "o200kCodeOnly": 0.2321428571428571
+          }
+        },
+        {
+          "commit": "a7d520983249085a092fcff4dfb8364bd5737896",
+          "parent": "6ea50a4a7c95872620b11ae4373379dd05cbbf51",
+          "files": [
+            "src/main.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 280,
+            "layer": 816,
+            "overview": 245,
+            "folderMaps": 329,
+            "code": 79,
+            "signatures": 163,
+            "unresolvedCharge": 0,
+            "wholeMap": 9752
+          },
+          "claude": {
+            "baseline": 544,
+            "layer": 1438
+          },
+          "saving": {
+            "o200k": -1.9142857142857141,
+            "claude": -1.6433823529411766,
+            "o200kWholeMap": -34.69285714285714,
+            "o200kCodeOnly": 0.13571428571428568
+          }
+        }
+      ],
+      "skipped": [],
+      "median": {
+        "o200k": -1.872611464968153,
+        "claude": -1.559925093632959,
+        "o200kWholeMap": -32.68471337579618,
+        "o200kCodeOnly": 0.13571428571428568
+      },
+      "layerShare": {
+        "overview": 0.3002450980392157,
+        "folderMaps": 0.3835920177383592,
+        "code": 0.1314523885860853,
+        "signatures": 0.19975490196078433,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "buqiyuan/nest-admin",
+      "sha": "5b549e540d52d04f08d26ded192a455a8e4c058d",
+      "category": "node-service-decorators",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 242,
+      "band": "medium",
+      "walked": 8,
+      "tasks": [
+        {
+          "commit": "5b549e540d52d04f08d26ded192a455a8e4c058d",
+          "parent": "391348af51ab025e1244bdb19f1c36d29f2e1f81",
+          "files": [
+            "src/modules/auth/auth.service.ts",
+            "src/modules/user/user.service.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 3869,
+            "layer": 7491,
+            "overview": 541,
+            "folderMaps": 1836,
+            "code": 2801,
+            "signatures": 2314,
+            "unresolvedCharge": 0,
+            "wholeMap": 27536
+          },
+          "claude": {
+            "baseline": 6716,
+            "layer": 12935
+          },
+          "saving": {
+            "o200k": -0.9361592142672526,
+            "claude": -0.9259976176295415,
+            "o200kWholeMap": -7.439131558542259,
+            "o200kCodeOnly": -0.32204704057896105
+          }
+        },
+        {
+          "commit": "391348af51ab025e1244bdb19f1c36d29f2e1f81",
+          "parent": "11c2a7d67d5cdd933ccc165593f5f848ecdf87c9",
+          "files": [
+            "src/modules/health/health.controller.ts",
+            "src/setup-swagger.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1007,
+            "layer": 2118,
+            "overview": 541,
+            "folderMaps": 582,
+            "code": 683,
+            "signatures": 312,
+            "unresolvedCharge": 0,
+            "wholeMap": 27536
+          },
+          "claude": {
+            "baseline": 1821,
+            "layer": 3671
+          },
+          "saving": {
+            "o200k": -1.103277060575968,
+            "claude": -1.0159253157605712,
+            "o200kWholeMap": -27.332671300893743,
+            "o200kCodeOnly": 0.011916583912611745
+          }
+        },
+        {
+          "commit": "5995078f45c38d4d6c0e3d83b80ec726b714aa82",
+          "parent": "3857d12b92b4a856b8d4d9ef74a54125f8f11e09",
+          "files": [
+            "src/modules/system/task/task.module.ts",
+            "src/modules/system/task/task.processor.ts",
+            "src/modules/system/task/task.service.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 3023,
+            "layer": 4740,
+            "overview": 541,
+            "folderMaps": 1169,
+            "code": 1967,
+            "signatures": 1063,
+            "unresolvedCharge": 0,
+            "wholeMap": 26968
+          },
+          "claude": {
+            "baseline": 5093,
+            "layer": 7995
+          },
+          "saving": {
+            "o200k": -0.5679788289778367,
+            "claude": -0.5698016885921853,
+            "o200kWholeMap": -8.923255044657624,
+            "o200kCodeOnly": -0.002315580549123286
+          }
+        },
+        {
+          "commit": "2437241c565fe6de1732d9fe2a5fe1f91999836d",
+          "parent": "f5697402207ba8b557ce572a4c9beebd6352e56f",
+          "files": [
+            "src/global/env.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 398,
+            "layer": 899,
+            "overview": 541,
+            "folderMaps": 262,
+            "code": 63,
+            "signatures": 33,
+            "unresolvedCharge": 0,
+            "wholeMap": 26859
+          },
+          "claude": {
+            "baseline": 655,
+            "layer": 1386
+          },
+          "saving": {
+            "o200k": -1.258793969849246,
+            "claude": -1.116030534351145,
+            "o200kWholeMap": -66.72613065326634,
+            "o200kCodeOnly": 0.7587939698492463
+          }
+        },
+        {
+          "commit": "4b33c32c06401f7582e787ffca594768b8a4b949",
+          "parent": "f2cec8cb776cbf113115b33164dac69a46d24097",
+          "files": [
+            "src/modules/system/menu/menu.dto.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 762,
+            "layer": 2088,
+            "overview": 541,
+            "folderMaps": 872,
+            "code": 646,
+            "signatures": 30,
+            "unresolvedCharge": 0,
+            "wholeMap": 26858
+          },
+          "claude": {
+            "baseline": 1276,
+            "layer": 3463
+          },
+          "saving": {
+            "o200k": -1.7401574803149606,
+            "claude": -1.7139498432601883,
+            "o200kWholeMap": -35.13385826771653,
+            "o200kCodeOnly": 0.11286089238845143
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -1.103277060575968,
+        "claude": -1.0159253157605712,
+        "o200kWholeMap": -27.332671300893743,
+        "o200kCodeOnly": 0.011916583912611745
+      },
+      "layerShare": {
+        "overview": 0.2554296506137866,
+        "folderMaps": 0.2747875354107649,
+        "code": 0.32247403210576014,
+        "signatures": 0.14730878186968838,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "haiweilian/vivy-nest-admin",
+      "sha": "ab6a057eed3aa6789ec2b1f63422d98b98b3d1e9",
+      "category": "node-service-decorators",
+      "licence": "MIT",
+      "files": 413,
+      "band": "medium",
+      "role": "gate",
+      "replaces": "raouf-b-dev/ecommerce-store-api",
+      "walked": 8,
+      "tasks": [
+        {
+          "commit": "a81bc456791142dbab45c95f5deda57a60b0f279",
+          "parent": "01d0f491a3f8d9f439ad82934754b2878c89fab9",
+          "files": [
+            "vivy-common/vivy-common-core/src/core.module.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 245,
+            "layer": 3308,
+            "overview": 2769,
+            "folderMaps": 217,
+            "code": 147,
+            "signatures": 175,
+            "unresolvedCharge": 0,
+            "wholeMap": 38112
+          },
+          "claude": {
+            "baseline": 465,
+            "layer": 5717
+          },
+          "saving": {
+            "o200k": -12.50204081632653,
+            "claude": -11.294623655913979,
+            "o200kWholeMap": -155.8734693877551,
+            "o200kCodeOnly": -0.3142857142857143
+          }
+        },
+        {
+          "commit": "01d0f491a3f8d9f439ad82934754b2878c89fab9",
+          "parent": "616617a2c4abfffc27f90f2d123f511194ce2554",
+          "files": [
+            "vivy-modules/vivy-system/src/modules/file/upload/upload.storage.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 701,
+            "layer": 3460,
+            "overview": 2769,
+            "folderMaps": 325,
+            "code": 206,
+            "signatures": 160,
+            "unresolvedCharge": 0,
+            "wholeMap": 38112
+          },
+          "claude": {
+            "baseline": 1192,
+            "layer": 5925
+          },
+          "saving": {
+            "o200k": -3.935805991440799,
+            "claude": -3.970637583892618,
+            "o200kWholeMap": -53.89015691868759,
+            "o200kCodeOnly": 0.4778887303851641
+          }
+        },
+        {
+          "commit": "616617a2c4abfffc27f90f2d123f511194ce2554",
+          "parent": "31d2ff7c54e0b8a727204120f975a1ccebe8027b",
+          "files": [
+            "docs/.vitepress/config.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 851,
+            "layer": 3619,
+            "overview": 2769,
+            "folderMaps": 30,
+            "code": 820,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 38112
+          },
+          "claude": {
+            "baseline": 1283,
+            "layer": 6039
+          },
+          "saving": {
+            "o200k": -3.2526439482961225,
+            "claude": -3.706936866718628,
+            "o200kWholeMap": -44.748531139835485,
+            "o200kCodeOnly": 0.03642773207990602
+          }
+        },
+        {
+          "commit": "fa936daa584908a42a57ae19e920bc4dd210d596",
+          "parent": "32b27c5d6576f65a761c83dc03579b23614fc614",
+          "files": [
+            "vivy-common/vivy-common-security/src/services/token.service.ts",
+            "vivy-modules/vivy-system/src/main.ts",
+            "vivy-react/src/apis/auth/login/model.ts",
+            "vivy-react/src/pages/login/index.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2395,
+            "layer": 5783,
+            "overview": 2736,
+            "folderMaps": 1079,
+            "code": 1433,
+            "signatures": 535,
+            "unresolvedCharge": 0,
+            "wholeMap": 37832
+          },
+          "claude": {
+            "baseline": 4075,
+            "layer": 9925
+          },
+          "saving": {
+            "o200k": -1.4146137787056365,
+            "claude": -1.4355828220858897,
+            "o200kWholeMap": -15.61795407098121,
+            "o200kCodeOnly": 0.17828810020876829
+          }
+        },
+        {
+          "commit": "db99e21088eb2dc6d22944c88f4219ef5c3e5632",
+          "parent": "64b95cbe4a27d55f0cebc08271ac16a21c5f7ecc",
+          "files": [
+            "taze.config.js",
+            "vivy-react/src/components/Cron/CronEval.tsx",
+            "vivy-react/src/components/Cron/index.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 448,
+            "layer": 3628,
+            "overview": 2736,
+            "folderMaps": 575,
+            "code": 317,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 37841
+          },
+          "claude": {
+            "baseline": 706,
+            "layer": 6061
+          },
+          "saving": {
+            "o200k": -7.0982142857142865,
+            "claude": -7.5849858356940505,
+            "o200kWholeMap": -84.17410714285714,
+            "o200kCodeOnly": 0.2924107142857143
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -3.935805991440799,
+        "claude": -3.970637583892618,
+        "o200kWholeMap": -53.89015691868759,
+        "o200kCodeOnly": 0.17828810020876829
+      },
+      "layerShare": {
+        "overview": 0.7651284885327438,
+        "folderMaps": 0.09393063583815028,
+        "code": 0.08737596471885337,
+        "signatures": 0.046242774566473986,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "TryGhost/Ghost",
+      "sha": "940de5ca514019517cb236a3ed0fa0fc80c207ef",
+      "category": "node-service",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 7441,
+      "band": "large",
+      "walked": 14,
+      "tasks": [
+        {
+          "commit": "fefbb2c0f42eaef5ce1603016f14978bfd3ed116",
+          "parent": "64b0cc528525805455e020b37383301e5cdee6fb",
+          "files": [
+            "ghost/core/server/web/shared/middleware/api/spam-prevention.ts",
+            "ghost/core/shared/config/report.ts",
+            "ghost/core/shared/config/schema.ts",
+            "ghost/core/shared/config/schema/primitives.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 8253,
+            "layer": 24481,
+            "overview": 14823,
+            "folderMaps": 3294,
+            "code": 6126,
+            "signatures": 219,
+            "unresolvedCharge": 19,
+            "wholeMap": 1127605
+          },
+          "claude": {
+            "baseline": 14247,
+            "layer": 42644
+          },
+          "saving": {
+            "o200k": -1.9663152792923784,
+            "claude": -1.9931915490980558,
+            "o200kWholeMap": -136.40082394280867,
+            "o200kCodeOnly": 0.22888646552768688
+          }
+        },
+        {
+          "commit": "64b0cc528525805455e020b37383301e5cdee6fb",
+          "parent": "5dd78a4532207a1b0644a9d0ce15d9d75fa405bf",
+          "files": [
+            "apps/admin/src/automations/new-automation.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1856,
+            "layer": 22874,
+            "overview": 14823,
+            "folderMaps": 6490,
+            "code": 897,
+            "signatures": 664,
+            "unresolvedCharge": 0,
+            "wholeMap": 1127602
+          },
+          "claude": {
+            "baseline": 3295,
+            "layer": 39128
+          },
+          "saving": {
+            "o200k": -11.324353448275861,
+            "claude": -10.874962063732928,
+            "o200kWholeMap": -607.3852370689655,
+            "o200kCodeOnly": 0.15894396551724133
+          }
+        },
+        {
+          "commit": "5dd78a4532207a1b0644a9d0ce15d9d75fa405bf",
+          "parent": "f2846cdacb6db4835a3a7ce7f0beb403b40c809a",
+          "files": [
+            "ghost/core/server/services/member-welcome-emails/member-welcome-email-service.js",
+            "tools/gx/cli.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 7481,
+            "layer": 25560,
+            "overview": 14823,
+            "folderMaps": 5727,
+            "code": 4485,
+            "signatures": 525,
+            "unresolvedCharge": 0,
+            "wholeMap": 1127082
+          },
+          "claude": {
+            "baseline": 12980,
+            "layer": 44256
+          },
+          "saving": {
+            "o200k": -2.4166555273359176,
+            "claude": -2.409553158705701,
+            "o200kWholeMap": -150.3289667156797,
+            "o200kCodeOnly": 0.33030343536960305
+          }
+        },
+        {
+          "commit": "aade2f773c9abfe32c909bc7f60ba2de815d7868",
+          "parent": "d8523ca5acebea470ad4278f4a2b729a18832063",
+          "files": [
+            ".pnpmfile.mjs",
+            "ghost/core/server/auth/better-auth/create-auth.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2399,
+            "layer": 16323,
+            "overview": 14823,
+            "folderMaps": 1377,
+            "code": 123,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 1127062
+          },
+          "claude": {
+            "baseline": 4060,
+            "layer": 28693
+          },
+          "saving": {
+            "o200k": -5.80408503543143,
+            "claude": -6.067241379310345,
+            "o200kWholeMap": -468.8561900791997,
+            "o200kCodeOnly": 0.948728636932055
+          }
+        },
+        {
+          "commit": "3c0fa14cb08e4f15dfbb190aef20cd6020b8d284",
+          "parent": "97d192acd1254eb964b5d1082c285a81ffc34c3d",
+          "files": [
+            "ghost/core/server/services/identity-tokens/identity-token-service.ts",
+            "ghost/core/server/services/members/members-api/services/token-service.js",
+            "ghost/core/server/services/signing-keys/signing-key-service.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 3782,
+            "layer": 19629,
+            "overview": 14812,
+            "folderMaps": 2117,
+            "code": 2191,
+            "signatures": 510,
+            "unresolvedCharge": 0,
+            "wholeMap": 1126196
+          },
+          "claude": {
+            "baseline": 6392,
+            "layer": 34266
+          },
+          "saving": {
+            "o200k": -4.190111052353252,
+            "claude": -4.3607634543178975,
+            "o200kWholeMap": -297.4920676890534,
+            "o200kCodeOnly": 0.2858276044420941
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -4.190111052353252,
+        "claude": -4.3607634543178975,
+        "o200kWholeMap": -297.4920676890534,
+        "o200kCodeOnly": 0.2858276044420941
+      },
+      "layerShare": {
+        "overview": 0.6480283291072834,
+        "folderMaps": 0.13455332706997264,
+        "code": 0.11162056141423404,
+        "signatures": 0.020539906103286387,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "payloadcms/payload",
+      "sha": "25dfb248a86991f9adbdd5de645794dceeef6b83",
+      "category": "node-service",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 8484,
+      "band": "large",
+      "walked": 9,
+      "tasks": [
+        {
+          "commit": "391868bf9f0a3ae3bb761a2e04d1516d8239ede9",
+          "parent": "a84cd2f11b935222a8b60814456f768bd7bc9c87",
+          "files": [
+            ".agents/skills/record-pr-demo/scripts/prepare-demo.mjs",
+            ".agents/skills/record-pr-demo/scripts/record-demo.mjs"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 9708,
+            "layer": 44535,
+            "overview": 37189,
+            "folderMaps": 3218,
+            "code": 3660,
+            "signatures": 468,
+            "unresolvedCharge": 0,
+            "wholeMap": 1099913
+          },
+          "claude": {
+            "baseline": 16917,
+            "layer": 77362
+          },
+          "saving": {
+            "o200k": -3.5874536464771323,
+            "claude": -3.5730330436838686,
+            "o200kWholeMap": -112.72486608982283,
+            "o200kCodeOnly": 0.5747836835599506
+          }
+        },
+        {
+          "commit": "e71e91c66f492f807fc25b62267fbf6268cb7945",
+          "parent": "5d4a76b75ae056a7c499011155821d3582a0914b",
+          "files": [
+            "packages/ui/src/css/elevations.css"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 710,
+            "layer": 38731,
+            "overview": 37189,
+            "folderMaps": 1178,
+            "code": 365,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 1099495
+          },
+          "claude": {
+            "baseline": 860,
+            "layer": 67237
+          },
+          "saving": {
+            "o200k": -53.55070422535211,
+            "claude": -77.18255813953489,
+            "o200kWholeMap": -1548.0985915492959,
+            "o200kCodeOnly": 0.4859154929577465
+          }
+        },
+        {
+          "commit": "5d4a76b75ae056a7c499011155821d3582a0914b",
+          "parent": "fac81961b76c0d0e15545ec8aeda3e099aca8f03",
+          "files": [
+            "packages/ui/src/forms/Form/index.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 6,
+          "o200k": {
+            "baseline": 3884,
+            "layer": 44274,
+            "overview": 37189,
+            "folderMaps": 2604,
+            "code": 3334,
+            "signatures": 1033,
+            "unresolvedCharge": 114,
+            "wholeMap": 1099344
+          },
+          "claude": {
+            "baseline": 6680,
+            "layer": 77044
+          },
+          "saving": {
+            "o200k": -10.399073120494336,
+            "claude": -10.533532934131737,
+            "o200kWholeMap": -283.1979917610711,
+            "o200kCodeOnly": -0.15370751802265703
+          }
+        },
+        {
+          "commit": "fac81961b76c0d0e15545ec8aeda3e099aca8f03",
+          "parent": "7446e241794fa5cfe29aafd9eb8f03f9a5081882",
+          "files": [
+            "packages/ui/src/forms/Form/index.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 8,
+          "o200k": {
+            "baseline": 6559,
+            "layer": 45806,
+            "overview": 37189,
+            "folderMaps": 2476,
+            "code": 4803,
+            "signatures": 1186,
+            "unresolvedCharge": 152,
+            "wholeMap": 1099216
+          },
+          "claude": {
+            "baseline": 11197,
+            "layer": 79692
+          },
+          "saving": {
+            "o200k": -5.983686537581948,
+            "claude": -6.117263552737341,
+            "o200kWholeMap": -167.52523250495503,
+            "o200kCodeOnly": 0.06372922701631345
+          }
+        },
+        {
+          "commit": "7446e241794fa5cfe29aafd9eb8f03f9a5081882",
+          "parent": "3eb46cf75c5fb47011e466b3e134f29d02a813df",
+          "files": [
+            "packages/payload/src/hierarchy/getInitialTreeData.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1365,
+            "layer": 39748,
+            "overview": 37189,
+            "folderMaps": 1571,
+            "code": 844,
+            "signatures": 145,
+            "unresolvedCharge": 0,
+            "wholeMap": 1099210
+          },
+          "claude": {
+            "baseline": 2452,
+            "layer": 69739
+          },
+          "saving": {
+            "o200k": -28.11941391941392,
+            "claude": -27.44168026101142,
+            "o200kWholeMap": -805.0065934065934,
+            "o200kCodeOnly": 0.2754578754578755
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -10.399073120494336,
+        "claude": -10.533532934131737,
+        "o200kWholeMap": -283.1979917610711,
+        "o200kCodeOnly": 0.2754578754578755
+      },
+      "layerShare": {
+        "overview": 0.8399737995211637,
+        "folderMaps": 0.05405405405405406,
+        "code": 0.0753037900347834,
+        "signatures": 0.010508588750421018,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "GrapheneOS/grapheneos.org",
+      "sha": "aa9a49f4d93393d7d4582d5cf675bdf80559a23d",
+      "category": "static-site",
+      "licence": "MIT",
+      "files": 35,
+      "band": "small",
+      "note": "53 commits skipped (see \"skipped\")",
+      "role": "gate",
+      "replaces": "alphagov/govuk-design-system",
+      "walked": 61,
+      "tasks": [
+        {
+          "commit": "e29a12e1942f09888fd23f15c89406031aa37632",
+          "parent": "d394f45f7252999a49239bd594627538b869e5d1",
+          "files": [
+            "static/build.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 17353,
+            "layer": 7701,
+            "overview": 38,
+            "folderMaps": 7431,
+            "code": 232,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 17505
+          },
+          "claude": {
+            "baseline": 26227,
+            "layer": 10757
+          },
+          "saving": {
+            "o200k": 0.5562150636777503,
+            "claude": 0.5898501544210165,
+            "o200kWholeMap": -0.022128738546649096,
+            "o200kCodeOnly": 0.9866305537947329
+          }
+        },
+        {
+          "commit": "701fc2b36d29f337f720f4e489f75811db6eae7f",
+          "parent": "9ffb65f165f238977dbbce4db5077a346702425d",
+          "files": [
+            "static/build.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 17361,
+            "layer": 7709,
+            "overview": 38,
+            "folderMaps": 7431,
+            "code": 240,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 17505
+          },
+          "claude": {
+            "baseline": 26235,
+            "layer": 10766
+          },
+          "saving": {
+            "o200k": 0.5559587581360521,
+            "claude": 0.5896321707642462,
+            "o200kWholeMap": -0.022118541558665994,
+            "o200kCodeOnly": 0.9861759115258337
+          }
+        },
+        {
+          "commit": "99dfd0e2875b1a49555945ea6db4819f913a3d7a",
+          "parent": "6c67951a12024c9e489777304b72bf82c8c72b74",
+          "files": [
+            "static/build.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 17359,
+            "layer": 7708,
+            "overview": 38,
+            "folderMaps": 7431,
+            "code": 239,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 17505
+          },
+          "claude": {
+            "baseline": 26233,
+            "layer": 10763
+          },
+          "saving": {
+            "o200k": 0.5559652053689729,
+            "claude": 0.5897152441581215,
+            "o200kWholeMap": -0.02217869692954655,
+            "o200kCodeOnly": 0.9862319258021776
+          }
+        },
+        {
+          "commit": "0951eb5a8a38760e5852ac1c7f8054c4f6478c6c",
+          "parent": "8f00e73f3722db09813ff63e82d2134100de6544",
+          "files": [
+            "static/donate.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 5131,
+            "layer": 7649,
+            "overview": 38,
+            "folderMaps": 7431,
+            "code": 180,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 17505
+          },
+          "claude": {
+            "baseline": 7828,
+            "layer": 10676
+          },
+          "saving": {
+            "o200k": -0.4907425453128045,
+            "claude": -0.3638221768012264,
+            "o200kWholeMap": -2.446696550380043,
+            "o200kCodeOnly": 0.9649191190801013
+          }
+        },
+        {
+          "commit": "e0195b42e0791bbd6d256351b9c2a04ffa7cfff7",
+          "parent": "fc5a00c65c3a9d27f867d22c3bbca017b7dc97ad",
+          "files": [
+            "static/build.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 17359,
+            "layer": 8305,
+            "overview": 38,
+            "folderMaps": 7431,
+            "code": 836,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 17505
+          },
+          "claude": {
+            "baseline": 26233,
+            "layer": 11667
+          },
+          "saving": {
+            "o200k": 0.5215738233769227,
+            "claude": 0.5552548317005299,
+            "o200kWholeMap": -0.05657007892159682,
+            "o200kCodeOnly": 0.9518405438101273
+          }
+        }
+      ],
+      "skipped": [
+        {
+          "commit": "aa9a49f4d93393d7d4582d5cf675bdf80559a23d",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "3a6c670e481d3ab8ca5439fea2f16ec5322029b1",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "37a0605bb7d17c9813d1bf76c9c6ac5c24b5a3a2",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "72373bf154f2e79064f17071e309f2da347dd748",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "56b6e4a41ce61e09efde1fe001b0ff6e37cf95f2",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "de70156a38c8e5384f9263c48b792cf52c35773e",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "7cbc6b300096eb71682939af0d48201c4148d3dc",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "6efc4c2813984501f9519ac9f950ff6a46248733",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "3aa66731614e897ad6304108c620b67d12cb7ca0",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "898747d470f96506a49492248150c586eaeabe67",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "82db567087bcbecf83890fa77311ca2b89787504",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "b58ab898a61f2eaf62d5ba59ab8aa60b679a7d27",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "ee5c0eb187a3cebd8a6da0211d824477d19dfe22",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "aec2b949b3b9bcdbda92b808e7b647771f9f9a19",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "73096f31f24ea0352b72dd3689f067acb5c2eae8",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "0236e1f788a5dc5fd03960178d62a2c46bb17078",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "55282d51b389366d51dca6e8e6061359e28dacfd",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "d394f45f7252999a49239bd594627538b869e5d1",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "7c5b49c5a417abb86c4aab4eb2742644092719cd",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "9d5ed4cbabbe1bbb8675a3b93894312417256f7b",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "9150a0ca4388ecf57060488dbfe191a044b1167d",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "edfae5335836939162c27fd2d84a27dbaf895f6b",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "b96f65e6a86e4c315253a6cf31bf329133576f37",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "c983db1bf6381472b582ece8324365658284a534",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "6cc060b5bdbe93888d75dc8d34e4166ff5d43f8a",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "29ff6dc8179fa99f6bd5ba2e5716a5a60f5f4913",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "895c80e027aa18c68b412d481f30584aea7a5919",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "50881e90ae65414f1830d00da11a02a5160795de",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "074da6147049b18cecda6b780e9387a4ba870236",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "0aa34021a6c4b4d0958f2e60a7545fb85b30274e",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "98501b82610b44839386ea14c1c678f256a3c711",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "b4bcd0866c8235e389fdbb9fafbf1f5649d895b7",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "0b513ab9b9511709c54aaa594787408f6b8cd6a9",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "9dcec089fbec28cfe7443a1132a4cc453ab22dec",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "51c6e09514bc8cf4e133d5e36ab3cb92968fb4b5",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "7ec247708fa5e5971bc1f2a113825c0d457f275c",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "5d7b00a260d65832bb75f55e29ff621a18a9c066",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "0eef065b39379f589c7c8757547f92011bb80e03",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "6c67951a12024c9e489777304b72bf82c8c72b74",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "1c266c5b2c9a939bf0109c231cc52c554c4ed07f",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "86d1c30f516019ed1efb8fe9f6331bcb02aa6f61",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "26486e02bdd96ea363fe440e55ddaca2fc5286ef",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "48f5d344c6664adfd1ede228246cb4da794e804d",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "a637b6eec2d20edc69766bfc4da0448e4fe34ab4",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "99e3370f850c5f6777a089b98b9ced55d394ee4d",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "e99c0eadc92efa188203c362e3eb30f6d6268465",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "ae0df661b8ba85b0a4f050a672f2ad5bd0e11b54",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "c22ed1913c6b9df563a56528ab455f653b7611e8",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "b702e74fff08a0cb5d5056b423c5fc7ca8bc9005",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "9ad33d2e10bcef7080b509c506fcdb8de234aa33",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "8f00e73f3722db09813ff63e82d2134100de6544",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "36272703ece9d951e1291a0bba0e03f4c55eba22",
+          "reason": "a modified file is over 1048576 bytes"
+        },
+        {
+          "commit": "4a4ae89a2ca6bc5d1000bc013693e1f90596ecbd",
+          "reason": "a modified file is over 1048576 bytes"
+        }
+      ],
+      "median": {
+        "o200k": 0.5559587581360521,
+        "claude": 0.5896321707642462,
+        "o200kWholeMap": -0.02217869692954655,
+        "o200kCodeOnly": 0.9861759115258337
+      },
+      "layerShare": {
+        "overview": 0.004929942916450441,
+        "folderMaps": 0.9640633108458744,
+        "code": 0.03100674623767514,
+        "signatures": 0,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "11ty/11ty-website",
+      "sha": "e8acd582f1d92aeb688b3c09be2ec63829b7653f",
+      "category": "static-site",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 158,
+      "band": "small",
+      "walked": 10,
+      "tasks": [
+        {
+          "commit": "e8acd582f1d92aeb688b3c09be2ec63829b7653f",
+          "parent": "da9a5a2ab4adc2ace1cd96de0bcbff2d62400fa6",
+          "files": [
+            "src/_includes/components/callout.css"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2036,
+            "layer": 7871,
+            "overview": 121,
+            "folderMaps": 7301,
+            "code": 450,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 14535
+          },
+          "claude": {
+            "baseline": 3136,
+            "layer": 11502
+          },
+          "saving": {
+            "o200k": -2.8659135559921416,
+            "claude": -2.6677295918367347,
+            "o200kWholeMap": -6.360019646365423,
+            "o200kCodeOnly": 0.7789783889980354
+          }
+        },
+        {
+          "commit": "74f3a34305f51f524579f7ddbc5e014b6971b4db",
+          "parent": "02355fd2a1a27ea4b6e21bb358dd101eb8faf149",
+          "files": [
+            "src/_data/opencollective.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2123,
+            "layer": 2594,
+            "overview": 121,
+            "folderMaps": 1281,
+            "code": 1021,
+            "signatures": 171,
+            "unresolvedCharge": 0,
+            "wholeMap": 14532
+          },
+          "claude": {
+            "baseline": 3478,
+            "layer": 4098
+          },
+          "saving": {
+            "o200k": -0.22185586434291094,
+            "claude": -0.17826336975273138,
+            "o200kWholeMap": -6.40650023551578,
+            "o200kCodeOnly": 0.4385303815355629
+          }
+        },
+        {
+          "commit": "02355fd2a1a27ea4b6e21bb358dd101eb8faf149",
+          "parent": "b17584e7920c7fb3591855f38a0ae266a96dff92",
+          "files": [
+            "src/_data/sisterSite.js",
+            "src/_includes/components/popover.css"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 480,
+            "layer": 9058,
+            "overview": 121,
+            "folderMaps": 8510,
+            "code": 415,
+            "signatures": 0,
+            "unresolvedCharge": 13,
+            "wholeMap": 14460
+          },
+          "claude": {
+            "baseline": 775,
+            "layer": 13359
+          },
+          "saving": {
+            "o200k": -17.870833333333334,
+            "claude": -16.23741935483871,
+            "o200kWholeMap": -30.016666666666666,
+            "o200kCodeOnly": 0.10833333333333328
+          }
+        },
+        {
+          "commit": "b17584e7920c7fb3591855f38a0ae266a96dff92",
+          "parent": "43c54562c018cf081e2cf98e68cdaebbf2100ce6",
+          "files": [
+            "src/_includes/components/possum-mascot.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2806,
+            "layer": 9252,
+            "overview": 121,
+            "folderMaps": 7229,
+            "code": 1883,
+            "signatures": 20,
+            "unresolvedCharge": 0,
+            "wholeMap": 14460
+          },
+          "claude": {
+            "baseline": 4131,
+            "layer": 13655
+          },
+          "saving": {
+            "o200k": -2.2972202423378474,
+            "claude": -2.3054950375211813,
+            "o200kWholeMap": -4.831432644333571,
+            "o200kCodeOnly": 0.32181040627227375
+          }
+        },
+        {
+          "commit": "9b80227bda547e4de849d450ac19d449568860a4",
+          "parent": "3e3b3a1ddf78944f99d10739cb3845538316f496",
+          "files": [
+            "eleventy.config.js",
+            "src/_includes/components/possum-mascot.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 11172,
+            "layer": 15269,
+            "overview": 121,
+            "folderMaps": 7606,
+            "code": 7121,
+            "signatures": 422,
+            "unresolvedCharge": 0,
+            "wholeMap": 14495
+          },
+          "claude": {
+            "baseline": 17904,
+            "layer": 23644
+          },
+          "saving": {
+            "o200k": -0.3667203723594701,
+            "claude": -0.32059874888293116,
+            "o200kWholeMap": -0.9726100966702471,
+            "o200kCodeOnly": 0.3248299319727891
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -2.2972202423378474,
+        "claude": -2.3054950375211813,
+        "o200kWholeMap": -6.360019646365423,
+        "o200kCodeOnly": 0.3248299319727891
+      },
+      "layerShare": {
+        "overview": 0.01335835725325679,
+        "folderMaps": 0.7813445741461306,
+        "code": 0.20352356247297881,
+        "signatures": 0.00216169476869866,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "doka-guide/platform",
+      "sha": "2b7f01274a0f8c292b94074fb05ce356a996dbde",
+      "category": "static-site",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 228,
+      "band": "medium",
+      "walked": 8,
+      "tasks": [
+        {
+          "commit": "10fd3084540e8eaebbf6ca8203b44cd34c25a083",
+          "parent": "27b5f990380c3afb241bf568d7957059566af786",
+          "files": [
+            "src/views/doc.11tydata.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2611,
+            "layer": 1605,
+            "overview": 211,
+            "folderMaps": 1332,
+            "code": 62,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 18499
+          },
+          "claude": {
+            "baseline": 3981,
+            "layer": 2366
+          },
+          "saving": {
+            "o200k": 0.3852929911911145,
+            "claude": 0.4056769655865361,
+            "o200kWholeMap": -6.108770585982382,
+            "o200kCodeOnly": 0.976254308693987
+          }
+        },
+        {
+          "commit": "6904d12687608ff30906dc2b5ec9ae7bf4920c15",
+          "parent": "ae68e24528742ce2ff212c4eee0db25fa633cc62",
+          "files": [
+            ".eleventy.js",
+            "gulpfile.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 2,
+          "o200k": {
+            "baseline": 4581,
+            "layer": 5172,
+            "overview": 204,
+            "folderMaps": 1571,
+            "code": 2791,
+            "signatures": 570,
+            "unresolvedCharge": 36,
+            "wholeMap": 18374
+          },
+          "claude": {
+            "baseline": 7521,
+            "layer": 8048
+          },
+          "saving": {
+            "o200k": -0.129011132940406,
+            "claude": -0.07007046935247963,
+            "o200kWholeMap": -3.7524557956777995,
+            "o200kCodeOnly": 0.25845885177908756
+          }
+        },
+        {
+          "commit": "ae68e24528742ce2ff212c4eee0db25fa633cc62",
+          "parent": "367eafb72ca936b233f7453240cb74441a8b42c0",
+          "files": [
+            ".eleventy.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 3522,
+            "layer": 5039,
+            "overview": 204,
+            "folderMaps": 1595,
+            "code": 2595,
+            "signatures": 627,
+            "unresolvedCharge": 18,
+            "wholeMap": 18398
+          },
+          "claude": {
+            "baseline": 5779,
+            "layer": 7809
+          },
+          "saving": {
+            "o200k": -0.43072118114707547,
+            "claude": -0.35127184634019737,
+            "o200kWholeMap": -5.143668370244179,
+            "o200kCodeOnly": 0.08006814310051102
+          }
+        },
+        {
+          "commit": "367eafb72ca936b233f7453240cb74441a8b42c0",
+          "parent": "7adb73805e1aea9578d1c2008b910b20880bbf56",
+          "files": [
+            ".eleventy.js",
+            "src/views/feed.11tydata.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 2,
+          "o200k": {
+            "baseline": 4170,
+            "layer": 6825,
+            "overview": 195,
+            "folderMaps": 2886,
+            "code": 3128,
+            "signatures": 578,
+            "unresolvedCharge": 38,
+            "wholeMap": 18009
+          },
+          "claude": {
+            "baseline": 6707,
+            "layer": 10371
+          },
+          "saving": {
+            "o200k": -0.6366906474820144,
+            "claude": -0.5462949157596542,
+            "o200kWholeMap": -4.216546762589928,
+            "o200kCodeOnly": 0.10215827338129502
+          }
+        },
+        {
+          "commit": "7adb73805e1aea9578d1c2008b910b20880bbf56",
+          "parent": "f626c2977e9f2ce456762c9b0978b45c79c4737e",
+          "files": [
+            "config/constants.js",
+            "src/transforms/article-code-blocks-transform.js",
+            "src/transforms/color-picker-transform.js"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1331,
+            "layer": 1383,
+            "overview": 195,
+            "folderMaps": 993,
+            "code": 174,
+            "signatures": 21,
+            "unresolvedCharge": 0,
+            "wholeMap": 17656
+          },
+          "claude": {
+            "baseline": 2163,
+            "layer": 2159
+          },
+          "saving": {
+            "o200k": -0.039068369646882095,
+            "claude": 0.001849283402681423,
+            "o200kWholeMap": -12.411720510894064,
+            "o200kCodeOnly": 0.8534936138241923
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -0.129011132940406,
+        "claude": -0.07007046935247963,
+        "o200kWholeMap": -5.143668370244179,
+        "o200kCodeOnly": 0.25845885177908756
+      },
+      "layerShare": {
+        "overview": 0.040484223060130976,
+        "folderMaps": 0.4228571428571429,
+        "code": 0.4583150183150183,
+        "signatures": 0.08468864468864469,
+        "unresolvedCharge": 0.0035721373288350863
+      }
+    },
+    {
+      "repo": "mdn/learning-area",
+      "sha": "21973263ba859ff3477919087b488157f9d618a6",
+      "category": "static-site",
+      "role": "gate",
+      "licence": "CC0-1.0",
+      "files": 254,
+      "band": "medium",
+      "note": null,
+      "walked": 6,
+      "tasks": [
+        {
+          "commit": "21973263ba859ff3477919087b488157f9d618a6",
+          "parent": "d55e1c2e3ff401519811b64e5b2a7d3643b43d0f",
+          "files": [
+            "javascript/apis/document-manipulation/dom-example-manipulated.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 382,
+            "layer": 1244,
+            "overview": 884,
+            "folderMaps": 177,
+            "code": 183,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 30323
+          },
+          "claude": {
+            "baseline": 607,
+            "layer": 2105
+          },
+          "saving": {
+            "o200k": -2.256544502617801,
+            "claude": -2.4678747940691927,
+            "o200kWholeMap": -78.8586387434555,
+            "o200kCodeOnly": 0.5209424083769634
+          }
+        },
+        {
+          "commit": "dbed6bcb8284634c7549c4da596ec30b0cfc6e7e",
+          "parent": "6720217b3ddd9ca37c4ad1496e6967da9e98d5ab",
+          "files": [
+            "css/css-layout/practical-positioning-examples/fixed-info-box.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1316,
+            "layer": 2182,
+            "overview": 1326,
+            "folderMaps": 362,
+            "code": 494,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 40357
+          },
+          "claude": {
+            "baseline": 1961,
+            "layer": 3606
+          },
+          "saving": {
+            "o200k": -0.6580547112462005,
+            "claude": -0.8388577256501786,
+            "o200kWholeMap": -30.04179331306991,
+            "o200kCodeOnly": 0.6246200607902735
+          }
+        },
+        {
+          "commit": "6720217b3ddd9ca37c4ad1496e6967da9e98d5ab",
+          "parent": "233917e3a39f36ef320fd9f9424a03e9c41879ec",
+          "files": [
+            "html/forms/sending-form-data/get-method.html",
+            "html/forms/sending-form-data/post-method.html",
+            "html/tables/basic/minimal-table.css"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 690,
+            "layer": 2855,
+            "overview": 1878,
+            "folderMaps": 488,
+            "code": 489,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 48399
+          },
+          "claude": {
+            "baseline": 957,
+            "layer": 4646
+          },
+          "saving": {
+            "o200k": -3.13768115942029,
+            "claude": -3.8547544409613375,
+            "o200kWholeMap": -69.85217391304347,
+            "o200kCodeOnly": 0.29130434782608694
+          }
+        },
+        {
+          "commit": "233917e3a39f36ef320fd9f9424a03e9c41879ec",
+          "parent": "180371ffc567f0f2ef359bf408b976667839e764",
+          "files": [
+            "css/css-layout/practical-positioning-examples/hidden-info-panel.html",
+            "css/styling-boxes/advanced_box_effects/blend-modes.html",
+            "css/styling-boxes/advanced_box_effects/filters.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2456,
+            "layer": 4960,
+            "overview": 2545,
+            "folderMaps": 870,
+            "code": 1545,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 62308
+          },
+          "claude": {
+            "baseline": 3666,
+            "layer": 8033
+          },
+          "saving": {
+            "o200k": -1.019543973941368,
+            "claude": -1.1912165848336063,
+            "o200kWholeMap": -24.998778501628664,
+            "o200kCodeOnly": 0.370928338762215
+          }
+        },
+        {
+          "commit": "180371ffc567f0f2ef359bf408b976667839e764",
+          "parent": "21d69d2fd811b107f6b181db3354db3f0fbcd949",
+          "files": [
+            "javascript/introduction-to-js-1/troubleshooting/number-game-errors.html"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 807,
+            "layer": 3124,
+            "overview": 2545,
+            "folderMaps": 67,
+            "code": 512,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 62308
+          },
+          "claude": {
+            "baseline": 1281,
+            "layer": 5292
+          },
+          "saving": {
+            "o200k": -2.8711276332094178,
+            "claude": -3.1311475409836067,
+            "o200kWholeMap": -76.84386617100371,
+            "o200kCodeOnly": 0.3655514250309789
+          }
+        }
+      ],
+      "skipped": [],
+      "median": {
+        "o200k": -2.256544502617801,
+        "claude": -2.4678747940691927,
+        "o200kWholeMap": -69.85217391304347,
+        "o200kCodeOnly": 0.370928338762215
+      },
+      "layerShare": {
+        "overview": 0.6577933450087565,
+        "folderMaps": 0.16590284142988085,
+        "code": 0.1712784588441331,
+        "signatures": 0,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "dlarroder/dalelarroder",
+      "sha": "f8a46cb618d1b5d722871d9af5271e15622a0931",
+      "category": "tailwind-site",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 103,
+      "band": "small",
+      "walked": 33,
+      "tasks": [
+        {
+          "commit": "49c88b89fdd954fce210d9d54edf1f76ecd26a00",
+          "parent": "f28e29474347127143a4973aac1916c1a6335105",
+          "files": [
+            "app/components/github-contributions/calendar.tsx",
+            "app/components/github-contributions/year-select.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1172,
+            "layer": 1819,
+            "overview": 153,
+            "folderMaps": 736,
+            "code": 855,
+            "signatures": 75,
+            "unresolvedCharge": 0,
+            "wholeMap": 7290
+          },
+          "claude": {
+            "baseline": 1811,
+            "layer": 2927
+          },
+          "saving": {
+            "o200k": -0.5520477815699658,
+            "claude": -0.6162341247929322,
+            "o200kWholeMap": -6.013651877133106,
+            "o200kCodeOnly": 0.20648464163822522
+          }
+        },
+        {
+          "commit": "f28e29474347127143a4973aac1916c1a6335105",
+          "parent": "3372525d852f4e481e89506d760c903d4cf0e651",
+          "files": [
+            "app/components/spotify/spotify.ts",
+            "app/components/spotify/top-tracks.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 879,
+            "layer": 1522,
+            "overview": 153,
+            "folderMaps": 634,
+            "code": 480,
+            "signatures": 255,
+            "unresolvedCharge": 0,
+            "wholeMap": 7290
+          },
+          "claude": {
+            "baseline": 1467,
+            "layer": 2402
+          },
+          "saving": {
+            "o200k": -0.7315130830489192,
+            "claude": -0.6373551465576006,
+            "o200kWholeMap": -8.129692832764505,
+            "o200kCodeOnly": 0.16382252559726962
+          }
+        },
+        {
+          "commit": "0e46b10cf18b878a4662d7d3bcb13fd37701f6f2",
+          "parent": "61fdeeb8d188de07d1d2ce3040f1d7a33eabd729",
+          "files": [
+            "app/components/spotify/now-playing.tsx",
+            "app/components/spotify/spotify.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1593,
+            "layer": 1707,
+            "overview": 144,
+            "folderMaps": 591,
+            "code": 914,
+            "signatures": 58,
+            "unresolvedCharge": 0,
+            "wholeMap": 7211
+          },
+          "claude": {
+            "baseline": 2310,
+            "layer": 2481
+          },
+          "saving": {
+            "o200k": -0.07156308851224114,
+            "claude": -0.0740259740259741,
+            "o200kWholeMap": -4.1368487131199,
+            "o200kCodeOnly": 0.38983050847457623
+          }
+        },
+        {
+          "commit": "74188b764d5ade8b853856c25b1fa87b39888498",
+          "parent": "ee901da9d30b0945d0e9f9fb4d290cf8cdcd328e",
+          "files": [
+            "app/components/github-contributions/activity-tooltip.tsx"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 333,
+            "layer": 1155,
+            "overview": 144,
+            "folderMaps": 736,
+            "code": 260,
+            "signatures": 15,
+            "unresolvedCharge": 0,
+            "wholeMap": 7211
+          },
+          "claude": {
+            "baseline": 521,
+            "layer": 1842
+          },
+          "saving": {
+            "o200k": -2.4684684684684686,
+            "claude": -2.5355086372360844,
+            "o200kWholeMap": -21.48048048048048,
+            "o200kCodeOnly": 0.17417417417417413
+          }
+        },
+        {
+          "commit": "ee901da9d30b0945d0e9f9fb4d290cf8cdcd328e",
+          "parent": "a3d9280cb0d44a17bf8982a3c7b2a224bdcd9415",
+          "files": [
+            "app/components/github-contributions/activity-tooltip.tsx",
+            "app/components/github-contributions/calendar.tsx",
+            "app/components/thoughts.tsx",
+            "app/projects/projects.tsx",
+            "app/tailwind.css"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2834,
+            "layer": 4449,
+            "overview": 144,
+            "folderMaps": 2691,
+            "code": 1423,
+            "signatures": 191,
+            "unresolvedCharge": 0,
+            "wholeMap": 7174
+          },
+          "claude": {
+            "baseline": 4384,
+            "layer": 7180
+          },
+          "saving": {
+            "o200k": -0.5698659139026112,
+            "claude": -0.6377737226277371,
+            "o200kWholeMap": -2.1009174311926606,
+            "o200kCodeOnly": 0.43048694424841216
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -0.5698659139026112,
+        "claude": -0.6373551465576006,
+        "o200kWholeMap": -6.013651877133106,
+        "o200kCodeOnly": 0.20648464163822522
+      },
+      "layerShare": {
+        "overview": 0.0843585237258348,
+        "folderMaps": 0.41655716162943496,
+        "code": 0.319847156664419,
+        "signatures": 0.04123144584936778,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "nelsonlaidev/nelsonlai.dev",
+      "sha": "c0d625e37123f57703ef94977d92b08c0f8ed4ac",
+      "category": "tailwind-site",
+      "role": "gate",
+      "licence": "MIT",
+      "files": 354,
+      "band": "medium",
+      "walked": 9,
+      "tasks": [
+        {
+          "commit": "c0d625e37123f57703ef94977d92b08c0f8ed4ac",
+          "parent": "ccdec4ba5a96262595e21ac093a3c193cbd932ab",
+          "files": [
+            "src/orpc/pagination.ts",
+            "src/orpc/routers/comment.router.ts",
+            "src/orpc/routers/message.router.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 3081,
+            "layer": 4648,
+            "overview": 685,
+            "folderMaps": 2705,
+            "code": 915,
+            "signatures": 343,
+            "unresolvedCharge": 0,
+            "wholeMap": 36656
+          },
+          "claude": {
+            "baseline": 5214,
+            "layer": 7520
+          },
+          "saving": {
+            "o200k": -0.5086011035378124,
+            "claude": -0.442270809359417,
+            "o200kWholeMap": -11.30574488802337,
+            "o200kCodeOnly": 0.5916910094125284
+          }
+        },
+        {
+          "commit": "ccdec4ba5a96262595e21ac093a3c193cbd932ab",
+          "parent": "98634d164a644c79eabb8280f522258d727195a9",
+          "files": [
+            "src/orpc/pagination.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 290,
+            "layer": 1776,
+            "overview": 685,
+            "folderMaps": 854,
+            "code": 208,
+            "signatures": 29,
+            "unresolvedCharge": 0,
+            "wholeMap": 36664
+          },
+          "claude": {
+            "baseline": 504,
+            "layer": 2878
+          },
+          "saving": {
+            "o200k": -5.124137931034483,
+            "claude": -4.7103174603174605,
+            "o200kWholeMap": -126.2448275862069,
+            "o200kCodeOnly": 0.1827586206896552
+          }
+        },
+        {
+          "commit": "de1472a4a63923c9dafa1d830b62b781b053e74b",
+          "parent": "cca85044315c4e3b0053e43e07acf73c50c40ec6",
+          "files": [
+            "playwright.config.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 1,
+          "o200k": {
+            "baseline": 395,
+            "layer": 1653,
+            "overview": 685,
+            "folderMaps": 596,
+            "code": 338,
+            "signatures": 22,
+            "unresolvedCharge": 12,
+            "wholeMap": 35881
+          },
+          "claude": {
+            "baseline": 688,
+            "layer": 2610
+          },
+          "saving": {
+            "o200k": -3.1848101265822786,
+            "claude": -2.7936046511627906,
+            "o200kWholeMap": -90.77974683544304,
+            "o200kCodeOnly": 0.0582278481012658
+          }
+        },
+        {
+          "commit": "b392b167272aae2f1f3098b3a690d3b7e9454814",
+          "parent": "64561747b9e0468759f8d72d4b5c56ef248fa4d5",
+          "files": [
+            "src/orpc/routers/comment.router.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2119,
+            "layer": 2967,
+            "overview": 685,
+            "folderMaps": 1853,
+            "code": 307,
+            "signatures": 122,
+            "unresolvedCharge": 0,
+            "wholeMap": 35735
+          },
+          "claude": {
+            "baseline": 3531,
+            "layer": 4699
+          },
+          "saving": {
+            "o200k": -0.40018876828692784,
+            "claude": -0.33078448031719065,
+            "o200kWholeMap": -16.06654082114205,
+            "o200kCodeOnly": 0.7975460122699387
+          }
+        },
+        {
+          "commit": "64561747b9e0468759f8d72d4b5c56ef248fa4d5",
+          "parent": "0b572d4e336ce638a359ddbee113a73ffd412240",
+          "files": [
+            "src/hooks/queries/auth.query.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 166,
+            "layer": 1762,
+            "overview": 685,
+            "folderMaps": 966,
+            "code": 83,
+            "signatures": 28,
+            "unresolvedCharge": 0,
+            "wholeMap": 35735
+          },
+          "claude": {
+            "baseline": 308,
+            "layer": 2746
+          },
+          "saving": {
+            "o200k": -9.614457831325302,
+            "claude": -7.915584415584416,
+            "o200kWholeMap": -214.93975903614458,
+            "o200kCodeOnly": 0.3313253012048193
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -3.1848101265822786,
+        "claude": -2.7936046511627906,
+        "o200kWholeMap": -90.77974683544304,
+        "o200kCodeOnly": 0.3313253012048193
+      },
+      "layerShare": {
+        "overview": 0.38569819819819817,
+        "folderMaps": 0.5482406356413166,
+        "code": 0.11711711711711711,
+        "signatures": 0.01632882882882883,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "Smaug6739/Alexandrie",
+      "sha": "33e4bb2dcbe41c8edc36239f6db013850576ff8a",
+      "category": "vue-app",
+      "role": "sizing",
+      "licence": "MIT",
+      "files": 482,
+      "band": "medium",
+      "walked": 9,
+      "tasks": [
+        {
+          "commit": "33e4bb2dcbe41c8edc36239f6db013850576ff8a",
+          "parent": "97155bd8f1a7d0dc45f1ad85f9ca383dea331a0e",
+          "files": [
+            "frontend/app/components/ErrorNotFound.vue"
+          ],
+          "unsupportedFiles": [
+            "frontend/app/components/ErrorNotFound.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 2497,
+            "layer": 3839,
+            "overview": 863,
+            "folderMaps": 480,
+            "code": 2497,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 19503
+          },
+          "claude": {
+            "baseline": 3672,
+            "layer": 6298
+          },
+          "saving": {
+            "o200k": -0.5374449339207048,
+            "claude": -0.7151416122004357,
+            "o200kWholeMap": -7.810572687224669,
+            "o200kCodeOnly": 0
+          }
+        },
+        {
+          "commit": "a4dc87a7888f70de6b267887092a468284082c7f",
+          "parent": "750f161f6567c0778680378c4908ca35db3d0b77",
+          "files": [
+            "frontend/app/composables/useAppColors.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 387,
+            "layer": 3354,
+            "overview": 863,
+            "folderMaps": 2252,
+            "code": 193,
+            "signatures": 46,
+            "unresolvedCharge": 0,
+            "wholeMap": 19503
+          },
+          "claude": {
+            "baseline": 638,
+            "layer": 5438
+          },
+          "saving": {
+            "o200k": -7.666666666666666,
+            "claude": -7.523510971786834,
+            "o200kWholeMap": -50.012919896640824,
+            "o200kCodeOnly": 0.38242894056847543
+          }
+        },
+        {
+          "commit": "429e2b9b92163d1a60497c9ece1e81aa0c5dc623",
+          "parent": "ef389c290d183421de97168bc36d17cdb0b61eb6",
+          "files": [
+            "frontend/app/components/Error.vue",
+            "frontend/app/error.vue",
+            "frontend/app/pages/(public)/doc/[id]/index.vue",
+            "frontend/app/pages/dashboard/docs/[id].vue",
+            "frontend/vite-env.d.ts"
+          ],
+          "unsupportedFiles": [
+            "frontend/app/components/Error.vue",
+            "frontend/app/error.vue",
+            "frontend/app/pages/(public)/doc/[id]/index.vue",
+            "frontend/app/pages/dashboard/docs/[id].vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 3771,
+            "layer": 5592,
+            "overview": 863,
+            "folderMaps": 975,
+            "code": 3754,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 19469
+          },
+          "claude": {
+            "baseline": 6009,
+            "layer": 9407
+          },
+          "saving": {
+            "o200k": -0.482895783611774,
+            "claude": -0.5654851056748211,
+            "o200kWholeMap": -5.158313444709626,
+            "o200kCodeOnly": 0.004508088040307556
+          }
+        },
+        {
+          "commit": "e865051511edd00dec1a83b4c441e930816b1274",
+          "parent": "d55cf6b8c2f98c47c252c9fb5af13833912d397f",
+          "files": [
+            "frontend/app/App.vue",
+            "frontend/app/pages/(public)/doc/[id]/index.vue",
+            "frontend/app/sw.ts",
+            "frontend/nuxt.config.ts"
+          ],
+          "unsupportedFiles": [
+            "frontend/app/App.vue",
+            "frontend/app/pages/(public)/doc/[id]/index.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 5596,
+            "layer": 5776,
+            "overview": 856,
+            "folderMaps": 438,
+            "code": 4448,
+            "signatures": 34,
+            "unresolvedCharge": 0,
+            "wholeMap": 19406
+          },
+          "claude": {
+            "baseline": 9287,
+            "layer": 9746
+          },
+          "saving": {
+            "o200k": -0.03216583273766971,
+            "claude": -0.04942392591794986,
+            "o200kWholeMap": -3.2687634024303076,
+            "o200kCodeOnly": 0.1990707648320229
+          }
+        },
+        {
+          "commit": "d55cf6b8c2f98c47c252c9fb5af13833912d397f",
+          "parent": "993e18e4ab59f89e9e8aefaa07906f873105bef6",
+          "files": [
+            "frontend/app/components/MarkdownSyntax.vue",
+            "frontend/app/helpers/markdown/index.ts"
+          ],
+          "unsupportedFiles": [
+            "frontend/app/components/MarkdownSyntax.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 4416,
+            "layer": 6976,
+            "overview": 856,
+            "folderMaps": 2124,
+            "code": 3952,
+            "signatures": 44,
+            "unresolvedCharge": 0,
+            "wholeMap": 19150
+          },
+          "claude": {
+            "baseline": 6716,
+            "layer": 11331
+          },
+          "saving": {
+            "o200k": -0.5797101449275361,
+            "claude": -0.6871649791542584,
+            "o200kWholeMap": -4.2413949275362315,
+            "o200kCodeOnly": 0.09510869565217395
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -0.5374449339207048,
+        "claude": -0.6871649791542584,
+        "o200kWholeMap": -5.158313444709626,
+        "o200kCodeOnly": 0.09510869565217395
+      },
+      "layerShare": {
+        "overview": 0.15432761087267524,
+        "folderMaps": 0.17435622317596566,
+        "code": 0.6504297994269341,
+        "signatures": 0.005886426592797784,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "talen8/FlecBlog",
+      "sha": "fab601f0d22391c50b62d3e5316402557d5cb1ca",
+      "category": "vue-app",
+      "role": "sizing",
+      "licence": "MIT",
+      "files": 375,
+      "band": "medium",
+      "walked": 14,
+      "tasks": [
+        {
+          "commit": "d6923a01f35c48eb6301b791e4252bc8728d6ba1",
+          "parent": "ebcce5260a2afe0dd74e99ff04ddcdfafd18a8e0",
+          "files": [
+            "blog/app/components/features/article/ArticleCopyright.vue",
+            "blog/app/pages/cookies.vue",
+            "blog/app/pages/copyright.vue",
+            "blog/app/pages/privacy.vue",
+            "blog/types/theme.ts"
+          ],
+          "unsupportedFiles": [
+            "blog/app/components/features/article/ArticleCopyright.vue",
+            "blog/app/pages/cookies.vue",
+            "blog/app/pages/copyright.vue",
+            "blog/app/pages/privacy.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 7377,
+            "layer": 10350,
+            "overview": 1111,
+            "folderMaps": 1896,
+            "code": 7319,
+            "signatures": 25,
+            "unresolvedCharge": 0,
+            "wholeMap": 30435
+          },
+          "claude": {
+            "baseline": 10677,
+            "layer": 15517
+          },
+          "saving": {
+            "o200k": -0.40300935339568933,
+            "claude": -0.45331085510911295,
+            "o200kWholeMap": -4.121187474583164,
+            "o200kCodeOnly": 0.004473363155754417
+          }
+        },
+        {
+          "commit": "76a7dfee9c1f78f9a84321fbad8a6423904b953f",
+          "parent": "a706154539c290fde65845a06a2397552c9a54e9",
+          "files": [
+            "admin/src/api/theme.ts",
+            "admin/src/views/theme/ThemeConfig.vue",
+            "panel/public/admin.html",
+            "panel/src/app.ts",
+            "panel/src/routes/registrations.ts"
+          ],
+          "unsupportedFiles": [
+            "admin/src/views/theme/ThemeConfig.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 17628,
+            "layer": 18697,
+            "overview": 1209,
+            "folderMaps": 4147,
+            "code": 13295,
+            "signatures": 47,
+            "unresolvedCharge": 0,
+            "wholeMap": 29942
+          },
+          "claude": {
+            "baseline": 27157,
+            "layer": 29280
+          },
+          "saving": {
+            "o200k": -0.06064216019968227,
+            "claude": -0.0781750561549508,
+            "o200kWholeMap": -1.4554118447923758,
+            "o200kCodeOnly": 0.24313592012707053
+          }
+        },
+        {
+          "commit": "3bcb6798e8504f9d05c4153ad9694b684076d5a2",
+          "parent": "fe08117143ae49af02c5f975b107028c63b62062",
+          "files": [
+            "blog/default/app/components/layouts/header/HomeHeader.vue"
+          ],
+          "unsupportedFiles": [
+            "blog/default/app/components/layouts/header/HomeHeader.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1073,
+            "layer": 2322,
+            "overview": 1209,
+            "folderMaps": 41,
+            "code": 1073,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 29942
+          },
+          "claude": {
+            "baseline": 1648,
+            "layer": 3734
+          },
+          "saving": {
+            "o200k": -1.1640260950605779,
+            "claude": -1.2657766990291264,
+            "o200kWholeMap": -27.904939422180803,
+            "o200kCodeOnly": 0
+          }
+        },
+        {
+          "commit": "fe08117143ae49af02c5f975b107028c63b62062",
+          "parent": "67ee4b400b322011db0a23f50845e355b127fc5c",
+          "files": [
+            "blog/default/app/components/features/comment/CommentInput.vue",
+            "blog/default/app/components/features/comment/Comments.vue",
+            "packages/core-nuxt/types/comment.ts"
+          ],
+          "unsupportedFiles": [
+            "blog/default/app/components/features/comment/CommentInput.vue",
+            "blog/default/app/components/features/comment/Comments.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 9056,
+            "layer": 11639,
+            "overview": 1209,
+            "folderMaps": 1736,
+            "code": 8678,
+            "signatures": 17,
+            "unresolvedCharge": 0,
+            "wholeMap": 29936
+          },
+          "claude": {
+            "baseline": 14417,
+            "layer": 18592
+          },
+          "saving": {
+            "o200k": -0.2852252650176679,
+            "claude": -0.28958868003051963,
+            "o200kWholeMap": -3.2657906360424027,
+            "o200kCodeOnly": 0.03986307420494695
+          }
+        },
+        {
+          "commit": "67ee4b400b322011db0a23f50845e355b127fc5c",
+          "parent": "8f68c111ee89bf10d6f3d05fc22e6ce5a34aa6ea",
+          "files": [
+            "admin/src/views/setting/components/UploadSettingsTab.vue",
+            "panel/public/admin.html",
+            "panel/src/app.ts",
+            "panel/src/routes/settings.ts"
+          ],
+          "unsupportedFiles": [
+            "admin/src/views/setting/components/UploadSettingsTab.vue"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 13769,
+            "layer": 11373,
+            "overview": 1209,
+            "folderMaps": 1449,
+            "code": 8574,
+            "signatures": 142,
+            "unresolvedCharge": 0,
+            "wholeMap": 29800
+          },
+          "claude": {
+            "baseline": 20619,
+            "layer": 17710
+          },
+          "saving": {
+            "o200k": 0.1740140896216138,
+            "claude": 0.1410834667054658,
+            "o200kWholeMap": -1.797298278742102,
+            "o200kCodeOnly": 0.3669838041978357
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -0.2852252650176679,
+        "claude": -0.28958868003051963,
+        "o200kWholeMap": -3.2657906360424027,
+        "o200kCodeOnly": 0.03986307420494695
+      },
+      "layerShare": {
+        "overview": 0.10630440517013981,
+        "folderMaps": 0.14915370736317554,
+        "code": 0.7110766433117612,
+        "signatures": 0.0024154589371980675,
+        "unresolvedCharge": 0
+      }
+    },
+    {
+      "repo": "syntaxfm/website",
+      "sha": "e9bc82e73721caae6d2b57bfffab1487265f4c45",
+      "category": "svelte-app",
+      "role": "sizing",
+      "licence": "MIT",
+      "files": 280,
+      "band": "medium",
+      "walked": 56,
+      "tasks": [
+        {
+          "commit": "8e2e23dba183cb54f14658d4fc1fd7f2e9fa8295",
+          "parent": "a775961998fb61cf2199a9c0f1ea33debf3dbdf0",
+          "files": [
+            "src/routes/(site)/Header.svelte"
+          ],
+          "unsupportedFiles": [
+            "src/routes/(site)/Header.svelte"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 926,
+            "layer": 2166,
+            "overview": 961,
+            "folderMaps": 279,
+            "code": 926,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 15448
+          },
+          "claude": {
+            "baseline": 1355,
+            "layer": 3325
+          },
+          "saving": {
+            "o200k": -1.3390928725701943,
+            "claude": -1.4538745387453873,
+            "o200kWholeMap": -16.682505399568033,
+            "o200kCodeOnly": 0
+          }
+        },
+        {
+          "commit": "8fa2a0ead6866d1ef2ff4948d1c9f7e99793c702",
+          "parent": "a5c6795bce8342d89141638264df19153a1ca2d7",
+          "files": [
+            "src/server/transcripts/deepgram.ts",
+            "src/server/transcripts/flagger.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 1507,
+            "layer": 2677,
+            "overview": 961,
+            "folderMaps": 561,
+            "code": 987,
+            "signatures": 168,
+            "unresolvedCharge": 0,
+            "wholeMap": 15583
+          },
+          "claude": {
+            "baseline": 2528,
+            "layer": 4369
+          },
+          "saving": {
+            "o200k": -0.776376907763769,
+            "claude": -0.728243670886076,
+            "o200kWholeMap": -10.106834771068348,
+            "o200kCodeOnly": 0.23357664233576647
+          }
+        },
+        {
+          "commit": "3698af0a1fa4195084a6a8298fdaa9df86d71072",
+          "parent": "dff7cfb0b2486d4aad4b95550ca533283f23c9ed",
+          "files": [
+            "playwright.config.ts",
+            "src/routes/(blank)/og/[show_number].jpg/+server.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 718,
+            "layer": 1792,
+            "overview": 968,
+            "folderMaps": 514,
+            "code": 275,
+            "signatures": 35,
+            "unresolvedCharge": 0,
+            "wholeMap": 14313
+          },
+          "claude": {
+            "baseline": 1192,
+            "layer": 2857
+          },
+          "saving": {
+            "o200k": -1.4958217270194987,
+            "claude": -1.3968120805369129,
+            "o200kWholeMap": -19.366295264623954,
+            "o200kCodeOnly": 0.5682451253481895
+          }
+        },
+        {
+          "commit": "810b6e8c04d68e8157a6295075ab16c77a36a2a2",
+          "parent": "66605b03b11c4fe188152392872c4329dd8e30f3",
+          "files": [
+            "scripts/merging-show-validation.js",
+            "src/server/shows.ts"
+          ],
+          "unsupportedFiles": [],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 3728,
+            "layer": 2790,
+            "overview": 968,
+            "folderMaps": 880,
+            "code": 858,
+            "signatures": 84,
+            "unresolvedCharge": 0,
+            "wholeMap": 14290
+          },
+          "claude": {
+            "baseline": 5888,
+            "layer": 4374
+          },
+          "saving": {
+            "o200k": 0.25160944206008584,
+            "claude": 0.2571331521739131,
+            "o200kWholeMap": -3.0858369098712446,
+            "o200kCodeOnly": 0.7473175965665235
+          }
+        },
+        {
+          "commit": "2a0efa6b4741f21f519c87a6abf858d4796cfeac",
+          "parent": "685dca561184176df838584d0a246d30957931a3",
+          "files": [
+            "src/routes/(site)/Header.svelte"
+          ],
+          "unsupportedFiles": [
+            "src/routes/(site)/Header.svelte"
+          ],
+          "unresolvedNames": 0,
+          "o200k": {
+            "baseline": 915,
+            "layer": 2183,
+            "overview": 968,
+            "folderMaps": 300,
+            "code": 915,
+            "signatures": 0,
+            "unresolvedCharge": 0,
+            "wholeMap": 14289
+          },
+          "claude": {
+            "baseline": 1328,
+            "layer": 3335
+          },
+          "saving": {
+            "o200k": -1.385792349726776,
+            "claude": -1.5112951807228914,
+            "o200kWholeMap": -15.61639344262295,
+            "o200kCodeOnly": 0
+          }
+        }
+      ],
+      "skipped": [],
+      "note": null,
+      "median": {
+        "o200k": -1.3390928725701943,
+        "claude": -1.3968120805369129,
+        "o200kWholeMap": -15.61639344262295,
+        "o200kCodeOnly": 0.23357664233576647
+      },
+      "layerShare": {
+        "overview": 0.4434264773247824,
+        "folderMaps": 0.20956294359357489,
+        "code": 0.3686963018304072,
+        "signatures": 0.01953125,
+        "unresolvedCharge": 0
+      }
+    }
+  ]
+}
