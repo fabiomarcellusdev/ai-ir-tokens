@@ -27,6 +27,8 @@
     { "repo": "umami-software/umami", "sha": "559e3c607c23d2c72d9bd4f6481bda428255323c", "category": "react-app", "licence": "MIT", "files": 1405, "band": "medium" },
     { "repo": "CookSleep/gpt_image_playground", "sha": "6f8f44dadf77f7880f0db1eefb004fe0474b27d4", "category": "react-app", "licence": "MIT", "files": 261, "band": "medium" },
     { "repo": "ncdai/chanhdai.com", "sha": "fa14d28a26063fd093413c9a044d34b49df7cc59", "category": "tailwind-site", "licence": "MIT", "files": 658, "band": "medium" },
-    { "repo": "hoppscotch/hoppscotch", "sha": "55908a76a1d0555c9bbb5d74244c14173df95b06", "category": "vue-app", "licence": "MIT", "files": 1593, "band": "medium" }
+    { "repo": "hoppscotch/hoppscotch", "sha": "55908a76a1d0555c9bbb5d74244c14173df95b06", "category": "vue-app", "licence": "MIT", "files": 1593, "band": "medium" },
+    { "repo": "GrapheneOS/grapheneos.org", "sha": "aa9a49f4d93393d7d4582d5cf675bdf80559a23d", "category": "static-site", "licence": "MIT", "files": 35, "band": "small", "note": "Hand-written HTML and CSS. Chosen 2026-11-08 to replace alphagov/govuk-design-system (0 tasks), by the rules alone: 5 qualifying commits of the last 5; no saving was computed before the choice." },
+    { "repo": "neovim/neovim.github.io", "sha": "6568b9011ddb2965dc5118d28f17d5b7ce7dd8da", "category": "static-site", "licence": "MIT", "files": 24, "band": "small", "note": "A second static-site reserve: 5 qualifying commits in the last 13 (2026-11-08)." }
   ]
 }

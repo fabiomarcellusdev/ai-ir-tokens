@@ -89,3 +89,5 @@ GitHub's API that day. "Files" are source files the script can read.
 | [CookSleep/gpt_image_playground](https://github.com/CookSleep/gpt_image_playground) | react-app | reserve | `6f8f44dadf77` | MIT | 261 (medium) | |
 | [ncdai/chanhdai.com](https://github.com/ncdai/chanhdai.com) | tailwind-site | reserve | `fa14d28a2606` | MIT | 658 (medium) | |
 | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | vue-app | reserve | `55908a76a1d0` | MIT | 1593 (medium) | |
+| [GrapheneOS/grapheneos.org](https://github.com/GrapheneOS/grapheneos.org) | static-site | reserve | `aa9a49f4d933` | MIT | 35 (small) | Replaces alphagov/govuk-design-system (0 tasks), chosen by the rules alone (2026-11-08) |
+| [neovim/neovim.github.io](https://github.com/neovim/neovim.github.io) | static-site | reserve | `6568b9011ddb` | MIT | 24 (small) | A second static-site reserve (2026-11-08) |
