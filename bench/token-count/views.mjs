@@ -98,7 +98,15 @@ export function tsPlain(file, text) {
  * (no < > or closing tags, className="a b" becomes .a.b, text lines start with "| "), and each
  * top-level declaration carries its ID.
  */
-export function tsCompact(file, text, { inlineIds = true } = {}) {
+export function tsCompact(file, text, opts = {}) {
+  return dropBlankLines(applyEdits(text, tsCompactEdits(file, text, opts)));
+}
+
+/**
+ * The text edits that make the compact view, from a parse of the whole file. A fragment's compact view applies only
+ * the edits inside the fragment (tsCompactRange), so it matches what the whole file's compact view shows there.
+ */
+export function tsCompactEdits(file, text, { inlineIds = true } = {}) {
   const sf = parseTs(file, text);
   const ids = topLevelIds(sf);
   const edits = commentEdits(sf, text);
@@ -170,7 +178,14 @@ export function tsCompact(file, text, { inlineIds = true } = {}) {
     for (const c of node.getChildren(sf)) visit(c);
   }
   visit(sf);
-  return dropBlankLines(applyEdits(text, edits));
+  return edits;
+}
+
+/** The compact view of the text range [start, end) of a file: the whole file's compact edits that fall inside it. */
+export function tsCompactRange(file, text, start, end, { inlineIds = false } = {}) {
+  const inside = tsCompactEdits(file, text, { inlineIds }).filter((e) => e.start >= start && e.end <= end && !(e.start === start && e.end === start && e.text.startsWith("@")))
+    .map((e) => ({ ...e, start: e.start - start, end: e.end - start }));
+  return dropBlankLines(applyEdits(text.slice(start, end), inside));
 }
 
 /** Map view (L0): one line per declaration, with its ID, signature and lines; class members indented. */
