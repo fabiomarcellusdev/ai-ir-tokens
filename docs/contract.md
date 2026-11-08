@@ -112,3 +112,52 @@ repository's commit `8b249b0`, with two replacements written in the results.
   code, or the edits an agent writes, or accuracy.
 
 As the roadmap's phase 0 says, the project stops or rescopes. The owner decides which, with a decision record.
+
+## Two follow-up measurements before the decision (owner, 2026-11-08)
+
+Gate C0 measured the reading side only. Before the owner decides to rescope or stop, two more measurements run on the
+same tasks (the 85 tasks of the 17 gate repositories in `docs/measurements/2026-11-08-phase0-corpus.json`). Their
+thresholds are fixed here, before any of their numbers exist (the owner approved them on 2026-11-08). Neither is a new
+gate for the project; each answers one question for the decision. Both report the median over the 17 repositories of
+each repository's median task, with the spread. **The counter is o200k_base, a proxy** (the owner's choice): on C0's
+corpus it tracked Anthropic's counter closely (median -187.3% against -165.8%). If a result lands within 5 points of
+its threshold, Anthropic's counter decides it, in a run by the owner.
+
+### W: the writing side
+
+**The question:** does writing a change as edit operations by address cost far fewer tokens than the way an agent
+writes it today?
+
+For each task, the same change (the commit's diff) is written three ways, each as the text of tool calls:
+
+1. **Rewrite:** the new full text of each modified file (a file-write call per file).
+2. **Search and replace (the baseline):** one call per diff hunk, as Claude Code's Edit tool takes it: the file path,
+   the old text and the new text. The old text grows by whole lines of context, on both sides, until it is unique in
+   the file; a pure insertion takes at least one line of context.
+3. **Edit operations by address:** one operation per diff hunk: the address of the declaration that holds it
+   (`file:name`, as in the map), an 8-character content hash of that declaration (so a stale edit is refused), the
+   changed lines' range inside the declaration, and the new lines. The old text is not repeated.
+
+**The threshold:** edit operations cost at least **40% fewer** tokens than search and replace (median). **Reported
+beside it:** the saving against rewriting, and the writing tokens as a share of the reading baseline, because an
+agent reads far more than it writes, so a writing saving moves the total less.
+
+### V: finer code views
+
+**The question:** if the layer sent less than a whole declaration, could the code needed reach a saving that leaves
+room for a map?
+
+For each task, the code needed is measured at two finer levels, in the compact view, against the same baseline as C0
+(the full text of the modified files), without any map:
+
+1. **V1, the innermost unit:** the smallest of a top-level declaration, a class member, or a function (also an arrow
+   function or a method) that holds each changed range; plus the signature lines of the declarations around it, so
+   the unit keeps its place.
+2. **V2, the floor:** the changed lines of the old file with 3 lines of context on each side (a diff's hunk). No view
+   can send less and still show the change in place.
+
+**The threshold:** V1 saves at least **65%** (median). That leaves 15 points of the baseline for a map and the
+signatures if the reading side is to reach C0's 50%. **Reported beside it:** V2, as the ceiling of any view.
+
+**What neither shows:** finding the code, and accuracy. A pass on W or V is a reason to consider a rescope, not a
+result for the product.
