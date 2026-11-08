@@ -4,10 +4,9 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Phase 0, gate C0: missed** (2026-11-08; `docs/contract.md`, "The result of gate C0"). The median saving is -165.8%
-with Anthropic's counter, against +50%; the code needed alone saves 28.6%. Next: the owner decides to rescope or stop,
-with a decision record. Options to prepare: a map with a token budget, the writing side (edit operations), finer code
-views, or stopping.
+**Phase 0, gate C0: missed** (2026-11-08; `docs/contract.md`). The follow-up measurements: W, the writing side, is not
+reached (edit operations save 14.5% against search and replace; threshold 40%); V, finer code views, is reached (the
+smallest unit saves 78.8%; threshold 65%). Next: the owner decides to rescope or stop, with a decision record.
 
 ## Next: phase 0, measure before building
 

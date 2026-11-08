@@ -161,3 +161,20 @@ signatures if the reading side is to reach C0's 50%. **Reported beside it:** V2,
 
 **What neither shows:** finding the code, and accuracy. A pass on W or V is a reason to consider a rescope, not a
 result for the product.
+
+### The results of W and V (2026-11-08)
+
+The run is `docs/measurements/2026-11-08-phase0-followups.md`, at this repository's commit `6656587`, on the 85 tasks of
+C0's official results (o200k_base). Neither result is within 5 points of its threshold, so o200k_base decides both.
+
+- **W, the writing side: not reached.** Edit operations by address cost **14.5%** fewer tokens than search and replace
+  (median; spread 12.1% to 20.0%; threshold 40%). Against rewriting the files they save 88.6%, but agents already write
+  with search and replace. Search and replace costs 18.1% of the reading baseline, so W's saving moves an agent's total
+  by about 3%.
+- **V, finer code views: reached.** The smallest unit that holds each change saves **78.8%** against the full files,
+  with no map (median; spread 40.7% to 85.0%; threshold 65%). The floor (V2: the changed lines with 3 lines of context)
+  saves 86.0%. Seven repositories stay under 51%, where the changed unit is still most of its file.
+- **What follows from V:** for the reading side to reach C0's 50%, the map and the signatures together may cost at most
+  about 29% of the baseline (median). C0's folder map cost far more. Neither result measures finding the code or
+  accuracy.
+
