@@ -1,81 +1,67 @@
 # ai-ir-tokens
 
-**Fewer tokens for AI coding agents that read and edit your codebase.**
+**A small, cheap map that tells an AI coding agent where to read.**
 
 ai-ir-tokens is a planned open-source tool for developers who use an AI coding agent (Claude Code, Cursor, VS Code
-agents and others) on a TypeScript, JavaScript, HTML or CSS project. It sits between the agent and your files. The
-agent asks it for the code a task needs, and sends it small, named edits. The tool applies those edits to your real
-files, checks them, and rolls back any edit that breaks the build.
+agents and others) on a TypeScript, JavaScript, HTML or CSS project. It gives the agent a short, ranked map of the
+repository: file names, function names and line ranges, cut to a token budget. The agent then reads only the lines it
+needs with its own tools, and edits with its own tools.
 
-The goal is that an agent spends **at least 40% fewer tokens on a coding task, with a pass rate no more than 1 point
-lower**. A saving that costs accuracy is not a saving.
+The goal is that a completed coding task costs much less, with a pass rate no more than 1 point lower, counted with
+prompt caching as agents use it. The working target is **at least 40% less**; the exact number is fixed before the
+pilot runs. A saving that costs accuracy is not a saving.
 
-> **Status: planning.** Nothing is built yet except a measurement script. No model has run a task with this tool, so
-> every number below is a token count only. Accuracy is unmeasured.
+> **Status: measuring, nothing built.** The first plan failed its test on real code, and the project has been
+> rescoped (`docs/decisions/0007-rescope-after-c0.md`). The next step is a free measurement; if it misses its gate,
+> the project stops. No model has run a task with this tool.
 
-## The problem
+## What phase 0 found
 
-A coding agent spends tokens in two places:
+The first plan was a full layer between the agent and the files: a map, compact views of the code, and edits by name.
+It was tested on 85 real past changes in 17 public repositories, with each threshold fixed before the run
+(`docs/contract.md`):
 
-1. **Reading.** To find the code it must change, an agent often opens whole files or dumps whole folders. Most of
-   what it reads is not needed for the task.
-2. **Writing.** To change three lines, an agent often repeats the code around them (search-and-replace blocks) or
-   rewrites the whole file. Output tokens cost about five times as much as input tokens.
+| Measurement | Result | Threshold | Verdict | Counted with |
+|---|---|---|---|---|
+| **C0:** map plus code needed, against the files a change touches | **-165.8%** (the layer sent more) | +50% | Missed | Anthropic's token counter |
+| **W:** edits by name, against search and replace | 14.5% fewer tokens | 40% | Not reached | o200k_base (a proxy) |
+| **V:** the smallest unit of code that holds a change, in a compact view, with no map | **78.8%** fewer tokens | 65% | Reached | o200k_base (a proxy) |
 
-Every token fills the agent's context window, adds time and adds cost, even when it is cached.
+What it means:
 
-## What ai-ir-tokens does
+- **The map was far too big.** One line per folder for a whole repository, plus every file of the folders a change
+  touched, cost more than the files themselves.
+- **Edits by name add little.** Agents already edit with search and replace. Writing is about a fifth of the reading
+  tokens; in cost its share is larger, because output costs more than input, but even then the saving could not pass
+  14.5%.
+- **Reading less code can save a lot,** if the agent knows where to read. The smallest unit saved 78.8% (in a compact
+  view this plan no longer builds); reading whole units in plain code through line ranges is not measured yet. Agents
+  can already read line ranges; what they lack is a cheap way to know which lines.
 
-| Step | What the agent gets or sends |
-|---|---|
-| **Map** | One line per function, class, type, page section or group of CSS rules, with its signature and line range. The agent reads the map first, to find where to work. |
-| **Views on request** | Only the code the task needs, in the cheapest form that is still real code: comments and indentation removed; for HTML, a compact view with inline SVG replaced by a short stub. |
-| **Edits by name** | Small operations addressed by name, for example `users.ts:createUser insert-after stmt[1]: ...`, in place of repeated or rewritten code. |
-| **Round trip** | The tool applies the edits to the original text, formats only the changed lines with your own formatter settings, runs the TypeScript check, and rolls back on failure. Code the agent did not edit stays byte for byte as it was. |
+Method, conditions and limits: `docs/measurements/2026-11-08-phase0-corpus.md` and
+`docs/measurements/2026-11-08-phase0-followups.md`. Both sides were told which files each change touched, so these
+numbers measure the cost of reading, not of finding.
 
-It is one npm package with a command-line tool and an MCP server, so any agent that speaks MCP can use it.
+## The plan now
+
+1. **Step 1, free (gate R1):** given only a task's description, can a map within 25% of the files' tokens list every
+   file the change touched, in at least 70% of the 85 tasks? It costs nothing: no model is called.
+2. **Step 2, a small paid pilot:** real agent runs, with and without the map, measuring cost per completed task and
+   pass rate. Only if step 1 passes.
+
+Each step can end the project. The plan is in `docs/roadmap.md`; the gates are in `docs/contract.md`.
 
 ## What it is not
 
-- **Not a new language.** The agent reads and writes ordinary TypeScript, JavaScript, HTML and CSS. Measurements showed
-  that most of the saving comes from what is sent and from the edit format, not from a new syntax
-  (`docs/decisions/0001-shape-of-the-layer.md`).
-- **Not a runtime library.** Nothing from ai-ir-tokens runs inside your application or reaches your users. It does not
-  generate user interfaces, and it does not ask a model to produce JSON for an app to render. It works on your source
-  code, during development, between a coding agent and your repository.
-- **Not a prompt compressor.** It does not shorten or paraphrase your code. It selects the code a task needs and
-  shows it unchanged in meaning.
-
-## First measurements (tokens only)
-
-On 8 sample files written for the test (10,364 tokens), counted with OpenAI's `o200k_base` tokenizer as a stand-in
-for Claude's:
-
-| Comparison | Saving |
-|---|---|
-| A file's map against the whole file | 69-97% |
-| Edit operations against search-and-replace blocks | 53-75% |
-| Edit operations against rewriting the file | 92-99% |
-| Plain TypeScript or CSS view against the raw file | 24% |
-| Compact HTML view with inline SVG elided | 53% |
-
-These files were written for the test, and no model ran a task. Phase 0 repeats the count on 20 public repositories,
-and phase 5 measures pass rates. Method and limits: `docs/measurements/2026-11-06-sample-corpus.md`.
-
-## Roadmap
-
-Two phases decide whether the project continues:
-
-- **Phase 0:** the savings must hold on real repositories before anything is built.
-- **Phase 5:** an agent must pass benchmark tasks as often with the tool as without it.
-
-The full plan, with each phase's gate: `docs/roadmap.md` and `docs/contract.md`.
+- **Not a new language, and not a compressor.** The agent reads your real code, unchanged.
+- **Not a runtime library.** Nothing from ai-ir-tokens runs inside your application. It works on your source code,
+  during development, between a coding agent and your repository.
 
 ## Safety
 
-The tool will treat every file and every message from the model as untrusted. Paths stay inside the workspace, the
-tool does not run project code (such as config files) without your consent, and secrets such as `.env` files are not
-indexed. Dependencies are pinned, at least 60 days old, and checked for known vulnerabilities
+The tool will treat every file as untrusted input. Paths stay inside the workspace, the tool does not run project code
+(such as config files) without your consent, and secrets such as `.env` files are not indexed. Dependencies are
+pinned, at least 60 days old, and checked for known vulnerabilities
 (`docs/decisions/0002-package-manager-and-supply-chain.md`). Every commit and push runs automated checks
 (`docs/testing.md`).
 

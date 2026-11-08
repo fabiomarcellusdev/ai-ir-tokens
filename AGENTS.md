@@ -1,18 +1,20 @@
 # ai-ir-tokens
 
-An open-source layer that lets an AI model read and edit a TypeScript, JavaScript, HTML and CSS codebase with far fewer
-tokens. It is one npm package with a CLI and an MCP server:
+An open-source tool that gives an AI coding agent a small, ranked map of a TypeScript, JavaScript, HTML and CSS
+repository: file names, declaration names and line ranges, cut to a token budget, plus one folder's map on demand. The
+agent reads only the lines it needs with its own Read tool and edits with its own Edit tool. It is planned as one npm
+package with an MCP server (decision 0007).
 
-- **A map** (L0): one line per declaration, landmark or group of CSS rules, with signatures and line ranges.
-- **Views on request** (L1): only the code a task needs, in the cheapest form the model reads well.
-- **Edit operations** addressed by name. The server applies them to the original text, formats only what changed,
-  type-checks, and rolls back on failure. Code the model did not edit stays byte for byte as it was.
+**Mission:** cut the cost of a completed coding task, counted with prompt caching as agents use it, with a pass rate no
+more than 1 point lower. The working target is at least 40%; the exact number is fixed with the pilot's gate, before the
+pilot runs (decision 0007). A saving that costs accuracy is not a saving.
 
-**Mission:** cut the tokens an agent spends on a coding task by at least 40%, with a pass rate no more than 1 point
-lower (the phase 5 gate in `docs/contract.md`). A saving that costs accuracy is not a saving.
+**Rescoped after phase 0** (owner, 2026-11-08; decision 0007). Gate C0 missed: the full layer (a map, compact views and
+edit operations) sent more tokens than the files a change touched. Finer reading saved most of the code (78.8%), and
+edits by name saved little (14.5% against search and replace). The custom edit operations, compact views and rollback
+are dropped. Where the hats below still describe them, those rules wait for a later decision that brings them back.
 
-**Not a new language.** The measurements showed that most of the saving comes from what is sent and from the edit
-format, not from syntax (`docs/decisions/0001-shape-of-the-layer.md`).
+**Not a new language.** The agent reads your real code (`docs/decisions/0001-shape-of-the-layer.md`).
 
 This file is the instruction file for **every** AI coding agent and every person working here. It is tool-neutral:
 Claude Code reads it through `CLAUDE.md`; Codex, Cursor, GitHub Copilot, Gemini CLI, Windsurf, Zed, Aider and other
@@ -41,9 +43,9 @@ hours.
 
 ## Status (2026-11-08)
 
-Phase 0 (measure before building) has not started. The only code is the measurement script in `bench/token-count/`.
-It measures token counts on 8 sample files written for the test. **No model has run a task with these views, so
-accuracy is unmeasured.** The project name is `ai-ir-tokens`. The licence is Apache-2.0 (decision 0006). The npm
+Phase 0 is done: gate C0 missed, and the project is rescoped (decision 0007). The next step is gate R1, a free
+measurement of a budgeted map (`docs/contract.md`); a miss stops the project. The only code is the measurement scripts
+in `bench/token-count/`. **No model has run a task with this tool, so accuracy is unmeasured.** The project name is `ai-ir-tokens`. The licence is Apache-2.0 (decision 0006). The npm
 package name is not chosen (`docs/follow-ups.md`).
 
 **The plan page.** `docs/page/template.html` is the source of a page that shows the plan. `docs/page/build.mjs` puts the
@@ -83,8 +85,8 @@ You own whether the savings are real.
 
 - **Gates and the analysis are written before a run**, in `docs/contract.md`. A threshold chosen after the results is
   a description, not a gate.
-- **A token count never travels without a pass rate** once phase 5 has run. Before that, every saving is labelled
-  "tokens only, accuracy unmeasured".
+- **A token count never travels without a pass rate** once the pilot has run (decision 0007). Before that, every
+  saving is labelled "tokens only, accuracy unmeasured".
 - **Every number names its conditions:** the tokenizer, the corpus (files, tokens, commits), the commit of this
   repository, and for model runs the model and its version, the prompts, the number of runs and the spread.
 - **Models are random.** Run each arm several times, report the spread, and say how many tasks a 1-point difference

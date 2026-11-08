@@ -1,9 +1,27 @@
 # Roadmap
 
-One repository, one npm package with a CLI and an MCP server. The estimates are for one developer working full time,
-about 27 weeks in all. **They are estimates, not measurements** (planning session, 2026-11-06).
+## The plan now (owner, 2026-11-08; decision 0007)
 
-Two phases are decision points: **phase 0** checks that the savings hold on real code before anything is built, and
+Phase 0 ended with gate C0 missed (`docs/contract.md`). The project is rescoped to a small, budgeted, ranked map that
+points an agent to line ranges, used with the agent's own Read and Edit tools. Each step below can end the project.
+
+| Step | What it is | Costs | Gate | If it misses |
+|---|---|---|---|---|
+| 1 | A free, deterministic measurement: given only a task's description, does a budgeted map list the files the change touched? The ranking is built on development commits, then tested once on C0's 85 tasks. | Nothing: no model is called | R1 (`docs/contract.md`, "Gate R1 in detail") | The project stops |
+| 2 | A small paid pilot: real agent runs, with and without the map, measuring cost per completed task (with prompt caching) and pass rate. Its budget is decided after step 1 passes, within the owner's $100 of API credits, through an API key with a Console spending limit. | Set before it runs, for the owner's yes | Written before the pilot runs | The project stops |
+| 3 | A new roadmap for the product, only if steps 1 and 2 pass | — | — | — |
+
+The map's design, from decision 0007: it loads at session start in a stable, cached part of the agent's context that
+survives compaction; a code change adds a short change note at the end; the full map is rebuilt only at a new session
+or after a compaction; and the agent can ask for one folder's map on demand.
+
+## The original plan (superseded by decision 0007, 2026-11-08)
+
+Kept as the record of what phase 0 tested. One repository, one npm package with a CLI and an MCP server. The estimates
+were for one developer working full time, about 27 weeks in all. **They were estimates, not measurements** (planning
+session, 2026-11-06).
+
+Two phases were decision points: **phase 0** checks that the savings hold on real code before anything is built, and
 **phase 5** checks that a model passes tasks as often with the layer as without it. The project continues only if
 each gate holds. The gates' exact numbers are in `docs/contract.md`.
 

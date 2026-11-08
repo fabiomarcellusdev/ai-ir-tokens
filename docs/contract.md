@@ -4,22 +4,23 @@ Each gate is a number fixed before the run it judges. A gate is moved only by a 
 after the results are in. A missed gate is recorded as missed, with its numbers.
 
 **Status (2026-11-08):** the owner confirmed C0 on 2026-11-08 ("Gate C0 in detail" below), and **C0 was missed** the same
-day ("The result of gate C0" below). Every other gate is
-**tentative** (from the planning session, 2026-11-06). Before a gate's run, the owner confirms or changes it, and this
-file records that with the date.
+day ("The result of gate C0" below). Decision 0007 rescoped the project: gate R1 ("Gate R1 in detail" below) is the
+next gate, and gates C1 to C8 belonged to the old roadmap, so they are superseded. Before a gate's run, the owner
+confirms or changes it, and this file records that with the date.
 
 | Id | Phase | Gate | Judged on | Status |
 |---|---|---|---|---|
 | C0 | 0 | Map plus code needed is at least 50% smaller than the files an agent opens for the same task | The median of 17 public repositories, pinned by commit; Anthropic's token counter, o200k_base as a proxy ("Gate C0 in detail") | **Missed** 2026-11-08: median -165.8% |
-| C1 | 1 | Every byte outside the edits stays identical | Property tests: random edits on random files, including CRLF, BOM, non-ASCII, empty files | Tentative |
-| C2a | 2 | The index of a 5,000-file repository builds in under 30 s | A named repository, on a named machine; a timed run | Tentative |
-| C2b | 2 | The index updates in under 200 ms after a save | As C2a, p50 and p99 over 100 saves | Tentative |
-| C3 | 3 | Every applied edit type-checks or is rolled back, and no untouched byte changes | 200 scripted edits across the phase-0 repositories | Tentative |
-| C4 | 4 | The six tool descriptions together cost at most N tokens | Anthropic's token counter; N to be set at phase 4's design | Not set |
-| C5 | 5 | Total tokens at least 40% lower, pass rate no more than 1 point lower | The TypeScript tasks of SWE-PolyBench; one agent, one model, the same prompts; run count and analysis fixed before the run | Tentative |
-| C6 | 6 | The Pug-style JSX view's pass rate is within 1 point of plain JSX | The benchmark's React tasks | Tentative |
-| C7 | 7 | Every HTML edit re-parses to the intended tree, and the page's other bytes are unchanged | The 50 HTML tasks of phase 7 | Tentative |
-| C8 | 8 | A filtered element's computed style is the same with and without the rules the filter left out | A headless browser, on the task pages | Tentative |
+| C1 | 1 | Every byte outside the edits stays identical | Property tests: random edits on random files, including CRLF, BOM, non-ASCII, empty files | Superseded (decision 0007) |
+| C2a | 2 | The index of a 5,000-file repository builds in under 30 s | A named repository, on a named machine; a timed run | Superseded (decision 0007) |
+| C2b | 2 | The index updates in under 200 ms after a save | As C2a, p50 and p99 over 100 saves | Superseded (decision 0007) |
+| C3 | 3 | Every applied edit type-checks or is rolled back, and no untouched byte changes | 200 scripted edits across the phase-0 repositories | Superseded (decision 0007) |
+| C4 | 4 | The six tool descriptions together cost at most N tokens | Anthropic's token counter; N to be set at phase 4's design | Superseded (decision 0007) |
+| R1 | Rescope step 1 | Given only a task's description, a map within 25% of the files' tokens lists every file the change touched, in at least 70% of the test tasks | The 85 test tasks of C0, run once after the ranking is frozen; o200k_base ("Gate R1 in detail") | Confirmed 2026-11-08 |
+| C5 | 5 | Total tokens at least 40% lower, pass rate no more than 1 point lower | The TypeScript tasks of SWE-PolyBench; one agent, one model, the same prompts; run count and analysis fixed before the run | Superseded (decision 0007) |
+| C6 | 6 | The Pug-style JSX view's pass rate is within 1 point of plain JSX | The benchmark's React tasks | Superseded (decision 0007) |
+| C7 | 7 | Every HTML edit re-parses to the intended tree, and the page's other bytes are unchanged | The 50 HTML tasks of phase 7 | Superseded (decision 0007) |
+| C8 | 8 | A filtered element's computed style is the same with and without the rules the filter left out | A headless browser, on the task pages | Superseded (decision 0007) |
 
 ## Rules for every gate
 
@@ -178,3 +179,68 @@ C0's official results (o200k_base). Neither result is within 5 points of its thr
   about 29% of the baseline (median). C0's folder map cost far more. Neither result measures finding the code or
   accuracy.
 
+## Gate R1 in detail (owner, 2026-11-08; decision 0007)
+
+Step 1 of the rescope: can a small map point an agent to the right files, given only what the task says? Fixed
+before the ranking is built and before any of its numbers exist. It costs nothing: no model is called.
+
+**Who decided what.** The owner decided the gate's question, its 25% budget, its 70% threshold, and that a miss stops
+the project (decision 0007). The lead proposed four further rules, marked "(proposed by the lead)" below; the owner
+approves them by merging the pull request that adds this section. Until then they are proposals.
+
+### The tasks
+
+1. **The test tasks** are the 85 tasks of the 17 gate repositories in `docs/measurements/2026-11-08-phase0-corpus.json`.
+2. **The development tasks (proposed by the lead):** for each of the 17 repositories, walk further back from its oldest
+   test task, along the first parent, and take the next 5 commits that pass C0's task rule (rules 1 to 3, the same
+   walk limit of 500 commits counted from the pin). A repository with fewer than 5 uses what it has, and the results
+   say so. **The list of development tasks is committed before any work on the ranking starts.** The ranking is built
+   and tuned on these tasks only. The reason: the lead has seen the C0 results, including which files the test tasks
+   changed, so tuning on them would flatter the result.
+3. **The test run (proposed by the lead)** happens once, from a commit that freezes the ranking method; the results
+   name that commit. A rerun is allowed only after a crash, and every run is listed in the results.
+
+### Each task
+
+1. **The description** is the full commit message (subject, body and trailers), as git stores it. Nothing from the
+   diff, the changed files or later commits. The results report how many descriptions name a changed file (its path or
+   its file name), because such a task is easy.
+2. **The repository the ranking may read** is the files and their paths at the commit's parent. Not git history, not
+   other branches, not the network.
+3. **An entry** is one file's map, exactly as `fileMap` in `bench/token-count/corpus-lib.mjs` produces it at this
+   repository's commit `6656587`: the file's path, then one line per declaration, landmark or CSS rule group with its
+   line range. Entries are whole: an entry is never cut or shortened.
+4. **The map** is the ranked list of entries, joined in order. The ranking may use the description and the repository
+   (item 2) only. **It never reads the budget, the baseline or the changed files.**
+5. **The budget** is 25% of the task's baseline (C0's `o200k.baseline` for that task), rounded down to a whole token.
+   The map takes entries in rank order and **stops at the first entry that does not fit**; it never skips one to fit a
+   later one. Tokens are counted with o200k_base over the joined text.
+6. **The task passes** when every modified task file of the commit (C0's `files` for that task) has its entry in the
+   cut map.
+
+### The gate
+
+- **At least 70%** of the 85 test tasks pass: 60 of 85 or more.
+- **The counter is o200k_base,** an exception to rule 1 of this file (owner, 2026-11-08), because the budget is a share
+  of the same count on both sides and no model is called. If the pass rate is within 5 points of 70%, ends included
+  (65.0% to 75.0%), Anthropic's token counter (`count_tokens`, model `claude-opus-5-5`) decides it, in a run by the
+  owner. Until that run, the result is "no result".
+- **A miss stops the project** (decision 0007), unless a new, dated decision gives a reason to continue.
+
+### Reported beside the gate, never instead of it
+
+1. The pass rate per repository.
+2. The share of changed declarations whose lines appear in the cut map.
+3. The pass rate at fixed budgets of 1,000 and 2,000 tokens, and at 10%, 50% and 100% of the baseline.
+4. **A reference ranking (proposed by the lead),** under the same rules: entries ranked by how many words of the
+   description occur in the entry's text. The words are the description split at every character other than a letter
+   or digit and at lowercase-to-uppercase changes, lowercased, 3 characters or more, each word counted once; an entry
+   counts the words it contains. Ties go to the shorter entry, then to the path in code-point order. This keyword
+   ranking reads the description, as a simple tool would, so it is a fair opponent.
+5. **The comparison (proposed by the lead):** if the project's ranking does not pass at least **10 points more** test
+   tasks than the reference ranking, the results say so, and decision 0007 counts it as a reason to stop. A simple
+   keyword match that does as well would leave the project nothing to add.
+
+### What it does not show
+
+Whether an agent uses the map well, what a completed task costs, or accuracy. Step 2, the pilot, measures those.
