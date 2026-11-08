@@ -377,7 +377,14 @@ cd bench/token-count
 pnpm install --frozen-lockfile --ignore-scripts   # the pinned versions; needs the owner's yes ("Packages")
 node count.mjs                  # the 8 sample files and the 5 task scenarios; NOT timed
 node count.mjs <folder>         # the views of any folder (task tables run on the samples only)
+node corpus.mjs                 # phase 0: gate C0 on the repositories of corpus.json; NOT timed
+node corpus.mjs --proxy-only --repos <owner/name>   # o200k_base only, on chosen repositories
 ```
+
+`corpus.mjs` clones each repository of `corpus.json` with no working files into the system's temporary folder
+(`--clean` removes the clones), and never runs their code. It counts with Anthropic's token-counting endpoint when
+`ANTHROPIC_API_KEY` is set in the environment; without it, the results are "proxy only" and gate C0 has no result.
+Never write the key into a file. It writes `docs/measurements/<date>-phase0-corpus.json` and `.md`.
 
 **The milestone checks** (`docs/testing.md`), from the repository root, with Node's standard library only:
 
@@ -415,8 +422,9 @@ LICENSE, NOTICE         Apache-2.0 (decision 0006)
 .claude/                Claude Code: settings, guard hooks, agents, skills, the ASD-STE100 output style
 tools/                  check.mjs (milestone checks), git-guard.mjs, quiet-hours.mjs, worktree.mjs,
                         main-checkout.mjs, osv-check.mjs, vet-package.mjs, voice-lint.mjs, and their tests
-bench/token-count/      The measurement script (count.mjs), token_demo.mjs, the 8 sample files, pnpm settings,
-                        golden/ (the pinned views of the samples)
+bench/token-count/      The views (views.mjs), the sample measurement (count.mjs) with the 8 sample files and
+                        golden/ (their pinned views), phase 0's corpus run (corpus.mjs, corpus-lib.mjs and its tests,
+                        corpus.json), token_demo.mjs, pnpm settings
 docs/
   current-work.md       What is being done now and next. Start here.
   roadmap.md            Phases 0 to 10 with their work, deliverables and gates

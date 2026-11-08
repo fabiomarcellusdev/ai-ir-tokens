@@ -4,8 +4,9 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Branch `p0/docs-agents-md`:** the tool-neutral rules move from `CLAUDE.md` into `AGENTS.md`, so that agents other
-than Claude Code read them too (decision 0003, amendment "AGENTS.md"). Waiting for the owner's merge.
+**Branch `p0/bench-corpus-run`:** phase 0's corpus run (`bench/token-count/corpus.mjs`) and the approved list of 20
+repositories (`corpus.json`, `docs/third-party.md`). After the owner merges it and the gate C0 rules, and sets
+`ANTHROPIC_API_KEY` in the environment, the run goes into `docs/measurements/`.
 
 ## Next: phase 0, measure before building
 
@@ -28,3 +29,5 @@ Decide with the owner, before any run:
   push protection and CodeQL; the two CodeQL alerts are fixed.
 - 2026-11-08: parallel checkouts with `tools/worktree.mjs`, and two security reviews of the worktree lookup
   (decision 0004, amendment "parallel checkouts").
+- 2026-11-08: the tool-neutral rules in `AGENTS.md` (decision 0003, amendment "AGENTS.md"); four adapted skills instead of
+  a plugin (decision 0003, amendment "mattpocock-skills").

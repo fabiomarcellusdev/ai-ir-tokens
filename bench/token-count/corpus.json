@@ -1,0 +1,32 @@
+{
+  "about": "Phase 0's corpus (docs/contract.md, 'Gate C0 in detail'). Approved by the owner on 2026-11-08. Pins, licences and source-file counts were read from GitHub's API on 2026-11-08; 'files' counts .ts .tsx .js .jsx .mjs .cjs .vue .svelte .html .css outside node_modules, dist, build and vendor. A reserve replaces a repository only for a reason written in the results file.",
+  "repositories": [
+    { "repo": "dh1011/subscription-manager", "sha": "6b07d95b174bfb5b3c8f89a9ed5cd530ccdabc4e", "category": "react-app", "role": "gate", "licence": "MIT", "files": 50, "band": "small" },
+    { "repo": "excalidraw/excalidraw", "sha": "701b901a0f1ba3d0b390d9cdf63d112e25abac4b", "category": "react-app", "role": "gate", "licence": "MIT", "files": 723, "band": "medium" },
+    { "repo": "amicalhq/amical", "sha": "029290c0424ea59bb0f91ab89e2cb4e3be63774d", "category": "react-app", "role": "gate", "licence": "MIT", "files": 790, "band": "medium" },
+    { "repo": "AmruthPillai/Reactive-Resume", "sha": "09553e35b093b6555d40507c72785c9a3cb928b5", "category": "react-app", "role": "gate", "licence": "MIT", "files": 2103, "band": "large" },
+    { "repo": "homarr-labs/homarr", "sha": "38cfcb3fa1a391aaf86ef5722068bed12bd32b3a", "category": "react-app", "role": "gate", "licence": "Apache-2.0", "files": 3064, "band": "large" },
+    { "repo": "plasmicapp/plasmic", "sha": "9ad5048494afee5ef1fc7d92fa3153c7b50ea73f", "category": "react-app", "role": "gate", "licence": "MIT", "files": 6152, "band": "large" },
+    { "repo": "kyhsa93/nestjs-rest-cqrs-example", "sha": "da66be5d5868b88f631df354e5d26af310618bcb", "category": "node-service-decorators", "role": "gate", "licence": "MIT", "files": 132, "band": "small", "note": "An example project; the only small NestJS service with recent work (owner's yes, 2026-11-08)." },
+    { "repo": "buqiyuan/nest-admin", "sha": "5b549e540d52d04f08d26ded192a455a8e4c058d", "category": "node-service-decorators", "role": "gate", "licence": "MIT", "files": 242, "band": "medium" },
+    { "repo": "raouf-b-dev/ecommerce-store-api", "sha": "0470229729f7b5241c1ffc5e038d25cd4982b0c4", "category": "node-service-decorators", "role": "gate", "licence": "MIT", "files": 1220, "band": "medium" },
+    { "repo": "TryGhost/Ghost", "sha": "940de5ca514019517cb236a3ed0fa0fc80c207ef", "category": "node-service", "role": "gate", "licence": "MIT", "files": 7441, "band": "large" },
+    { "repo": "payloadcms/payload", "sha": "25dfb248a86991f9adbdd5de645794dceeef6b83", "category": "node-service", "role": "gate", "licence": "MIT", "files": 8484, "band": "large" },
+    { "repo": "alphagov/govuk-design-system", "sha": "6c7e2b5730bf8dd920f01d8ba5c3b96198a6bc79", "category": "static-site", "role": "gate", "licence": "MIT", "files": 93, "band": "small" },
+    { "repo": "11ty/11ty-website", "sha": "e8acd582f1d92aeb688b3c09be2ec63829b7653f", "category": "static-site", "role": "gate", "licence": "MIT", "files": 158, "band": "small" },
+    { "repo": "doka-guide/platform", "sha": "2b7f01274a0f8c292b94074fb05ce356a996dbde", "category": "static-site", "role": "gate", "licence": "MIT", "files": 228, "band": "medium" },
+    { "repo": "mdn/learning-area", "sha": "21973263ba859ff3477919087b488157f9d618a6", "category": "static-site", "role": "gate", "licence": "CC0-1.0", "files": 254, "band": "medium", "note": "CC0, outside the agreed licence list, and teaching material; plain HTML and CSS (owner's yes, 2026-11-08)." },
+    { "repo": "dlarroder/dalelarroder", "sha": "f8a46cb618d1b5d722871d9af5271e15622a0931", "category": "tailwind-site", "role": "gate", "licence": "MIT", "files": 103, "band": "small" },
+    { "repo": "nelsonlaidev/nelsonlai.dev", "sha": "c0d625e37123f57703ef94977d92b08c0f8ed4ac", "category": "tailwind-site", "role": "gate", "licence": "MIT", "files": 354, "band": "medium" },
+    { "repo": "Smaug6739/Alexandrie", "sha": "33e4bb2dcbe41c8edc36239f6db013850576ff8a", "category": "vue-app", "role": "sizing", "licence": "MIT", "files": 482, "band": "medium" },
+    { "repo": "talen8/FlecBlog", "sha": "fab601f0d22391c50b62d3e5316402557d5cb1ca", "category": "vue-app", "role": "sizing", "licence": "MIT", "files": 375, "band": "medium" },
+    { "repo": "syntaxfm/website", "sha": "e9bc82e73721caae6d2b57bfffab1487265f4c45", "category": "svelte-app", "role": "sizing", "licence": "MIT", "files": 280, "band": "medium" }
+  ],
+  "reserves": [
+    { "repo": "haiweilian/vivy-nest-admin", "sha": "ab6a057eed3aa6789ec2b1f63422d98b98b3d1e9", "category": "node-service-decorators", "licence": "MIT", "files": 413, "band": "medium" },
+    { "repo": "umami-software/umami", "sha": "559e3c607c23d2c72d9bd4f6481bda428255323c", "category": "react-app", "licence": "MIT", "files": 1405, "band": "medium" },
+    { "repo": "CookSleep/gpt_image_playground", "sha": "6f8f44dadf77f7880f0db1eefb004fe0474b27d4", "category": "react-app", "licence": "MIT", "files": 261, "band": "medium" },
+    { "repo": "ncdai/chanhdai.com", "sha": "fa14d28a26063fd093413c9a044d34b49df7cc59", "category": "tailwind-site", "licence": "MIT", "files": 658, "band": "medium" },
+    { "repo": "hoppscotch/hoppscotch", "sha": "55908a76a1d0555c9bbb5d74244c14173df95b06", "category": "vue-app", "licence": "MIT", "files": 1593, "band": "medium" }
+  ]
+}
