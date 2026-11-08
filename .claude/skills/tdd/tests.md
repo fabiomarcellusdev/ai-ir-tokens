@@ -33,12 +33,13 @@ bytes, not only what a later read returns.
 ```typescript
 // GOOD: the bytes outside the edit are identical, CRLF and BOM included
 test("an edit keeps every other byte", async () => {
-  const before = Buffer.from("﻿export const a = 1;\r\nexport const b = 2;\r\n", "utf8");
+  const BOM = Buffer.from([0xef, 0xbb, 0xbf]);
+  const before = Buffer.concat([BOM, Buffer.from("export const a = 1;\r\nexport const b = 2;\r\n")]);
   fs.writeFileSync(file, before);
   await applyEditsToDisk(dir, [{ address: "a.ts:b", text: "export const b = 3;" }]);
   const after = fs.readFileSync(file);
   expect(after.subarray(0, 24)).toEqual(before.subarray(0, 24)); // the BOM (3 bytes), line 1 (19) and its CRLF (2)
-  expect(after.toString("utf8")).toBe("﻿export const a = 1;\r\nexport const b = 3;\r\n");
+  expect(after).toEqual(Buffer.concat([BOM, Buffer.from("export const a = 1;\r\nexport const b = 3;\r\n")]));
 });
 
 // BAD: a later read cannot see a lost BOM or a changed line ending
@@ -75,10 +76,11 @@ test("a fake key never reaches the map", () => {
   expect(renderMap(buildIndex(files))).not.toContain("sk-test-123");
 });
 
-// The negative control: the secret filter off, the same assertion, and it must fail.
+// The negative control: the secret filter off, the same assertion, and it must fail. The match on the key proves
+// that the assertion saw the leak, not some other error.
 test("the leak test notices a key when the secret filter is off", () => {
   expect(() =>
     expect(renderMap(buildIndex(files, { indexSecrets: true }))).not.toContain("sk-test-123"),
-  ).toThrow();
+  ).toThrow(/sk-test-123/);
 });
 ```
