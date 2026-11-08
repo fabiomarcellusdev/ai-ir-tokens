@@ -30,6 +30,12 @@ Licences read from each package's `package.json` on 2026-11-07. Vulnerabilities 
 | pnpm | 12.3.4 | 2026-09-04 | MIT | No | The only package manager (decision 0002). Pinned by SHA-512 in `bench/token-count/package.json`; run through Corepack. No known vulnerabilities (2026-11-07). |
 | @pnpm/exe.win32-x64 (and the other platforms) | 12.3.4 | 2026-09-04 | MIT | No | pnpm 12's native program. Pinned by hash in `pnpm-lock.yaml`; on 2026-11-07 that hash matched the registry and a separate download, and the program on disk matched the package. |
 
+## Adapted text (`.claude/skills/`, does not ship)
+
+| Component | Version | Licence | Notes |
+|---|---|---|---|
+| mattpocock/skills: `grilling`, `diagnosing-bugs`, `tdd` (with `tests.md`), `wait-what` | Commit `49dd158` (plugin 1.3.1) | MIT | Adapted to this project's rules, not installed as a plugin (decision 0003, amendment "mattpocock-skills"). The licence text is in `.claude/skills/LICENSE.mattpocock-skills.txt`. |
+
 ## CI (`.github/workflows/checks.yml`, does not ship)
 
 | Component | Version | Published | Licence | Notes |

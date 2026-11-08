@@ -121,3 +121,15 @@ fixed procedure at a fraction of an agent's cost.
   secrets, and keep a maintainer's local notes out of tracked files (7); leave the owner's steps to the owner,
   including the dismissal of a code-scanning alert (9); and explain a held call (10). The template project has the
   same layout.
+- **2026-11-08, mattpocock-skills** (owner). The owner asked to install the plugin `mattpocock-skills` 1.3.1 (27
+  skills, MIT). Two `security-reviewer` agents first read every file the plugin would install, as `AGENTS.md`,
+  "Agents and security", 8 requires. They found no
+  hidden instruction, but many conflicts: 11 skills start without a command, and some of them read and write `.env`
+  secrets, combine web input with file tools, write a second decision folder, or advise deleting prohibitions from
+  `AGENTS.md`; others, on command, run a stranger's pull request, commit to the current branch, merge, or push
+  without asking. The plugin installs as one unit, its npm lockfile makes Claude Code run an npm install that no
+  setting stops (against decision 0002), and its marketplace updates it without a review. **Decision:** do not install
+  it. Four skills (`grilling`, `diagnosing-bugs`, `tdd`, `wait-what`) are adapted into `.claude/skills/` under the MIT
+  licence, changed where they conflicted with this project's rules, and reviewed like any other change.
+  **Rejected:** the install with a rule that the project's rules win (the automatic skills still start on ordinary
+  tasks); no copy at all (it loses methods that fit the project).
