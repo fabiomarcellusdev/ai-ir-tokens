@@ -79,3 +79,27 @@ Option B.
   security guard asks for a direct `git worktree` command (other than `list`), for `git -C` into another folder, and
   for creating a link or junction; `sync` refuses to write through a link; the copy list must be exactly the three
   local files; and the permission rules ask before an edit of any `.git` file or folder.
+  **Second security review** (`security-reviewer`, 2026-11-08). The reviewer moved the whole layout: a junction on
+  the `<name>.worktrees` folder led to a decoy folder, and a copied record there passed both checks. Git still used
+  the real repository through the record's `commondir` file, so commits and pushes worked, while the guards read the
+  decoy. Now the record's `commondir` must name the main checkout's `.git` folder, and `worktree.mjs add` refuses a
+  `.worktrees` folder that is a link. The lookup also resolves the real spelling of the path first, so a path in
+  another case cannot skip the layout test, and a `.git` folder with a `commondir` file (a copied record) is never a
+  main checkout. `sync` checks the real folder directly before each removal. The push hook says when no private-term
+  scan ran. The security guard asks for more link commands (`New-Item -ItemType:Junction`, an item type it cannot
+  read, `fsutil hardlink`, `cp -s`, `junction`, the .NET link calls). The reviewer's follow-up check found a decoy
+  `.git` that borrowed the real objects and refs through junctions; the lookup now refuses a main `.git` whose
+  `objects` or `refs` is a link, or that has an alternates file. Each fix has a test that fails without it (shown on
+  2026-11-08).
+  **The limits of this design:**
+  1. A session that can rewrite a `.git` file and create links can point git at a repository it controls, for
+     example a full copy of this one with its own config and no hooks. The checks above make that harder, and its
+     commits then do not reach the real repository; they do not make it impossible. No local hook is a barrier
+     against it.
+  2. The guards are files in the checkout. A session can edit `tools/`, `.githooks/` or `.claude/hooks/` in its own
+     worktree, as in the main checkout, and so remove a guard.
+  3. The permission rules and the security guard ask the owner before a `.git` edit, a link, a guard edit and every
+     push. But the security guard reads command text only: a script that makes a link or edits a guard passes it.
+  4. The private terms and the quiet hours are local, so CI cannot check them. For these two guards, the last control
+     is the owner's approval of each push. Branch protection on GitHub (on since 2026-11-08) stops a push to `main`,
+     and the owner's review of each pull request is the last check of its content.
