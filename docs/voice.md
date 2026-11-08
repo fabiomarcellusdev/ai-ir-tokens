@@ -5,7 +5,7 @@ errors and commit messages.
 
 ## Rules
 
-1. Write 80% of the way to ASD-STE100 (the rules are in `CLAUDE.md`, "Working agreements").
+1. Write 80% of the way to ASD-STE100 (the rules are in `AGENTS.md`, "Working agreements").
 2. Say what happened and what to do next. An error names the address and the next action.
 3. Never claim more than was measured. A saving names its tokenizer and corpus, and says whether accuracy was
    measured.

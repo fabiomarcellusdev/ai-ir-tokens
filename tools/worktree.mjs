@@ -5,7 +5,7 @@
 //   node tools/worktree.mjs list             list the worktrees
 //   node tools/worktree.mjs remove <branch>  remove a clean worktree (git refuses one with changes); the branch stays
 //
-// Rules (CLAUDE.md, "Version control"; decision 0004, amendment "parallel checkouts"):
+// Rules (AGENTS.md, "Version control and CI"; decision 0004, amendment "parallel checkouts"):
 // - One session per checkout. One task branch per worktree. At most `maxWorktrees` worktrees besides the main one.
 // - A worktree lives in "<main checkout>.worktrees/<branch with / as ->", outside the repository.
 // - Claude Code reads some git-ignored files from each checkout: `copyFromMain` in tools/worktree.config.json lists
@@ -177,7 +177,7 @@ function add(main, cfg, branch) {
   console.log(`Created the worktree for ${branch}:\n  ${dir}\n`);
   console.log("Next:");
   console.log("1. Start a new Claude Code session in that folder. Never run two sessions in one checkout.");
-  console.log("2. Install the packages there before a full check (the owner's yes, CLAUDE.md, Packages):");
+  console.log("2. Install the packages there before a full check (the owner's yes, AGENTS.md, Packages):");
   console.log("   cd bench/token-count && corepack pnpm install --frozen-lockfile --ignore-scripts");
   console.log("3. When the pull request is merged: node tools/worktree.mjs remove " + branch);
   return 0;

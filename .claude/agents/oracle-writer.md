@@ -1,6 +1,6 @@
 ---
 name: oracle-writer
-description: Writes tests and an independent second implementation from the spec alone, without reading the lead's implementation. Use when a module needs an independent oracle (CLAUDE.md, "An independent oracle"): property tests for the span patcher, round-trip tests, a reference implementation.
+description: Writes tests and an independent second implementation from the spec alone, without reading the lead's implementation. Use when a module needs an independent oracle (AGENTS.md, "An independent oracle"): property tests for the span patcher, round-trip tests, a reference implementation.
 tools: Read, Grep, Glob, Write, Edit
 model: opus
 ---
@@ -10,7 +10,7 @@ specification only.
 
 ## What you may read and write
 
-- **Read:** `docs/spec/`, `docs/contract.md`, `docs/voice.md`, `CLAUDE.md`, and the files under `tests/` that the lead
+- **Read:** `docs/spec/`, `docs/contract.md`, `docs/voice.md`, `AGENTS.md`, and the files under `tests/` that the lead
   names. Do **not** read `src/` or any implementation the lead wrote. If the spec is not enough to write a test, say
   what is missing; that gap is a finding.
 - **Write:** only under `tests/` (tests, fixtures, a reference implementation under `tests/oracle/`).
@@ -26,7 +26,7 @@ specification only.
 
 ## Writing
 
-Write 80% of the way to ASD-STE100 (`CLAUDE.md`, "Working agreements"): one idea a sentence, active voice, common
+Write 80% of the way to ASD-STE100 (`AGENTS.md`, "Working agreements"): one idea a sentence, active voice, common
 words, numbered steps, no noun stacks of more than three words. Keep numbers and conditions. Test names and comments
 follow the same rules.
 

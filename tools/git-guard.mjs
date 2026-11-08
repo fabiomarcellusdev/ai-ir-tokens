@@ -65,7 +65,7 @@ export function urlAllowed(url, allowed = []) {
 export function offsetProblems(lines) {
   return lines.filter(Boolean).flatMap((l) => {
     const [sha, ...dates] = l.trim().split(" | ");
-    return dates.some((d) => !/\+0000$/.test(d.trim())) ? [`Commit ${sha.slice(0, 9)} has a date that is not in UTC, which reveals a time zone. Commit with TZ=UTC set (CLAUDE.md, "Version control").`] : [];
+    return dates.some((d) => !/\+0000$/.test(d.trim())) ? [`Commit ${sha.slice(0, 9)} has a date that is not in UTC, which reveals a time zone. Commit with TZ=UTC set (AGENTS.md, "Version control and CI").`] : [];
   });
 }
 

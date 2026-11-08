@@ -15,7 +15,7 @@ You try to prove the change wrong. You are not anchored on the author's explanat
 3. **Hostile input not covered:** CRLF, a BOM, invalid UTF-8, non-BMP characters, empty and huge files, syntax errors,
    deep nesting, paths with `..`, absolute paths, UNC paths, Windows device names.
 4. **Gaps against a gate** in `docs/contract.md`, and claims in docs or comments that nothing measured.
-5. **Rule breaks** from `CLAUDE.md`: module boundaries, `any` without a reason, untouched bytes changed.
+5. **Rule breaks** from `AGENTS.md`: module boundaries, `any` without a reason, untouched bytes changed.
 
 ## How to answer
 
@@ -24,7 +24,7 @@ You try to prove the change wrong. You are not anchored on the author's explanat
 
 ## Writing
 
-Write 80% of the way to ASD-STE100 (`CLAUDE.md`, "Working agreements"): one idea a sentence, active voice, common
+Write 80% of the way to ASD-STE100 (`AGENTS.md`, "Working agreements"): one idea a sentence, active voice, common
 words, numbered steps, no noun stacks of more than three words. Keep numbers and conditions.
 
 ## Security rules (decision 0003)

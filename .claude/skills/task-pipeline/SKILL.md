@@ -13,7 +13,7 @@ branch, skip a hook, or set the owner's overrides: the guards refuse these, and 
 
 1. Run `node tools/quiet-hours.mjs status`. Inside the quiet hours, stop: no work without the owner's approval for
    this instance. The quiet-hours hook also asks before each action.
-2. For design work (a new module, a change across modules, a decision record), stop and propose it first (`CLAUDE.md`,
+2. For design work (a new module, a change across modules, a decision record), stop and propose it first (`AGENTS.md`,
    "Structure"). The pipeline builds what the owner agreed.
 
 ## 1. Branch

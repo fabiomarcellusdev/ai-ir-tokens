@@ -5,7 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { guardProblems, hookProblems, gitHookProblems, privateHits, folderDiff } from "./check.mjs";
-import { lint, BANNED } from "./voice-lint.mjs";
+import { lint, BANNED, files as voiceFiles } from "./voice-lint.mjs";
 import { evaluate, clean } from "./vet-package.mjs";
 
 // ---------------- check.mjs: guardProblems ----------------
@@ -108,6 +108,12 @@ test("folderDiff reports missing, new and changed files", () => {
 });
 
 // ---------------- voice-lint.mjs ----------------
+
+test("voice lint reads both instruction files, the README and the docs", () => {
+  const list = voiceFiles();
+  for (const f of ["AGENTS.md", "CLAUDE.md", "README.md", "docs/current-work.md"]) assert.ok(list.includes(f), f);
+  assert.ok(!list.includes("docs/voice.md"), "docs/voice.md lists the banned words, so the lint skips it");
+});
 
 test("voice lint finds a banned word and honours voice-ok", () => {
   assert.equal(lint("The changeset is applied.")[0].use, "edit batch");

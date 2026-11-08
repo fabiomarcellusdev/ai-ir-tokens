@@ -37,8 +37,9 @@ export function lint(text, banned = BANNED) {
   return hits;
 }
 
-function files() {
-  const out = ["README.md", "CLAUDE.md"];
+/** The prose files the lint reads: the instruction files, the README and everything under docs/. */
+export function files() {
+  const out = ["README.md", "AGENTS.md", "CLAUDE.md"];
   (function walk(dir) {
     for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
       const rel = `${dir}/${e.name}`;

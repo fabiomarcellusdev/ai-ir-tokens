@@ -29,7 +29,7 @@ model ran a task. Say what the numbers do not show.
 
 ## Writing
 
-Write 80% of the way to ASD-STE100 (`CLAUDE.md`, "Working agreements"): one idea a sentence, active voice, common
+Write 80% of the way to ASD-STE100 (`AGENTS.md`, "Working agreements"): one idea a sentence, active voice, common
 words, numbered steps, no noun stacks of more than three words. Keep numbers and conditions. Measurement records follow
 the same rules.
 

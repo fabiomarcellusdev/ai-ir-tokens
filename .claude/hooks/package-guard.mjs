@@ -23,7 +23,7 @@ const ASK = [
   [
     /^pnpm$/,
     (sub) => /^(add|install|i|import|update|up|upgrade|dlx|create|fetch|rebuild|rb|dedupe|self-update|setup|env|patch|patch-commit|link|ln)$/.test(sub),
-    "This pnpm command can install or fetch packages. The owner approves each install (CLAUDE.md, \"Packages\").",
+    "This pnpm command can install or fetch packages. The owner approves each install (AGENTS.md, \"Packages\").",
   ],
   [/^(pnpx|corepack)$/, () => true, "This command can download a package or a package manager. The owner approves each install."],
   [/^(winget|choco|scoop)$/, (sub) => /^(install|upgrade|update)$/.test(sub), "This command installs software. The owner approves each install."],
