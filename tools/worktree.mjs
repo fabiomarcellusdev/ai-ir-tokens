@@ -89,12 +89,45 @@ function refuseLinks(root, rel) {
   }
 }
 
+/** One spelling per folder: links resolved, and case folded on Windows. */
+function same(p) {
+  const r = fs.realpathSync.native(p);
+  return process.platform === "win32" ? r.toLowerCase() : r;
+}
+const fold = (p) => (process.platform === "win32" ? p.toLowerCase() : p);
+
+/**
+ * Throws unless the folder of `rel` resolves to the same folder under the worktree's real path. It runs directly
+ * before each removal, so a junction swapped in after refuseLinks cannot send the removal into the main checkout
+ * (second security review, 2026-11-08).
+ */
+export function refuseEscape(root, rel) {
+  const want = fold(path.join(fs.realpathSync.native(root), path.dirname(rel)));
+  if (same(path.join(root, path.dirname(rel))) !== want) throw new Error(`${rel}: its folder resolves outside this worktree; sync writes no file there`);
+}
+
+/**
+ * Throws when the `<name>.worktrees` folder is a link or a junction. Git would record the link's target, and the
+ * guards would then look for the main checkout beside that target (second security review, 2026-11-08).
+ */
+export function refuseLinkedWorktreesFolder(main) {
+  // Resolve the main checkout first: an 8.3 short name or macOS's /var -> /private/var is not a link here.
+  const folder = path.dirname(worktreeDir(fs.realpathSync.native(main), "x"));
+  if (!fs.existsSync(folder) && !isLink(folder)) return;
+  if (isLink(folder) || same(folder) !== fold(folder)) {
+    throw new Error(`${path.basename(folder)} is a link or a junction; worktrees go only into a real folder`);
+  }
+}
+function isLink(p) {
+  try { return fs.lstatSync(p).isSymbolicLink(); } catch { return false; }
+}
+
 /**
  * Copies the `copyFromMain` files from the main checkout into a worktree. It refuses to write through a link, removes
  * the old file first, and creates the new one only if nothing else did in between.
  */
 export function syncInto(main, root, copyFromMain) {
-  if (path.resolve(main) === path.resolve(root)) throw new Error("this is the main checkout; sync runs in a worktree");
+  if (same(main) === same(root)) throw new Error("this is the main checkout; sync runs in a worktree");
   for (const item of copyFromMain) {
     const problem = copyPathProblem(item);
     if (problem) throw new Error(problem);
@@ -103,6 +136,7 @@ export function syncInto(main, root, copyFromMain) {
       const dest = path.join(root, f);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
       refuseLinks(root, f);
+      refuseEscape(root, f);
       fs.rmSync(dest, { force: true });
       fs.copyFileSync(path.join(main, f), dest, fs.constants.COPYFILE_EXCL);
     }
@@ -135,6 +169,7 @@ function add(main, cfg, branch) {
   }
   const dir = worktreeDir(main, branch);
   if (fs.existsSync(dir)) return fail(`${dir} already exists.`);
+  refuseLinkedWorktreesFolder(main);
   const exists = git(main, ["show-ref", "--verify", "--quiet", `refs/heads/${branch}`]).status === 0;
   const r = git(main, exists ? ["worktree", "add", dir, branch] : ["worktree", "add", "-b", branch, dir, "main"]);
   if (r.status !== 0) return fail(`git worktree add failed: ${r.stderr.trim()}`);

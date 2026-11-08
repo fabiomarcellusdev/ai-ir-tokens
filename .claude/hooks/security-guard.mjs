@@ -305,10 +305,37 @@ const INLINE_CODE = { node: /^(-e|-p|--eval|--print|-pe)$/, deno: /^(eval)$/, py
 // Inline code that cannot reach the system is fine (node -e "console.log(1 + 1)").
 const SYSTEM_REACH = /require|import|process|child|fetch|globalThis|global\s*\[|Function|eval|Deno|Bun|http|net|dns|fs|spawn|exec|open\(|os\.|subprocess|socket|urllib|system/i;
 
+// New-Item's item type, in any spelling PowerShell accepts: -ItemType X, -ItemType:X, a prefix (-it X), the alias
+// -Type. Only a plain File or Directory passes; a link type or a value this guard cannot read asks.
+const ITEM_TYPE_PARAM = /^-(i|it|ite|item|itemt|itemty|itemtyp|itemtype|t|ty|typ|type)(:|$)/i;
+function newItemMakesLink(args) {
+  for (let i = 0; i < args.length; i++) {
+    const m = ITEM_TYPE_PARAM.exec(args[i]);
+    if (!m) continue;
+    const value = (m[2] === ":" ? args[i].slice(args[i].indexOf(":") + 1) : args[i + 1] ?? "").replace(/^["']|["']$/g, "");
+    if (!/^(file|directory)$/i.test(value)) return true;
+  }
+  return false;
+}
+// A link or junction can send a write, or a guard's file lookup, to another folder (decision 0004, amendment
+// "parallel checkouts"; security reviews, 2026-11-08).
+function makesLink(prog, args) {
+  if (/^(ln|mklink|link|junction|junction64)$/.test(prog)) return true;
+  if (/^(new-item|ni)$/.test(prog) && newItemMakesLink(args)) return true;
+  if (prog === "fsutil" && args.some((a) => /^(hardlink|reparsepoint)$/i.test(a))) return true;
+  // GNU cp accepts any unique prefix of a long option: --sym, --symb, ... --symbolic-link; --li, --link.
+  const longPrefix = (a, name, min) => a.startsWith("--") && a.length - 2 >= min && name.startsWith(a.slice(2).split("=")[0]);
+  if (prog === "cp" && args.some((a) => longPrefix(a, "symbolic-link", 2) || longPrefix(a, "link", 1) || /^-[a-zA-Z]*[sl][a-zA-Z]*$/.test(a))) return true;
+  // The whole segment as text, for forms where New-Item is not the program word: `$null = New-Item ...`,
+  // `(New-Item ...)`, `. { ni ... }`, splatting (`New-Item @p`). Also .NET calls from PowerShell, plain
+  // ([IO.Directory]::CreateSymbolicLink) or with a computed name ([IO.Directory]::('Create...'+'Link')).
+  const text = [prog, ...args].join(" ");
+  if (/(^|[^\w-])(new-item|ni)($|[^\w-])/i.test(text) && /junction|symboliclink|hardlink|@\w/i.test(text)) return true;
+  return /create(symbolic|hard)link|createjunction|\]::\s*\(/i.test(text);
+}
+
 function judgeOther(prog, args) {
-  // A link or junction can send a write, or a guard's file lookup, to another folder (decision 0004, amendment
-  // "parallel checkouts").
-  if (/^(ln|mklink|link)$/.test(prog) || (/^(new-item|ni)$/.test(prog) && args.some((a) => /^["']?(junction|symboliclink|hardlink)["']?$/i.test(a)))) {
+  if (makesLink(prog, args)) {
     return { decision: "ask", reason: "This creates a link or a junction, which can send writes or a guard's lookup to another folder. The owner approves it." };
   }
   if (SHELLS.test(prog)) {

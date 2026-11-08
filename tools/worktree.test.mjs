@@ -9,7 +9,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { mainCheckout, isLinkedWorktree } from "./main-checkout.mjs";
-import { worktreeProblems, syncInto, linkedWorktrees, worktreeDir, TASK_BRANCH, loadConfig, copyPathProblem } from "./worktree.mjs";
+import { worktreeProblems, syncInto, linkedWorktrees, worktreeDir, TASK_BRANCH, loadConfig, copyPathProblem, refuseEscape, refuseLinkedWorktreesFolder } from "./worktree.mjs";
 import { worktreeConfigProblems, worktreeSetupResult } from "./check.mjs";
 
 const TOOLS = path.dirname(fileURLToPath(import.meta.url));
@@ -105,7 +105,7 @@ test("mainCheckout: a plain folder is used as it is; a worktree outside the layo
   const p = project();
   const plain = path.join(p.base, "plain");
   fs.mkdirSync(plain);
-  assert.equal(mainCheckout(plain), plain);
+  assert.equal(real(mainCheckout(plain)), real(plain));
   const outside = path.join(p.base, "wt");
   p.run(["worktree", "add", "-q", "-b", "p0/feat-x", outside, "main"]);
   assert.throws(() => mainCheckout(outside), /outside a <name>\.worktrees folder/);
@@ -150,6 +150,80 @@ for (const [name, attack] of [
   });
 }
 
+// The second security review (2026-11-08): a junction on the .worktrees folder moves the folder layout to a decoy,
+// and a copied record there passes the gitdir and back-link checks, while its commondir keeps git on the real
+// repository. So commits and pushes work, and the guards read the decoy. The commondir check refuses it.
+test("attack E: a junction on the .worktrees folder and a decoy record: the guards fail closed, git still works", () => {
+  const p = project({ quiet: true });
+  const evil = path.join(p.base, "evil");
+  fs.mkdirSync(path.join(evil, "proj.worktrees"), { recursive: true });
+  fs.mkdirSync(path.join(evil, "proj", ".git", "worktrees"), { recursive: true });
+  fs.symlinkSync(path.join(evil, "proj.worktrees"), `${p.main}.worktrees`, "junction");
+  const dir = p.wt();
+  const push = pushWithTerm(p, dir);
+  const id = fs.readdirSync(path.join(p.main, ".git", "worktrees"))[0];
+  const decoy = path.join(evil, "proj", ".git", "worktrees", id);
+  fs.cpSync(path.join(p.main, ".git", "worktrees", id), decoy, { recursive: true });
+  fs.writeFileSync(path.join(decoy, "commondir"), `${path.join(p.main, ".git")}\n`);
+  fs.writeFileSync(path.join(decoy, "gitdir"), `${path.join(dir, ".git")}\n`);
+  rewrite(path.join(dir, ".git"), `gitdir: ${decoy}\n`);
+  assert.equal(real(p.run(["rev-parse", "--git-common-dir"], dir).stdout.trim()), real(path.join(p.main, ".git")), "git still uses the real repository");
+  assert.throws(() => mainCheckout(dir), /uses another repository/);
+  assert.match(quietStatus(p, dir), /could not be found/);
+  assert.notEqual(push().status, 0, "the push must be refused");
+  assert.equal(worktreeSetupResult(dir)[1], false, "check.mjs must fail");
+  cleanup(p);
+});
+
+// The follow-up check of the second review: the decoy .git borrows the real objects and refs through junctions, and
+// its record's commondir is the decoy itself. Git then commits into the real repository.
+test("attack F: a decoy .git that borrows the real objects and refs: the guards fail closed", () => {
+  const p = project({ quiet: true });
+  const evil = path.join(p.base, "evil");
+  const evilGit = path.join(evil, "proj", ".git");
+  fs.mkdirSync(path.join(evil, "proj.worktrees"), { recursive: true });
+  fs.mkdirSync(path.join(evilGit, "worktrees"), { recursive: true });
+  for (const f of ["HEAD", "config"]) fs.copyFileSync(path.join(p.main, ".git", f), path.join(evilGit, f));
+  fs.symlinkSync(path.join(evil, "proj.worktrees"), `${p.main}.worktrees`, "junction");
+  const dir = p.wt();
+  const push = pushWithTerm(p, dir);
+  for (const part of ["objects", "refs"]) fs.symlinkSync(path.join(p.main, ".git", part), path.join(evilGit, part), "junction");
+  const id = fs.readdirSync(path.join(p.main, ".git", "worktrees"))[0];
+  const decoy = path.join(evilGit, "worktrees", id);
+  fs.cpSync(path.join(p.main, ".git", "worktrees", id), decoy, { recursive: true });
+  fs.writeFileSync(path.join(decoy, "commondir"), "../..\n");
+  fs.writeFileSync(path.join(decoy, "gitdir"), `${path.join(dir, ".git")}\n`);
+  rewrite(path.join(dir, ".git"), `gitdir: ${decoy}\n`);
+  assert.throws(() => mainCheckout(dir), /borrows another repository/);
+  assert.match(quietStatus(p, dir), /could not be found/);
+  assert.notEqual(push().status, 0, "the push must be refused");
+  // An alternates file is the other way to borrow the objects.
+  for (const part of ["objects", "refs"]) fs.unlinkSync(path.join(evilGit, part));
+  fs.mkdirSync(path.join(evilGit, "objects", "info"), { recursive: true });
+  fs.mkdirSync(path.join(evilGit, "refs", "heads"), { recursive: true });
+  fs.writeFileSync(path.join(evilGit, "objects", "info", "alternates"), `${path.join(p.main, ".git", "objects")}\n`);
+  assert.throws(() => mainCheckout(dir), /borrows another repository's objects/);
+  cleanup(p);
+});
+
+test("a .git folder with a commondir file (a copied worktree record) is not a main checkout", () => {
+  const p = project();
+  const dir = p.wt();
+  const id = fs.readdirSync(path.join(p.main, ".git", "worktrees"))[0];
+  const copy = path.join(p.base, "copy");
+  fs.mkdirSync(copy);
+  fs.cpSync(path.join(p.main, ".git", "worktrees", id), path.join(copy, ".git"), { recursive: true });
+  fs.writeFileSync(path.join(copy, ".git", "commondir"), `${path.join(p.main, ".git")}\n`);
+  assert.throws(() => mainCheckout(copy), /outside a <name>\.worktrees folder/);
+  // The same record in the worktree's place, reached through a path in another case: the layout test still sees it.
+  fs.rmSync(path.join(dir, ".git"), { force: true });
+  fs.cpSync(path.join(copy, ".git"), path.join(dir, ".git"), { recursive: true });
+  assert.throws(() => mainCheckout(dir), /plain file/);
+  const upper = path.join(p.base, "PROJ.WORKTREES", path.basename(dir));
+  if (fs.existsSync(upper)) assert.throws(() => mainCheckout(upper)); // a file system without case only
+  cleanup(p);
+});
+
 // ---------------- the guards inside a worktree ----------------
 
 test("end to end: git-guard in a worktree reads the private terms from the main checkout", () => {
@@ -162,6 +236,7 @@ test("end to end: git-guard in a worktree reads the private terms from the main 
   fs.rmSync(path.join(p.main, "private-docs"), { recursive: true });
   const clean = push();
   assert.equal(clean.status, 0, clean.stderr);
+  assert.match(clean.stderr, /no private-term scan ran/, "a scan that did not run must be visible");
   cleanup(p);
 });
 
@@ -252,7 +327,36 @@ test("sync refuses to write through a link or a junction (security review, 2026-
   fs.symlinkSync(outside, path.join(dir, ".claude", "local"), "junction");
   assert.throws(() => syncInto(p.main, dir, loadConfig(p.main).copyFromMain), /link or a junction/);
   assert.equal(fs.readFileSync(path.join(outside, "guard.mjs"), "utf8"), "untouched\n");
+  // The check directly before each removal: a folder that resolves outside the worktree is refused.
+  assert.throws(() => refuseEscape(dir, ".claude/local/guard.mjs"), /outside this worktree/);
+  assert.doesNotThrow(() => refuseEscape(dir, "CLAUDE.local.md"));
   cleanup(p);
+});
+
+test("add refuses a .worktrees folder that is a link or a junction (second security review, 2026-11-08)", () => {
+  const p = project();
+  const elsewhere = path.join(p.base, "elsewhere");
+  fs.mkdirSync(elsewhere);
+  fs.symlinkSync(elsewhere, `${p.main}.worktrees`, "junction");
+  assert.throws(() => refuseLinkedWorktreesFolder(p.main), /link or a junction/);
+  const r = p.node(p.main, [path.join(p.main, "tools", "worktree.mjs"), "add", "p0/feat-a"]);
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /link or a junction/);
+  assert.deepEqual(fs.readdirSync(elsewhere), [], "no worktree was created");
+  cleanup(p);
+  const q = project();
+  assert.doesNotThrow(() => refuseLinkedWorktreesFolder(q.main), "a missing folder is fine");
+  q.wt();
+  assert.doesNotThrow(() => refuseLinkedWorktreesFolder(q.main), "a real folder is fine");
+  // A main path reached through a link higher up (as with an 8.3 short name, or /var on macOS) is still fine.
+  const alias = path.join(os.tmpdir(), `${path.basename(q.base)}-alias`);
+  fs.symlinkSync(q.base, alias, "junction");
+  try {
+    assert.doesNotThrow(() => refuseLinkedWorktreesFolder(path.join(alias, "proj")), "a link above the main checkout is fine");
+  } finally {
+    fs.unlinkSync(alias);
+  }
+  cleanup(q);
 });
 
 // ---------------- configuration ----------------

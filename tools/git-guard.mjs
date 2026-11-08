@@ -113,9 +113,15 @@ const EMPTY_TREE = "4b825dc642cb6eb9a060e54bf8d69288fbee4904";
 // added text), no text conversion, no external diff, no quoted file names.
 const SAFE = ["-c", "core.quotePath=false", `--attr-source=${EMPTY_TREE}`];
 // The terms are git-ignored, so they live in the main checkout only; a linked worktree reads them from there.
+// A clone without the file (a contributor's) has no terms to scan, so a missing file is not a failure. But the push
+// says so, so the owner sees a scan that did not run (second security review, 2026-11-08).
 const privacyTerms = () => {
   const f = privatePath("private-docs", "privacy-terms.txt");
-  return fs.existsSync(f) ? fs.readFileSync(f, "utf8").split(/\r?\n/).map((t) => t.trim()).filter((t) => t && !t.startsWith("#")) : [];
+  if (!fs.existsSync(f)) {
+    console.error("Note: private-docs/privacy-terms.txt is missing in the main checkout, so no private-term scan ran.");
+    return [];
+  }
+  return fs.readFileSync(f, "utf8").split(/\r?\n/).map((t) => t.trim()).filter((t) => t && !t.startsWith("#"));
 };
 function quietProblem() {
   const s = quietStatus();
