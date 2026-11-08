@@ -38,6 +38,13 @@ where independence or a clean context pays:
 `measurement-run`, `gate-check`, `decision-record`. Before you ask to add a package, use the `vet-package` skill. The
 `monthly-update-review` skill is the monthly review of `AGENTS.md`, "Packages", 7.
 
+Four more skills are adapted from `mattpocock/skills` (MIT; `.claude/skills/LICENSE.mattpocock-skills.txt`) to this
+project's rules:
+- `grilling`: question the owner in rounds until a plan has no open decision, before a decision record.
+- `diagnosing-bugs`: a check that fails on the bug first, then ranked hypotheses, then a fix with a regression test.
+- `tdd`: one failing test, then the least code, one slice at a time, with tests that can fail.
+- `wait-what` (the owner types `/wait-what`): explain the last message again, in plainer words.
+
 ## Guards
 
 - `.claude/hooks/quiet-hours-guard.mjs` (every tool, also in subagents) asks the owner before each action inside the
