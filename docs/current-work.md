@@ -4,9 +4,12 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Branch `p0/bench-corpus-run`:** phase 0's corpus run (`bench/token-count/corpus.mjs`) and the approved list of 20
-repositories (`corpus.json`, `docs/third-party.md`). After the owner merges it and the gate C0 rules, and sets
-`ANTHROPIC_API_KEY` in the environment, the run goes into `docs/measurements/`.
+**Phase 0, gate C0.** The proxy-only run of all 20 repositories (2026-11-08,
+`docs/measurements/2026-11-08-phase0-corpus-proxy.md`) gives a median saving of -187% (o200k_base); the code needed alone
+saves 28.6%. The gate has no result until the owner's run with Anthropic's counter. Before that run: replace
+`raouf-b-dev/ecommerce-store-api` (2 tasks) with the reserve `haiweilian/vivy-nest-admin`, and decide the
+static-site slot of `alphagov/govuk-design-system` (0 tasks; no static-site reserve). Then the owner decides to
+rescope or stop.
 
 ## Next: phase 0, measure before building
 
