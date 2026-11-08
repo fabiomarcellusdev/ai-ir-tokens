@@ -1,7 +1,7 @@
 // corpus.mjs: phase 0's measurement on real repositories (docs/contract.md, "Gate C0 in detail"; docs/roadmap.md,
 // phase 0). NOT timed: token counts are deterministic.
 //
-//   node corpus.mjs [--repos owner/name,...] [--replace <gate repo>=<reserve> --reason "<why>"] [--model <id>]
+//   node corpus.mjs [--repos owner/name,...] [--replace <gate repo>=<reserve> --reason "<why>"]... [--model <id>]
 //                   [--proxy-only] [--cache <dir>] [--out <name>] [--clean] [--allow-dirty]
 //
 // For each repository in corpus.json it makes a shallow clone with no working files, picks the tasks by the contract's
@@ -58,15 +58,19 @@ let proxyReason = flag("proxy-only") ? "--proxy-only" : process.env.ANTHROPIC_AP
 const corpus = JSON.parse(fs.readFileSync(path.join(here, "corpus.json"), "utf8"));
 const replacements = [];
 let repoList = corpus.repositories.map((r) => ({ ...r }));
-if (opt("replace")) {
-  const [out, inn] = opt("replace").split("=");
-  const reason = opt("reason");
+// Each `--replace <corpus repository>=<reserve>` is followed by its own `--reason "<why>"`; there may be several.
+argv.forEach((a, k) => {
+  if (a !== "--replace") return;
+  const [out, inn] = (argv[k + 1] ?? "").split("=");
+  const reason = argv[k + 2] === "--reason" ? argv[k + 3] : null;
   const i = repoList.findIndex((r) => r.repo === out), reserve = corpus.reserves.find((r) => r.repo === inn);
-  if (i < 0 || !reserve || !reason) throw new Error("--replace <corpus repository>=<reserve> needs both names from corpus.json and --reason");
+  if (i < 0 || !reserve || !reason || replacements.some((x) => x.by === inn)) {
+    throw new Error("each --replace <corpus repository>=<reserve> needs two names from corpus.json, a reserve used once, and its own --reason right after it");
+  }
   // The reserve takes the role and the category of the repository it replaces (docs/contract.md).
   repoList[i] = { ...reserve, role: repoList[i].role, category: repoList[i].category, replaces: out };
   replacements.push({ replaced: out, by: inn, reason });
-}
+});
 const only = opt("repos") ? new Set(opt("repos").split(",")) : null;
 const selected = repoList.filter((r) => !only || only.has(r.repo));
 for (const r of selected) {
