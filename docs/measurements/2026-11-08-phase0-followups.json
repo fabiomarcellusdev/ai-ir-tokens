@@ -1,0 +1,2324 @@
+{
+  "meta": {
+    "date": "2026-11-08",
+    "commit": "665658701187ff5b84e4d33c0167b9fb7d70ef4a",
+    "dirty": false,
+    "node": "v24.22.1",
+    "git": "2.56.0.windows.2",
+    "tokenizer": "o200k_base",
+    "tasksFrom": "docs/measurements/2026-11-08-phase0-corpus.json"
+  },
+  "summary": {
+    "W": {
+      "threshold": 0.4,
+      "median": 0.14457831325301207,
+      "result": "not reached",
+      "spread": {
+        "median": 0.14457831325301207,
+        "q1": 0.12071156289707752,
+        "q3": 0.19999999999999996,
+        "missing": 0
+      },
+      "opsVsRewrite": {
+        "median": 0.8862298940761083,
+        "q1": 0.8468706712001007,
+        "q3": 0.9109019607843137,
+        "missing": 0
+      },
+      "searchReplaceShareOfReading": {
+        "median": 0.18118314778432656,
+        "q1": 0.112565445026178,
+        "q3": 0.2563380281690141,
+        "missing": 0
+      }
+    },
+    "V": {
+      "threshold": 0.65,
+      "median": 0.7880357983984927,
+      "result": "reached",
+      "spread": {
+        "median": 0.7880357983984927,
+        "q1": 0.4067796610169492,
+        "q3": 0.8500739918608953,
+        "missing": 0
+      },
+      "v2": {
+        "median": 0.8595284872298625,
+        "q1": 0.7914070891514501,
+        "q3": 0.9131343850978901,
+        "missing": 0
+      }
+    }
+  },
+  "repositories": [
+    {
+      "repo": "dh1011/subscription-manager",
+      "category": "react-app",
+      "band": "small",
+      "tasks": [
+        {
+          "commit": "93502c0b57981102080520b3bd9d69c7b6f014cf",
+          "files": [
+            "next.config.js",
+            "src/app/api/ntfy-settings/route.ts",
+            "src/app/api/test-notification/route.ts",
+            "src/components/ConfigurationModal.tsx",
+            "src/lib/notifications.ts"
+          ],
+          "o200k": {
+            "baseline": 5123,
+            "rewrite": 7131,
+            "searchReplace": 2329,
+            "operations": 2196,
+            "v1": 2693,
+            "v2": 1110
+          },
+          "w": {
+            "opsVsSearchReplace": 0.057106054100472314,
+            "opsVsRewrite": 0.6920488010096761,
+            "searchReplaceShareOfReading": 0.45461643568221743
+          },
+          "v": {
+            "v1": 0.4743314464181144,
+            "v2": 0.7833300800312317
+          }
+        },
+        {
+          "commit": "45dceb19998c27be85d597cf72f711228c6ab993",
+          "files": [
+            "next.config.js",
+            "src/app/api/test-notification/route.ts",
+            "src/components/SubscriptionModal.tsx",
+            "src/lib/dateUtils.ts",
+            "src/lib/db.ts"
+          ],
+          "o200k": {
+            "baseline": 4655,
+            "rewrite": 5266,
+            "searchReplace": 1361,
+            "operations": 875,
+            "v1": 1573,
+            "v2": 971
+          },
+          "w": {
+            "opsVsSearchReplace": 0.35709037472446725,
+            "opsVsRewrite": 0.8338397265476643,
+            "searchReplaceShareOfReading": 0.2923737916219119
+          },
+          "v": {
+            "v1": 0.6620837808807734,
+            "v2": 0.7914070891514501
+          }
+        },
+        {
+          "commit": "e91b42c2ba1ed1d3fbee3e48c74756f1fb2c048b",
+          "files": [
+            "src/components/SubscriptionModal.tsx"
+          ],
+          "o200k": {
+            "baseline": 3136,
+            "rewrite": 3718,
+            "searchReplace": 235,
+            "operations": 214,
+            "v1": 2551,
+            "v2": 201
+          },
+          "w": {
+            "opsVsSearchReplace": 0.08936170212765959,
+            "opsVsRewrite": 0.942442173211404,
+            "searchReplaceShareOfReading": 0.07493622448979592
+          },
+          "v": {
+            "v1": 0.18654336734693877,
+            "v2": 0.935905612244898
+          }
+        },
+        {
+          "commit": "f827dee8de3f41fef5f17b423ebbfeba11a397fe",
+          "files": [
+            "src/app/page.tsx",
+            "src/components/SubscriptionList.tsx"
+          ],
+          "o200k": {
+            "baseline": 6774,
+            "rewrite": 7941,
+            "searchReplace": 1656,
+            "operations": 1216,
+            "v1": 4698,
+            "v2": 1440
+          },
+          "w": {
+            "opsVsSearchReplace": 0.2657004830917874,
+            "opsVsRewrite": 0.8468706712001007,
+            "searchReplaceShareOfReading": 0.24446412754650132
+          },
+          "v": {
+            "v1": 0.30646589902568644,
+            "v2": 0.787422497785651
+          }
+        },
+        {
+          "commit": "26ef0382cb9071cb8d2240e6085cdf3a06e9e964",
+          "files": [
+            "src/app/page.tsx",
+            "src/components/SubscriptionList.tsx"
+          ],
+          "o200k": {
+            "baseline": 6706,
+            "rewrite": 8053,
+            "searchReplace": 362,
+            "operations": 287,
+            "v1": 4530,
+            "v2": 228
+          },
+          "w": {
+            "opsVsSearchReplace": 0.20718232044198892,
+            "opsVsRewrite": 0.964361107661741,
+            "searchReplaceShareOfReading": 0.05398150909633164
+          },
+          "v": {
+            "v1": 0.3244855353414853,
+            "v2": 0.9660005964807635
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.20718232044198892,
+        "opsVsRewrite": 0.8468706712001007,
+        "searchReplaceShareOfReading": 0.24446412754650132,
+        "v1": 0.3244855353414853,
+        "v2": 0.7914070891514501
+      }
+    },
+    {
+      "repo": "excalidraw/excalidraw",
+      "category": "react-app",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "8bcdca4526867433f99fdfcb55a063668db0c9dc",
+          "files": [
+            "packages/element/src/frame.ts"
+          ],
+          "o200k": {
+            "baseline": 7142,
+            "rewrite": 8478,
+            "searchReplace": 80,
+            "operations": 81,
+            "v1": 106,
+            "v2": 46
+          },
+          "w": {
+            "opsVsSearchReplace": -0.012499999999999956,
+            "opsVsRewrite": 0.9904458598726115,
+            "searchReplaceShareOfReading": 0.011201344161299356
+          },
+          "v": {
+            "v1": 0.9851582189862783,
+            "v2": 0.9935592271072529
+          }
+        },
+        {
+          "commit": "2610ebae0cbd26d8148e70f6144cacbb81e8b156",
+          "files": [
+            "packages/element/src/flowchart.ts"
+          ],
+          "o200k": {
+            "baseline": 5443,
+            "rewrite": 6204,
+            "searchReplace": 4028,
+            "operations": 2371,
+            "v1": 1456,
+            "v2": 1907
+          },
+          "w": {
+            "opsVsSearchReplace": 0.4113704071499503,
+            "opsVsRewrite": 0.6178272082527402,
+            "searchReplaceShareOfReading": 0.7400330699981628
+          },
+          "v": {
+            "v1": 0.73250045930553,
+            "v2": 0.6496417416865699
+          }
+        },
+        {
+          "commit": "a758e93d6a03e9f995973703cb886850a398a6d3",
+          "files": [
+            "packages/element/src/flowchart.ts"
+          ],
+          "o200k": {
+            "baseline": 5261,
+            "rewrite": 6375,
+            "searchReplace": 663,
+            "operations": 568,
+            "v1": 635,
+            "v2": 457
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1432880844645551,
+            "opsVsRewrite": 0.9109019607843137,
+            "searchReplaceShareOfReading": 0.12602166888424254
+          },
+          "v": {
+            "v1": 0.8793005132104162,
+            "v2": 0.9131343850978901
+          }
+        },
+        {
+          "commit": "b99a49dbebd25fbf85ad9ae33c9e361a16d5a39e",
+          "files": [
+            "excalidraw-app/components/AI.tsx",
+            "packages/excalidraw/components/TTDDialog/TTDDialog.tsx",
+            "packages/excalidraw/components/TTDDialog/utils/mermaidError.ts"
+          ],
+          "o200k": {
+            "baseline": 6382,
+            "rewrite": 7631,
+            "searchReplace": 355,
+            "operations": 322,
+            "v1": 974,
+            "v2": 395
+          },
+          "w": {
+            "opsVsSearchReplace": 0.09295774647887323,
+            "opsVsRewrite": 0.9578036954527585,
+            "searchReplaceShareOfReading": 0.055625195863365715
+          },
+          "v": {
+            "v1": 0.8473832654340332,
+            "v2": 0.9381071764337199
+          }
+        },
+        {
+          "commit": "e7b534668a60add7f725531f3c9abf32508c7b4e",
+          "files": [
+            "scripts/stats/perf.mjs",
+            "scripts/stats/post.mjs"
+          ],
+          "o200k": {
+            "baseline": 9611,
+            "rewrite": 11817,
+            "searchReplace": 4471,
+            "operations": 3137,
+            "v1": 2207,
+            "v2": 2406
+          },
+          "w": {
+            "opsVsSearchReplace": 0.2983672556475061,
+            "opsVsRewrite": 0.7345349919607345,
+            "searchReplaceShareOfReading": 0.46519612943502237
+          },
+          "v": {
+            "v1": 0.7703672874830922,
+            "v2": 0.7496618458016855
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.1432880844645551,
+        "opsVsRewrite": 0.9109019607843137,
+        "searchReplaceShareOfReading": 0.12602166888424254,
+        "v1": 0.8473832654340332,
+        "v2": 0.9131343850978901
+      }
+    },
+    {
+      "repo": "amicalhq/amical",
+      "category": "react-app",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "d57a13ee1d8f3c5d90b83bf144b61bc91bd16264",
+          "files": [
+            "apps/desktop/src/constants/models.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-provider.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-worker-fork.ts",
+            "apps/desktop/src/services/model-service.ts",
+            "packages/whisper-wrapper/src/index.ts"
+          ],
+          "o200k": {
+            "baseline": 18964,
+            "rewrite": 23540,
+            "searchReplace": 4700,
+            "operations": 4179,
+            "v1": 12789,
+            "v2": 2311
+          },
+          "w": {
+            "opsVsSearchReplace": 0.11085106382978727,
+            "opsVsRewrite": 0.8224723874256584,
+            "searchReplaceShareOfReading": 0.24783800885889054
+          },
+          "v": {
+            "v1": 0.32561695844758487,
+            "v2": 0.8781375237291711
+          }
+        },
+        {
+          "commit": "367a006457f0988a74e0f7c9faf6c9241db137b0",
+          "files": [
+            "apps/desktop/src/pipeline/providers/transcription/simple-fork-wrapper.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-worker-fork.ts"
+          ],
+          "o200k": {
+            "baseline": 2381,
+            "rewrite": 3001,
+            "searchReplace": 371,
+            "operations": 359,
+            "v1": 264,
+            "v2": 208
+          },
+          "w": {
+            "opsVsSearchReplace": 0.03234501347708896,
+            "opsVsRewrite": 0.8803732089303565,
+            "searchReplaceShareOfReading": 0.15581688366232677
+          },
+          "v": {
+            "v1": 0.8891222175556489,
+            "v2": 0.9126417471650567
+          }
+        },
+        {
+          "commit": "9ece02e6c909b140c18f565048d76af999c26033",
+          "files": [
+            "apps/desktop/src/services/model-service.ts"
+          ],
+          "o200k": {
+            "baseline": 10812,
+            "rewrite": 12632,
+            "searchReplace": 992,
+            "operations": 444,
+            "v1": 1621,
+            "v2": 634
+          },
+          "w": {
+            "opsVsSearchReplace": 0.5524193548387097,
+            "opsVsRewrite": 0.9648511716276125,
+            "searchReplaceShareOfReading": 0.09174990751017388
+          },
+          "v": {
+            "v1": 0.8500739918608953,
+            "v2": 0.9413614502404736
+          }
+        },
+        {
+          "commit": "01959ecbb26f8bed9906996d3322eb5d1443c716",
+          "files": [
+            "apps/desktop/src/main/lifecycle/tuning.ts",
+            "apps/desktop/src/pipeline/providers/transcription/grpc-dictation-client.ts"
+          ],
+          "o200k": {
+            "baseline": 8024,
+            "rewrite": 9539,
+            "searchReplace": 256,
+            "operations": 238,
+            "v1": 212,
+            "v2": 381
+          },
+          "w": {
+            "opsVsSearchReplace": 0.0703125,
+            "opsVsRewrite": 0.9750497955760562,
+            "searchReplaceShareOfReading": 0.031904287138584245
+          },
+          "v": {
+            "v1": 0.9735792622133599,
+            "v2": 0.952517447657029
+          }
+        },
+        {
+          "commit": "e978bc03bf547324a111047dbffb64b6441f8352",
+          "files": [
+            "apps/desktop/src/components/auth-button.tsx",
+            "apps/desktop/src/components/nav-secondary.tsx"
+          ],
+          "o200k": {
+            "baseline": 1869,
+            "rewrite": 2466,
+            "searchReplace": 575,
+            "operations": 496,
+            "v1": 1081,
+            "v2": 428
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1373913043478261,
+            "opsVsRewrite": 0.7988645579886455,
+            "searchReplaceShareOfReading": 0.30765115034777957
+          },
+          "v": {
+            "v1": 0.42161583734617447,
+            "v2": 0.7710005350454788
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.11085106382978727,
+        "opsVsRewrite": 0.8803732089303565,
+        "searchReplaceShareOfReading": 0.15581688366232677,
+        "v1": 0.8500739918608953,
+        "v2": 0.9126417471650567
+      }
+    },
+    {
+      "repo": "AmruthPillai/Reactive-Resume",
+      "category": "react-app",
+      "band": "large",
+      "tasks": [
+        {
+          "commit": "61c7bbe84aaaccee33e6417788885b59d8f259ba",
+          "files": [
+            "tooling/android/export-scaled-layout.mjs"
+          ],
+          "o200k": {
+            "baseline": 2108,
+            "rewrite": 3854,
+            "searchReplace": 1825,
+            "operations": 1664,
+            "v1": 1250,
+            "v2": 672
+          },
+          "w": {
+            "opsVsSearchReplace": 0.08821917808219182,
+            "opsVsRewrite": 0.5682407887908667,
+            "searchReplaceShareOfReading": 0.8657495256166983
+          },
+          "v": {
+            "v1": 0.4070208728652751,
+            "v2": 0.6812144212523719
+          }
+        },
+        {
+          "commit": "826dde2bd7ca35020e885368d0771d91584fc194",
+          "files": [
+            "apps/web/src/main.tsx",
+            "packages/ui/src/styles/globals.css",
+            "packages/ui/src/styles/typeset.css"
+          ],
+          "o200k": {
+            "baseline": 8211,
+            "rewrite": 9743,
+            "searchReplace": 451,
+            "operations": 374,
+            "v1": 462,
+            "v2": 381
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1707317073170732,
+            "opsVsRewrite": 0.96161346607821,
+            "searchReplaceShareOfReading": 0.05492631835342833
+          },
+          "v": {
+            "v1": 0.9437340153452686,
+            "v2": 0.9535988308366825
+          }
+        },
+        {
+          "commit": "ef2aa643042036efb48bccf069bd8774718b77c4",
+          "files": [
+            "apps/web/src/features/career/coach-thread.tsx",
+            "apps/web/src/features/career/coach.tsx",
+            "apps/web/src/features/career/shared.tsx",
+            "apps/web/src/features/career/workspace/apply.tsx",
+            "apps/web/src/features/resume/editor/chrome.tsx"
+          ],
+          "o200k": {
+            "baseline": 33492,
+            "rewrite": 44983,
+            "searchReplace": 762,
+            "operations": 521,
+            "v1": 3588,
+            "v2": 646
+          },
+          "w": {
+            "opsVsSearchReplace": 0.3162729658792651,
+            "opsVsRewrite": 0.9884178467421025,
+            "searchReplaceShareOfReading": 0.022751701898960947
+          },
+          "v": {
+            "v1": 0.892869939089932,
+            "v2": 0.9807118117759465
+          }
+        },
+        {
+          "commit": "c560233b9e077cf1f7987c0e5c8e113c6e3e4814",
+          "files": [
+            "packages/resume/src/proposals.ts"
+          ],
+          "o200k": {
+            "baseline": 8026,
+            "rewrite": 10008,
+            "searchReplace": 488,
+            "operations": 442,
+            "v1": 309,
+            "v2": 167
+          },
+          "w": {
+            "opsVsSearchReplace": 0.09426229508196726,
+            "opsVsRewrite": 0.9558353317346123,
+            "searchReplaceShareOfReading": 0.06080239222526788
+          },
+          "v": {
+            "v1": 0.9615001245950661,
+            "v2": 0.9791926239720907
+          }
+        },
+        {
+          "commit": "49c3fcd5d24bd70acd718161d59998751d5a3b9c",
+          "files": [
+            "tooling/mobile/release.ts"
+          ],
+          "o200k": {
+            "baseline": 978,
+            "rewrite": 1373,
+            "searchReplace": 685,
+            "operations": 526,
+            "v1": 386,
+            "v2": 362
+          },
+          "w": {
+            "opsVsSearchReplace": 0.2321167883211679,
+            "opsVsRewrite": 0.616897305171158,
+            "searchReplaceShareOfReading": 0.7004089979550102
+          },
+          "v": {
+            "v1": 0.6053169734151329,
+            "v2": 0.6298568507157465
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.1707317073170732,
+        "opsVsRewrite": 0.9558353317346123,
+        "searchReplaceShareOfReading": 0.06080239222526788,
+        "v1": 0.892869939089932,
+        "v2": 0.9535988308366825
+      }
+    },
+    {
+      "repo": "homarr-labs/homarr",
+      "category": "react-app",
+      "band": "large",
+      "tasks": [
+        {
+          "commit": "445e191490ba0115150c39ba69469b9860569133",
+          "files": [
+            "packages/api/src/router/widgets/options.ts",
+            "packages/definitions/src/docs/homarr-docs-sitemap.ts",
+            "packages/widgets/src/beszel-system-stats/component.module.css",
+            "packages/widgets/src/beszel-system-stats/component.tsx"
+          ],
+          "o200k": {
+            "baseline": 7117,
+            "rewrite": 8918,
+            "searchReplace": 1728,
+            "operations": 1438,
+            "v1": 6506,
+            "v2": 952
+          },
+          "w": {
+            "opsVsSearchReplace": 0.16782407407407407,
+            "opsVsRewrite": 0.8387530836510428,
+            "searchReplaceShareOfReading": 0.24279893213432627
+          },
+          "v": {
+            "v1": 0.08585077982295908,
+            "v2": 0.8662357735000703
+          }
+        },
+        {
+          "commit": "5a1967bdd4c1af2b30ff2ddc005516e70d16c1ee",
+          "files": [
+            "packages/definitions/src/docs/homarr-docs-sitemap.ts",
+            "packages/definitions/src/integration.ts",
+            "packages/integrations/src/base/creator.ts",
+            "packages/integrations/src/index.ts"
+          ],
+          "o200k": {
+            "baseline": 12826,
+            "rewrite": 15462,
+            "searchReplace": 391,
+            "operations": 305,
+            "v1": 9290,
+            "v2": 539
+          },
+          "w": {
+            "opsVsSearchReplace": 0.21994884910485935,
+            "opsVsRewrite": 0.9802742206700298,
+            "searchReplaceShareOfReading": 0.03048495244035553
+          },
+          "v": {
+            "v1": 0.27569000467799787,
+            "v2": 0.9579759862778731
+          }
+        },
+        {
+          "commit": "58058f2ea6a67259676228f7f791230b0e33f57a",
+          "files": [
+            "packages/integrations/src/glances/glances-integration.ts"
+          ],
+          "o200k": {
+            "baseline": 1406,
+            "rewrite": 1696,
+            "searchReplace": 126,
+            "operations": 124,
+            "v1": 792,
+            "v2": 104
+          },
+          "w": {
+            "opsVsSearchReplace": 0.015873015873015928,
+            "opsVsRewrite": 0.9268867924528302,
+            "searchReplaceShareOfReading": 0.08961593172119488
+          },
+          "v": {
+            "v1": 0.4366998577524893,
+            "v2": 0.9260312944523471
+          }
+        },
+        {
+          "commit": "6881b8355c7e940360a0fb582787f0a770430c5b",
+          "files": [
+            "apps/docs/docs/widgets/dns-hole-controls/index.ts",
+            "apps/docs/docs/widgets/dns-hole-summary/index.ts"
+          ],
+          "o200k": {
+            "baseline": 351,
+            "rewrite": 488,
+            "searchReplace": 381,
+            "operations": 331,
+            "v1": 317,
+            "v2": 291
+          },
+          "w": {
+            "opsVsSearchReplace": 0.13123359580052496,
+            "opsVsRewrite": 0.32172131147540983,
+            "searchReplaceShareOfReading": 1.0854700854700854
+          },
+          "v": {
+            "v1": 0.09686609686609682,
+            "v2": 0.1709401709401709
+          }
+        },
+        {
+          "commit": "e9142c0dbcaca6cd9215b5292a2d139d96919b51",
+          "files": [
+            "packages/widgets/src/downloads/component.tsx"
+          ],
+          "o200k": {
+            "baseline": 7597,
+            "rewrite": 9015,
+            "searchReplace": 47,
+            "operations": 46,
+            "v1": 133,
+            "v2": 58
+          },
+          "w": {
+            "opsVsSearchReplace": 0.021276595744680882,
+            "opsVsRewrite": 0.9948973932334997,
+            "searchReplaceShareOfReading": 0.006186652626036593
+          },
+          "v": {
+            "v1": 0.9824930893773858,
+            "v2": 0.992365407397657
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.13123359580052496,
+        "opsVsRewrite": 0.9268867924528302,
+        "searchReplaceShareOfReading": 0.08961593172119488,
+        "v1": 0.27569000467799787,
+        "v2": 0.9260312944523471
+      }
+    },
+    {
+      "repo": "plasmicapp/plasmic",
+      "category": "react-app",
+      "band": "large",
+      "tasks": [
+        {
+          "commit": "9ad5048494afee5ef1fc7d92fa3153c7b50ea73f",
+          "files": [
+            "platform/wab/src/wab/server/AppServer.ts"
+          ],
+          "o200k": {
+            "baseline": 15534,
+            "rewrite": 18622,
+            "searchReplace": 126,
+            "operations": 38,
+            "v1": 180,
+            "v2": 145
+          },
+          "w": {
+            "opsVsSearchReplace": 0.6984126984126984,
+            "opsVsRewrite": 0.997959402856836,
+            "searchReplaceShareOfReading": 0.008111239860950173
+          },
+          "v": {
+            "v1": 0.9884125144843569,
+            "v2": 0.9906656366679542
+          }
+        },
+        {
+          "commit": "abe23a361a641ef7ee07163ce3d4d14bcbaca0fa",
+          "files": [
+            "platform/wab/src/wab/server/__testonly__/backend-util.ts",
+            "platform/wab/src/wab/server/code-components/code-components.ts"
+          ],
+          "o200k": {
+            "baseline": 5063,
+            "rewrite": 6169,
+            "searchReplace": 412,
+            "operations": 320,
+            "v1": 187,
+            "v2": 236
+          },
+          "w": {
+            "opsVsSearchReplace": 0.22330097087378642,
+            "opsVsRewrite": 0.9481277354514508,
+            "searchReplaceShareOfReading": 0.08137467904404504
+          },
+          "v": {
+            "v1": 0.9630653762591349,
+            "v2": 0.9533873197708869
+          }
+        },
+        {
+          "commit": "f3da1377e0316e90bb8ef64bcfa0a5cbaa48db62",
+          "files": [
+            "platform/wab/src/wab/server/routes/loader.ts"
+          ],
+          "o200k": {
+            "baseline": 7879,
+            "rewrite": 9317,
+            "searchReplace": 61,
+            "operations": 56,
+            "v1": 190,
+            "v2": 69
+          },
+          "w": {
+            "opsVsSearchReplace": 0.08196721311475408,
+            "opsVsRewrite": 0.9939894815927873,
+            "searchReplaceShareOfReading": 0.007742099251174007
+          },
+          "v": {
+            "v1": 0.9758852646274908,
+            "v2": 0.9912425434699835
+          }
+        },
+        {
+          "commit": "8c879f4584ca6d8036e95ba964e549f700b9d4b3",
+          "files": [
+            "platform/wab/src/wab/shared/codegen/react-p/server-queries/collect.ts"
+          ],
+          "o200k": {
+            "baseline": 2198,
+            "rewrite": 2627,
+            "searchReplace": 142,
+            "operations": 113,
+            "v1": 198,
+            "v2": 134
+          },
+          "w": {
+            "opsVsSearchReplace": 0.204225352112676,
+            "opsVsRewrite": 0.9569851541682528,
+            "searchReplaceShareOfReading": 0.0646041856232939
+          },
+          "v": {
+            "v1": 0.9099181073703366,
+            "v2": 0.9390354868061874
+          }
+        },
+        {
+          "commit": "763e0f8d0c471bf7567fa5527511e52881f40451",
+          "files": [
+            "platform/wab/src/wab/shared/common.ts",
+            "platform/wab/src/wab/shared/refactoring.ts",
+            "platform/wab/src/wab/shared/site-diffs/merge-core.ts"
+          ],
+          "o200k": {
+            "baseline": 42323,
+            "rewrite": 50589,
+            "searchReplace": 1684,
+            "operations": 1505,
+            "v1": 1161,
+            "v2": 576
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1062945368171021,
+            "opsVsRewrite": 0.9702504497025045,
+            "searchReplaceShareOfReading": 0.03978923989320228
+          },
+          "v": {
+            "v1": 0.9725681071757674,
+            "v2": 0.986390378753869
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.204225352112676,
+        "opsVsRewrite": 0.9702504497025045,
+        "searchReplaceShareOfReading": 0.03978923989320228,
+        "v1": 0.9725681071757674,
+        "v2": 0.986390378753869
+      }
+    },
+    {
+      "repo": "kyhsa93/nestjs-rest-cqrs-example",
+      "category": "node-service-decorators",
+      "band": "small",
+      "tasks": [
+        {
+          "commit": "e3cf45b17e817b9a603264c97159378a462f16a3",
+          "files": [
+            "src/main.ts"
+          ],
+          "o200k": {
+            "baseline": 314,
+            "rewrite": 292,
+            "searchReplace": 225,
+            "operations": 137,
+            "v1": 162,
+            "v2": 214
+          },
+          "w": {
+            "opsVsSearchReplace": 0.3911111111111111,
+            "opsVsRewrite": 0.5308219178082192,
+            "searchReplaceShareOfReading": 0.7165605095541401
+          },
+          "v": {
+            "v1": 0.4840764331210191,
+            "v2": 0.3184713375796179
+          }
+        },
+        {
+          "commit": "d86874cd3b9d284e17e91c76a092d1d1910ffefa",
+          "files": [
+            "src/account/accounts-module.ts",
+            "src/notification/interface/integration-event/account-integration-event-controller.ts",
+            "src/notification/notification-module.ts",
+            "src/outbox/outbox-module.ts"
+          ],
+          "o200k": {
+            "baseline": 1618,
+            "rewrite": 2533,
+            "searchReplace": 1190,
+            "operations": 1133,
+            "v1": 778,
+            "v2": 535
+          },
+          "w": {
+            "opsVsSearchReplace": 0.0478991596638656,
+            "opsVsRewrite": 0.5527043031977892,
+            "searchReplaceShareOfReading": 0.7354758961681088
+          },
+          "v": {
+            "v1": 0.519159456118665,
+            "v2": 0.6693448702101359
+          }
+        },
+        {
+          "commit": "552d3eb396f7ecb08b041a1f67354d8f0afb5871",
+          "files": [
+            "src/notification/infrastructure/query/notification-query-implement.ts"
+          ],
+          "o200k": {
+            "baseline": 283,
+            "rewrite": 370,
+            "searchReplace": 257,
+            "operations": 189,
+            "v1": 161,
+            "v2": 159
+          },
+          "w": {
+            "opsVsSearchReplace": 0.2645914396887159,
+            "opsVsRewrite": 0.4891891891891892,
+            "searchReplaceShareOfReading": 0.9081272084805654
+          },
+          "v": {
+            "v1": 0.431095406360424,
+            "v2": 0.4381625441696113
+          }
+        },
+        {
+          "commit": "71ee1c20dec7247550f651b581e3c1dc174a1cd8",
+          "files": [
+            "libs/database-module.ts",
+            "src/app-module.ts"
+          ],
+          "o200k": {
+            "baseline": 1120,
+            "rewrite": 1475,
+            "searchReplace": 323,
+            "operations": 293,
+            "v1": 445,
+            "v2": 286
+          },
+          "w": {
+            "opsVsSearchReplace": 0.09287925696594423,
+            "opsVsRewrite": 0.8013559322033899,
+            "searchReplaceShareOfReading": 0.2883928571428571
+          },
+          "v": {
+            "v1": 0.6026785714285714,
+            "v2": 0.7446428571428572
+          }
+        },
+        {
+          "commit": "a7d520983249085a092fcff4dfb8364bd5737896",
+          "files": [
+            "src/main.ts"
+          ],
+          "o200k": {
+            "baseline": 280,
+            "rewrite": 376,
+            "searchReplace": 110,
+            "operations": 106,
+            "v1": 93,
+            "v2": 76
+          },
+          "w": {
+            "opsVsSearchReplace": 0.036363636363636376,
+            "opsVsRewrite": 0.7180851063829787,
+            "searchReplaceShareOfReading": 0.39285714285714285
+          },
+          "v": {
+            "v1": 0.6678571428571429,
+            "v2": 0.7285714285714286
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.09287925696594423,
+        "opsVsRewrite": 0.5527043031977892,
+        "searchReplaceShareOfReading": 0.7165605095541401,
+        "v1": 0.519159456118665,
+        "v2": 0.6693448702101359
+      }
+    },
+    {
+      "repo": "buqiyuan/nest-admin",
+      "category": "node-service-decorators",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "5b549e540d52d04f08d26ded192a455a8e4c058d",
+          "files": [
+            "src/modules/auth/auth.service.ts",
+            "src/modules/user/user.service.ts"
+          ],
+          "o200k": {
+            "baseline": 3869,
+            "rewrite": 4859,
+            "searchReplace": 747,
+            "operations": 639,
+            "v1": 634,
+            "v2": 551
+          },
+          "w": {
+            "opsVsSearchReplace": 0.14457831325301207,
+            "opsVsRewrite": 0.8684914591479729,
+            "searchReplaceShareOfReading": 0.19307314551563712
+          },
+          "v": {
+            "v1": 0.8361333677952959,
+            "v2": 0.8575859395192557
+          }
+        },
+        {
+          "commit": "391348af51ab025e1244bdb19f1c36d29f2e1f81",
+          "files": [
+            "src/modules/health/health.controller.ts",
+            "src/setup-swagger.ts"
+          ],
+          "o200k": {
+            "baseline": 1007,
+            "rewrite": 1194,
+            "searchReplace": 198,
+            "operations": 150,
+            "v1": 451,
+            "v2": 181
+          },
+          "w": {
+            "opsVsSearchReplace": 0.24242424242424243,
+            "opsVsRewrite": 0.8743718592964824,
+            "searchReplaceShareOfReading": 0.19662363455809334
+          },
+          "v": {
+            "v1": 0.5521350546176762,
+            "v2": 0.82025819265144
+          }
+        },
+        {
+          "commit": "5995078f45c38d4d6c0e3d83b80ec726b714aa82",
+          "files": [
+            "src/modules/system/task/task.module.ts",
+            "src/modules/system/task/task.processor.ts",
+            "src/modules/system/task/task.service.ts"
+          ],
+          "o200k": {
+            "baseline": 3023,
+            "rewrite": 4524,
+            "searchReplace": 4044,
+            "operations": 3063,
+            "v1": 1217,
+            "v2": 1542
+          },
+          "w": {
+            "opsVsSearchReplace": 0.24258160237388726,
+            "opsVsRewrite": 0.32294429708222816,
+            "searchReplaceShareOfReading": 1.3377439629507113
+          },
+          "v": {
+            "v1": 0.5974197816738339,
+            "v2": 0.4899106847502481
+          }
+        },
+        {
+          "commit": "2437241c565fe6de1732d9fe2a5fe1f91999836d",
+          "files": [
+            "src/global/env.ts"
+          ],
+          "o200k": {
+            "baseline": 398,
+            "rewrite": 1020,
+            "searchReplace": 720,
+            "operations": 665,
+            "v1": 63,
+            "v2": 75
+          },
+          "w": {
+            "opsVsSearchReplace": 0.07638888888888884,
+            "opsVsRewrite": 0.3480392156862745,
+            "searchReplaceShareOfReading": 1.8090452261306533
+          },
+          "v": {
+            "v1": 0.8417085427135679,
+            "v2": 0.8115577889447236
+          }
+        },
+        {
+          "commit": "4b33c32c06401f7582e787ffca594768b8a4b949",
+          "files": [
+            "src/modules/system/menu/menu.dto.ts"
+          ],
+          "o200k": {
+            "baseline": 762,
+            "rewrite": 933,
+            "searchReplace": 280,
+            "operations": 269,
+            "v1": 159,
+            "v2": 170
+          },
+          "w": {
+            "opsVsSearchReplace": 0.03928571428571426,
+            "opsVsRewrite": 0.7116827438370847,
+            "searchReplaceShareOfReading": 0.3674540682414698
+          },
+          "v": {
+            "v1": 0.7913385826771654,
+            "v2": 0.7769028871391076
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.14457831325301207,
+        "opsVsRewrite": 0.7116827438370847,
+        "searchReplaceShareOfReading": 0.3674540682414698,
+        "v1": 0.7913385826771654,
+        "v2": 0.8115577889447236
+      }
+    },
+    {
+      "repo": "haiweilian/vivy-nest-admin",
+      "category": "node-service-decorators",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "a81bc456791142dbab45c95f5deda57a60b0f279",
+          "files": [
+            "vivy-common/vivy-common-core/src/core.module.ts"
+          ],
+          "o200k": {
+            "baseline": 245,
+            "rewrite": 330,
+            "searchReplace": 157,
+            "operations": 127,
+            "v1": 140,
+            "v2": 131
+          },
+          "w": {
+            "opsVsSearchReplace": 0.19108280254777066,
+            "opsVsRewrite": 0.6151515151515152,
+            "searchReplaceShareOfReading": 0.6408163265306123
+          },
+          "v": {
+            "v1": 0.4285714285714286,
+            "v2": 0.4653061224489796
+          }
+        },
+        {
+          "commit": "01d0f491a3f8d9f439ad82934754b2878c89fab9",
+          "files": [
+            "vivy-modules/vivy-system/src/modules/file/upload/upload.storage.ts"
+          ],
+          "o200k": {
+            "baseline": 701,
+            "rewrite": 807,
+            "searchReplace": 58,
+            "operations": 58,
+            "v1": 107,
+            "v2": 72
+          },
+          "w": {
+            "opsVsSearchReplace": 0,
+            "opsVsRewrite": 0.9281288723667905,
+            "searchReplaceShareOfReading": 0.08273894436519258
+          },
+          "v": {
+            "v1": 0.8473609129814551,
+            "v2": 0.8972895863052782
+          }
+        },
+        {
+          "commit": "616617a2c4abfffc27f90f2d123f511194ce2554",
+          "files": [
+            "docs/.vitepress/config.ts"
+          ],
+          "o200k": {
+            "baseline": 851,
+            "rewrite": 1110,
+            "searchReplace": 46,
+            "operations": 32,
+            "v1": 820,
+            "v2": 41
+          },
+          "w": {
+            "opsVsSearchReplace": 0.30434782608695654,
+            "opsVsRewrite": 0.9711711711711711,
+            "searchReplaceShareOfReading": 0.05405405405405406
+          },
+          "v": {
+            "v1": 0.03642773207990602,
+            "v2": 0.9518213866039953
+          }
+        },
+        {
+          "commit": "fa936daa584908a42a57ae19e920bc4dd210d596",
+          "files": [
+            "vivy-common/vivy-common-security/src/services/token.service.ts",
+            "vivy-modules/vivy-system/src/main.ts",
+            "vivy-react/src/apis/auth/login/model.ts",
+            "vivy-react/src/pages/login/index.tsx"
+          ],
+          "o200k": {
+            "baseline": 2395,
+            "rewrite": 2867,
+            "searchReplace": 298,
+            "operations": 291,
+            "v1": 512,
+            "v2": 221
+          },
+          "w": {
+            "opsVsSearchReplace": 0.023489932885906062,
+            "opsVsRewrite": 0.8985001743983257,
+            "searchReplaceShareOfReading": 0.1244258872651357
+          },
+          "v": {
+            "v1": 0.7862212943632567,
+            "v2": 0.9077244258872651
+          }
+        },
+        {
+          "commit": "db99e21088eb2dc6d22944c88f4219ef5c3e5632",
+          "files": [
+            "taze.config.js",
+            "vivy-react/src/components/Cron/CronEval.tsx",
+            "vivy-react/src/components/Cron/index.tsx"
+          ],
+          "o200k": {
+            "baseline": 448,
+            "rewrite": 568,
+            "searchReplace": 223,
+            "operations": 246,
+            "v1": 301,
+            "v2": 248
+          },
+          "w": {
+            "opsVsSearchReplace": -0.10313901345291487,
+            "opsVsRewrite": 0.5669014084507042,
+            "searchReplaceShareOfReading": 0.49776785714285715
+          },
+          "v": {
+            "v1": 0.328125,
+            "v2": 0.4464285714285714
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.023489932885906062,
+        "opsVsRewrite": 0.8985001743983257,
+        "searchReplaceShareOfReading": 0.1244258872651357,
+        "v1": 0.4285714285714286,
+        "v2": 0.8972895863052782
+      }
+    },
+    {
+      "repo": "TryGhost/Ghost",
+      "category": "node-service",
+      "band": "large",
+      "tasks": [
+        {
+          "commit": "fefbb2c0f42eaef5ce1603016f14978bfd3ed116",
+          "files": [
+            "ghost/core/server/web/shared/middleware/api/spam-prevention.ts",
+            "ghost/core/shared/config/report.ts",
+            "ghost/core/shared/config/schema.ts",
+            "ghost/core/shared/config/schema/primitives.ts"
+          ],
+          "o200k": {
+            "baseline": 8253,
+            "rewrite": 6976,
+            "searchReplace": 11615,
+            "operations": 5295,
+            "v1": 6591,
+            "v2": 6105
+          },
+          "w": {
+            "opsVsSearchReplace": 0.5441239776151527,
+            "opsVsRewrite": 0.24096903669724767,
+            "searchReplaceShareOfReading": 1.407367018054041
+          },
+          "v": {
+            "v1": 0.20138131588513264,
+            "v2": 0.26026899309342055
+          }
+        },
+        {
+          "commit": "64b0cc528525805455e020b37383301e5cdee6fb",
+          "files": [
+            "apps/admin/src/automations/new-automation.tsx"
+          ],
+          "o200k": {
+            "baseline": 1856,
+            "rewrite": 2288,
+            "searchReplace": 517,
+            "operations": 436,
+            "v1": 897,
+            "v2": 388
+          },
+          "w": {
+            "opsVsSearchReplace": 0.15667311411992269,
+            "opsVsRewrite": 0.8094405594405595,
+            "searchReplaceShareOfReading": 0.2785560344827586
+          },
+          "v": {
+            "v1": 0.5167025862068966,
+            "v2": 0.790948275862069
+          }
+        },
+        {
+          "commit": "5dd78a4532207a1b0644a9d0ce15d9d75fa405bf",
+          "files": [
+            "ghost/core/server/services/member-welcome-emails/member-welcome-email-service.js",
+            "tools/gx/cli.ts"
+          ],
+          "o200k": {
+            "baseline": 7481,
+            "rewrite": 9025,
+            "searchReplace": 235,
+            "operations": 188,
+            "v1": 613,
+            "v2": 131
+          },
+          "w": {
+            "opsVsSearchReplace": 0.19999999999999996,
+            "opsVsRewrite": 0.979168975069252,
+            "searchReplaceShareOfReading": 0.03141291271220425
+          },
+          "v": {
+            "v1": 0.9180590830102927,
+            "v2": 0.9824889720625585
+          }
+        },
+        {
+          "commit": "aade2f773c9abfe32c909bc7f60ba2de815d7868",
+          "files": [
+            ".pnpmfile.mjs",
+            "ghost/core/server/auth/better-auth/create-auth.ts"
+          ],
+          "o200k": {
+            "baseline": 2399,
+            "rewrite": 2969,
+            "searchReplace": 474,
+            "operations": 454,
+            "v1": 145,
+            "v2": 357
+          },
+          "w": {
+            "opsVsSearchReplace": 0.04219409282700426,
+            "opsVsRewrite": 0.8470865611316942,
+            "searchReplaceShareOfReading": 0.19758232596915382
+          },
+          "v": {
+            "v1": 0.9395581492288454,
+            "v2": 0.8511879949979158
+          }
+        },
+        {
+          "commit": "3c0fa14cb08e4f15dfbb190aef20cd6020b8d284",
+          "files": [
+            "ghost/core/server/services/identity-tokens/identity-token-service.ts",
+            "ghost/core/server/services/members/members-api/services/token-service.js",
+            "ghost/core/server/services/signing-keys/signing-key-service.ts"
+          ],
+          "o200k": {
+            "baseline": 3782,
+            "rewrite": 4537,
+            "searchReplace": 691,
+            "operations": 487,
+            "v1": 503,
+            "v2": 409
+          },
+          "w": {
+            "opsVsSearchReplace": 0.2952243125904487,
+            "opsVsRewrite": 0.8926603482477408,
+            "searchReplaceShareOfReading": 0.18270756213643574
+          },
+          "v": {
+            "v1": 0.8670015864621893,
+            "v2": 0.8918561607615019
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.19999999999999996,
+        "opsVsRewrite": 0.8470865611316942,
+        "searchReplaceShareOfReading": 0.19758232596915382,
+        "v1": 0.8670015864621893,
+        "v2": 0.8511879949979158
+      }
+    },
+    {
+      "repo": "payloadcms/payload",
+      "category": "node-service",
+      "band": "large",
+      "tasks": [
+        {
+          "commit": "391868bf9f0a3ae3bb761a2e04d1516d8239ede9",
+          "files": [
+            ".agents/skills/record-pr-demo/scripts/prepare-demo.mjs",
+            ".agents/skills/record-pr-demo/scripts/record-demo.mjs"
+          ],
+          "o200k": {
+            "baseline": 9708,
+            "rewrite": 11375,
+            "searchReplace": 1126,
+            "operations": 915,
+            "v1": 3703,
+            "v2": 792
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1873889875666075,
+            "opsVsRewrite": 0.9195604395604395,
+            "searchReplaceShareOfReading": 0.11598681499793985
+          },
+          "v": {
+            "v1": 0.6185620107128142,
+            "v2": 0.9184177997527811
+          }
+        },
+        {
+          "commit": "e71e91c66f492f807fc25b62267fbf6268cb7945",
+          "files": [
+            "packages/ui/src/css/elevations.css"
+          ],
+          "o200k": {
+            "baseline": 710,
+            "rewrite": 702,
+            "searchReplace": 182,
+            "operations": 80,
+            "v1": 363,
+            "v2": 156
+          },
+          "w": {
+            "opsVsSearchReplace": 0.5604395604395604,
+            "opsVsRewrite": 0.886039886039886,
+            "searchReplaceShareOfReading": 0.2563380281690141
+          },
+          "v": {
+            "v1": 0.4887323943661972,
+            "v2": 0.780281690140845
+          }
+        },
+        {
+          "commit": "5d4a76b75ae056a7c499011155821d3582a0914b",
+          "files": [
+            "packages/ui/src/forms/Form/index.tsx"
+          ],
+          "o200k": {
+            "baseline": 3884,
+            "rewrite": 3464,
+            "searchReplace": 2148,
+            "operations": 1138,
+            "v1": 3097,
+            "v2": 1865
+          },
+          "w": {
+            "opsVsSearchReplace": 0.47020484171322163,
+            "opsVsRewrite": 0.6714780600461894,
+            "searchReplaceShareOfReading": 0.553038105046344
+          },
+          "v": {
+            "v1": 0.20262615859938204,
+            "v2": 0.5198249227600412
+          }
+        },
+        {
+          "commit": "fac81961b76c0d0e15545ec8aeda3e099aca8f03",
+          "files": [
+            "packages/ui/src/forms/Form/index.tsx"
+          ],
+          "o200k": {
+            "baseline": 6559,
+            "rewrite": 4511,
+            "searchReplace": 4605,
+            "operations": 1356,
+            "v1": 4928,
+            "v2": 3876
+          },
+          "w": {
+            "opsVsSearchReplace": 0.7055374592833876,
+            "opsVsRewrite": 0.6994014630902239,
+            "searchReplaceShareOfReading": 0.702088733038573
+          },
+          "v": {
+            "v1": 0.2486659551760939,
+            "v2": 0.4090562585760025
+          }
+        },
+        {
+          "commit": "7446e241794fa5cfe29aafd9eb8f03f9a5081882",
+          "files": [
+            "packages/payload/src/hierarchy/getInitialTreeData.ts"
+          ],
+          "o200k": {
+            "baseline": 1365,
+            "rewrite": 1553,
+            "searchReplace": 58,
+            "operations": 58,
+            "v1": 846,
+            "v2": 67
+          },
+          "w": {
+            "opsVsSearchReplace": 0,
+            "opsVsRewrite": 0.9626529298132647,
+            "searchReplaceShareOfReading": 0.04249084249084249
+          },
+          "v": {
+            "v1": 0.3802197802197802,
+            "v2": 0.9509157509157509
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.47020484171322163,
+        "opsVsRewrite": 0.886039886039886,
+        "searchReplaceShareOfReading": 0.2563380281690141,
+        "v1": 0.3802197802197802,
+        "v2": 0.780281690140845
+      }
+    },
+    {
+      "repo": "GrapheneOS/grapheneos.org",
+      "category": "static-site",
+      "band": "small",
+      "tasks": [
+        {
+          "commit": "e29a12e1942f09888fd23f15c89406031aa37632",
+          "files": [
+            "static/build.html"
+          ],
+          "o200k": {
+            "baseline": 17353,
+            "rewrite": 18466,
+            "searchReplace": 65,
+            "operations": 47,
+            "v1": 62,
+            "v2": 53
+          },
+          "w": {
+            "opsVsSearchReplace": 0.27692307692307694,
+            "opsVsRewrite": 0.9974547817610744,
+            "searchReplaceShareOfReading": 0.003745750014406731
+          },
+          "v": {
+            "v1": 0.9964271307554889,
+            "v2": 0.9969457730651761
+          }
+        },
+        {
+          "commit": "701fc2b36d29f337f720f4e489f75811db6eae7f",
+          "files": [
+            "static/build.html"
+          ],
+          "o200k": {
+            "baseline": 17361,
+            "rewrite": 18467,
+            "searchReplace": 82,
+            "operations": 53,
+            "v1": 70,
+            "v2": 77
+          },
+          "w": {
+            "opsVsSearchReplace": 0.35365853658536583,
+            "opsVsRewrite": 0.9971300157036876,
+            "searchReplaceShareOfReading": 0.004723230228673463
+          },
+          "v": {
+            "v1": 0.9959679741950348,
+            "v2": 0.9955647716145384
+          }
+        },
+        {
+          "commit": "99dfd0e2875b1a49555945ea6db4819f913a3d7a",
+          "files": [
+            "static/build.html"
+          ],
+          "o200k": {
+            "baseline": 17359,
+            "rewrite": 18475,
+            "searchReplace": 176,
+            "operations": 123,
+            "v1": 124,
+            "v2": 185
+          },
+          "w": {
+            "opsVsSearchReplace": 0.30113636363636365,
+            "opsVsRewrite": 0.9933423545331529,
+            "searchReplaceShareOfReading": 0.010138832882078461
+          },
+          "v": {
+            "v1": 0.9928567313785356,
+            "v2": 0.9893427040728152
+          }
+        },
+        {
+          "commit": "0951eb5a8a38760e5852ac1c7f8054c4f6478c6c",
+          "files": [
+            "static/donate.html"
+          ],
+          "o200k": {
+            "baseline": 5131,
+            "rewrite": 5590,
+            "searchReplace": 287,
+            "operations": 212,
+            "v1": 177,
+            "v2": 177
+          },
+          "w": {
+            "opsVsSearchReplace": 0.26132404181184665,
+            "opsVsRewrite": 0.9620751341681574,
+            "searchReplaceShareOfReading": 0.05593451568894952
+          },
+          "v": {
+            "v1": 0.9655038004287664,
+            "v2": 0.9655038004287664
+          }
+        },
+        {
+          "commit": "e0195b42e0791bbd6d256351b9c2a04ffa7cfff7",
+          "files": [
+            "static/build.html"
+          ],
+          "o200k": {
+            "baseline": 17359,
+            "rewrite": 18473,
+            "searchReplace": 64,
+            "operations": 49,
+            "v1": 64,
+            "v2": 119
+          },
+          "w": {
+            "opsVsSearchReplace": 0.234375,
+            "opsVsRewrite": 0.9973474801061007,
+            "searchReplaceShareOfReading": 0.003686848320755804
+          },
+          "v": {
+            "v1": 0.9963131516792442,
+            "v2": 0.9931447664035947
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.27692307692307694,
+        "opsVsRewrite": 0.9971300157036876,
+        "searchReplaceShareOfReading": 0.004723230228673463,
+        "v1": 0.9959679741950348,
+        "v2": 0.9931447664035947
+      }
+    },
+    {
+      "repo": "11ty/11ty-website",
+      "category": "static-site",
+      "band": "small",
+      "tasks": [
+        {
+          "commit": "e8acd582f1d92aeb688b3c09be2ec63829b7653f",
+          "files": [
+            "src/_includes/components/callout.css"
+          ],
+          "o200k": {
+            "baseline": 2036,
+            "rewrite": 2549,
+            "searchReplace": 451,
+            "operations": 290,
+            "v1": 249,
+            "v2": 286
+          },
+          "w": {
+            "opsVsSearchReplace": 0.3569844789356984,
+            "opsVsRewrite": 0.8862298940761083,
+            "searchReplaceShareOfReading": 0.22151277013752455
+          },
+          "v": {
+            "v1": 0.8777013752455796,
+            "v2": 0.8595284872298625
+          }
+        },
+        {
+          "commit": "74f3a34305f51f524579f7ddbc5e014b6971b4db",
+          "files": [
+            "src/_data/opencollective.js"
+          ],
+          "o200k": {
+            "baseline": 2123,
+            "rewrite": 2747,
+            "searchReplace": 530,
+            "operations": 464,
+            "v1": 450,
+            "v2": 332
+          },
+          "w": {
+            "opsVsSearchReplace": 0.12452830188679243,
+            "opsVsRewrite": 0.8310884601383327,
+            "searchReplaceShareOfReading": 0.24964672633066415
+          },
+          "v": {
+            "v1": 0.7880357983984927,
+            "v2": 0.843617522373999
+          }
+        },
+        {
+          "commit": "02355fd2a1a27ea4b6e21bb358dd101eb8faf149",
+          "files": [
+            "src/_data/sisterSite.js",
+            "src/_includes/components/popover.css"
+          ],
+          "o200k": {
+            "baseline": 480,
+            "rewrite": 927,
+            "searchReplace": 603,
+            "operations": 562,
+            "v1": 209,
+            "v2": 299
+          },
+          "w": {
+            "opsVsSearchReplace": 0.06799336650082921,
+            "opsVsRewrite": 0.3937432578209277,
+            "searchReplaceShareOfReading": 1.25625
+          },
+          "v": {
+            "v1": 0.5645833333333333,
+            "v2": 0.3770833333333333
+          }
+        },
+        {
+          "commit": "b17584e7920c7fb3591855f38a0ae266a96dff92",
+          "files": [
+            "src/_includes/components/possum-mascot.js"
+          ],
+          "o200k": {
+            "baseline": 2806,
+            "rewrite": 3820,
+            "searchReplace": 409,
+            "operations": 350,
+            "v1": 434,
+            "v2": 258
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1442542787286064,
+            "opsVsRewrite": 0.9083769633507853,
+            "searchReplaceShareOfReading": 0.1457590876692801
+          },
+          "v": {
+            "v1": 0.8453314326443335,
+            "v2": 0.9080541696364932
+          }
+        },
+        {
+          "commit": "9b80227bda547e4de849d450ac19d449568860a4",
+          "files": [
+            "eleventy.config.js",
+            "src/_includes/components/possum-mascot.js"
+          ],
+          "o200k": {
+            "baseline": 11172,
+            "rewrite": 14745,
+            "searchReplace": 1054,
+            "operations": 915,
+            "v1": 7121,
+            "v2": 544
+          },
+          "w": {
+            "opsVsSearchReplace": 0.13187855787476277,
+            "opsVsRewrite": 0.9379450661241099,
+            "searchReplaceShareOfReading": 0.09434300035803796
+          },
+          "v": {
+            "v1": 0.3626029359112066,
+            "v2": 0.9513068385248836
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.13187855787476277,
+        "opsVsRewrite": 0.8862298940761083,
+        "searchReplaceShareOfReading": 0.22151277013752455,
+        "v1": 0.7880357983984927,
+        "v2": 0.8595284872298625
+      }
+    },
+    {
+      "repo": "doka-guide/platform",
+      "category": "static-site",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "10fd3084540e8eaebbf6ca8203b44cd34c25a083",
+          "files": [
+            "src/views/doc.11tydata.js"
+          ],
+          "o200k": {
+            "baseline": 2611,
+            "rewrite": 3025,
+            "searchReplace": 95,
+            "operations": 78,
+            "v1": 52,
+            "v2": 67
+          },
+          "w": {
+            "opsVsSearchReplace": 0.17894736842105263,
+            "opsVsRewrite": 0.9742148760330579,
+            "searchReplaceShareOfReading": 0.036384527001148984
+          },
+          "v": {
+            "v1": 0.9800842589046342,
+            "v2": 0.9743393335886633
+          }
+        },
+        {
+          "commit": "6904d12687608ff30906dc2b5ec9ae7bf4920c15",
+          "files": [
+            ".eleventy.js",
+            "gulpfile.js"
+          ],
+          "o200k": {
+            "baseline": 4581,
+            "rewrite": 5241,
+            "searchReplace": 830,
+            "operations": 473,
+            "v1": 2796,
+            "v2": 747
+          },
+          "w": {
+            "opsVsSearchReplace": 0.4301204819277108,
+            "opsVsRewrite": 0.9097500477008205,
+            "searchReplaceShareOfReading": 0.18118314778432656
+          },
+          "v": {
+            "v1": 0.389652914210871,
+            "v2": 0.8369351669941061
+          }
+        },
+        {
+          "commit": "ae68e24528742ce2ff212c4eee0db25fa633cc62",
+          "files": [
+            ".eleventy.js"
+          ],
+          "o200k": {
+            "baseline": 3522,
+            "rewrite": 4203,
+            "searchReplace": 246,
+            "operations": 211,
+            "v1": 2600,
+            "v2": 130
+          },
+          "w": {
+            "opsVsSearchReplace": 0.1422764227642277,
+            "opsVsRewrite": 0.9497977635022603,
+            "searchReplaceShareOfReading": 0.06984667802385008
+          },
+          "v": {
+            "v1": 0.2617830777967064,
+            "v2": 0.9630891538898353
+          }
+        },
+        {
+          "commit": "367eafb72ca936b233f7453240cb74441a8b42c0",
+          "files": [
+            ".eleventy.js",
+            "src/views/feed.11tydata.js"
+          ],
+          "o200k": {
+            "baseline": 4170,
+            "rewrite": 4445,
+            "searchReplace": 1085,
+            "operations": 474,
+            "v1": 653,
+            "v2": 819
+          },
+          "w": {
+            "opsVsSearchReplace": 0.5631336405529954,
+            "opsVsRewrite": 0.893363329583802,
+            "searchReplaceShareOfReading": 0.26019184652278177
+          },
+          "v": {
+            "v1": 0.8434052757793765,
+            "v2": 0.8035971223021583
+          }
+        },
+        {
+          "commit": "7adb73805e1aea9578d1c2008b910b20880bbf56",
+          "files": [
+            "config/constants.js",
+            "src/transforms/article-code-blocks-transform.js",
+            "src/transforms/color-picker-transform.js"
+          ],
+          "o200k": {
+            "baseline": 1331,
+            "rewrite": 1663,
+            "searchReplace": 352,
+            "operations": 338,
+            "v1": 146,
+            "v2": 241
+          },
+          "w": {
+            "opsVsSearchReplace": 0.03977272727272729,
+            "opsVsRewrite": 0.7967528562838244,
+            "searchReplaceShareOfReading": 0.2644628099173554
+          },
+          "v": {
+            "v1": 0.8903080390683696,
+            "v2": 0.8189331329827197
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.17894736842105263,
+        "opsVsRewrite": 0.9097500477008205,
+        "searchReplaceShareOfReading": 0.18118314778432656,
+        "v1": 0.8434052757793765,
+        "v2": 0.8369351669941061
+      }
+    },
+    {
+      "repo": "mdn/learning-area",
+      "category": "static-site",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "21973263ba859ff3477919087b488157f9d618a6",
+          "files": [
+            "javascript/apis/document-manipulation/dom-example-manipulated.html"
+          ],
+          "o200k": {
+            "baseline": 382,
+            "rewrite": 442,
+            "searchReplace": 43,
+            "operations": 42,
+            "v1": 185,
+            "v2": 52
+          },
+          "w": {
+            "opsVsSearchReplace": 0.023255813953488413,
+            "opsVsRewrite": 0.9049773755656109,
+            "searchReplaceShareOfReading": 0.112565445026178
+          },
+          "v": {
+            "v1": 0.5157068062827226,
+            "v2": 0.8638743455497382
+          }
+        },
+        {
+          "commit": "dbed6bcb8284634c7549c4da596ec30b0cfc6e7e",
+          "files": [
+            "css/css-layout/practical-positioning-examples/fixed-info-box.html"
+          ],
+          "o200k": {
+            "baseline": 1316,
+            "rewrite": 1513,
+            "searchReplace": 35,
+            "operations": 36,
+            "v1": 468,
+            "v2": 55
+          },
+          "w": {
+            "opsVsSearchReplace": -0.02857142857142847,
+            "opsVsRewrite": 0.9762062128222075,
+            "searchReplaceShareOfReading": 0.026595744680851064
+          },
+          "v": {
+            "v1": 0.6443768996960486,
+            "v2": 0.9582066869300911
+          }
+        },
+        {
+          "commit": "6720217b3ddd9ca37c4ad1496e6967da9e98d5ab",
+          "files": [
+            "html/forms/sending-form-data/get-method.html",
+            "html/forms/sending-form-data/post-method.html",
+            "html/tables/basic/minimal-table.css"
+          ],
+          "o200k": {
+            "baseline": 690,
+            "rewrite": 854,
+            "searchReplace": 813,
+            "operations": 752,
+            "v1": 503,
+            "v2": 548
+          },
+          "w": {
+            "opsVsSearchReplace": 0.07503075030750306,
+            "opsVsRewrite": 0.11943793911007028,
+            "searchReplaceShareOfReading": 1.1782608695652175
+          },
+          "v": {
+            "v1": 0.2710144927536232,
+            "v2": 0.20579710144927532
+          }
+        },
+        {
+          "commit": "233917e3a39f36ef320fd9f9424a03e9c41879ec",
+          "files": [
+            "css/css-layout/practical-positioning-examples/hidden-info-panel.html",
+            "css/styling-boxes/advanced_box_effects/blend-modes.html",
+            "css/styling-boxes/advanced_box_effects/filters.html"
+          ],
+          "o200k": {
+            "baseline": 2456,
+            "rewrite": 3023,
+            "searchReplace": 5135,
+            "operations": 3266,
+            "v1": 1609,
+            "v2": 2026
+          },
+          "w": {
+            "opsVsSearchReplace": 0.3639727361246349,
+            "opsVsRewrite": -0.08038372477671185,
+            "searchReplaceShareOfReading": 2.090798045602606
+          },
+          "v": {
+            "v1": 0.34486970684039087,
+            "v2": 0.17508143322475567
+          }
+        },
+        {
+          "commit": "180371ffc567f0f2ef359bf408b976667839e764",
+          "files": [
+            "javascript/introduction-to-js-1/troubleshooting/number-game-errors.html"
+          ],
+          "o200k": {
+            "baseline": 807,
+            "rewrite": 983,
+            "searchReplace": 53,
+            "operations": 51,
+            "v1": 514,
+            "v2": 56
+          },
+          "w": {
+            "opsVsSearchReplace": 0.037735849056603765,
+            "opsVsRewrite": 0.948118006103764,
+            "searchReplaceShareOfReading": 0.06567534076827757
+          },
+          "v": {
+            "v1": 0.3630731102850062,
+            "v2": 0.9306071871127634
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.037735849056603765,
+        "opsVsRewrite": 0.9049773755656109,
+        "searchReplaceShareOfReading": 0.112565445026178,
+        "v1": 0.3630731102850062,
+        "v2": 0.8638743455497382
+      }
+    },
+    {
+      "repo": "dlarroder/dalelarroder",
+      "category": "tailwind-site",
+      "band": "small",
+      "tasks": [
+        {
+          "commit": "49c88b89fdd954fce210d9d54edf1f76ecd26a00",
+          "files": [
+            "app/components/github-contributions/calendar.tsx",
+            "app/components/github-contributions/year-select.tsx"
+          ],
+          "o200k": {
+            "baseline": 1172,
+            "rewrite": 2047,
+            "searchReplace": 506,
+            "operations": 408,
+            "v1": 862,
+            "v2": 249
+          },
+          "w": {
+            "opsVsSearchReplace": 0.19367588932806323,
+            "opsVsRewrite": 0.8006839276990718,
+            "searchReplaceShareOfReading": 0.431740614334471
+          },
+          "v": {
+            "v1": 0.26450511945392496,
+            "v2": 0.787542662116041
+          }
+        },
+        {
+          "commit": "f28e29474347127143a4973aac1916c1a6335105",
+          "files": [
+            "app/components/spotify/spotify.ts",
+            "app/components/spotify/top-tracks.tsx"
+          ],
+          "o200k": {
+            "baseline": 879,
+            "rewrite": 1346,
+            "searchReplace": 383,
+            "operations": 333,
+            "v1": 486,
+            "v2": 195
+          },
+          "w": {
+            "opsVsSearchReplace": 0.13054830287206265,
+            "opsVsRewrite": 0.7526002971768202,
+            "searchReplaceShareOfReading": 0.43572241183162685
+          },
+          "v": {
+            "v1": 0.447098976109215,
+            "v2": 0.7781569965870307
+          }
+        },
+        {
+          "commit": "0e46b10cf18b878a4662d7d3bcb13fd37701f6f2",
+          "files": [
+            "app/components/spotify/now-playing.tsx",
+            "app/components/spotify/spotify.ts"
+          ],
+          "o200k": {
+            "baseline": 1593,
+            "rewrite": 1955,
+            "searchReplace": 397,
+            "operations": 286,
+            "v1": 945,
+            "v2": 224
+          },
+          "w": {
+            "opsVsSearchReplace": 0.2795969773299748,
+            "opsVsRewrite": 0.8537084398976982,
+            "searchReplaceShareOfReading": 0.24921531701192717
+          },
+          "v": {
+            "v1": 0.4067796610169492,
+            "v2": 0.8593848085373509
+          }
+        },
+        {
+          "commit": "74188b764d5ade8b853856c25b1fa87b39888498",
+          "files": [
+            "app/components/github-contributions/activity-tooltip.tsx"
+          ],
+          "o200k": {
+            "baseline": 333,
+            "rewrite": 772,
+            "searchReplace": 530,
+            "operations": 503,
+            "v1": 260,
+            "v2": 145
+          },
+          "w": {
+            "opsVsSearchReplace": 0.05094339622641508,
+            "opsVsRewrite": 0.3484455958549223,
+            "searchReplaceShareOfReading": 1.5915915915915917
+          },
+          "v": {
+            "v1": 0.21921921921921927,
+            "v2": 0.5645645645645645
+          }
+        },
+        {
+          "commit": "ee901da9d30b0945d0e9f9fb4d290cf8cdcd328e",
+          "files": [
+            "app/components/github-contributions/activity-tooltip.tsx",
+            "app/components/github-contributions/calendar.tsx",
+            "app/components/thoughts.tsx",
+            "app/projects/projects.tsx",
+            "app/tailwind.css"
+          ],
+          "o200k": {
+            "baseline": 2834,
+            "rewrite": 4584,
+            "searchReplace": 4452,
+            "operations": 3042,
+            "v1": 1451,
+            "v2": 1564
+          },
+          "w": {
+            "opsVsSearchReplace": 0.316711590296496,
+            "opsVsRewrite": 0.3363874345549738,
+            "searchReplaceShareOfReading": 1.570924488355681
+          },
+          "v": {
+            "v1": 0.48800282286520824,
+            "v2": 0.44812985179957654
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.19367588932806323,
+        "opsVsRewrite": 0.7526002971768202,
+        "searchReplaceShareOfReading": 0.43572241183162685,
+        "v1": 0.4067796610169492,
+        "v2": 0.7781569965870307
+      }
+    },
+    {
+      "repo": "nelsonlaidev/nelsonlai.dev",
+      "category": "tailwind-site",
+      "band": "medium",
+      "tasks": [
+        {
+          "commit": "c0d625e37123f57703ef94977d92b08c0f8ed4ac",
+          "files": [
+            "src/orpc/pagination.ts",
+            "src/orpc/routers/comment.router.ts",
+            "src/orpc/routers/message.router.ts"
+          ],
+          "o200k": {
+            "baseline": 3081,
+            "rewrite": 3671,
+            "searchReplace": 787,
+            "operations": 692,
+            "v1": 873,
+            "v2": 511
+          },
+          "w": {
+            "opsVsSearchReplace": 0.12071156289707752,
+            "opsVsRewrite": 0.8114955053119042,
+            "searchReplaceShareOfReading": 0.25543654657578707
+          },
+          "v": {
+            "v1": 0.7166504381694255,
+            "v2": 0.8341447581953911
+          }
+        },
+        {
+          "commit": "ccdec4ba5a96262595e21ac093a3c193cbd932ab",
+          "files": [
+            "src/orpc/pagination.ts"
+          ],
+          "o200k": {
+            "baseline": 290,
+            "rewrite": 343,
+            "searchReplace": 279,
+            "operations": 175,
+            "v1": 208,
+            "v2": 178
+          },
+          "w": {
+            "opsVsSearchReplace": 0.37275985663082434,
+            "opsVsRewrite": 0.4897959183673469,
+            "searchReplaceShareOfReading": 0.9620689655172414
+          },
+          "v": {
+            "v1": 0.2827586206896552,
+            "v2": 0.38620689655172413
+          }
+        },
+        {
+          "commit": "de1472a4a63923c9dafa1d830b62b781b053e74b",
+          "files": [
+            "playwright.config.ts"
+          ],
+          "o200k": {
+            "baseline": 395,
+            "rewrite": 502,
+            "searchReplace": 221,
+            "operations": 183,
+            "v1": 338,
+            "v2": 118
+          },
+          "w": {
+            "opsVsSearchReplace": 0.17194570135746612,
+            "opsVsRewrite": 0.6354581673306773,
+            "searchReplaceShareOfReading": 0.5594936708860759
+          },
+          "v": {
+            "v1": 0.14430379746835442,
+            "v2": 0.7012658227848101
+          }
+        },
+        {
+          "commit": "b392b167272aae2f1f3098b3a690d3b7e9454814",
+          "files": [
+            "src/orpc/routers/comment.router.ts"
+          ],
+          "o200k": {
+            "baseline": 2119,
+            "rewrite": 2471,
+            "searchReplace": 42,
+            "operations": 43,
+            "v1": 286,
+            "v2": 60
+          },
+          "w": {
+            "opsVsSearchReplace": -0.023809523809523725,
+            "opsVsRewrite": 0.9825981384055038,
+            "searchReplaceShareOfReading": 0.019820670127418595
+          },
+          "v": {
+            "v1": 0.8650306748466258,
+            "v2": 0.9716847569608306
+          }
+        },
+        {
+          "commit": "64561747b9e0468759f8d72d4b5c56ef248fa4d5",
+          "files": [
+            "src/hooks/queries/auth.query.ts"
+          ],
+          "o200k": {
+            "baseline": 166,
+            "rewrite": 203,
+            "searchReplace": 88,
+            "operations": 84,
+            "v1": 83,
+            "v2": 63
+          },
+          "w": {
+            "opsVsSearchReplace": 0.045454545454545414,
+            "opsVsRewrite": 0.5862068965517242,
+            "searchReplaceShareOfReading": 0.5301204819277109
+          },
+          "v": {
+            "v1": 0.5,
+            "v2": 0.6204819277108433
+          }
+        }
+      ],
+      "median": {
+        "opsVsSearchReplace": 0.12071156289707752,
+        "opsVsRewrite": 0.6354581673306773,
+        "searchReplaceShareOfReading": 0.5301204819277109,
+        "v1": 0.5,
+        "v2": 0.7012658227848101
+      }
+    }
+  ]
+}
