@@ -3,13 +3,14 @@
 Each gate is a number fixed before the run it judges. A gate is moved only by a dated amendment with its reason, never
 after the results are in. A missed gate is recorded as missed, with its numbers.
 
-**Status (2026-11-08):** the owner confirmed C0 on 2026-11-08 ("Gate C0 in detail" below). Every other gate is
+**Status (2026-11-08):** the owner confirmed C0 on 2026-11-08 ("Gate C0 in detail" below), and **C0 was missed** the same
+day ("The result of gate C0" below). Every other gate is
 **tentative** (from the planning session, 2026-11-06). Before a gate's run, the owner confirms or changes it, and this
 file records that with the date.
 
 | Id | Phase | Gate | Judged on | Status |
 |---|---|---|---|---|
-| C0 | 0 | Map plus code needed is at least 50% smaller than the files an agent opens for the same task | The median of 17 public repositories, pinned by commit; Anthropic's token counter, o200k_base as a proxy ("Gate C0 in detail") | Confirmed 2026-11-08 |
+| C0 | 0 | Map plus code needed is at least 50% smaller than the files an agent opens for the same task | The median of 17 public repositories, pinned by commit; Anthropic's token counter, o200k_base as a proxy ("Gate C0 in detail") | **Missed** 2026-11-08: median -165.8% |
 | C1 | 1 | Every byte outside the edits stays identical | Property tests: random edits on random files, including CRLF, BOM, non-ASCII, empty files | Tentative |
 | C2a | 2 | The index of a 5,000-file repository builds in under 30 s | A named repository, on a named machine; a timed run | Tentative |
 | C2b | 2 | The index updates in under 200 ms after a save | As C2a, p50 and p99 over 100 saves | Tentative |
@@ -94,3 +95,20 @@ note says so. None of them makes the layer side cheaper.
    never zero.
 6. **A task is skipped, and the walk goes on,** when a modified file is over 1 MB or a parser fails on it. The results
    list each skipped commit with its reason.
+
+## The result of gate C0 (2026-11-08)
+
+**Missed.** The median saving over the 17 gate repositories is **-165.8%** with Anthropic's token counter
+(claude-opus-5-5), against a threshold of +50%. The run is `docs/measurements/2026-11-08-phase0-corpus.md`, at this
+repository's commit `8b249b0`, with two replacements written in the results.
+
+- **Spread:** lower quartile -279.4%, upper quartile -63.7%. 16 of the 17 repositories have a negative saving. o200k_base
+  gives the same picture (median -187.3%).
+- **The one positive repository,** GrapheneOS/grapheneos.org (+59.0%), is not representative: 53 of its 61 commits
+  changed a page over 1 MB and were skipped (clarification 6), so 4 of its 5 tasks change the same page.
+- **Beside the gate:** the code needed and its signatures alone, without any map, save 28.6% (median, o200k). With the
+  whole-repository map instead of the folder map, the median is -2994.4%.
+- **What it measures:** the cost of reading, with both sides told which files changed. It does not measure finding the
+  code, or the edits an agent writes, or accuracy.
+
+As the roadmap's phase 0 says, the project stops or rescopes. The owner decides which, with a decision record.
