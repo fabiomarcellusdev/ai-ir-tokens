@@ -15,6 +15,7 @@ import ts from "typescript";
 import * as parse5 from "parse5";
 import postcss from "postcss";
 import { getEncoding } from "js-tiktoken";
+import { commentRanges, removeRanges } from "./html-text.mjs";
 
 const ENCODINGS = ["o200k_base", "cl100k_base"];
 const enc = Object.fromEntries(ENCODINGS.map((n) => [n, getEncoding(n)]));
@@ -351,8 +352,8 @@ function htmlMap(file, doc, ids) {
 }
 
 /** Plain view: still valid HTML. Comments and indentation removed, whitespace between tags collapsed. */
-function htmlPlain(text) {
-  return text.replace(/<!--[\s\S]*?-->/g, "").split("\n").map((l) => l.trim()).filter(Boolean).join("\n") + "\n";
+function htmlPlain(text, doc) {
+  return removeRanges(text, commentRanges(doc)).split("\n").map((l) => l.trim()).filter(Boolean).join("\n") + "\n";
 }
 
 function htmlViews(file, text) {
@@ -360,7 +361,7 @@ function htmlViews(file, text) {
   const ids = htmlIds(doc);
   return {
     doc, ids,
-    plain: htmlPlain(text),
+    plain: htmlPlain(text, doc),
     compact: htmlRender(doc, text, ids, { elide: false }),
     compactNoIds: htmlRender(doc, text, ids, { elide: false, inlineIds: false }),
     elided: htmlRender(doc, text, ids, { elide: true, inlineIds: false }),

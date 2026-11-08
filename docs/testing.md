@@ -12,6 +12,7 @@ One command runs each level: `node tools/check.mjs <fast|full|gate>`. It uses No
 |---|---|---|---|
 | Every commit | `fast` | `.githooks/pre-commit`, after `git-guard` (no commit on `main`, none in the quiet hours) | Unit tests; voice lint; package guards intact; expired security exceptions; privacy lint |
 | Every push and pull request | `full` | `.githooks/pre-push`, after `git-guard` (no push to `main`, no deletion, none in the quiet hours); then CI (`.github/workflows/checks.yml`) on Windows, macOS and Linux, and once a month | `fast` + golden sample views + known vulnerabilities (osv.dev) |
+| Every pull request and push to `main` | Code scanning | GitHub's CodeQL (default setup, turned on by the owner on 2026-11-07); the `task-pipeline` skill reads the pull request's open alerts before it hands over | Static analysis of the JavaScript and the workflows for known unsafe patterns (injection, incomplete escaping, unsafe paths) |
 | Every merge | The owner's review | GitHub | The owner merges only after the local checks and CI passed (decision 0005) |
 | Every phase gate | `gate` | The `gate-check` skill | `full` + the gate tests in `tests/gates/` + the gate's measurement + independent reviews |
 | Every release (from 0.1) | `gate` + release checks | The release hat's checklist (`docs/future-hats.md`) | Install the packed tarball in a clean folder and run the CLI and the MCP server; the notices of every shipped dependency |
@@ -36,6 +37,8 @@ Every check must be able to fail. The negative control is the broken input that 
 | Privacy lint | No private term in a file that git would publish | Runs only where `private-docs/privacy-terms.txt` exists (the owner's checkout); CI skips it |
 | Golden sample views | The views and counts of the 8 sample files are unchanged | Any change to `count.mjs` output; an intended change re-pins with `update-golden` in the same commit |
 | Known vulnerabilities | No locked package has a known vulnerability above low | `pnpm@10.0.0` (known advisories) fails the scanner |
+| Unit tests: `code-scanning` | The two CodeQL findings of 2026-11-07 stay fixed: no package name changes a URL's host or path; `--min-age-days` is read only when present; HTML comments are found by the parser, so `<!--` in a script, an attribute or a textarea stays, and `<!-->` is an empty comment | `a/b/c`, `../../-/user` and `@scope/..` as names; a package named `5`; `<!<!---->--x`, `<!-->`, `<script>"<!--"</script>` and an unclosed comment, each of which a regex version got wrong (the parser cases skip where `bench/token-count` has no packages installed) |
+| Code scanning (CodeQL) | No known unsafe pattern in the code that CodeQL can find | The two alerts of 2026-11-07, found in code that the unit tests and the reviews had passed |
 
 ## Added by later phases
 
