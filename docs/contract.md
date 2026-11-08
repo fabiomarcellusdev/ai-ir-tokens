@@ -78,3 +78,19 @@ apps; and the saving with the whole-repository map instead of the folder map.
 **Pass, miss, or no result.** If the median is 0.50 or more, the gate passes. If it is lower, the gate is missed, and
 the project stops or rescopes (`docs/roadmap.md`, phase 0). If the endpoint is not available, the run reports
 o200k_base only, as "proxy only", and the gate has no result until the endpoint has counted it.
+
+**Clarifications before the run (2026-11-08).** The two code reviews of `bench/token-count/corpus.mjs` found points
+the rules above left open. These clarifications were written after 3 dry runs (o200k_base only, not results), so this
+note says so. None of them makes the layer side cheaper.
+
+1. **Tests (rule 2)** are a path segment named `test`, `tests`, `spec`, `specs`, `__tests__` or `__mocks__`, or a file
+   name with `.test.` or `.spec.` (or `_test`, `-spec`) in it. A substring is not enough: `latest.ts` is not a test.
+2. **A pure insertion (rule 3)** counts as a change to the declarations on both sides of it, so their code goes on the
+   layer side.
+3. **A reserve** takes the role and the category of the repository it replaces, and the results name the reason.
+4. **The gate gives "pass" or "miss" only** when exactly 17 gate repositories have 3 tasks or more; otherwise it gives
+   "no result" with the reason.
+5. **A name the run cannot resolve** to the repository's own declaration costs one typical map line on the layer side,
+   never zero.
+6. **A task is skipped, and the walk goes on,** when a modified file is over 1 MB or a parser fails on it. The results
+   list each skipped commit with its reason.
