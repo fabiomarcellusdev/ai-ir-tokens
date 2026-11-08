@@ -4,10 +4,9 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Branch `p0/docs-public-ready`:** ready the repository to be public (owner, 2026-11-07). The licence is Apache-2.0
-(decision 0006). The measurement record's local path is now relative, and the history stays as it is (decision 0005,
-amendment "the history stays as it is"). After the merge, the owner makes the repository public and turns on branch
-protection, secret scanning and push protection (`docs/follow-ups.md`, "Making the repository public").
+**Branch `p0/feat-worktrees`:** parallel checkouts (owner, 2026-11-08; decision 0004, amendment "parallel
+checkouts"). `tools/worktree.mjs` creates a worktree per task branch with the owner's local files, and the guards read
+the private files from the main checkout. Waiting for the owner's merge. The same change follows in the template.
 
 ## Next: phase 0, measure before building
 
@@ -29,3 +28,5 @@ other than Claude Code read them too.
   (`docs/measurements/2026-11-07-pnpm-rerun.md`); CI and the branch strategy (decision 0004).
 - 2026-11-07: the task pipeline, the owner's approval, local checks first, quiet hours, UTC commit dates and the
   ASD-STE100 output style (decision 0005).
+- 2026-11-07: the repository is public under Apache-2.0 (decision 0006), with branch protection, secret scanning,
+  push protection and CodeQL; the two CodeQL alerts are fixed.

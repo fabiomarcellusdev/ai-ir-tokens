@@ -206,8 +206,9 @@ a push to `main`, a force push, a branch deletion, `--no-verify`, and the owner'
    file tools; agents with a shell use no network.
 4. **Brief an agent with paths, not pastes,** and with the spec rather than your conclusion when you want an
    independent check.
-5. **Parallel work:** read-only agents may run in parallel, three at most. Agents that write, and heavy commands, run
-   one at a time.
+5. **Parallel work:** read-only agents may run in parallel, three at most. Agents that write run one at a time in a
+   checkout; parallel writing work uses separate worktrees, one session each ("Version control"). Heavy commands
+   run one at a time.
 6. **Plugins:** read a plugin's files before it is installed, and install it for the narrowest scope. A plugin with
    hooks or an MCP server needs the owner's yes.
 7. **The security guard** (`.claude/hooks/security-guard.mjs`) holds for the owner any command that names a private or
@@ -289,10 +290,20 @@ TypeScript library and tool.
   squash-merged. Each task has a short branch from `main`: `p<phase>/<type>-<short-name>` (types: `feat`, `fix`,
   `test`, `docs`, `bench`, `sec`, `chore`), plus `deps/<package>-<version>`, `exp/<name>` (never merged) and
   `fix/<name>`. Phases are tags (`phase-0-done`), not branches. Agents never merge, push to `main` or delete branches.
-- **One checkout, no worktrees** for now (owner, 2026-11-07). The reason: one person works one session at a time
-  here. Do not create a git worktree or a second clone; switch branches in this checkout. Check `git status` first and
-  stash or commit before switching. Revisit when parallel agents on separate branches would help
-  (`docs/follow-ups.md`).
+- **Parallel checkouts** (owner, 2026-11-08; decision 0004, amendment "parallel checkouts"). Sessions may work in
+  parallel, each in its own git worktree on its own task branch.
+  1. **One session per checkout.** Never start a second session in a checkout that a session uses.
+  2. **Create a worktree only with** `node tools/worktree.mjs add <branch>`. It puts the worktree beside the main
+     checkout and copies the owner's local files into it. Never use `git worktree add`, Claude Code's own worktree
+     tool, or a second clone: they skip the copy.
+  3. **At most 3 worktrees** besides the main checkout (`tools/worktree.config.json`).
+  4. The guards read the private terms and the quiet hours from the main checkout, so they work in every worktree.
+     They find the main checkout from the folder layout and check git's records. In a worktree outside
+     `<name>.worktrees/`, or with a changed `.git` file, they fail closed: every action asks and every push is refused.
+     `node tools/check.mjs fast` fails in a worktree that lacks the owner's local files; fix it with
+     `node tools/worktree.mjs sync`. Never edit a `.git` file or folder.
+  5. When the pull request is merged: `node tools/worktree.mjs remove <branch>`. It keeps a worktree with changes.
+  6. In one checkout, check `git status` before switching branches; stash or commit first.
 - CI (`.github/workflows/checks.yml`) runs `node tools/check.mjs full` on Windows, macOS and Linux for every pull
   request, every push to `main` and once a month. CI checks correctness only. It never times anything.
 - Run the full suite locally before every push, so CI confirms rather than discovers.
@@ -352,6 +363,7 @@ node tools/check.mjs full            # every push: fast + golden sample views + 
 node tools/check.mjs gate            # every phase gate: full + tests/gates/
 node tools/check.mjs update-golden   # re-pin the sample views after an explained, intended change
 node tools/quiet-hours.mjs status    # whether now is inside the owner's quiet hours
+node tools/worktree.mjs add <branch> # a parallel checkout for a task branch ("Version control")
 git config core.hooksPath .githooks  # once per clone: the commit and push hooks
 ```
 
@@ -381,8 +393,8 @@ LICENSE, NOTICE         Apache-2.0 (decision 0006)
 .claude/skills/         The fixed procedures: task-pipeline, vet-package, monthly-update-review, measurement-run,
                         gate-check, decision-record
 .claude/output-styles/  asd-ste100.md: every reply 80% of the way to ASD-STE100
-tools/                  check.mjs (milestone checks), git-guard.mjs, quiet-hours.mjs, osv-check.mjs,
-                        vet-package.mjs, voice-lint.mjs, and their tests
+tools/                  check.mjs (milestone checks), git-guard.mjs, quiet-hours.mjs, worktree.mjs,
+                        main-checkout.mjs, osv-check.mjs, vet-package.mjs, voice-lint.mjs, and their tests
 bench/token-count/      The measurement script (count.mjs), token_demo.mjs, the 8 sample files, pnpm settings,
                         golden/ (the pinned views of the samples)
 docs/

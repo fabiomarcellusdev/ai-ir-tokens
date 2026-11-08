@@ -20,6 +20,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { status as quietStatus } from "./quiet-hours.mjs";
+import { privatePath } from "./main-checkout.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const PROTECTED = ["refs/heads/main", "refs/heads/master"];
@@ -111,8 +112,9 @@ const EMPTY_TREE = "4b825dc642cb6eb9a060e54bf8d69288fbee4904";
 // Read history without letting the working tree change what git shows: no attributes (a "-diff" line would hide
 // added text), no text conversion, no external diff, no quoted file names.
 const SAFE = ["-c", "core.quotePath=false", `--attr-source=${EMPTY_TREE}`];
+// The terms are git-ignored, so they live in the main checkout only; a linked worktree reads them from there.
 const privacyTerms = () => {
-  const f = path.join(ROOT, "private-docs", "privacy-terms.txt");
+  const f = privatePath("private-docs", "privacy-terms.txt");
   return fs.existsSync(f) ? fs.readFileSync(f, "utf8").split(/\r?\n/).map((t) => t.trim()).filter((t) => t && !t.startsWith("#")) : [];
 };
 function quietProblem() {

@@ -13,10 +13,10 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { privatePath } from "./main-checkout.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-export const CONFIG_PATH = path.join(ROOT, ".local", "quiet-hours.json");
+/** The file is git-ignored, so it lives in the main checkout only; a linked worktree reads it from there. */
+export const configPath = () => privatePath(".local", "quiet-hours.json");
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const toMinutes = (hhmm, { allow24 = false } = {}) => {
@@ -58,8 +58,19 @@ export function inQuietHours(cfg, date = new Date()) {
   return (cfg.days.includes(day) && minutes >= start) || (cfg.days.includes(yesterday) && minutes < end);
 }
 
-/** { quiet, reason } for now. No config: not quiet. An unreadable or invalid config: quiet (fail closed). */
-export function status(date = new Date(), file = CONFIG_PATH) {
+/**
+ * { quiet, reason } for now. No config: not quiet. An unreadable or invalid config, or a main checkout that cannot
+ * be found: quiet (fail closed).
+ */
+export function status(date = new Date(), file = undefined) {
+  if (file === undefined) {
+    try {
+      file = configPath();
+    } catch {
+      // No error text: it holds local paths, and the reason may reach a public message.
+      return { quiet: true, reason: "the main checkout could not be found; it counts as quiet until the owner fixes it" };
+    }
+  }
   if (!fs.existsSync(file)) return { quiet: false, reason: "no quiet hours are set" };
   let cfg;
   try {
