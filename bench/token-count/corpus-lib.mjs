@@ -326,6 +326,7 @@ export function baseUrlFrom(tsconfigText) {
  * range, the smallest block that holds the whole range; if no block holds it all, every block it touches.
  */
 export function htmlChangedCode(text, ranges) {
+  text = text.replace(/^\uFEFF/, ""); // as in htmlViews: a BOM is not content
   const doc = parse5.parse(text, { sourceCodeLocationInfo: true });
   const ids = htmlIds(doc);
   const candidates = [];

@@ -365,7 +365,7 @@ export function htmlPlain(text, doc) {
 
 export function htmlViews(file, text) {
   // A leading byte-order mark is not content: left in, it makes the parser put the head's children in the body.
-  text = text.replace(/^﻿/, "");
+  text = text.replace(/^\uFEFF/, "");
   const doc = parse5.parse(text, { sourceCodeLocationInfo: true });
   const ids = htmlIds(doc);
   return {

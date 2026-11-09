@@ -127,7 +127,7 @@ function measure(dir, task, cache) {
   const at = (ranked, budget) => cutMap(ranked, budget, count);
   const main = at(project, budgetFor(task.baseline));
   // Reported beside, item 2. TypeScript and JavaScript: every changed top-level statement (named or not, imports left
-  // out), and whether the cut map holds a line range that contains it. HTML and CSS entries carry no line ranges, so
+  // out), and whether the cut map holds a line range that contains it. HTML and CSS entries have line ranges since 2026-11-09, but this count is by file, so
   // for those files the count is of changed files whose entry is in the cut map.
   let decls = 0, declsIn = 0, markupFiles = 0, markupIn = 0;
   for (const f of task.files) {
@@ -259,7 +259,7 @@ if (MODE === "dev") {
     `- A perfect ranking (the changed files first, for information only): ${pct(summary.ceilingPassRate)}.`,
     `- Descriptions that name a changed file (its path or its file name): ${summary.namesChangedFile} of ${summary.tasks}.`,
     `- TypeScript and JavaScript: changed top-level statements whose line range is in the cut map: ${pct(summary.declarationsInMap)} of ${summary.changedStatements}.`,
-    `- HTML and CSS: their map entries carry no line ranges, so this counts changed files whose entry is in the cut map: ${pct(summary.markupFilesInMap)} of ${summary.markupFiles}.`,
+    `- HTML and CSS: this counts changed files (not statements) whose entry is in the cut map: ${pct(summary.markupFilesInMap)} of ${summary.markupFiles}.`,
     `- Fixed budgets: 1,000 tokens ${pct(summary.beside.fixed1000)}; 2,000 tokens ${pct(summary.beside.fixed2000)}. Shares of the baseline: 10% ${pct(summary.beside.share10)}; 50% ${pct(summary.beside.share50)}; 100% ${pct(summary.beside.share100)}.`,
     `- Median candidates per task: ${summary.medianCandidates}.`, "",
     "| Repository | Pass | Reference | Ranks of the changed files |", "|---|---|---|---|",

@@ -17,7 +17,7 @@ const t = L ? test : test.skip;
 /** The text of lines `from` to `to` (1-based, inclusive) of `text`, with line ends as LF. */
 const linesOf = (text, from, to) => text.replace(/\r\n/g, "\n").split("\n").slice(from - 1, to).join("\n");
 /** Every `L<from>-<to>` of a map entry, in order. */
-const ranges = (entry) => [...entry.matchAll(/\bL(\d+)-(\d+)\b/g)].map((m) => [Number(m[1]), Number(m[2])]);
+const ranges = (entry) => [...entry.matchAll(/(?<=^|  )L(\d+)-(\d+)(?=  |$)/gm)].map((m) => [Number(m[1]), Number(m[2])]);
 
 const HTML = [
   "<!doctype html>", //                         1
@@ -47,7 +47,20 @@ t("an HTML landmark's range holds the lines of that landmark", () => {
 t("an HTML range is the same with CRLF line ends and with a BOM", () => {
   const plain = ranges(L.fileMap("a.html", HTML));
   assert.deepEqual(ranges(L.fileMap("a.html", HTML.replace(/\n/g, "\r\n"))), plain);
-  assert.deepEqual(ranges(L.fileMap("a.html", "﻿" + HTML)), plain);
+  assert.deepEqual(ranges(L.fileMap("a.html", "\uFEFF" + HTML)), plain);
+  assert.notEqual("\uFEFF" + HTML, HTML, "control: the BOM is really there, written as an escape");
+});
+
+t("an HTML element that the parser closes by itself still covers its last line", () => {
+  // No </div>, no </p> and no </main>: the range must reach the last content line, never stop at the opening tag.
+  const html = "<body>\n<div>\n<p>a\n<p>b\n";
+  const [div] = ranges(L.fileMap("a.html", html));
+  assert.equal(div[0], 2);
+  assert.ok(div[1] >= 4, `the range ${div} stops before line 4`);
+  const next = "<body>\n<main>\n<ul>\n<li>a\n<li>b\n</main>\n<footer>f</footer>\n";
+  const r = ranges(L.fileMap("a.html", next));
+  assert.ok(r[0][1] >= 5 && r[0][1] <= 6, `main ${r[0]} should hold lines 2 to 6`);
+  assert.deepEqual(r[1], [7, 7]);
 });
 
 const CSS = [
@@ -72,7 +85,7 @@ t("a CSS rule group's range runs from its first rule's first line to its last ru
 t("a CSS range is the same with CRLF line ends and with a BOM", () => {
   const plain = ranges(L.fileMap("a.css", CSS));
   assert.deepEqual(ranges(L.fileMap("a.css", CSS.replace(/\n/g, "\r\n"))), plain);
-  assert.deepEqual(ranges(L.fileMap("a.css", "﻿" + CSS)), plain);
+  assert.deepEqual(ranges(L.fileMap("a.css", "\uFEFF" + CSS)), plain);
 });
 
 t("a CSS group with a gap between rules of the same key is two groups with two ranges", () => {
