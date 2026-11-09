@@ -4,13 +4,13 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Gate R1, step 1 of the rescope** (decision 0007). The 85 development tasks are picked and committed
-(`bench/token-count/r1-devtasks.json`, branch `p0/bench-r1-devtasks`) before any work on the ranking. Next: the
-ranking, built and tuned on these tasks only, then one test run on C0's 85 tasks.
+**Gate R1, step 1 of the rescope** (decision 0007; branch `p0/bench-r1-ranking`). The ranking is built, reviewed and
+tuned on the 85 development tasks only: 34/85 (40.0%), under the 55% bar fixed before the last attempt
+(`docs/measurements/2026-11-09-r1-dev-tuning.md`). The method is frozen. Next: the one test run on C0's 85 tasks.
 
 ## Next
 
-1. Gate R1's code (the ranked map and its measurement), with an independent review, then the run.
+1. Gate R1's test run, its results and the owner's decision.
 2. Only if R1 passes: the pilot's design and budget, for the owner's yes.
 
 ## Closed
