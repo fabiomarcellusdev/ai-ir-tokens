@@ -13,6 +13,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { mainCheckout, privatePath } from "./main-checkout.mjs";
 import { worktreeProblems, loadConfig as loadWorktreeConfig } from "./worktree.mjs";
+import { scanRepository } from "./secret-scan.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BENCH = path.join(ROOT, "bench", "token-count");
@@ -200,6 +201,15 @@ function privacy() {
   record("privacy lint (no private term in a file that git would publish)", hits.length === 0, hits.join("\n"));
 }
 
+// Every commit and every pull request: CI runs `full`, which includes this, so a pull request gets the same scan.
+function secrets() {
+  let hits, skipped;
+  try { ({ hits, skipped } = scanRepository(ROOT)); } catch (e) { return record("secret scan", false, String(e.message)); }
+  const notes = skipped.length ? `Not scanned:\n${skipped.join("\n")}` : "";
+  record("secret scan (no key, token or password in a file that git would publish)", hits.length === 0,
+    hits.length ? `${hits.join("\n")}\nFollow AGENTS.md, "If a secret appears": revoke and rotate a real secret first. A false alarm goes into tools/secret-scan.allow.json with its reason (the owner's yes).${notes ? "\n" + notes : ""}` : notes);
+}
+
 function golden() {
   if (!fs.existsSync(path.join(BENCH, "node_modules"))) {
     return record("golden sample views", false, "bench/token-count/node_modules is missing. Install with the owner's yes (AGENTS.md, Packages).");
@@ -245,7 +255,7 @@ if (isMain) {
   if (mode === "update-golden") updateGolden();
   else if (["fast", "full", "gate"].includes(mode)) {
     console.log(`ai-ir-tokens checks: ${mode}\n`);
-    unitTests(); voiceLint(); guards(); worktreeSetup(); privacy();
+    unitTests(); voiceLint(); guards(); worktreeSetup(); privacy(); secrets();
     if (mode !== "fast") { golden(); osv(); }
     if (mode === "gate") gateTests();
     const failed = results.filter((r) => !r.ok);

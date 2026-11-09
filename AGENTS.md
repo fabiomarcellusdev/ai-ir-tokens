@@ -219,6 +219,28 @@ These rules hold for every AI agent, in every tool.
    owner.
 10. **A held call is not an obstacle to work around.** When a guard holds or refuses a command, explain it to the
     owner.
+11. **Offer the right agents; never change them alone.** At setup and at each phase gate, review the project's agents
+    against its work, and give the owner considerations, each with its reason: an agent that fits as it is, one to
+    adapt (its checks name the wrong language or tools), one that is missing, or one that does not pay off. Change no
+    agent without the owner's yes.
+
+### If a secret appears
+
+A secret is a key, a token, a password or a private key: in a file, a command, tool output or the conversation. The
+scan (`node tools/secret-scan.mjs`, also in `check.mjs` and the push hook) finds the common formats; it never prints a
+secret. When one appears:
+
+1. **Stop.** Never repeat the secret in a reply, a command, a file, a commit or a pull request. Refer to it by its file,
+   its line and its kind.
+2. **Tell the owner to revoke and rotate it now.** Text sent to a model provider cannot be called back, so rotation is
+   the only step that makes the secret harmless. Everything below only limits where it spreads.
+3. **Remove it from the working files.** Read it from the environment or a git-ignored file instead. Run the scan
+   until it finds nothing.
+4. **Check the history and the commit messages.** The push hook can refuse a push whose commits or messages hold a
+   secret, but only for the formats the scan knows, and only in a clone with the hooks on. The owner decides how to
+   remove a secret from the branch's history. A pushed secret is public: rotation is the fix.
+5. **Recommend that the owner deletes the conversation** in which the secret appeared, as the tool allows (for Claude
+   Code, `CLAUDE.md`). Deleting it limits local copies; it does not undo what the provider received.
 
 ## The task pipeline (decision 0005)
 
@@ -305,8 +327,8 @@ TypeScript library and tool.
   on `main`: the git hooks refuse it. Stage files by name. Never rewrite, force-push or delete a pushed branch.
 - **Commit dates are UTC:** `TZ=UTC git commit ...` (PowerShell: `$env:TZ='UTC'`). A local offset would show the
   owner's time zone in public history; the git hooks refuse a commit or a push whose dates are not UTC.
-- **Before a push, the push hook checks every pushed commit:** no private or secret file, no private term in an added
-  line, no change to `.github/` (the owner pushes those), UTC dates, a fast-forward, and the pinned repository URL
+- **Before a push, the push hook checks every pushed commit:** no private or secret file, no private term or secret
+  (a key, a token, a password) in an added line or a commit message, no change to `.github/` (the owner pushes those), UTC dates, a fast-forward, and the pinned repository URL
   (`tools/git-guard.config.json`).
 - **Local first:** the push hook runs `node tools/check.mjs full` before CI sees a branch. CI must then pass on all
   three systems before the owner reviews.
@@ -424,7 +446,7 @@ LICENSE, NOTICE         Apache-2.0 (decision 0006)
 .gitattributes          LF line endings for every text file
 .githooks/              The commit and push hooks (tools/check.mjs fast and full)
 .claude/                Claude Code: settings, guard hooks, agents, skills, the ASD-STE100 output style
-tools/                  check.mjs (milestone checks), git-guard.mjs, quiet-hours.mjs, worktree.mjs,
+tools/                  check.mjs (milestone checks), git-guard.mjs, quiet-hours.mjs, secret-scan.mjs, worktree.mjs,
                         main-checkout.mjs, osv-check.mjs, vet-package.mjs, voice-lint.mjs, and their tests
 bench/token-count/      The views (views.mjs), the sample measurement (count.mjs) with the 8 sample files and
                         golden/ (their pinned views), phase 0's corpus run (corpus.mjs, corpus-lib.mjs and its tests,

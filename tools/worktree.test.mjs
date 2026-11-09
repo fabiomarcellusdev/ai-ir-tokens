@@ -29,7 +29,7 @@ const real = (p) => {
   return process.platform === "win32" ? r.toLowerCase() : r;
 };
 
-const SHIPPED = ["git-guard.mjs", "quiet-hours.mjs", "main-checkout.mjs", "worktree.mjs", "git-guard.config.json", "worktree.config.json"];
+const SHIPPED = ["git-guard.mjs", "quiet-hours.mjs", "main-checkout.mjs", "worktree.mjs", "secret-scan.mjs", "git-guard.config.json", "worktree.config.json"];
 const LOCAL = { "CLAUDE.local.md": "private notes\n", ".claude/settings.local.json": "{\"hooks\":{}}\n", ".claude/local/guard.mjs": "// a local guard\n" };
 const ALL_DAY = { timeZone: "UTC", days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], start: "00:00", end: "24:00" };
 

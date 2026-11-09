@@ -21,6 +21,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { status as quietStatus } from "./quiet-hours.mjs";
 import { privatePath } from "./main-checkout.mjs";
+import { scanAddedLines, scanText, loadAllow, allowed } from "./secret-scan.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const PROTECTED = ["refs/heads/main", "refs/heads/master"];
@@ -171,9 +172,22 @@ function prePush(remoteUrl, stdinText) {
     // -m lists the files of merge commits too; -z with quotePath off keeps non-ASCII names readable.
     const paths = commits.flatMap((c) => git([...SAFE, "diff-tree", "-m", "-r", "-z", "--no-commit-id", "--name-only", "--root", c]).split("\0"));
     problems.push(...pathProblems(paths, process.env));
+    const patch = git([...SAFE, "log", "-p", "-m", "--text", "--no-textconv", "--no-ext-diff", "--format=", ...range]);
     if (terms.length) {
-      const hits = addedLineHits(git([...SAFE, "log", "-p", "-m", "--text", "--no-textconv", "--no-ext-diff", "--format=", ...range]), terms);
+      const hits = addedLineHits(patch, terms);
       if (hits.length) problems.push(`A pushed commit adds a private term (${hits.length} term${hits.length > 1 ? "s" : ""}; see private-docs/privacy-terms.txt). Remove it from the branch history before pushing.`);
+    }
+    // Every pushed commit, not only the last: a secret added and then removed is still in the history.
+    let allow = [];
+    try { allow = loadAllow(ROOT); } catch (e) { problems.push(String(e.message)); }
+    const secrets = scanAddedLines(patch).filter((h) => !allowed(allow, h.file, h.name));
+    if (secrets.length) {
+      problems.push(`A pushed commit adds what looks like a secret: ${[...new Set(secrets.map((h) => `${h.file} (${h.name}, ${h.masked})`))].join("; ")}. Follow AGENTS.md, "If a secret appears": revoke and rotate a real secret first, then remove it from the branch history.`);
+    }
+    // A commit message is published with the commit, so it is scanned too.
+    const messageSecrets = scanText(git(["log", "--format=%B", ...range]));
+    if (messageSecrets.length) {
+      problems.push(`A pushed commit message holds what looks like a secret (${[...new Set(messageSecrets.map((h) => `${h.name}, ${h.masked}`))].join("; ")}). Follow AGENTS.md, "If a secret appears", then reword the commit.`);
     }
   }
   return [...new Set(problems)];

@@ -61,6 +61,26 @@ project's rules:
   notes, before editing a `.git` file, and before editing any guard, agent, skill or check.
 - Edit guard files with the Edit tool, never through the shell.
 
+## If a secret appears in a Claude Code session
+
+Follow `AGENTS.md`, "If a secret appears": stop, have the owner revoke and rotate it, remove it, check the history.
+Then recommend these steps to the owner for the conversation itself:
+
+1. End the session. `/clear` starts a new context, but it deletes no file.
+2. Delete the session's transcript. Claude Code keeps each session as a `.jsonl` file under
+   `~/.claude/projects/<the project's path, with every character other than a letter or digit as a dash>/` (a session
+   in a worktree has its own folder there). The session's file and any folder with the same name hold the secret. The
+   newest file there is usually the session that just ended.
+3. Check Claude Code's other local copies, and delete the entries that hold the secret. As far as known (2026-11):
+   `~/.claude/history.jsonl` (typed prompts), `~/.claude/paste-cache/` (pasted text), `~/.claude/file-history/` (file
+   backups for rewind), `~/.claude/tasks/` (agent transcripts and command output) and `~/.claude/shell-snapshots/`.
+   The owner searches them; an agent never searches for the secret itself, because the search would repeat it.
+4. If the session also ran in the claude.ai app or on the web (remote control), delete the conversation there too.
+5. Claude Code also deletes old transcripts by itself after `cleanupPeriodDays` (a setting); a shorter period limits
+   what a future leak can expose.
+
+None of this undoes what the model provider received: rotation is the fix.
+
 ## Plugins
 
 Install a plugin with `--scope local`, for this checkout only (`AGENTS.md`, "Agents and security", 8).

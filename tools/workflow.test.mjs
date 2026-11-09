@@ -269,6 +269,31 @@ test("end to end: a .gitattributes line does not hide a private term (runs where
   cleanup(r);
 });
 
+test("end to end: a pushed commit that adds a secret is refused, also when a later commit removes it", () => {
+  const fake = ["sk-", "ant-", "api03-", "Zq8vK2pX7mN4bT9wL3cY6hR1dF5gJ0sA"].join(""); // built at run time: no secret in this file
+  const r = repo();
+  commit(r, "src/config.ts", `export const key = "${fake}";\n`);
+  const sha = commit(r, "src/config.ts", "export const key = process.env.API_KEY;\n");
+  const out = prePush(r, pushLine(sha));
+  assert.notEqual(out.status, 0);
+  assert.match(out.stderr, /looks like a secret: src\/config\.ts \(Anthropic API key/);
+  assert.ok(!out.stderr.includes(fake.slice(4)), "the hook never prints the secret");
+  cleanup(r);
+});
+
+test("end to end: a pushed commit message with a secret is refused", () => {
+  const fake = ["gh", "p_", "Zq8vK2pX7mN4bT9wL3cY6hR1dF5gJ0sAAb12"].join("");
+  const r = repo();
+  fs.writeFileSync(path.join(r.dir, "note.md"), "a note\n");
+  spawnSync("git", ["add", "note.md"], { cwd: r.dir, env: isolatedEnv() });
+  spawnSync("git", ["commit", "-q", "-m", `Add a note; token ${fake}`], { cwd: r.dir, env: isolatedEnv({ GIT_AUTHOR_DATE: "2026-11-07T15:00:00+0000", GIT_COMMITTER_DATE: "2026-11-07T15:00:00+0000" }) });
+  const sha = spawnSync("git", ["rev-parse", "HEAD"], { cwd: r.dir, encoding: "utf8", env: isolatedEnv() }).stdout.trim();
+  const out = prePush(r, pushLine(sha));
+  assert.match(out.stderr, /commit message holds what looks like a secret \(GitHub token/);
+  assert.ok(!out.stderr.includes(fake.slice(4)));
+  cleanup(r);
+});
+
 test("end to end: the git hooks call git-guard before the checks", () => {
   for (const [hook, mode] of [["pre-commit", "pre-commit"], ["pre-push", "pre-push"]]) {
     const text = fs.readFileSync(new URL(`../.githooks/${hook}`, import.meta.url), "utf8");

@@ -14,6 +14,8 @@ description: Close a phase, or another milestone in docs/testing.md, only when e
 4. Ask the `adversarial-reviewer` agent to review the phase's changes, and the `security-reviewer` agent for phases
    3, 4 and 9 and any change to file access, config loading, hooks or dependencies.
 5. Report: each check with PASS or FAIL, the gate's number against its threshold, the reviewers' findings, and the
-   open rows in `docs/follow-ups.md` that the phase leaves behind.
+   open rows in `docs/follow-ups.md` that the phase leaves behind. Add the agent review for the next phase
+   (`AGENTS.md`, "Agents and security", 11): which agents fit its work, which to adapt, add or remove, each with its
+   reason. These are considerations; the owner decides.
 6. A missed gate is recorded as missed in `docs/contract.md` and `docs/current-work.md`. The owner decides what
    happens next.
