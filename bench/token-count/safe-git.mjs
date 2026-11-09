@@ -7,7 +7,6 @@
 // - a blob over 1 MB is not read; blobs are read in batches of at most 128 MB.
 
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -19,20 +18,15 @@ const MARKER_NAME = ".ai-ir-tokens-corpus-cache";
 
 /**
  * The environment for git on an untrusted clone: no GIT_* variable and no API key from the caller, no prompt for a
- * password, and no global or system configuration (no filter, textconv or fsmonitor setting of the user's). The
- * global configuration is an empty file in a private folder made for this process: `os.devNull` is not a path that
- * git for Windows can open, and a fixed shared path could be planted by another user.
+ * password, and no global or system configuration (no filter, textconv or fsmonitor setting of the user's).
+ * "/dev/null" is the path on every system: git for Windows reads it as the null device, while `os.devNull` there
+ * (`\\.\nul`) is a path git cannot open. No file or folder is made, so there is nothing to plant or to clean up.
  */
 export function isolatedGitEnv() {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ai-ir-tokens-git-"));
-  fs.chmodSync(dir, 0o700);
-  const empty = path.join(dir, "gitconfig");
-  fs.writeFileSync(empty, "");
-  process.on("exit", () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch { /* the system's temp cleanup removes it */ } });
   return {
     ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !/^GIT_/i.test(k) && k !== "ANTHROPIC_API_KEY")),
     GIT_TERMINAL_PROMPT: "0",
-    GIT_CONFIG_GLOBAL: empty,
+    GIT_CONFIG_GLOBAL: "/dev/null",
     GIT_CONFIG_NOSYSTEM: "1",
   };
 }

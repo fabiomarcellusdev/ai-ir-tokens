@@ -98,11 +98,18 @@ export function addedLineHits(patchText, terms) {
 // The hooks
 // ---------------------------------------------------------------------------------------------
 
-const git = (args) => {
-  const r = spawnSync("git", args, { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
-  if (r.status !== 0) throw new Error(`git ${args.join(" ")} failed: ${(r.stderr ?? "").trim()}`);
+/** A URL for a message, without the user part: a token can sit there (https://<token>@host/...). */
+export const redactUrl = (s) => String(s).replace(/(\b[a-z][a-z0-9+.-]*:\/\/)[^\s/@]*@/gi, "$1***@");
+const git = (args, { env } = {}) => {
+  const r = spawnSync("git", args, { encoding: "utf8", maxBuffer: 64 * 1024 * 1024, ...(env ? { env } : {}) });
+  if (r.status !== 0) throw new Error(redactUrl(`git ${args.join(" ")} failed: ${(r.stderr ?? "").trim()}`));
   return r.stdout;
 };
+// The patch the scans read must not depend on anyone's git settings: a color setting puts escape codes before each "+",
+// log.diffMerges can hide merge diffs, and log.showRoot can hide the root commit. The options below win over the
+// repository's own settings; the environment removes the user's and the system's.
+const PATCH_ARGS = ["log", "-p", "--diff-merges=separate", "--root", "--no-color", "--text", "--no-textconv", "--no-ext-diff", "--format="];
+const PATCH_ENV = { ...process.env, GIT_CONFIG_GLOBAL: "/dev/null", GIT_CONFIG_NOSYSTEM: "1" };
 // A missing or broken config refuses every push (fail closed): without it, the URL pin would accept any URL.
 const config = () => {
   const f = path.join(ROOT, "tools", "git-guard.config.json");
@@ -146,7 +153,7 @@ function prePush(remoteUrl, stdinText) {
   if (!cfg) return ["tools/git-guard.config.json is missing or invalid, so every push is refused. Restore it from main."];
   const problems = [...pushProblems(stdinText, process.env), quietProblem()].filter(Boolean);
   if (!urlAllowed(remoteUrl, cfg.allowedPushUrls)) {
-    return [...problems, `A push to ${remoteUrl} is refused. tools/git-guard.config.json pins the repository's URL.`];
+    return [...problems, `A push to ${redactUrl(remoteUrl)} is refused. tools/git-guard.config.json pins the repository's URL.`];
   }
   const terms = privacyTerms();
   // The remote's real branches, read from the remote itself: local remote-tracking refs can be faked
@@ -172,7 +179,7 @@ function prePush(remoteUrl, stdinText) {
     // -m lists the files of merge commits too; -z with quotePath off keeps non-ASCII names readable.
     const paths = commits.flatMap((c) => git([...SAFE, "diff-tree", "-m", "-r", "-z", "--no-commit-id", "--name-only", "--root", c]).split("\0"));
     problems.push(...pathProblems(paths, process.env));
-    const patch = git([...SAFE, "log", "-p", "-m", "--text", "--no-textconv", "--no-ext-diff", "--format=", ...range]);
+    const patch = git([...SAFE, ...PATCH_ARGS, ...range], { env: PATCH_ENV });
     if (terms.length) {
       const hits = addedLineHits(patch, terms);
       if (hits.length) problems.push(`A pushed commit adds a private term (${hits.length} term${hits.length > 1 ? "s" : ""}; see private-docs/privacy-terms.txt). Remove it from the branch history before pushing.`);

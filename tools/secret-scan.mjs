@@ -22,7 +22,7 @@ const MAX_FILE_BYTES = 2 * 1024 * 1024;
  * Well-known secret formats. Each needs enough characters after its prefix that a word or a regex cannot match, and
  * every quantifier is bounded, so a long line costs linear time.
  */
-export const PATTERNS = [
+const RAW_PATTERNS = [
   { name: "private key", re: /-----BEGIN [A-Z0-9 ]{0,40}PRIVATE KEY( BLOCK)?-----/ },
   { name: "Anthropic API key", re: /\bsk-ant-[A-Za-z0-9_-]{20,200}/ },
   { name: "OpenAI API key", re: /\bsk-(?!ant-)(?:proj-|svcacct-|admin-)?[A-Za-z0-9_-]{32,200}/ },
@@ -40,16 +40,18 @@ export const PATTERNS = [
   { name: "SendGrid key", re: /\bSG\.[A-Za-z0-9_-]{22}\.[A-Za-z0-9_-]{43}\b/ },
   { name: "npm token", re: /\bnpm_[A-Za-z0-9]{36}\b/ },
   { name: "PyPI token", re: /\bpypi-AgE[A-Za-z0-9_-]{50,300}/ },
-  { name: "JSON Web Token", re: /\beyJ[A-Za-z0-9_-]{10,2000}\.eyJ[A-Za-z0-9_-]{10,4000}\.[A-Za-z0-9_-]{10,2000}/ },
+  { name: "JSON Web Token", needs: ".eyJ", re: /\beyJ[A-Za-z0-9_-]{10,2000}\.eyJ[A-Za-z0-9_-]{10,4000}\.[A-Za-z0-9_-]{10,2000}/ },
   { name: "password in a URL", re: /\b[a-z][a-z0-9+.-]{0,30}:\/\/[^\s:/@"'`]{1,100}:([^\s@/"'`]{6,200})@/i, group: 1, lengthOnly: true },
 ];
+// Every pattern is global, so that a line's every match can be tried (see scanLine).
+export const PATTERNS = RAW_PATTERNS.map((p) => ({ ...p, re: new RegExp(p.re.source, p.re.flags.includes("g") ? p.re.flags : p.re.flags + "g") }));
 
 // An assignment such as `apiKey = "..."`, `"token": "..."`, `API_KEY=...` or `password: ...`, judged by the value's
 // randomness. The name must END with a secret word: `accessToken`, `client_secret` and `SECRET_KEY` count; `tokenizer`
 // and `author` do not. A value without quotes must look like a key (letters, digits, + / = _ -), so code such as
 // `token = process.env.TOKEN` or `key = getKey()` does not count.
 const SECRET_NAME = String.raw`[A-Za-z0-9_.-]{0,64}(?:api[_-]?key|(?:secret|access|signing|encryption|client|master|private)[_-]?key|secret|token|passw(?:or)?d|pwd|auth|credentials?)`;
-const ASSIGNMENT = new RegExp(String.raw`(?:^|[^A-Za-z0-9_.-])(${SECRET_NAME})["']?\s{0,8}[:=]\s{0,8}(?:["'\`]([^"'\`\s]{16,300})["'\`]|([A-Za-z0-9+/=_-]{16,300})(?=[\s;,]|$))`, "i");
+const ASSIGNMENT = new RegExp(String.raw`(?:^|[^A-Za-z0-9_.-])(${SECRET_NAME})["']?\s{0,8}[:=]\s{0,8}(?:["'\`]([^"'\`\s]{16,300})["'\`]|([A-Za-z0-9+/=_-]{16,300})(?=[\s;,]|$))`, "gi");
 const PLACEHOLDER = /example|sample|placeholder|your[_-]|changeme|dummy|fake|redacted|xxxx|\*\*\*|<|>|\$|\{|\}|%s|process\.env|import\.meta\.env|os\.environ/i;
 
 /** Shannon entropy in bits per character. Random keys score above 3.5; words and identifiers score lower. */
@@ -68,21 +70,29 @@ export const mask = (s, { lengthOnly = false } = {}) => (lengthOnly ? `(${s.leng
 export function scanLine(line) {
   const hits = [];
   for (const p of PATTERNS) {
-    const m = p.re.exec(line);
-    if (!m) continue;
-    const value = m[p.group ?? 0];
-    if (p.name !== "private key" && PLACEHOLDER.test(value)) continue; // AKIAIOSFODNN7EXAMPLE, postgres://u:${pass}@h
-    hits.push({ name: p.name, masked: mask(value, { lengthOnly: p.lengthOnly }) });
+    if (p.needs && !line.includes(p.needs)) continue; // a cheap test before a costly pattern
+    // Every match of the line, not only the first: a placeholder before a real key must not hide it.
+    for (const m of line.matchAll(p.re)) {
+      const value = m[p.group ?? 0];
+      if (p.name !== "private key" && PLACEHOLDER.test(value)) continue; // AKIAIOSFODNN7EXAMPLE, postgres://u:${pass}@h
+      hits.push({ name: p.name, masked: mask(value, { lengthOnly: p.lengthOnly }) });
+      break; // one hit of a kind per line is enough
+    }
   }
-  const a = ASSIGNMENT.exec(line);
-  if (a && !hits.length) {
-    const value = a[2] ?? a[3];
-    if (!PLACEHOLDER.test(value) && /[A-Za-z]/.test(value) && /\d/.test(value) && entropy(value) >= 3.5) {
-      hits.push({ name: `a random value assigned to "${a[1].slice(-40)}"`, masked: mask(value, { lengthOnly: true }) });
+  if (!hits.length) {
+    for (const a of line.matchAll(ASSIGNMENT)) {
+      const value = a[2] ?? a[3];
+      if (!PLACEHOLDER.test(value) && /[A-Za-z]/.test(value) && /\d/.test(value) && entropy(value) >= 3.5) {
+        hits.push({ name: `a random value assigned to "${a[1].slice(-40)}"`, masked: mask(value, { lengthOnly: true }) });
+        break;
+      }
     }
   }
   return hits;
 }
+
+/** A file path for a message: a path that itself holds a secret is never printed. */
+export const safePath = (p) => (scanLine(p).length ? "(a path that holds a secret)" : p);
 
 /** The secrets in a file's text: [{ line, name, masked }]. */
 export function scanText(text) {
@@ -101,7 +111,7 @@ export function scanAddedLines(patchText) {
   let file = null, inHunk = false;
   for (const l of patchText.split(/\r?\n/)) {
     if (l.startsWith("diff --git ")) { inHunk = false; file = null; continue; }
-    if (!inHunk && l.startsWith("+++ ")) { file = l.slice(4).replace(/^b\//, "").slice(0, 300); continue; }
+    if (!inHunk && l.startsWith("+++ ")) { file = safePath(l.slice(4).replace(/^b\//, "").slice(0, 300)); continue; }
     if (l.startsWith("@@")) { inHunk = true; continue; }
     if (!inHunk || !l.startsWith("+")) continue;
     for (const h of scanLine(l.slice(1))) out.push({ file, ...h });
@@ -143,11 +153,14 @@ export function scanRepository(root = ROOT) {
   const hits = [], skipped = [];
   for (const f of r.stdout.split("\0").filter(Boolean)) {
     const abs = path.join(root, f);
-    if (!fs.existsSync(abs) || !fs.statSync(abs).isFile()) continue;
-    if (fs.statSync(abs).size > MAX_FILE_BYTES) { skipped.push(`${f}: over 2 MB, not scanned`); continue; }
+    // lstat: a tracked link is not followed, so the scan never reads a file outside the workspace through it.
+    let st;
+    try { st = fs.lstatSync(abs); } catch { continue; }
+    if (!st.isFile()) continue;
+    if (st.size > MAX_FILE_BYTES) { skipped.push(`${safePath(f)}: over 2 MB, not scanned`); continue; }
     const text = decode(fs.readFileSync(abs));
     if (text === null) continue; // a binary file (an image, an archive): not text, so not scanned and not listed
-    for (const h of scanText(text)) if (!allowed(allow, f, h.name)) hits.push(`${f}:${h.line} ${h.name} ${h.masked}`);
+    for (const h of scanText(text)) if (!allowed(allow, f, h.name)) hits.push(`${safePath(f)}:${h.line} ${h.name} ${h.masked}`);
   }
   return { hits, skipped };
 }

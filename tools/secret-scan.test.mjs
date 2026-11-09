@@ -145,6 +145,57 @@ test("the repository scan: UTF-16 files, a large file reported, git-ignored file
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
+test("a placeholder earlier on the line does not hide a real secret (every match is tried)", () => {
+  const key = FAKES["Anthropic API key"];
+  const placeholder = j("sk-", "ant-", "EXAMPLE-EXAMPLE-EXAMPLE-EXAMPLE");
+  assert.ok(scanLine(`a="${placeholder}" b="${key}"`).some((h) => h.name === "Anthropic API key"), "two keys, a placeholder first");
+  assert.ok(scanLine(`{"apiKey":"your_api_key_goes_here_please","clientSecret":"${R}Ab3"}`).length > 0, "two assignments, a placeholder first");
+  const url = j("postgres://u:", "S3cr3tPassw0rd", "@h2");
+  assert.ok(scanLine(`postgres://u:\${PASS}@h1 ${url}`).some((h) => h.name === "password in a URL"), "two URLs, a placeholder first");
+  assert.deepEqual(scanLine(`a="${placeholder}"`), [], "control: a placeholder alone is still no hit");
+});
+
+test("a file path that holds a secret is never printed, in a patch hit or in the repository scan", () => {
+  const key = FAKES["Anthropic API key"];
+  const patch = [`diff --git a/${key}.txt b/${key}.txt`, `--- /dev/null`, `+++ b/${key}.txt`, "@@ -0,0 +1 @@", `+const k = "${key}";`].join("\n");
+  const hits = scanAddedLines(patch);
+  assert.equal(hits.length, 1);
+  assert.equal(hits[0].file, "(a path that holds a secret)");
+  assert.ok(!JSON.stringify(hits).includes(key.slice(4)), "the path's secret is not in the hit");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "secret-scan-path-"));
+  try {
+    const run = (args) => spawnSync("git", args, { cwd: dir, encoding: "utf8" });
+    run(["init", "-q"]);
+    fs.writeFileSync(path.join(dir, `${key}.txt`), `value = "${key}"\n`);
+    const out = scanRepository(dir).hits.join("\n");
+    assert.ok(out.length > 0 && !out.includes(key.slice(4)), "the repository scan hides the path");
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a tracked symbolic link is not followed", (t) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "secret-scan-link-"));
+  try {
+    const outside = path.join(dir, "outside.txt");
+    const repo = path.join(dir, "repo");
+    fs.mkdirSync(repo);
+    fs.writeFileSync(outside, `value = "${FAKES["Anthropic API key"]}"\n`);
+    try { fs.symlinkSync(outside, path.join(repo, "link.txt")); } catch { return t.skip("this system does not allow a link here"); }
+    spawnSync("git", ["init", "-q"], { cwd: repo });
+    assert.deepEqual(scanRepository(repo).hits, [], "the link's target is outside the workspace");
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("the JSON Web Token worst case: a million dense characters stay fast", () => {
+  const hostile = "-eyJ".repeat(250000); // no ".eyJ" in the line, so the costly pattern never runs
+  const t0 = performance.now();
+  scanLine(hostile);
+  assert.ok(performance.now() - t0 < 500, "the cheap test skips the JWT pattern");
+});
+
 test("check.mjs runs the secret scan at every level", () => {
   const text = fs.readFileSync(new URL("./check.mjs", import.meta.url), "utf8");
   assert.match(text, /privacy\(\); secrets\(\);\n\s+if \(mode !== "fast"\)/);

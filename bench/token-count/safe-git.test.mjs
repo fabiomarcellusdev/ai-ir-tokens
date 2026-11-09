@@ -45,11 +45,29 @@ test("git reads no global or system configuration, and starts from this reposito
     assert.ok(origins.length > 0, "the clone's own configuration is read");
     // Only the clone's own file and the -c options of the call; never the user's or the system's file.
     assert.ok(origins.every((o) => /^file:(.*[\\/])?\.git[\\/]config$/.test(o) || o === "command line:"), `unexpected configuration: ${[...new Set(origins)].join(", ")}`);
-    // The control: the same command without the isolation reads the user's own configuration, when there is one.
-    const plain = spawnSync("git", ["-C", dir, "config", "--list", "--show-origin"], { encoding: "utf8" }).stdout.split("\n").filter(Boolean);
-    assert.ok(plain.length >= origins.length);
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a setting in the user's global configuration does not reach git (with a control that shows it would)", () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), "safe-git-home-"));
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), "safe-git-repo-"));
+  try {
+    fs.writeFileSync(path.join(home, ".gitconfig"), "[ai-ir-tokens-test]\n\tmarker = seen\n");
+    const env = { ...process.env, HOME: home, USERPROFILE: home, XDG_CONFIG_HOME: path.join(home, ".config") };
+    delete env.GIT_CONFIG_GLOBAL;
+    spawnSync("git", ["init", "-q", repo], { env });
+    // The control: with this home folder and no isolation, git reads the marker.
+    const plain = spawnSync("git", ["-C", repo, "config", "--get", "ai-ir-tokens-test.marker"], { env, encoding: "utf8" });
+    assert.equal(plain.stdout.trim(), "seen", "the control: the marker is visible without the isolation");
+    // The module in a child process with the same home folder: the marker must not show.
+    const code = `import("${new URL("./safe-git.mjs", import.meta.url).href}").then((m) => { process.stdout.write(m.git(${JSON.stringify(repo)}, ["config", "--get", "ai-ir-tokens-test.marker"], { ok: true }).stdout ?? ""); });`;
+    const child = spawnSync(process.execPath, ["-e", code], { env, encoding: "utf8" });
+    assert.equal(child.stdout.trim(), "", `the marker reached git: ${child.stderr}`);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+    fs.rmSync(repo, { recursive: true, force: true });
   }
 });
 

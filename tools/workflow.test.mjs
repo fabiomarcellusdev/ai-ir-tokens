@@ -281,6 +281,32 @@ test("end to end: a pushed commit that adds a secret is refused, also when a lat
   cleanup(r);
 });
 
+test("end to end: git settings of the repository cannot blind the secret scan (color, log.showRoot)", () => {
+  const fake = ["sk-", "ant-", "api03-", "Zq8vK2pX7mN4bT9wL3cY6hR1dF5gJ0sA"].join(""); // built at run time
+  for (const [key, value] of [["color.ui", "always"], ["color.diff", "always"], ["log.showRoot", "false"], ["log.diffMerges", "off"]]) {
+    const r = repo();
+    r.run(["config", key, value]);
+    const sha = commit(r, "src/config.ts", `export const key = "${fake}";\n`); // also the root commit
+    const out = prePush(r, pushLine(sha));
+    assert.notEqual(out.status, 0, `${key}=${value} must not hide the secret`);
+    assert.match(out.stderr, /looks like a secret/, key);
+    cleanup(r);
+  }
+});
+
+test("end to end: the hook never prints a token that sits in a remote URL or in a file name", () => {
+  const fake = ["gh", "p_", "Zq8vK2pX7mN4bT9wL3cY6hR1dF5gJ0sAAb12"].join("");
+  const r = repo();
+  const sha = commit(r, `src/${fake}.ts`, `export const key = "${fake}";\n`);
+  const out = prePush(r, pushLine(sha), {}, `https://${fake}@github.com/someone/else.git`);
+  assert.notEqual(out.status, 0);
+  assert.ok(!out.stderr.includes(fake.slice(4)), "no part of the token is printed");
+  const ok = prePush(r, pushLine(sha));
+  assert.ok(!ok.stderr.includes(fake.slice(4)), "nor in the report of a secret in a file name");
+  assert.match(ok.stderr, /a path that holds a secret/);
+  cleanup(r);
+});
+
 test("end to end: a pushed commit message with a secret is refused", () => {
   const fake = ["gh", "p_", "Zq8vK2pX7mN4bT9wL3cY6hR1dF5gJ0sAAb12"].join("");
   const r = repo();
