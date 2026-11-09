@@ -4,14 +4,13 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Gate R1, step 1 of the rescope** (decision 0007; branch `p0/bench-r1-ranking`). The ranking is built, reviewed and
-tuned on the 85 development tasks only: 34/85 (40.0%), under the 55% bar fixed before the last attempt
-(`docs/measurements/2026-11-09-r1-dev-tuning.md`). The method is frozen. Next: the one test run on C0's 85 tasks.
+**Gate R1: missed** (decision 0007; branch `p0/bench-r1-ranking`). The one test run passed 31 of 85 (36.5%) against
+70% (`docs/contract.md`, "The result of gate R1"). The ranking was tuned on the development tasks only (34/85, 40.0%).
+By decision 0007, a miss stops the project unless a new, dated decision gives a reason to continue.
 
 ## Next
 
-1. Gate R1's test run, its results and the owner's decision.
-2. Only if R1 passes: the pilot's design and budget, for the owner's yes.
+1. The owner decides: stop, or continue with a new decision record and its reason.
 
 ## Closed
 

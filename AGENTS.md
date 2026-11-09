@@ -41,11 +41,12 @@ hours.
 3. A maintainer can keep personal and machine-specific notes in a git-ignored `CLAUDE.local.md` or `private-docs/`.
    Never copy their content into a tracked file.
 
-## Status (2026-11-08)
+## Status (2026-11-09)
 
-Phase 0 is done: gate C0 missed, and the project is rescoped (decision 0007). The next step is gate R1, a free
-measurement of a budgeted map (`docs/contract.md`); a miss stops the project. The only code is the measurement scripts
-in `bench/token-count/`. **No model has run a task with this tool, so accuracy is unmeasured.** The project name is `ai-ir-tokens`. The licence is Apache-2.0 (decision 0006). The npm
+Phase 0 is done: gate C0 missed, and the project is rescoped (decision 0007). Gate R1, the free measurement of a
+budgeted map, missed on 2026-11-09: 31 of 85 tasks (36.5%) against 70% (`docs/contract.md`). By decision 0007 the
+project stops unless the owner records a reason to continue. The only code is the measurement scripts in
+`bench/token-count/`. **No model has run a task with this tool, so accuracy is unmeasured.** The project name is `ai-ir-tokens`. The licence is Apache-2.0 (decision 0006). The npm
 package name is not chosen (`docs/follow-ups.md`).
 
 **The plan page.** `docs/page/template.html` is the source of a page that shows the plan. `docs/page/build.mjs` puts the
