@@ -24,6 +24,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { isolatedGitEnv } from "./safe-git.mjs";
 import { tok, tsMap, topLevelIds, parseTs } from "./views.mjs";
 import {
   parseNameStatusZ, qualifyingFiles, changedRanges, tsChangedStatements, tsCompactOf, namesUsed, declaredNames, mapEntries,
@@ -81,13 +82,13 @@ for (const r of selected) {
 
 // No GIT_* variable from the caller (a hook's GIT_DIR, for example) and no API key reach git, and git never asks for
 // a password. Paths are literal (a file named "[ab].ts" is not a pattern), and no signature is checked (no gpg).
-const gitEnv = {
-  ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !/^GIT_/i.test(k) && k !== "ANTHROPIC_API_KEY")),
-  GIT_TERMINAL_PROMPT: "0",
-};
+// Git starts in this repository's folder and reaches a clone with -C: on Windows, Node can run a git.exe from the
+// folder it starts in, and a clone with working files could hold one. Git reads no global or system configuration
+// (no filter, textconv or fsmonitor setting of the user's), only the clone's own.
+const gitEnv = isolatedGitEnv();
 function git(dir, args, { input, buffer = false, ok = false } = {}) {
-  const r = spawnSync("git", ["--literal-pathspecs", "-c", "core.quotePath=false", "-c", "log.showSignature=false", ...args],
-    { cwd: dir, env: gitEnv, input, maxBuffer: BATCH_BYTES * 2, ...(buffer ? {} : { encoding: "utf8" }) });
+  const r = spawnSync("git", ["-C", dir, "--literal-pathspecs", "-c", "core.quotePath=false", "-c", "log.showSignature=false", ...args],
+    { cwd: repoRoot, env: gitEnv, input, maxBuffer: BATCH_BYTES * 2, ...(buffer ? {} : { encoding: "utf8" }) });
   if (ok) return r;
   if (r.status !== 0) throw new Error(`git ${args[0]} failed in ${path.basename(dir)}: ${String(r.stderr).trim().slice(0, 300)}`);
   return r.stdout;

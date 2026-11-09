@@ -109,6 +109,15 @@ fixed procedure at a fraction of an agent's cost.
 
 ## Amendments
 
+- **2026-11-08, secrets and the agent roster** (owner). The owner asked for an agent that checks every change for
+  exposed secrets. **Decision:** a script, not an agent (`tools/secret-scan.mjs`, in `check.mjs` and the push hook, so
+  CI covers each pull request). A machine checks first: the formats are well known, a script finds them the same way
+  every time, and an agent would have to read the secret, which copies it into its transcript and to the model
+  provider. `AGENTS.md`, "If a secret appears", sets the response: stop, rotate first, remove, check the history, then
+  delete the conversation as a partial last step. The owner also asked that the lead offer considerations about the
+  agent roster at setup and at each phase gate (`AGENTS.md`, "Agents and security", 11); the owner decides, and no
+  agent changes without the owner's yes. Ported to this project on 2026-11-09.
+
 - **2026-11-08** (owner): agents that write may run in parallel in separate worktrees, one session each (decision
   0004, amendment "parallel checkouts"). In one checkout, they still run one at a time.
 - **2026-11-08, AGENTS.md** (owner). The tool-neutral rules moved from `CLAUDE.md` into `AGENTS.md`, with the same

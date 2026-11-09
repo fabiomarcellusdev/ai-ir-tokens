@@ -16,7 +16,21 @@ const BATCH_BYTES = 128 * 1024 * 1024;
 const TRUSTED_CWD = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const MARKER_NAME = ".ai-ir-tokens-corpus-cache";
 
-const gitEnv = { ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !/^GIT_/i.test(k) && k !== "ANTHROPIC_API_KEY")), GIT_TERMINAL_PROMPT: "0" };
+/**
+ * The environment for git on an untrusted clone: no GIT_* variable and no API key from the caller, no prompt for a
+ * password, and no global or system configuration (no filter, textconv or fsmonitor setting of the user's).
+ * "/dev/null" is the path on every system: git for Windows reads it as the null device, while `os.devNull` there
+ * (`\\.\nul`) is a path git cannot open. No file or folder is made, so there is nothing to plant or to clean up.
+ */
+export function isolatedGitEnv() {
+  return {
+    ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !/^GIT_/i.test(k) && k !== "ANTHROPIC_API_KEY")),
+    GIT_TERMINAL_PROMPT: "0",
+    GIT_CONFIG_GLOBAL: "/dev/null",
+    GIT_CONFIG_NOSYSTEM: "1",
+  };
+}
+const gitEnv = isolatedGitEnv();
 
 export const isRepoName = (s) => typeof s === "string" && /^[\w.-]+\/[\w.-]+$/.test(s) && !s.split("/").some((p) => p === "." || p === "..");
 export const isSha = (s) => typeof s === "string" && /^[0-9a-f]{40}$/.test(s);
