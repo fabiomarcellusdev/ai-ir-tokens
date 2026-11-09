@@ -4,9 +4,9 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Branch `p0/docs-rescope`: the rescope** (owner, 2026-11-08; decision 0007). Gate C0 missed; the project narrows to a
-budgeted map that points to line ranges. Next: gate R1, a free measurement (`docs/contract.md`), built on development
-commits and tested once on C0's 85 tasks. A miss stops the project.
+**Gate R1, step 1 of the rescope** (decision 0007). The 85 development tasks are picked and committed
+(`bench/token-count/r1-devtasks.json`, branch `p0/bench-r1-devtasks`) before any work on the ranking. Next: the
+ranking, built and tuned on these tasks only, then one test run on C0's 85 tasks.
 
 ## Next
 

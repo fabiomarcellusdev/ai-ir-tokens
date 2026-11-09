@@ -1,0 +1,903 @@
+{
+  "about": "Gate R1's development tasks (docs/contract.md, \"Gate R1 in detail\"). Picked by r1-devtasks.mjs and committed before any work on the ranking started. The ranking is built and tuned on these tasks only; the 85 test tasks are the C0 tasks in docs/measurements/2026-11-08-phase0-corpus.json.",
+  "pickedAt": {
+    "date": "2026-11-09",
+    "commit": "ea18779e7307fe14d3028a4f45c24b16614b334a",
+    "dirty": false
+  },
+  "rule": "Per repository: walking back from the oldest test task along the first parent, the next 5 commits that pass C0's task rule (rules 1 to 3; a modified file over 1 MB skips the commit), within 500 commits of the pin. baseline: o200k_base tokens of the modified files at the parent, as C0 counts them.",
+  "repositories": [
+    {
+      "repo": "dh1011/subscription-manager",
+      "sha": "6b07d95b174bfb5b3c8f89a9ed5cd530ccdabc4e",
+      "walked": 30,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "edf40f5fcc564eb95a398de575b5d32af2e84193",
+          "parent": "78f29d1377aa942b84ea169a63c2793af3d230ba",
+          "files": [
+            "src/components/SubscriptionModal.tsx"
+          ],
+          "baseline": 2734
+        },
+        {
+          "commit": "72a66b6ba6b9c86c986323d20c2a49992b48b38b",
+          "parent": "ab4fb02d60e471ed92e648734a458409e83352f4",
+          "files": [
+            "frontend/src/App.css",
+            "frontend/src/App.js"
+          ],
+          "baseline": 1574
+        },
+        {
+          "commit": "f1cbfe0346b22829efedf54a8f710391e4233689",
+          "parent": "12349d6a325be4250dcb605859130d6f0bcf5510",
+          "files": [
+            "src/components/SubscriptionList.css",
+            "src/components/SubscriptionList.js",
+            "src/components/Totals.css",
+            "src/components/Totals.js"
+          ],
+          "baseline": 5138
+        },
+        {
+          "commit": "12349d6a325be4250dcb605859130d6f0bcf5510",
+          "parent": "9198eddbbe9e17a023c41aeb5f6b89cf2b1c085e",
+          "files": [
+            "server/server.js"
+          ],
+          "baseline": 2770
+        },
+        {
+          "commit": "366905345f76660472d325db5d7b5065b9251494",
+          "parent": "514e5fdcf9bf9592f7bb1c8c52ed7a5d4ef42760",
+          "files": [
+            "src/components/SubscriptionModal.css",
+            "src/components/SubscriptionModal.js"
+          ],
+          "baseline": 3087
+        }
+      ]
+    },
+    {
+      "repo": "excalidraw/excalidraw",
+      "sha": "701b901a0f1ba3d0b390d9cdf63d112e25abac4b",
+      "walked": 9,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "c711e80ec55b3d3713ce0e796540d16c401b2fbe",
+          "parent": "808d068e18266ff9311809c23c19261fa0eb1014",
+          "files": [
+            "packages/element/src/elbowArrow.ts",
+            "packages/element/src/shape.ts",
+            "packages/excalidraw/actions/actionFlip.ts",
+            "packages/excalidraw/actions/actionProperties.tsx",
+            "packages/excalidraw/actions/actionStyles.ts"
+          ],
+          "baseline": 45467
+        },
+        {
+          "commit": "95307fa136a3e190f73c7af4626e86d6e41c2eb6",
+          "parent": "cdc181c82afac02174a8ea6a0448258770a4d380",
+          "files": [
+            "packages/excalidraw/scene/export.ts"
+          ],
+          "baseline": 10528
+        },
+        {
+          "commit": "4eb1e648aa7848c9aa667c1ec5452a5088da0370",
+          "parent": "b7de45e88111f5680ae4bb3c3f3541c7d3b279fe",
+          "files": [
+            "excalidraw-app/index.tsx"
+          ],
+          "baseline": 126
+        },
+        {
+          "commit": "b7de45e88111f5680ae4bb3c3f3541c7d3b279fe",
+          "parent": "1d4dc2c0e6e476911d0760e9c3cf3694f2d43384",
+          "files": [
+            "packages/element/src/bounds.ts",
+            "packages/element/src/shape.ts"
+          ],
+          "baseline": 21808
+        },
+        {
+          "commit": "6f0a4d19b577e781ee5491d6cb89799b3fba7ee8",
+          "parent": "bee01e3a12812c930109aa91242658709480bbf3",
+          "files": [
+            "excalidraw-app/data/LocalData.ts"
+          ],
+          "baseline": 1919
+        }
+      ]
+    },
+    {
+      "repo": "amicalhq/amical",
+      "sha": "029290c0424ea59bb0f91ab89e2cb4e3be63774d",
+      "walked": 8,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "99993be2445b0dab4d9de9a5b29e9ffaa82e8962",
+          "parent": "df90c93fd8cd4a56f4d51bd55b027cc943be019a",
+          "files": [
+            "apps/desktop/src/renderer/main/components/usage-meter.tsx",
+            "packages/types/src/schemas/usage.ts"
+          ],
+          "baseline": 2256
+        },
+        {
+          "commit": "df90c93fd8cd4a56f4d51bd55b027cc943be019a",
+          "parent": "6f3103e73d67a8d308d4af662485b210f0470c11",
+          "files": [
+            "apps/desktop/src/renderer/onboarding/components/screens/PermissionsScreen.tsx"
+          ],
+          "baseline": 1448
+        },
+        {
+          "commit": "6f3103e73d67a8d308d4af662485b210f0470c11",
+          "parent": "ef7d4a760d1497f12bcee09b37a6d045b788d9f1",
+          "files": [
+            "apps/desktop/src/renderer/main/components/usage-meter.tsx"
+          ],
+          "baseline": 1835
+        },
+        {
+          "commit": "ef7d4a760d1497f12bcee09b37a6d045b788d9f1",
+          "parent": "08b64e4e30d4cac4f682cf57015742a3cd97020c",
+          "files": [
+            "apps/desktop/src/renderer/onboarding/components/screens/PermissionsScreen.tsx",
+            "apps/desktop/src/services/onboarding-service.ts"
+          ],
+          "baseline": 7189
+        },
+        {
+          "commit": "9487a8b7873966c41ca0bcd7d21d8fd03059148e",
+          "parent": "73a09dbd0372dd2b5a5462fb94c302837812b471",
+          "files": [
+            "apps/desktop/src/renderer/main/components/remote-config-surfaces.tsx",
+            "apps/desktop/src/renderer/widget/hooks/useWidgetNotifications.tsx",
+            "apps/desktop/src/trpc/routers/auth.ts"
+          ],
+          "baseline": 6244
+        }
+      ]
+    },
+    {
+      "repo": "AmruthPillai/Reactive-Resume",
+      "sha": "09553e35b093b6555d40507c72785c9a3cb928b5",
+      "walked": 69,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "1da5e1822a4e3d94b56223e6958fb7cae27dcd9e",
+          "parent": "2187943792cda992b7d77ca330f607b1010d2e63",
+          "files": [
+            "apps/web/src/features/resume/builder/draft.ts"
+          ],
+          "baseline": 12551
+        },
+        {
+          "commit": "2187943792cda992b7d77ca330f607b1010d2e63",
+          "parent": "160dd9f81ec89d42a65b93863f56b56e397b82a2",
+          "files": [
+            "packages/auth/src/config.ts"
+          ],
+          "baseline": 13517
+        },
+        {
+          "commit": "cdd549d59621f8035a4a5d6e178b45012c5b294e",
+          "parent": "c62ed515602b43c239a7ae415d5dc070f79d09e3",
+          "files": [
+            "apps/mobile/babel.config.js"
+          ],
+          "baseline": 77
+        },
+        {
+          "commit": "e06cebab15ec7734d99c8aed87a6a0052ef34d47",
+          "parent": "2a5b69b2956398ec74f07f328e25ba093c7a7146",
+          "files": [
+            "packages/api/src/features/agent/runs.ts",
+            "packages/api/src/features/agent/service.ts",
+            "packages/env/src/server.ts"
+          ],
+          "baseline": 26641
+        },
+        {
+          "commit": "2a5b69b2956398ec74f07f328e25ba093c7a7146",
+          "parent": "3a7ed399fed22f958fff0c31317ec406012adb68",
+          "files": [
+            "packages/schema/src/resume/dates.ts"
+          ],
+          "baseline": 3626
+        }
+      ]
+    },
+    {
+      "repo": "homarr-labs/homarr",
+      "sha": "38cfcb3fa1a391aaf86ef5722068bed12bd32b3a",
+      "walked": 220,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "8ff29b82e5133ba0b8eaf2cf88de9bca31128a68",
+          "parent": "51bbc89f52612d54a911a0c5ec3a5297d10fc8d0",
+          "files": [
+            "packages/db/schema/mysql.ts",
+            "packages/db/schema/postgresql.ts"
+          ],
+          "baseline": 11581
+        },
+        {
+          "commit": "3a0f280984cb152d3f49f99966aca64a5aad04e7",
+          "parent": "81d35656baf4d0063c6ddbad8f33d264e72bc499",
+          "files": [
+            "apps/nextjs/src/app/[locale]/(main)/integrations/_integration-secret-inputs.tsx"
+          ],
+          "baseline": 430
+        },
+        {
+          "commit": "2809e01b03bf939aaecdce8007ece9322688061a",
+          "parent": "782897527f489889f8b6f46ec577a298a0714953",
+          "files": [
+            "packages/translation/src/lang/en.ts"
+          ],
+          "baseline": 292
+        },
+        {
+          "commit": "a082f704704bea127014216baeb914e9c8fe09f6",
+          "parent": "3cedb7fba5aade5e176002453300779d6348a0b4",
+          "files": [
+            "packages/validation/src/user.ts"
+          ],
+          "baseline": 136
+        },
+        {
+          "commit": "41e54d940bf53480bddc7d95e72a4c162e4a9c63",
+          "parent": "f6094c6ae2256499623d407a835ae1968965e3ca",
+          "files": [
+            "apps/nextjs/next.config.mjs",
+            "apps/nextjs/src/app/page.tsx",
+            "apps/nextjs/src/env.mjs",
+            "packages/db/drizzle.config.ts",
+            "packages/db/index.ts"
+          ],
+          "baseline": 809
+        }
+      ]
+    },
+    {
+      "repo": "plasmicapp/plasmic",
+      "sha": "9ad5048494afee5ef1fc7d92fa3153c7b50ea73f",
+      "walked": 17,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "7a4d41afe46d1eda627bc49ffb31d227d0751640",
+          "parent": "9b7070f2a487485fd4f6c805bfa21f609af307fc",
+          "files": [
+            "platform/wab/src/wab/server/__testonly__/backend-util.ts"
+          ],
+          "baseline": 1624
+        },
+        {
+          "commit": "47b22ce141bcf6f259a74e679666f3ecf071a945",
+          "parent": "2a68b24905e794ed97179c069887181ff21e9dcd",
+          "files": [
+            "platform/wab/src/wab/server/__testonly__/backend-util.ts"
+          ],
+          "baseline": 1701
+        },
+        {
+          "commit": "0aa5403fd2de138a7fa04254a28d6e333b8f0150",
+          "parent": "dc55ffee2fc864d9cba11623f42c66318c05ad72",
+          "files": [
+            "plasmicpkgs/plasmic-basic-components/src/Embed.stories.tsx",
+            "plasmicpkgs/plasmic-basic-components/src/Embed.tsx",
+            "plasmicpkgs/plasmic-basic-components/src/common.ts"
+          ],
+          "baseline": 3627
+        },
+        {
+          "commit": "dc55ffee2fc864d9cba11623f42c66318c05ad72",
+          "parent": "297f3fc105ade3133977188ccab34704c113e9f6",
+          "files": [
+            "platform/wab/src/wab/shared/model/model-change-util.ts",
+            "platform/wab/src/wab/shared/model/model-generator.ts",
+            "platform/wab/src/wab/shared/model/model-meta.ts",
+            "platform/wab/src/wab/shared/model/model-schema.ts",
+            "platform/wab/src/wab/shared/model/tracking.ts"
+          ],
+          "baseline": 29623
+        },
+        {
+          "commit": "9096ed76e04282f9f5eabf5b2746db962093fc91",
+          "parent": "b89611c460d044d8b0f34ce826ddc15bb0f91959",
+          "files": [
+            "platform/wab/src/wab/shared/common.ts",
+            "platform/wab/src/wab/shared/mobx-util.ts"
+          ],
+          "baseline": 22631
+        }
+      ]
+    },
+    {
+      "repo": "kyhsa93/nestjs-rest-cqrs-example",
+      "sha": "da66be5d5868b88f631df354e5d26af310618bcb",
+      "walked": 12,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "e2dc981153f7cb49d7b4f3f49c38f56d2f022a70",
+          "parent": "ec1e2ec847c60f35b14480d2d4df49b21ddd14ce",
+          "files": [
+            "libs/message-module.ts",
+            "src/outbox/event-consumer.ts",
+            "src/outbox/outbox-module.ts"
+          ],
+          "baseline": 2600
+        },
+        {
+          "commit": "ec1e2ec847c60f35b14480d2d4df49b21ddd14ce",
+          "parent": "fdbe0ffa006466d7ee4877d91b9ba4b131ecc8c9",
+          "files": [
+            "libs/database-module.ts",
+            "src/config.ts"
+          ],
+          "baseline": 1051
+        },
+        {
+          "commit": "f93de6ff506df223543c699628ea49ba26c0f5fc",
+          "parent": "0ffa997abfcab84f00136324b89dbc912f173a33",
+          "files": [
+            "libs/message-module.ts",
+            "src/config.ts",
+            "src/notification/infrastructure/adaptor/email-adaptor-implement.ts",
+            "src/outbox/event-consumer.ts",
+            "src/outbox/outbox-relay.ts"
+          ],
+          "baseline": 3686
+        },
+        {
+          "commit": "1514011043d4ef05b73dbb0680c12066e1a3edd6",
+          "parent": "a7d02df5a75061249e8765908fdcce07cd289054",
+          "files": [
+            "src/account/interface/dto/find-account-by-id-response-dto.ts",
+            "src/account/interface/dto/find-accounts-response-dto.ts",
+            "src/notification/interface/dto/find-notification-response-dto.ts"
+          ],
+          "baseline": 485
+        },
+        {
+          "commit": "d9a33912d17c9968bc857b816f88077c363fdc2f",
+          "parent": "047afabe0fd81903b3ed265203044918a332d326",
+          "files": [
+            "src/account/application/query/FindAccountsQuery.ts",
+            "src/account/infrastructure/query/AccountQueryImplement.ts",
+            "src/account/interface/dto/FindAccountsRequestQueryString.ts"
+          ],
+          "baseline": 612
+        }
+      ]
+    },
+    {
+      "repo": "buqiyuan/nest-admin",
+      "sha": "5b549e540d52d04f08d26ded192a455a8e4c058d",
+      "walked": 10,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "2eeccc4cb699d1aedbe04b4437a9d095cde02c74",
+          "parent": "ae2dbfe66cf491b9cd397fb54a1f58dba9495458",
+          "files": [
+            "src/modules/tools/storage/storage.service.ts"
+          ],
+          "baseline": 638
+        },
+        {
+          "commit": "ae2dbfe66cf491b9cd397fb54a1f58dba9495458",
+          "parent": "a6b2eb5fa64ea0226664870d05301a228c82e4a2",
+          "files": [
+            "src/config/swagger.config.ts",
+            "src/main.ts",
+            "src/setup-swagger.ts"
+          ],
+          "baseline": 1358
+        },
+        {
+          "commit": "a6b2eb5fa64ea0226664870d05301a228c82e4a2",
+          "parent": "3e9783cee57a6fbf605c6d8eedc26ddcc8f9e540",
+          "files": [
+            "src/setup-swagger.ts"
+          ],
+          "baseline": 382
+        },
+        {
+          "commit": "ed601a94aa9f39f60aeb0da5d36b256f0256446a",
+          "parent": "b751a2a683a70d4c32312d3f71d3cf51e3446cfe",
+          "files": [
+            "src/modules/sse/sse.controller.ts",
+            "src/shared/shared.module.ts"
+          ],
+          "baseline": 822
+        },
+        {
+          "commit": "3eb6beac087fcabcdbe34b51a7185f7241ad7a00",
+          "parent": "5e69bcc03a1c6f10b76894001f58a32444e74d88",
+          "files": [
+            "src/helper/paginate/index.ts"
+          ],
+          "baseline": 958
+        }
+      ]
+    },
+    {
+      "repo": "haiweilian/vivy-nest-admin",
+      "sha": "ab6a057eed3aa6789ec2b1f63422d98b98b3d1e9",
+      "walked": 8,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "5a70757d49ab3bdbb28d5f82d2767b9af0a487c5",
+          "parent": "aa5e82804e608571fee87199296f6de8688a910a",
+          "files": [
+            "vivy-modules/vivy-system/src/app.module.ts"
+          ],
+          "baseline": 651
+        },
+        {
+          "commit": "aa5e82804e608571fee87199296f6de8688a910a",
+          "parent": "2c026791d2b03655ae0c7140863735da50bf7039",
+          "files": [
+            "taze.config.js",
+            "vivy-modules/vivy-system/src/modules/health/indicators/redis.health.ts",
+            "vivy-react/src/pages/home/index.tsx"
+          ],
+          "baseline": 450
+        },
+        {
+          "commit": "2c026791d2b03655ae0c7140863735da50bf7039",
+          "parent": "51704b638bd0b111e5ff478df29543a033946b66",
+          "files": [
+            "vivy-modules/vivy-system/src/app.module.ts"
+          ],
+          "baseline": 633
+        },
+        {
+          "commit": "777d2d96716a8a9b388c63bae01a92bdf6f179f0",
+          "parent": "44f0a306b2fae5f901ac9babbe433a307ca13968",
+          "files": [
+            "vivy-react/src/components/Cron/CronTab.tsx",
+            "vivy-react/src/components/Cron/index.tsx",
+            "vivy-react/src/pages/monitor/job/components/UpdateForm.tsx",
+            "vivy-react/src/pages/monitor/job/index.tsx"
+          ],
+          "baseline": 3008
+        },
+        {
+          "commit": "44f0a306b2fae5f901ac9babbe433a307ca13968",
+          "parent": "c7e7cd1ee336a8c73aff572aba1a09d242eb7d1c",
+          "files": [
+            "vivy-modules/vivy-system/src/modules/system/config/config-cache.service.ts",
+            "vivy-modules/vivy-system/src/modules/system/dict/dict-cache.service.ts",
+            "vivy-react/src/pages/system/dict/index.tsx"
+          ],
+          "baseline": 2296
+        }
+      ]
+    },
+    {
+      "repo": "TryGhost/Ghost",
+      "sha": "940de5ca514019517cb236a3ed0fa0fc80c207ef",
+      "walked": 10,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "e01b677fd90ced9f07a3572d053262b4d3729a19",
+          "parent": "8466c021a1190c0db9f0799961518120a892523b",
+          "files": [
+            "ghost/core/frontend/helpers/ghost_head.js"
+          ],
+          "baseline": 4855
+        },
+        {
+          "commit": "14676d5646e34bd59f35633d2cca223ff0d3ba3f",
+          "parent": "342738b5adfe056c802cfb7cce5abc2112b93d02",
+          "files": [
+            "ghost/core/server/data/db/configure-knex.ts",
+            "ghost/core/shared/config/schema.ts"
+          ],
+          "baseline": 2629
+        },
+        {
+          "commit": "a4ccc96fa73968ad555d0aa97b537d90d177df58",
+          "parent": "fa4d5e80e6598a6c84b26ce35bc2eb7dd630fa50",
+          "files": [
+            "ghost/core/shared/config/schema.ts",
+            "ghost/core/shared/config/validated.ts"
+          ],
+          "baseline": 3883
+        },
+        {
+          "commit": "fa4d5e80e6598a6c84b26ce35bc2eb7dd630fa50",
+          "parent": "a34a57d6c68e2d0581993d2080c5a32fb294da11",
+          "files": [
+            "ghost/core/server/data/exporter/table-lists.js",
+            "ghost/core/server/data/schema/in-development.ts",
+            "ghost/core/server/data/schema/schema.js"
+          ],
+          "baseline": 30293
+        },
+        {
+          "commit": "e295464c499bac91ce7971044390aeb84279f0f0",
+          "parent": "570aa72ded4c38dce0a2c159c5d7ec65a7d45272",
+          "files": [
+            "apps/admin/src/settings/hooks/scroll-section-provider.tsx"
+          ],
+          "baseline": 2718
+        }
+      ]
+    },
+    {
+      "repo": "payloadcms/payload",
+      "sha": "25dfb248a86991f9adbdd5de645794dceeef6b83",
+      "walked": 11,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "3eb46cf75c5fb47011e466b3e134f29d02a813df",
+          "parent": "526bd4f2c1ec62bf9cc69156e34cf422acd98873",
+          "files": [
+            "packages/ui/src/elements/FileManager/FilePreview/index.tsx",
+            "packages/ui/src/elements/FileManager/index.tsx"
+          ],
+          "baseline": 4480
+        },
+        {
+          "commit": "138e51688e4df28dc8b10ce3162043a3b027e927",
+          "parent": "9bb8f47f66b55835127e90d18d1f9dd74a072cee",
+          "files": [
+            "packages/db-mongodb/src/utilities/buildJoinAggregation.ts"
+          ],
+          "baseline": 3015
+        },
+        {
+          "commit": "8e93e02d39a935bdf7898c1c6677bd846d8cbb71",
+          "parent": "487fa2d06e84d138a28856faf57e342889bafb49",
+          "files": [
+            "packages/ui/src/utilities/handleStaleDataCheck.ts"
+          ],
+          "baseline": 505
+        },
+        {
+          "commit": "7097df5facfd2f0dc79ca375a75182af9577793d",
+          "parent": "45e833fe79af2b2424f8e87a9e5f4444853d6f0d",
+          "files": [
+            "packages/payload/src/uploads/downloadFileToBuffer.ts",
+            "packages/payload/src/uploads/generateFileData.ts"
+          ],
+          "baseline": 7380
+        },
+        {
+          "commit": "45e833fe79af2b2424f8e87a9e5f4444853d6f0d",
+          "parent": "5496b16e4c0b4add6f0c346989d0771ce1106c2d",
+          "files": [
+            "packages/payload/src/database/getLocalizedPaths.ts",
+            "packages/payload/src/database/queryValidation/validateSearchParams.ts",
+            "packages/payload/src/utilities/getEntityPermissions/getEntityPermissions.ts",
+            "packages/payload/src/utilities/getEntityPermissions/populateFieldPermissions.ts",
+            "packages/payload/src/utilities/sanitizePermissions.ts"
+          ],
+          "baseline": 10223
+        }
+      ]
+    },
+    {
+      "repo": "GrapheneOS/grapheneos.org",
+      "sha": "aa9a49f4d93393d7d4582d5cf675bdf80559a23d",
+      "walked": 34,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "4e7050e573667910e2114544a63c019cc64c8be8",
+          "parent": "2123aca969873b442e5e3c3f1298ce0f6966775e",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17361
+        },
+        {
+          "commit": "5f0ab48812ab0f307dc2763e996c6d6be6fc47b9",
+          "parent": "b5cee004b0c962a28aaefe67d4c407e71793d7d0",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17370
+        },
+        {
+          "commit": "b5cee004b0c962a28aaefe67d4c407e71793d7d0",
+          "parent": "3bf8ed4ff26b794fc26da144b47fa16de4e6bdb5",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17423
+        },
+        {
+          "commit": "3bf8ed4ff26b794fc26da144b47fa16de4e6bdb5",
+          "parent": "c6eb81590ed5e8ed73135f41bf1fcb699d6cd2a1",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17352
+        },
+        {
+          "commit": "c6eb81590ed5e8ed73135f41bf1fcb699d6cd2a1",
+          "parent": "826b9c4e6693987fbf7fa4d489d678ea768cb1aa",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17351
+        }
+      ]
+    },
+    {
+      "repo": "11ty/11ty-website",
+      "sha": "e8acd582f1d92aeb688b3c09be2ec63829b7653f",
+      "walked": 7,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "3e3b3a1ddf78944f99d10739cb3845538316f496",
+          "parent": "e4f51870d0da9d6f934bf1ef0fa467f569de9907",
+          "files": [
+            "eleventy.config.js",
+            "src/_includes/components/possum.css"
+          ],
+          "baseline": 9017
+        },
+        {
+          "commit": "e4f51870d0da9d6f934bf1ef0fa467f569de9907",
+          "parent": "d0f6075ad89da16dfae29b06732e5cdaead8cd94",
+          "files": [
+            "eleventy.config.js",
+            "src/_includes/components/header.css",
+            "src/_includes/components/possum.css"
+          ],
+          "baseline": 10964
+        },
+        {
+          "commit": "3ac115191fc3fe05db232ef00de8089124c7c823",
+          "parent": "ae7a031752f012a8f7496e85891c3fc4046434d2",
+          "files": [
+            "config/activity.js"
+          ],
+          "baseline": 513
+        },
+        {
+          "commit": "8925b1e2337c890969c2fa09ba1c97d9b12aafff",
+          "parent": "1458ddd73b50749a74c70960a508d5f8f8186c26",
+          "files": [
+            "eleventy.config.js"
+          ],
+          "baseline": 8759
+        },
+        {
+          "commit": "1458ddd73b50749a74c70960a508d5f8f8186c26",
+          "parent": "b91343199943b7b07232e71b142786f9b83cb52b",
+          "files": [
+            "eleventy.config.js"
+          ],
+          "baseline": 8762
+        }
+      ]
+    },
+    {
+      "repo": "doka-guide/platform",
+      "sha": "2b7f01274a0f8c292b94074fb05ce356a996dbde",
+      "walked": 7,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "786f470e8bc0a8813a70b4df68584e3eed2f4f0f",
+          "parent": "bb328114a900b9da9a02c574b22fb86d043347b3",
+          "files": [
+            "src/scripts/modules/pwa.js",
+            "src/sw.js"
+          ],
+          "baseline": 4641
+        },
+        {
+          "commit": "8852012edad5b012d5017724b358d18102ba9d4e",
+          "parent": "7cc7424fa1f8deb390598d3f92a0c4d9980f170c",
+          "files": [
+            "src/libs/github-contribution-stats/github-contribution-stats.js"
+          ],
+          "baseline": 254
+        },
+        {
+          "commit": "7cc7424fa1f8deb390598d3f92a0c4d9980f170c",
+          "parent": "f40f7e5b416990d54c4d06b8e825ba2d494f5a94",
+          "files": [
+            "jest.config.js"
+          ],
+          "baseline": 39
+        },
+        {
+          "commit": "f40f7e5b416990d54c4d06b8e825ba2d494f5a94",
+          "parent": "cc4e7219a37ea2a19ce33954e6617cf329b1be41",
+          "files": [
+            "src/views/people.11tydata.js",
+            "src/views/sc-all.11tydata.js",
+            "src/views/sc.11tydata.js"
+          ],
+          "baseline": 260
+        },
+        {
+          "commit": "cc4e7219a37ea2a19ce33954e6617cf329b1be41",
+          "parent": "5d0809d3302b3b7428322f8b8098f0c9961d9cb4",
+          "files": [
+            "src/scripts/core/search-commons.js"
+          ],
+          "baseline": 337
+        }
+      ]
+    },
+    {
+      "repo": "mdn/learning-area",
+      "sha": "21973263ba859ff3477919087b488157f9d618a6",
+      "walked": 8,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "21d69d2fd811b107f6b181db3354db3f0fbcd949",
+          "parent": "ca1ff0bd06e12b96a6742ffdf040bb22966e5a5e",
+          "files": [
+            "javascript/introduction-to-js-1/troubleshooting/number-game-errors.html"
+          ],
+          "baseline": 808
+        },
+        {
+          "commit": "ca1ff0bd06e12b96a6742ffdf040bb22966e5a5e",
+          "parent": "4be3df9a198e1edf344d113ba2d906c90e15c4c8",
+          "files": [
+            "javascript/apis/fetching-data/can-store/can-script.js"
+          ],
+          "baseline": 1735
+        },
+        {
+          "commit": "4be3df9a198e1edf344d113ba2d906c90e15c4c8",
+          "parent": "6e1054d34402da395c36dd907d4f4732da01d9c5",
+          "files": [
+            "accessibility/aria/website-aria-roles/index.html"
+          ],
+          "baseline": 877
+        },
+        {
+          "commit": "7877d2e45ecd0312d1971d616a15eee8a9dc358f",
+          "parent": "09c9fca689381ad4ed801a428ef795740cb06214",
+          "files": [
+            "html/multimedia-and-embedding/responsive-images/responsive.html"
+          ],
+          "baseline": 614
+        },
+        {
+          "commit": "8895c1a3c4a59ebf8d8ab85660db5f64661ee0c2",
+          "parent": "34186e2609916098a4e1ce4b11e6a508433367bc",
+          "files": [
+            "javascript/apis/document-manipulation/shopping-list-finished.html",
+            "javascript/apis/document-manipulation/shopping-list.html"
+          ],
+          "baseline": 560
+        }
+      ]
+    },
+    {
+      "repo": "dlarroder/dalelarroder",
+      "sha": "f8a46cb618d1b5d722871d9af5271e15622a0931",
+      "walked": 26,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "a3d9280cb0d44a17bf8982a3c7b2a224bdcd9415",
+          "parent": "9302cc79307f1545d81c7dcf2acf7ccf16ae2829",
+          "files": [
+            "app/components/layouts/theme-switch/theme-switch.tsx",
+            "app/components/mdx.tsx",
+            "app/projects/project-item.tsx",
+            "app/projects/project-preview.tsx",
+            "app/tailwind.css"
+          ],
+          "baseline": 3966
+        },
+        {
+          "commit": "882550f131f77a7b9104f2fc6cdd2162f0df4924",
+          "parent": "7544b9dffdbefd7753b3e88d53b6426a0ce47250",
+          "files": [
+            "app/components/hero/hero.tsx"
+          ],
+          "baseline": 944
+        },
+        {
+          "commit": "1ebf3379402335073c4e639184cb36e4e93a762d",
+          "parent": "981a7940f3e15147dda219935a83bfcce962991a",
+          "files": [
+            "app/components/hero/hero.tsx",
+            "app/components/splash-cursor.tsx",
+            "app/page.tsx",
+            "app/tailwind.css"
+          ],
+          "baseline": 14110
+        },
+        {
+          "commit": "25944f9805b5f9af0aebd56565cb71a8ba6f8f22",
+          "parent": "fbbf76dc6c473c4da54397d01a74960ef2e55524",
+          "files": [
+            "app/uses/uses-title.tsx"
+          ],
+          "baseline": 153
+        },
+        {
+          "commit": "c5b52865bd32fc4162ef99756737e1562d885c20",
+          "parent": "d5aa706006c7e0c773a16cb1b86d8bca583e917e",
+          "files": [
+            "app/thoughts/[slug]/page.tsx"
+          ],
+          "baseline": 574
+        }
+      ]
+    },
+    {
+      "repo": "nelsonlaidev/nelsonlai.dev",
+      "sha": "c0d625e37123f57703ef94977d92b08c0f8ed4ac",
+      "walked": 9,
+      "note": null,
+      "tasks": [
+        {
+          "commit": "e1b87d332d6913cba86cb1f0e042a2dc14bb1f46",
+          "parent": "8c3a7ba9c39171dba624ac37092665c18e5851a6",
+          "files": [
+            "src/components/comment-section/comment-actions.tsx",
+            "src/components/comment-section/comment-menu.tsx"
+          ],
+          "baseline": 1664
+        },
+        {
+          "commit": "8c3a7ba9c39171dba624ac37092665c18e5851a6",
+          "parent": "c5838cb9caacdd4bdd8349ec1b52e51fb87523dd",
+          "files": [
+            "src/components/account/active-sessions.tsx"
+          ],
+          "baseline": 1170
+        },
+        {
+          "commit": "c5838cb9caacdd4bdd8349ec1b52e51fb87523dd",
+          "parent": "41e87ca187f22216e71602edc6489338f65646c0",
+          "files": [
+            "src/app/rpc/[[...rest]]/route.ts"
+          ],
+          "baseline": 204
+        },
+        {
+          "commit": "41e87ca187f22216e71602edc6489338f65646c0",
+          "parent": "e73a0030a7fe7e1982a4365fcc5802a4261f27fe",
+          "files": [
+            "src/orpc/routers/wakatime.router.ts"
+          ],
+          "baseline": 281
+        },
+        {
+          "commit": "e73a0030a7fe7e1982a4365fcc5802a4261f27fe",
+          "parent": "44caa470c736e25ac7dd26cb032e14fd357d76f8",
+          "files": [
+            "src/components/ui/sidebar.tsx",
+            "src/components/ui/skeleton.tsx",
+            "src/styles/globals.css"
+          ],
+          "baseline": 8462
+        }
+      ]
+    }
+  ]
+}
