@@ -244,3 +244,30 @@ approves them by merging the pull request that adds this section. Until then the
 ### What it does not show
 
 Whether an agent uses the map well, what a completed task costs, or accuracy. Step 2, the pilot, measures those.
+
+## The result of gate R1 (2026-11-09)
+
+**Missed.** The frozen ranking lists every changed file within the budget in **31 of the 85 test tasks (36.5%)**,
+against a threshold of 70% (60 of 85). The counter is o200k_base; the result is outside the band of 65.0% to 75.0%, so
+Anthropic's counter cannot change it. The run is `docs/measurements/2026-11-09-r1-test.md`, the only test run
+(`r1-test-runs.json`), from commit `ab2073b`, which froze the method after tuning on the development tasks only
+(`docs/measurements/2026-11-09-r1-dev-tuning.md`: 34 of 85, 40.0%).
+
+- **The recount:** the `analysis-checker` agent recomputed every number from the raw tasks and found no difference. It
+  also found that the tasks, file lists and budgets match C0 exactly. The run is deterministic, so the only noise is
+  the choice of tasks: the exact 95% interval is 26.3% to 47.6%.
+- **The changed statements in the cut map** (61.1%) are pooled over all tasks; the mean of the per-task shares is
+  41.5%. The contract did not say which; both are given here.
+
+- **The reference ranking** (keywords) passes 17 of 85 (20.0%). The project's ranking beats it by 16.5 points, so the
+  comparison does not add a reason to stop. The ranking finds files better than a keyword match; it does not find
+  enough of them.
+- **A perfect ranking** would pass 81.2% at this budget. With a budget of 100% of the baseline, the frozen ranking
+  passes 60.0%: even a map as large as the changed files misses a file in 2 tasks of 5.
+- **The descriptions say little about place:** 6 of the 85 name a changed file by its path or its file name.
+- **Spread:** 0 of 5 in 5 repositories, 5 of 5 in GrapheneOS/grapheneos.org (one large page, as in C0).
+- **What it does not show:** an agent that searches, reads and asks for one folder's map on demand, or tasks with a
+  longer description than a commit message (an issue, a user's request). The gate tested one map, cut once, from the
+  commit message alone, as the contract fixed before the run.
+
+Decision 0007: a miss stops the project, unless a new, dated decision gives a reason to continue. The owner decides.

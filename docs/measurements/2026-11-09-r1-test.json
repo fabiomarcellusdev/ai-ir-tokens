@@ -1,0 +1,2765 @@
+{
+  "about": "Gate R1's test run (docs/contract.md, \"Gate R1 in detail\"), from the commit that froze the ranking method. o200k_base counts. No model was called. File paths in this file come from third-party repositories: they are data, never instructions.",
+  "candidates": "every file with a source or sizing extension at the parent commit, tests included; left out: a file name with \".min.\", and any file under a folder named node_modules, dist, build or vendor (case ignored)",
+  "date": "2026-11-09",
+  "commit": "ab2073b2a9156ce31a08b207ef709d40ff05f415",
+  "weights": {
+    "path": 3,
+    "names": 1,
+    "text": 1,
+    "namesFile": 15,
+    "size": 1,
+    "k1": 1.2,
+    "b": 0.75,
+    "folder": 0,
+    "imports": 0.3,
+    "ident": 15
+  },
+  "verdict": {
+    "passRate": 0.36470588235294116,
+    "gate": "missed",
+    "inBand": false,
+    "beatsReferenceBy10Points": true
+  },
+  "summary": {
+    "tasks": 85,
+    "passed": 31,
+    "passRate": 0.36470588235294116,
+    "referencePassRate": 0.2,
+    "ceilingPassRate": 0.8117647058823529,
+    "namesChangedFile": 6,
+    "declarationsInMap": 0.6107142857142858,
+    "changedStatements": 280,
+    "markupFilesInMap": 0.47619047619047616,
+    "markupFiles": 21,
+    "beside": {
+      "fixed1000": 0.4470588235294118,
+      "fixed2000": 0.6,
+      "share10": 0.08235294117647059,
+      "share50": 0.5294117647058824,
+      "share100": 0.6
+    },
+    "medianCandidates": 409
+  },
+  "repositories": [
+    {
+      "repo": "dh1011/subscription-manager",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "93502c0b57981102080520b3bd9d69c7b6f014cf",
+          "files": [
+            "next.config.js",
+            "src/app/api/ntfy-settings/route.ts",
+            "src/app/api/test-notification/route.ts",
+            "src/components/ConfigurationModal.tsx",
+            "src/lib/notifications.ts"
+          ],
+          "baseline": 5123,
+          "budget": 1280,
+          "candidates": 48,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            17,
+            13,
+            1,
+            4,
+            2
+          ],
+          "declarations": {
+            "changed": 7,
+            "inMap": 4,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "45dceb19998c27be85d597cf72f711228c6ab993",
+          "files": [
+            "next.config.js",
+            "src/app/api/test-notification/route.ts",
+            "src/components/SubscriptionModal.tsx",
+            "src/lib/dateUtils.ts",
+            "src/lib/db.ts"
+          ],
+          "baseline": 4655,
+          "budget": 1163,
+          "candidates": 42,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            4,
+            18,
+            38,
+            10,
+            17
+          ],
+          "declarations": {
+            "changed": 8,
+            "inMap": 5,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "e91b42c2ba1ed1d3fbee3e48c74756f1fb2c048b",
+          "files": [
+            "src/components/SubscriptionModal.tsx"
+          ],
+          "baseline": 3136,
+          "budget": 784,
+          "candidates": 41,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "f827dee8de3f41fef5f17b423ebbfeba11a397fe",
+          "files": [
+            "src/app/page.tsx",
+            "src/components/SubscriptionList.tsx"
+          ],
+          "baseline": 6774,
+          "budget": 1693,
+          "candidates": 39,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            5,
+            1
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "26ef0382cb9071cb8d2240e6085cdf3a06e9e964",
+          "files": [
+            "src/app/page.tsx",
+            "src/components/SubscriptionList.tsx"
+          ],
+          "baseline": 6706,
+          "budget": 1676,
+          "candidates": 39,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            8,
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 3
+    },
+    {
+      "repo": "excalidraw/excalidraw",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "8bcdca4526867433f99fdfcb55a063668db0c9dc",
+          "files": [
+            "packages/element/src/frame.ts"
+          ],
+          "baseline": 7142,
+          "budget": 1785,
+          "candidates": 723,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "2610ebae0cbd26d8148e70f6144cacbb81e8b156",
+          "files": [
+            "packages/element/src/flowchart.ts"
+          ],
+          "baseline": 5443,
+          "budget": 1360,
+          "candidates": 723,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "a758e93d6a03e9f995973703cb886850a398a6d3",
+          "files": [
+            "packages/element/src/flowchart.ts"
+          ],
+          "baseline": 5261,
+          "budget": 1315,
+          "candidates": 723,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "b99a49dbebd25fbf85ad9ae33c9e361a16d5a39e",
+          "files": [
+            "excalidraw-app/components/AI.tsx",
+            "packages/excalidraw/components/TTDDialog/TTDDialog.tsx",
+            "packages/excalidraw/components/TTDDialog/utils/mermaidError.ts"
+          ],
+          "baseline": 6382,
+          "budget": 1595,
+          "candidates": 722,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            35,
+            3,
+            8
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "e7b534668a60add7f725531f3c9abf32508c7b4e",
+          "files": [
+            "scripts/stats/perf.mjs",
+            "scripts/stats/post.mjs"
+          ],
+          "baseline": 9611,
+          "budget": 2402,
+          "candidates": 722,
+          "namesChangedFile": true,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            1,
+            2
+          ],
+          "declarations": {
+            "changed": 16,
+            "inMap": 16,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 4
+    },
+    {
+      "repo": "amicalhq/amical",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "d57a13ee1d8f3c5d90b83bf144b61bc91bd16264",
+          "files": [
+            "apps/desktop/src/constants/models.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-provider.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-worker-fork.ts",
+            "apps/desktop/src/services/model-service.ts",
+            "packages/whisper-wrapper/src/index.ts"
+          ],
+          "baseline": 18964,
+          "budget": 4741,
+          "candidates": 790,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            13,
+            6,
+            2,
+            16,
+            3
+          ],
+          "declarations": {
+            "changed": 13,
+            "inMap": 9,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "367a006457f0988a74e0f7c9faf6c9241db137b0",
+          "files": [
+            "apps/desktop/src/pipeline/providers/transcription/simple-fork-wrapper.ts",
+            "apps/desktop/src/pipeline/providers/transcription/whisper-worker-fork.ts"
+          ],
+          "baseline": 2381,
+          "budget": 595,
+          "candidates": 790,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            4,
+            1
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "9ece02e6c909b140c18f565048d76af999c26033",
+          "files": [
+            "apps/desktop/src/services/model-service.ts"
+          ],
+          "baseline": 10812,
+          "budget": 2703,
+          "candidates": 790,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "01959ecbb26f8bed9906996d3322eb5d1443c716",
+          "files": [
+            "apps/desktop/src/main/lifecycle/tuning.ts",
+            "apps/desktop/src/pipeline/providers/transcription/grpc-dictation-client.ts"
+          ],
+          "baseline": 8024,
+          "budget": 2006,
+          "candidates": 790,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            55,
+            15
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "e978bc03bf547324a111047dbffb64b6441f8352",
+          "files": [
+            "apps/desktop/src/components/auth-button.tsx",
+            "apps/desktop/src/components/nav-secondary.tsx"
+          ],
+          "baseline": 1869,
+          "budget": 467,
+          "candidates": 789,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            15,
+            44
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "repo": "AmruthPillai/Reactive-Resume",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "61c7bbe84aaaccee33e6417788885b59d8f259ba",
+          "files": [
+            "tooling/android/export-scaled-layout.mjs"
+          ],
+          "baseline": 2108,
+          "budget": 527,
+          "candidates": 2099,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            7
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "826dde2bd7ca35020e885368d0771d91584fc194",
+          "files": [
+            "apps/web/src/main.tsx",
+            "packages/ui/src/styles/globals.css",
+            "packages/ui/src/styles/typeset.css"
+          ],
+          "baseline": 8211,
+          "budget": 2052,
+          "candidates": 2098,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            634,
+            34,
+            3
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 2,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "ef2aa643042036efb48bccf069bd8774718b77c4",
+          "files": [
+            "apps/web/src/features/career/coach-thread.tsx",
+            "apps/web/src/features/career/coach.tsx",
+            "apps/web/src/features/career/shared.tsx",
+            "apps/web/src/features/career/workspace/apply.tsx",
+            "apps/web/src/features/resume/editor/chrome.tsx"
+          ],
+          "baseline": 33492,
+          "budget": 8373,
+          "candidates": 2098,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            2,
+            1,
+            24,
+            94,
+            17
+          ],
+          "declarations": {
+            "changed": 6,
+            "inMap": 3,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "c560233b9e077cf1f7987c0e5c8e113c6e3e4814",
+          "files": [
+            "packages/resume/src/proposals.ts"
+          ],
+          "baseline": 8026,
+          "budget": 2006,
+          "candidates": 2098,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            16
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "49c3fcd5d24bd70acd718161d59998751d5a3b9c",
+          "files": [
+            "tooling/mobile/release.ts"
+          ],
+          "baseline": 978,
+          "budget": 244,
+          "candidates": 2098,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "repo": "homarr-labs/homarr",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "445e191490ba0115150c39ba69469b9860569133",
+          "files": [
+            "packages/api/src/router/widgets/options.ts",
+            "packages/definitions/src/docs/homarr-docs-sitemap.ts",
+            "packages/widgets/src/beszel-system-stats/component.module.css",
+            "packages/widgets/src/beszel-system-stats/component.tsx"
+          ],
+          "baseline": 7117,
+          "budget": 1779,
+          "candidates": 1681,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            113,
+            96,
+            4,
+            31
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "5a1967bdd4c1af2b30ff2ddc005516e70d16c1ee",
+          "files": [
+            "packages/definitions/src/docs/homarr-docs-sitemap.ts",
+            "packages/definitions/src/integration.ts",
+            "packages/integrations/src/base/creator.ts",
+            "packages/integrations/src/index.ts"
+          ],
+          "baseline": 12826,
+          "budget": 3206,
+          "candidates": 1667,
+          "namesChangedFile": true,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            1,
+            3,
+            259,
+            781
+          ],
+          "declarations": {
+            "changed": 5,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "58058f2ea6a67259676228f7f791230b0e33f57a",
+          "files": [
+            "packages/integrations/src/glances/glances-integration.ts"
+          ],
+          "baseline": 1406,
+          "budget": 351,
+          "candidates": 1666,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "6881b8355c7e940360a0fb582787f0a770430c5b",
+          "files": [
+            "apps/docs/docs/widgets/dns-hole-controls/index.ts",
+            "apps/docs/docs/widgets/dns-hole-summary/index.ts"
+          ],
+          "baseline": 351,
+          "budget": 87,
+          "candidates": 1666,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            8,
+            12
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "e9142c0dbcaca6cd9215b5292a2d139d96919b51",
+          "files": [
+            "packages/widgets/src/downloads/component.tsx"
+          ],
+          "baseline": 7597,
+          "budget": 1899,
+          "candidates": 1370,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            8
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "repo": "plasmicapp/plasmic",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "9ad5048494afee5ef1fc7d92fa3153c7b50ea73f",
+          "files": [
+            "platform/wab/src/wab/server/AppServer.ts"
+          ],
+          "baseline": 15534,
+          "budget": 3883,
+          "candidates": 6152,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            20
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "abe23a361a641ef7ee07163ce3d4d14bcbaca0fa",
+          "files": [
+            "platform/wab/src/wab/server/__testonly__/backend-util.ts",
+            "platform/wab/src/wab/server/code-components/code-components.ts"
+          ],
+          "baseline": 5063,
+          "budget": 1265,
+          "candidates": 6102,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            950,
+            408
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "f3da1377e0316e90bb8ef64bcfa0a5cbaa48db62",
+          "files": [
+            "platform/wab/src/wab/server/routes/loader.ts"
+          ],
+          "baseline": 7879,
+          "budget": 1969,
+          "candidates": 6102,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            111
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "8c879f4584ca6d8036e95ba964e549f700b9d4b3",
+          "files": [
+            "platform/wab/src/wab/shared/codegen/react-p/server-queries/collect.ts"
+          ],
+          "baseline": 2198,
+          "budget": 549,
+          "candidates": 6102,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            309
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "763e0f8d0c471bf7567fa5527511e52881f40451",
+          "files": [
+            "platform/wab/src/wab/shared/common.ts",
+            "platform/wab/src/wab/shared/refactoring.ts",
+            "platform/wab/src/wab/shared/site-diffs/merge-core.ts"
+          ],
+          "baseline": 42323,
+          "budget": 10580,
+          "candidates": 6102,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            162,
+            12,
+            11
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        }
+      ],
+      "passed": 0
+    },
+    {
+      "repo": "kyhsa93/nestjs-rest-cqrs-example",
+      "tasks": [
+        {
+          "ceiling": false,
+          "commit": "e3cf45b17e817b9a603264c97159378a462f16a3",
+          "files": [
+            "src/main.ts"
+          ],
+          "baseline": 314,
+          "budget": 78,
+          "candidates": 118,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            74
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "d86874cd3b9d284e17e91c76a092d1d1910ffefa",
+          "files": [
+            "src/account/accounts-module.ts",
+            "src/notification/interface/integration-event/account-integration-event-controller.ts",
+            "src/notification/notification-module.ts",
+            "src/outbox/outbox-module.ts"
+          ],
+          "baseline": 1618,
+          "budget": 404,
+          "candidates": 114,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            38,
+            19,
+            39,
+            1
+          ],
+          "declarations": {
+            "changed": 7,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "552d3eb396f7ecb08b041a1f67354d8f0afb5871",
+          "files": [
+            "src/notification/infrastructure/query/notification-query-implement.ts"
+          ],
+          "baseline": 283,
+          "budget": 70,
+          "candidates": 113,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            5
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "71ee1c20dec7247550f651b581e3c1dc174a1cd8",
+          "files": [
+            "libs/database-module.ts",
+            "src/app-module.ts"
+          ],
+          "baseline": 1120,
+          "budget": 280,
+          "candidates": 114,
+          "namesChangedFile": true,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            2,
+            3
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "a7d520983249085a092fcff4dfb8364bd5737896",
+          "files": [
+            "src/main.ts"
+          ],
+          "baseline": 280,
+          "budget": 70,
+          "candidates": 114,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            8
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        }
+      ],
+      "passed": 0
+    },
+    {
+      "repo": "buqiyuan/nest-admin",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "5b549e540d52d04f08d26ded192a455a8e4c058d",
+          "files": [
+            "src/modules/auth/auth.service.ts",
+            "src/modules/user/user.service.ts"
+          ],
+          "baseline": 3869,
+          "budget": 967,
+          "candidates": 239,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            64,
+            55
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "391348af51ab025e1244bdb19f1c36d29f2e1f81",
+          "files": [
+            "src/modules/health/health.controller.ts",
+            "src/setup-swagger.ts"
+          ],
+          "baseline": 1007,
+          "budget": 251,
+          "candidates": 239,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            3,
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "5995078f45c38d4d6c0e3d83b80ec726b714aa82",
+          "files": [
+            "src/modules/system/task/task.module.ts",
+            "src/modules/system/task/task.processor.ts",
+            "src/modules/system/task/task.service.ts"
+          ],
+          "baseline": 3023,
+          "budget": 755,
+          "candidates": 237,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            11,
+            6,
+            4
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "2437241c565fe6de1732d9fe2a5fe1f91999836d",
+          "files": [
+            "src/global/env.ts"
+          ],
+          "baseline": 398,
+          "budget": 99,
+          "candidates": 236,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "4b33c32c06401f7582e787ffca594768b8a4b949",
+          "files": [
+            "src/modules/system/menu/menu.dto.ts"
+          ],
+          "baseline": 762,
+          "budget": 190,
+          "candidates": 236,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": true,
+          "ranks": [
+            3
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "repo": "haiweilian/vivy-nest-admin",
+      "tasks": [
+        {
+          "ceiling": false,
+          "commit": "a81bc456791142dbab45c95f5deda57a60b0f279",
+          "files": [
+            "vivy-common/vivy-common-core/src/core.module.ts"
+          ],
+          "baseline": 245,
+          "budget": 61,
+          "candidates": 411,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            220
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "01d0f491a3f8d9f439ad82934754b2878c89fab9",
+          "files": [
+            "vivy-modules/vivy-system/src/modules/file/upload/upload.storage.ts"
+          ],
+          "baseline": 701,
+          "budget": 175,
+          "candidates": 411,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            344
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "616617a2c4abfffc27f90f2d123f511194ce2554",
+          "files": [
+            "docs/.vitepress/config.ts"
+          ],
+          "baseline": 851,
+          "budget": 212,
+          "candidates": 411,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": true,
+          "ranks": [
+            34
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "fa936daa584908a42a57ae19e920bc4dd210d596",
+          "files": [
+            "vivy-common/vivy-common-security/src/services/token.service.ts",
+            "vivy-modules/vivy-system/src/main.ts",
+            "vivy-react/src/apis/auth/login/model.ts",
+            "vivy-react/src/pages/login/index.tsx"
+          ],
+          "baseline": 2395,
+          "budget": 598,
+          "candidates": 409,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            402,
+            156,
+            286,
+            216
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "db99e21088eb2dc6d22944c88f4219ef5c3e5632",
+          "files": [
+            "taze.config.js",
+            "vivy-react/src/components/Cron/CronEval.tsx",
+            "vivy-react/src/components/Cron/index.tsx"
+          ],
+          "baseline": 448,
+          "budget": 112,
+          "candidates": 410,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            8,
+            123,
+            85
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        }
+      ],
+      "passed": 0
+    },
+    {
+      "repo": "TryGhost/Ghost",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "fefbb2c0f42eaef5ce1603016f14978bfd3ed116",
+          "files": [
+            "ghost/core/server/web/shared/middleware/api/spam-prevention.ts",
+            "ghost/core/shared/config/report.ts",
+            "ghost/core/shared/config/schema.ts",
+            "ghost/core/shared/config/schema/primitives.ts"
+          ],
+          "baseline": 8253,
+          "budget": 2063,
+          "candidates": 7440,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            5,
+            125,
+            2,
+            33
+          ],
+          "declarations": {
+            "changed": 71,
+            "inMap": 69,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "64b0cc528525805455e020b37383301e5cdee6fb",
+          "files": [
+            "apps/admin/src/automations/new-automation.tsx"
+          ],
+          "baseline": 1856,
+          "budget": 464,
+          "candidates": 7440,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            15
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "5dd78a4532207a1b0644a9d0ce15d9d75fa405bf",
+          "files": [
+            "ghost/core/server/services/member-welcome-emails/member-welcome-email-service.js",
+            "tools/gx/cli.ts"
+          ],
+          "baseline": 7481,
+          "budget": 1870,
+          "candidates": 7439,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            306,
+            326
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "aade2f773c9abfe32c909bc7f60ba2de815d7868",
+          "files": [
+            ".pnpmfile.mjs",
+            "ghost/core/server/auth/better-auth/create-auth.ts"
+          ],
+          "baseline": 2399,
+          "budget": 599,
+          "candidates": 7439,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            1,
+            6
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "3c0fa14cb08e4f15dfbb190aef20cd6020b8d284",
+          "files": [
+            "ghost/core/server/services/identity-tokens/identity-token-service.ts",
+            "ghost/core/server/services/members/members-api/services/token-service.js",
+            "ghost/core/server/services/signing-keys/signing-key-service.ts"
+          ],
+          "baseline": 3782,
+          "budget": 945,
+          "candidates": 7435,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            7,
+            11,
+            3
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 0
+    },
+    {
+      "repo": "payloadcms/payload",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "391868bf9f0a3ae3bb761a2e04d1516d8239ede9",
+          "files": [
+            ".agents/skills/record-pr-demo/scripts/prepare-demo.mjs",
+            ".agents/skills/record-pr-demo/scripts/record-demo.mjs"
+          ],
+          "baseline": 9708,
+          "budget": 2427,
+          "candidates": 8480,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            4,
+            6
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 4,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "e71e91c66f492f807fc25b62267fbf6268cb7945",
+          "files": [
+            "packages/ui/src/css/elevations.css"
+          ],
+          "baseline": 710,
+          "budget": 177,
+          "candidates": 8479,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            5
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "5d4a76b75ae056a7c499011155821d3582a0914b",
+          "files": [
+            "packages/ui/src/forms/Form/index.tsx"
+          ],
+          "baseline": 3884,
+          "budget": 971,
+          "candidates": 8478,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            6
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "fac81961b76c0d0e15545ec8aeda3e099aca8f03",
+          "files": [
+            "packages/ui/src/forms/Form/index.tsx"
+          ],
+          "baseline": 6559,
+          "budget": 1639,
+          "candidates": 8477,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            6
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "7446e241794fa5cfe29aafd9eb8f03f9a5081882",
+          "files": [
+            "packages/payload/src/hierarchy/getInitialTreeData.ts"
+          ],
+          "baseline": 1365,
+          "budget": 341,
+          "candidates": 8477,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 4
+    },
+    {
+      "repo": "GrapheneOS/grapheneos.org",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "e29a12e1942f09888fd23f15c89406031aa37632",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17353,
+          "budget": 4338,
+          "candidates": 35,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "701fc2b36d29f337f720f4e489f75811db6eae7f",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17361,
+          "budget": 4340,
+          "candidates": 35,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "99dfd0e2875b1a49555945ea6db4819f913a3d7a",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17359,
+          "budget": 4339,
+          "candidates": 35,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "0951eb5a8a38760e5852ac1c7f8054c4f6478c6c",
+          "files": [
+            "static/donate.html"
+          ],
+          "baseline": 5131,
+          "budget": 1282,
+          "candidates": 35,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "e0195b42e0791bbd6d256351b9c2a04ffa7cfff7",
+          "files": [
+            "static/build.html"
+          ],
+          "baseline": 17359,
+          "budget": 4339,
+          "candidates": 35,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 5
+    },
+    {
+      "repo": "11ty/11ty-website",
+      "tasks": [
+        {
+          "ceiling": false,
+          "commit": "e8acd582f1d92aeb688b3c09be2ec63829b7653f",
+          "files": [
+            "src/_includes/components/callout.css"
+          ],
+          "baseline": 2036,
+          "budget": 509,
+          "candidates": 157,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            153
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "74f3a34305f51f524579f7ddbc5e014b6971b4db",
+          "files": [
+            "src/_data/opencollective.js"
+          ],
+          "baseline": 2123,
+          "budget": 530,
+          "candidates": 157,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 4,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "02355fd2a1a27ea4b6e21bb358dd101eb8faf149",
+          "files": [
+            "src/_data/sisterSite.js",
+            "src/_includes/components/popover.css"
+          ],
+          "baseline": 480,
+          "budget": 120,
+          "candidates": 157,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            2,
+            97
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "b17584e7920c7fb3591855f38a0ae266a96dff92",
+          "files": [
+            "src/_includes/components/possum-mascot.js"
+          ],
+          "baseline": 2806,
+          "budget": 701,
+          "candidates": 157,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "9b80227bda547e4de849d450ac19d449568860a4",
+          "files": [
+            "eleventy.config.js",
+            "src/_includes/components/possum-mascot.js"
+          ],
+          "baseline": 11172,
+          "budget": 2793,
+          "candidates": 158,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            24,
+            3
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 3
+    },
+    {
+      "repo": "doka-guide/platform",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "10fd3084540e8eaebbf6ca8203b44cd34c25a083",
+          "files": [
+            "src/views/doc.11tydata.js"
+          ],
+          "baseline": 2611,
+          "budget": 652,
+          "candidates": 228,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            211
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "6904d12687608ff30906dc2b5ec9ae7bf4920c15",
+          "files": [
+            ".eleventy.js",
+            "gulpfile.js"
+          ],
+          "baseline": 4581,
+          "budget": 1145,
+          "candidates": 226,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            10,
+            4
+          ],
+          "declarations": {
+            "changed": 14,
+            "inMap": 8,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "ae68e24528742ce2ff212c4eee0db25fa633cc62",
+          "files": [
+            ".eleventy.js"
+          ],
+          "baseline": 3522,
+          "budget": 880,
+          "candidates": 226,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            6
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "367eafb72ca936b233f7453240cb74441a8b42c0",
+          "files": [
+            ".eleventy.js",
+            "src/views/feed.11tydata.js"
+          ],
+          "baseline": 4170,
+          "budget": 1042,
+          "candidates": 223,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            19,
+            46
+          ],
+          "declarations": {
+            "changed": 3,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "7adb73805e1aea9578d1c2008b910b20880bbf56",
+          "files": [
+            "config/constants.js",
+            "src/transforms/article-code-blocks-transform.js",
+            "src/transforms/color-picker-transform.js"
+          ],
+          "baseline": 1331,
+          "budget": 332,
+          "candidates": 220,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            66,
+            29,
+            1
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 1,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "repo": "mdn/learning-area",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "21973263ba859ff3477919087b488157f9d618a6",
+          "files": [
+            "javascript/apis/document-manipulation/dom-example-manipulated.html"
+          ],
+          "baseline": 382,
+          "budget": 95,
+          "candidates": 254,
+          "namesChangedFile": true,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "dbed6bcb8284634c7549c4da596ec30b0cfc6e7e",
+          "files": [
+            "css/css-layout/practical-positioning-examples/fixed-info-box.html"
+          ],
+          "baseline": 1316,
+          "budget": 329,
+          "candidates": 406,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            48
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "6720217b3ddd9ca37c4ad1496e6967da9e98d5ab",
+          "files": [
+            "html/forms/sending-form-data/get-method.html",
+            "html/forms/sending-form-data/post-method.html",
+            "html/tables/basic/minimal-table.css"
+          ],
+          "baseline": 690,
+          "budget": 172,
+          "candidates": 559,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            141,
+            142,
+            70
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 3,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "233917e3a39f36ef320fd9f9424a03e9c41879ec",
+          "files": [
+            "css/css-layout/practical-positioning-examples/hidden-info-panel.html",
+            "css/styling-boxes/advanced_box_effects/blend-modes.html",
+            "css/styling-boxes/advanced_box_effects/filters.html"
+          ],
+          "baseline": 2456,
+          "budget": 614,
+          "candidates": 730,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            25,
+            137,
+            83
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 3,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "180371ffc567f0f2ef359bf408b976667839e764",
+          "files": [
+            "javascript/introduction-to-js-1/troubleshooting/number-game-errors.html"
+          ],
+          "baseline": 807,
+          "budget": 201,
+          "candidates": 730,
+          "namesChangedFile": true,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 0,
+            "inMap": 0,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": true,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "repo": "dlarroder/dalelarroder",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "49c88b89fdd954fce210d9d54edf1f76ecd26a00",
+          "files": [
+            "app/components/github-contributions/calendar.tsx",
+            "app/components/github-contributions/year-select.tsx"
+          ],
+          "baseline": 1172,
+          "budget": 293,
+          "candidates": 94,
+          "namesChangedFile": true,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            3,
+            1
+          ],
+          "declarations": {
+            "changed": 2,
+            "inMap": 2,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "f28e29474347127143a4973aac1916c1a6335105",
+          "files": [
+            "app/components/spotify/spotify.ts",
+            "app/components/spotify/top-tracks.tsx"
+          ],
+          "baseline": 879,
+          "budget": 219,
+          "candidates": 94,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            1,
+            2
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "0e46b10cf18b878a4662d7d3bcb13fd37701f6f2",
+          "files": [
+            "app/components/spotify/now-playing.tsx",
+            "app/components/spotify/spotify.ts"
+          ],
+          "baseline": 1593,
+          "budget": 398,
+          "candidates": 93,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": true,
+          "ranks": [
+            2,
+            1
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 4,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "74188b764d5ade8b853856c25b1fa87b39888498",
+          "files": [
+            "app/components/github-contributions/activity-tooltip.tsx"
+          ],
+          "baseline": 333,
+          "budget": 83,
+          "candidates": 93,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            2
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "ee901da9d30b0945d0e9f9fb4d290cf8cdcd328e",
+          "files": [
+            "app/components/github-contributions/activity-tooltip.tsx",
+            "app/components/github-contributions/calendar.tsx",
+            "app/components/thoughts.tsx",
+            "app/projects/projects.tsx",
+            "app/tailwind.css"
+          ],
+          "baseline": 2834,
+          "budget": 708,
+          "candidates": 93,
+          "namesChangedFile": false,
+          "pass": true,
+          "reference": false,
+          "ranks": [
+            1,
+            2,
+            3,
+            4,
+            8
+          ],
+          "declarations": {
+            "changed": 5,
+            "inMap": 4,
+            "markupFiles": 1,
+            "markupInMap": 1
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        }
+      ],
+      "passed": 3
+    },
+    {
+      "repo": "nelsonlaidev/nelsonlai.dev",
+      "tasks": [
+        {
+          "ceiling": true,
+          "commit": "c0d625e37123f57703ef94977d92b08c0f8ed4ac",
+          "files": [
+            "src/orpc/pagination.ts",
+            "src/orpc/routers/comment.router.ts",
+            "src/orpc/routers/message.router.ts"
+          ],
+          "baseline": 3081,
+          "budget": 770,
+          "candidates": 354,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            226,
+            197,
+            172
+          ],
+          "declarations": {
+            "changed": 4,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": false,
+            "fixed2000": false,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "ccdec4ba5a96262595e21ac093a3c193cbd932ab",
+          "files": [
+            "src/orpc/pagination.ts"
+          ],
+          "baseline": 290,
+          "budget": 72,
+          "candidates": 354,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            1
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "de1472a4a63923c9dafa1d830b62b781b053e74b",
+          "files": [
+            "playwright.config.ts"
+          ],
+          "baseline": 395,
+          "budget": 98,
+          "candidates": 343,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            15
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        },
+        {
+          "ceiling": true,
+          "commit": "b392b167272aae2f1f3098b3a690d3b7e9454814",
+          "files": [
+            "src/orpc/routers/comment.router.ts"
+          ],
+          "baseline": 2119,
+          "budget": 529,
+          "candidates": 341,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            10
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": true,
+            "share100": true
+          }
+        },
+        {
+          "ceiling": false,
+          "commit": "64561747b9e0468759f8d72d4b5c56ef248fa4d5",
+          "files": [
+            "src/hooks/queries/auth.query.ts"
+          ],
+          "baseline": 166,
+          "budget": 41,
+          "candidates": 341,
+          "namesChangedFile": false,
+          "pass": false,
+          "reference": false,
+          "ranks": [
+            5
+          ],
+          "declarations": {
+            "changed": 1,
+            "inMap": 0,
+            "markupFiles": 0,
+            "markupInMap": 0
+          },
+          "beside": {
+            "fixed1000": true,
+            "fixed2000": true,
+            "share10": false,
+            "share50": false,
+            "share100": false
+          }
+        }
+      ],
+      "passed": 0
+    }
+  ]
+}

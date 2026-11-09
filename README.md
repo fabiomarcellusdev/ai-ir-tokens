@@ -11,9 +11,10 @@ The goal is that a completed coding task costs much less, with a pass rate no mo
 prompt caching as agents use it. The working target is **at least 40% less**; the exact number is fixed before the
 pilot runs. A saving that costs accuracy is not a saving.
 
-> **Status: measuring, nothing built.** The first plan failed its test on real code, and the project has been
-> rescoped (`docs/decisions/0007-rescope-after-c0.md`). The next step is a free measurement; if it misses its gate,
-> the project stops. No model has run a task with this tool.
+> **Status: both tests missed, nothing built.** The first plan failed its test on real code, and the project was
+> rescoped (`docs/decisions/0007-rescope-after-c0.md`). The rescoped plan's free test, gate R1, missed too (36.5%
+> against 70%). By decision 0007 the project stops, unless the owner records a reason to continue. No model has run a
+> task with this tool.
 
 ## What phase 0 found
 
@@ -46,6 +47,9 @@ numbers measure the cost of reading, not of finding.
 
 1. **Step 1, free (gate R1):** given only a task's description, can a map within 25% of the files' tokens list every
    file the change touched, in at least 70% of the 85 tasks? It costs nothing: no model is called.
+   **Result: missed, 31 of 85 (36.5%)**, counted with o200k_base. A keyword ranking passed 20.0%, and a perfect
+   ranking could pass 81.2% at this budget. The ranking was tuned on 85 other commits and run once on the test tasks
+   (`docs/measurements/2026-11-09-r1-test.md`).
 2. **Step 2, a small paid pilot:** real agent runs, with and without the map, measuring cost per completed task and
    pass rate. Only if step 1 passes.
 

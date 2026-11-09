@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
+import { git, cloneDir, checkCache, isRepoName, isSha, fileAt, diffOf, MAX_FILE_BYTES } from "./safe-git.mjs";
 import { fileURLToPath } from "node:url";
 import { tok } from "./views.mjs";
 import { parseNameStatusZ, qualifyingFiles, changedRanges, tsChangedStatements, htmlChangedCode, cssChangedCode } from "./corpus-lib.mjs";
@@ -23,34 +23,27 @@ const argv = process.argv.slice(2);
 const opt = (name, fallback) => { const i = argv.indexOf(`--${name}`); return i >= 0 ? argv[i + 1] : fallback; };
 const FROM = path.resolve(repoRoot, opt("from", "docs/measurements/2026-11-08-phase0-corpus.json"));
 const CACHE = path.resolve(opt("cache", path.join(os.tmpdir(), "ai-ir-tokens-corpus")));
-const PER_REPO = 5, WALK_LIMIT = 500, CLONE_DEPTH = 700, MAX_FILE_BYTES = 1024 * 1024;
+const PER_REPO = 5, WALK_LIMIT = 500, CLONE_DEPTH = 700;
 
-const gitEnv = { ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !/^GIT_/i.test(k) && k !== "ANTHROPIC_API_KEY")), GIT_TERMINAL_PROMPT: "0" };
-function git(dir, args, { ok = false } = {}) {
-  const r = spawnSync("git", ["--literal-pathspecs", "-c", "core.quotePath=false", "-c", "log.showSignature=false", ...args], { cwd: dir, env: gitEnv, encoding: "utf8", maxBuffer: 256 * 1024 * 1024 });
-  if (ok) return r;
-  if (r.status !== 0) throw new Error(`git ${args[0]} failed in ${path.basename(dir)}: ${String(r.stderr).trim().slice(0, 300)}`);
-  return r.stdout;
-}
 
 function clone(repo, sha) {
-  const dir = path.join(CACHE, repo.replace("/", "__"));
+  if (!isSha(sha)) throw new Error(`a bad pin for ${repo}`);
+  const dir = cloneDir(CACHE, repo);
   const url = `https://github.com/${repo}.git`;
   if (fs.existsSync(path.join(dir, ".git"))) {
     if (git(dir, ["config", "--get", "remote.origin.url"], { ok: true }).stdout?.trim() !== url) throw new Error(`the cached clone of ${repo} points elsewhere`);
   } else {
-    fs.mkdirSync(CACHE, { recursive: true, mode: 0o700 });
     git(CACHE, ["-c", "transfer.fsckObjects=true", "clone", "--quiet", "--no-checkout", "--single-branch", "--no-tags", "--depth", String(CLONE_DEPTH), url, dir]);
   }
-  git(dir, ["-c", "transfer.fsckObjects=true", "fetch", "--quiet", "--no-tags", "--depth", String(CLONE_DEPTH), "origin", sha]);
+  git(dir, ["-c", "transfer.fsckObjects=true", "fetch", "--quiet", "--no-tags", "--depth", String(CLONE_DEPTH), "--end-of-options", "origin", sha]);
   return dir;
 }
 
 /** Rule 3: at least one modified file has a declaration, landmark or CSS rule group that the change touches. */
 function touchesParsedUnit(dir, commit, parent, files) {
   for (const f of files) {
-    const text = norm(git(dir, ["cat-file", "blob", `${parent}:${f}`]));
-    const ranges = changedRanges(norm(git(dir, ["diff", "-U0", "--no-color", "--no-ext-diff", "--no-textconv", parent, commit, "--", f])));
+    const text = norm(fileAt(dir, parent, f));
+    const ranges = changedRanges(norm(diffOf(dir, parent, commit, f)));
     try {
       if (/\.(tsx?|jsx?|mjs|cjs)$/i.test(f) && tsChangedStatements(f, text, ranges).length) return true;
       if (/\.html?$/i.test(f) && htmlChangedCode(text, ranges)) return true;
@@ -62,14 +55,16 @@ function touchesParsedUnit(dir, commit, parent, files) {
 
 const status = git(repoRoot, ["status", "--porcelain"]).trim();
 if (status && !argv.includes("--allow-dirty")) throw new Error("this repository has uncommitted changes; commit first, or pass --allow-dirty for a test run");
+checkCache(CACHE, { create: true });
 const c0 = JSON.parse(fs.readFileSync(FROM, "utf8"));
 const gate = c0.repositories.filter((r) => r.role === "gate" && r.tasks.length >= 3);
 if (gate.length !== 17) throw new Error(`the C0 results have ${gate.length} gate repositories, not 17`);
 
 const repos = [];
 for (const r of gate) {
+  if (!isRepoName(r.repo) || r.tasks.some((t) => !isSha(t.commit))) throw new Error(`a bad name or task in the C0 results: ${r.repo}`);
   const dir = clone(r.repo, r.sha);
-  const commits = git(dir, ["rev-list", "--first-parent", `--max-count=${WALK_LIMIT}`, r.sha]).split("\n").filter(Boolean);
+  const commits = git(dir, ["rev-list", "--first-parent", `--max-count=${WALK_LIMIT}`, "--end-of-options", r.sha]).split("\n").filter(Boolean);
   const testIndex = r.tasks.map((t) => commits.indexOf(t.commit));
   if (testIndex.some((i) => i < 0)) throw new Error(`${r.repo}: a test task is not in the walk`);
   const tasks = [];
@@ -77,16 +72,16 @@ for (const r of gate) {
   for (const c of commits.slice(Math.max(...testIndex) + 1)) {
     if (tasks.length >= PER_REPO) break;
     walked++;
-    const [, ...parents] = git(dir, ["rev-list", "--parents", "-n", "1", c]).trim().split(" ");
+    const [, ...parents] = git(dir, ["rev-list", "--parents", "-n", "1", "--end-of-options", c]).trim().split(" ");
     if (parents.length !== 1) continue;
-    const [authorName, authorEmail] = git(dir, ["log", "-1", "--no-show-signature", "--format=%an%x00%ae", c]).split("\0");
-    const entries = parseNameStatusZ(git(dir, ["diff-tree", "-r", "-z", "--no-commit-id", "--name-status", "-M", parents[0], c]));
+    const [authorName, authorEmail] = git(dir, ["log", "-1", "--no-show-signature", "--format=%an%x00%ae", "--end-of-options", c]).split("\0");
+    const entries = parseNameStatusZ(git(dir, ["diff-tree", "-r", "-z", "--no-commit-id", "--name-status", "-M", "--end-of-options", parents[0], c]));
     const files = qualifyingFiles({ parents: 1, authorName, authorEmail, entries });
     if (!files) continue;
-    const sizes = git(dir, ["ls-tree", "-l", "-z", parents[0], "--", ...files]).split("\0").filter(Boolean).map((e) => Number(/^\d+ blob [0-9a-f]+ +(\d+)\t/.exec(e)?.[1] ?? 0));
+    const sizes = git(dir, ["ls-tree", "-l", "-z", "--end-of-options", parents[0], "--", ...files]).split("\0").filter(Boolean).map((e) => Number(/^\d+ blob [0-9a-f]+ +(\d+)\t/.exec(e)?.[1] ?? 0));
     if (sizes.some((s) => s > MAX_FILE_BYTES)) continue;
     if (!touchesParsedUnit(dir, c, parents[0], files)) continue;
-    const baseline = files.map((f) => `// ${f}\n${norm(git(dir, ["cat-file", "blob", `${parents[0]}:${f}`]))}`).join("\n");
+    const baseline = files.map((f) => `// ${f}\n${norm(fileAt(dir, parents[0], f))}`).join("\n");
     tasks.push({ commit: c, parent: parents[0], files, baseline: tok(baseline).o200k_base });
   }
   repos.push({ repo: r.repo, sha: r.sha, walked, note: tasks.length < PER_REPO ? `only ${tasks.length} development tasks within ${WALK_LIMIT} commits of the pin` : null, tasks });
