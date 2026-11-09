@@ -6,7 +6,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { isRepoName, isSha, cloneDir, checkCache, commitMessage, tree } from "./safe-git.mjs";
+import { spawnSync } from "node:child_process";
+import { git, isRepoName, isSha, cloneDir, checkCache, commitMessage, tree } from "./safe-git.mjs";
 
 test("a repository name is owner/name, with no path step", () => {
   assert.equal(isRepoName("excalidraw/excalidraw"), true);
@@ -34,6 +35,22 @@ test("a clone folder stays inside the cache", () => {
 test("a revision that looks like an option never reaches git", () => {
   assert.throws(() => commitMessage(os.tmpdir(), "--output=x"), /bad commit id/);
   assert.throws(() => tree(os.tmpdir(), "--output=x"), /bad commit id/);
+});
+
+test("git reads no global or system configuration, and starts from this repository, not from the clone", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "safe-git-cfg-"));
+  try {
+    spawnSync("git", ["init", "-q", dir]);
+    const origins = git(dir, ["config", "--list", "--show-origin"]).split("\n").filter(Boolean).map((l) => l.split("\t")[0]);
+    assert.ok(origins.length > 0, "the clone's own configuration is read");
+    // Only the clone's own file and the -c options of the call; never the user's or the system's file.
+    assert.ok(origins.every((o) => /^file:(.*[\\/])?\.git[\\/]config$/.test(o) || o === "command line:"), `unexpected configuration: ${[...new Set(origins)].join(", ")}`);
+    // The control: the same command without the isolation reads the user's own configuration, when there is one.
+    const plain = spawnSync("git", ["-C", dir, "config", "--list", "--show-origin"], { encoding: "utf8" }).stdout.split("\n").filter(Boolean);
+    assert.ok(plain.length >= origins.length);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test("the cache must carry this project's marker, and is created with it", () => {
