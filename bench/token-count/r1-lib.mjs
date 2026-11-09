@@ -33,7 +33,9 @@ export function byCodePoint(a, b) {
 
 /** True when a TypeScript or JavaScript map entry has a line range (`L<from>-<to>`) that holds the line. */
 export function entryHoldsLine(entry, line) {
-  for (const m of entry.matchAll(/\bL(\d+)-(\d+)\b/g)) if (Number(m[1]) <= line && line <= Number(m[2])) return true;
+  // The range is its own field: after two spaces, before two spaces or the line's end, so a name such as `.L1-99` or
+  // a title "See L1-99" is not read as a range.
+  for (const m of entry.matchAll(/(?<=^|  )L(\d+)-(\d+)(?=  |$)/gm)) if (Number(m[1]) <= line && line <= Number(m[2])) return true;
   return false;
 }
 

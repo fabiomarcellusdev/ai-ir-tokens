@@ -1,5 +1,5 @@
 site/landing-tailwind.html
   title Acme Analytics
-  @n1 .relative  h1 "Know what your users do, not just where they click"  3 link, 1 img
-  @n2 section.bg-white  h2 "Ship faster"  4 svg
-  @n3 footer.bg-slate-900  3 link
+  @n1 .relative  L10-36  h1 "Know what your users do, not just where they click"  3 link, 1 img
+  @n2 section.bg-white  L38-93  h2 "Ship faster"  4 svg
+  @n3 footer.bg-slate-900  L95-104  3 link

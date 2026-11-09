@@ -1,28 +1,28 @@
 site/styles.css
-  @r1 :root (13 custom properties)
-  @r2 *, *::before, *::after
-  @r3 body
-  @r4-r8 .button* (5 rules)
-  @r9 .site-header
-  @r10-r15 .navbar* (6 rules)
-  @r16-r20 .hero* (5 rules)
-  @r21 .section-title
-  @r22-r23 .features* (2 rules)
-  @r24-r26 .feature* (3 rules)
-  @r27 .pricing
-  @r28-r35 .pricing-card* (8 rules)
-  @r36-r37 .badge* (2 rules)
-  @r38 .signup
-  @r39-r42 .field* (4 rules)
-  @r43 .signup
-  @r44-r47 .site-footer* (4 rules)
-  @media (max-width: 768px)
-    @r48 .navbar
-    @r49-r50 .hero* (2 rules)
-    @r51 .features
-    @r52 .site-footer
-  @media (prefers-reduced-motion: reduce)
-    @r53 .button
+  @r1 :root (13 custom properties)  L5-19
+  @r2 *, *::before, *::after  L21-25
+  @r3 body  L27-33
+  @r4-r8 .button* (5 rules)  L37-68
+  @r9 .site-header  L72-79
+  @r10-r15 .navbar* (6 rules)  L81-120
+  @r16-r20 .hero* (5 rules)  L124-157
+  @r21 .section-title  L161-165
+  @r22-r23 .features* (2 rules)  L167-179
+  @r24-r26 .feature* (3 rules)  L181-193
+  @r27 .pricing  L197-202
+  @r28-r35 .pricing-card* (8 rules)  L204-249
+  @r36-r37 .badge* (2 rules)  L251-262
+  @r38 .signup  L266-271
+  @r39-r42 .field* (4 rules)  L273-293
+  @r43 .signup  L295-299
+  @r44-r47 .site-footer* (4 rules)  L303-325
+  @media (max-width: 768px)  L329-352
+    @r48 .navbar  L330-332
+    @r49-r50 .hero* (2 rules)  L334-341
+    @r51 .features  L343-346
+    @r52 .site-footer  L348-351
+  @media (prefers-reduced-motion: reduce)  L354-358
+    @r53 .button  L355-357
 :root  --color-accent #4f46e5; --color-accent-hover #4338ca; --color-text #0f172a; --color-muted #475569; --color-border #e2e8f0; --color-surface #ffffff; --radius 8px; --space-1 4px; --space-2 8px; --space-3 16px; --space-4 24px; --space-5 48px; --font-sans "Inter", system-ui, -apple-system, "Segoe UI", sans-serif
 .button  display inline-flex; align-items center; justify-content center; padding var(--space-2) var(--space-3); border 1px solid transparent; border-radius var(--radius); font-weight 600; text-decoration none; cursor pointer; transition background-color 0.15s ease, border-color 0.15s ease
   &--primary  background var(--color-accent); color #fff

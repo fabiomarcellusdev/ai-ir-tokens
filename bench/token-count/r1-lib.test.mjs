@@ -197,7 +197,14 @@ t("a map entry holds a line when one of its ranges contains it", () => {
   assert.equal(L.entryHoldsLine(entry, 3), true);
   assert.equal(L.entryHoldsLine(entry, 5), true);
   assert.equal(L.entryHoldsLine(entry, 7), false);
-  assert.equal(L.entryHoldsLine("a.css\n  @r1 .a\n", 1), false, "a CSS entry has no ranges");
+  assert.equal(L.entryHoldsLine("a.css\n  @r1 .a\n", 1), false, "a CSS entry written before the ranges has none");
+});
+
+t("a name or a title that looks like a range is not read as one", () => {
+  assert.equal(L.entryHoldsLine("a.html\n  title See L1-99\n  @n1 section#x  L2-3\n", 50), false, "a title");
+  assert.equal(L.entryHoldsLine("a.css\n  @r1 .L1-99  L1-1\n", 50), false, "a class name");
+  assert.equal(L.entryHoldsLine("a.html\n  @n1 section#L5-80  L2-3\n", 50), false, "an id");
+  assert.equal(L.entryHoldsLine("a.html\n  @n1 h1  L2-60  h1 \"x\"\n", 50), true, "a real range before a summary");
 });
 
 t("the test run happens once, from a clean commit; a rerun only after a crash, with the same method", () => {
