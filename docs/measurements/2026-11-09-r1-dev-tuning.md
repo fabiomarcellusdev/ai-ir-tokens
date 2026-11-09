@@ -27,7 +27,7 @@ The two reviews (correctness and security) changed the ranking's inputs, so both
 - a file over 1 MB gets the one-line entry `<path> (not read: over 1048576 bytes)`, as in C0.
 
 Reproduce with `node r1.mjs --dev --sweep base`, then `node r1.mjs --dev --sweep signals` (from
-`bench/token-count`; each writes `out/r1-sweep-<step>.json`).
+`bench/token-count`; each writes `r1-sweep-<step>.json` in the system's temporary folder, under `ai-ir-tokens-r1`).
 
 **The grids.** Sweep 1: `path` 2, 3, 5, 8; `names` 1, 2, 4; `text` 0.25, 0.5, 1, 2; `size` 0, 0.15, 0.3, 0.6, 1;
 `namesFile` 5, 15, 40. Sweep 2: sweep 1's first row, with `folder` 0, 0.15, 0.3, 0.6; `imports` 0, 0.15, 0.3, 0.6;

@@ -52,6 +52,8 @@ if (argv.includes("--sweep") && !["base", "signals"].includes(SWEEP)) throw new 
 if (MODE === "test" && opt("weights")) throw new Error("the test run uses the frozen weights only");
 if (MODE === "dev" && opt("rerun-after-crash")) throw new Error("--rerun-after-crash belongs to the test run");
 const CACHE = path.resolve(opt("cache", path.join(os.tmpdir(), "ai-ir-tokens-corpus")));
+// The development outputs go to their own temporary folder: out/ holds count.mjs's views, which the golden check compares.
+const DEV_OUT = path.join(os.tmpdir(), "ai-ir-tokens-r1");
 const WEIGHTS = opt("weights") ? { ...DEFAULT_WEIGHTS, ...JSON.parse(opt("weights")) } : DEFAULT_WEIGHTS;
 const count = (s) => tok(s).o200k_base;
 
@@ -173,7 +175,7 @@ if (SWEEP) {
   } else {
     // Step 2: the best base weights of step 1 (its first row; ties keep the grid's order), with the three structural
     // signals on top (96 combinations).
-    const stepOne = path.join(here, "out", "r1-sweep-base.json");
+    const stepOne = path.join(DEV_OUT, "r1-sweep-base.json");
     if (!fs.existsSync(stepOne)) throw new Error("run --sweep base first");
     const top = JSON.parse(fs.readFileSync(stepOne, "utf8"))[0].w;
     const best = { ...off, path: top.path, names: top.names, text: top.text, size: top.size, namesFile: top.namesFile };
@@ -197,8 +199,8 @@ if (SWEEP) {
   console.error(ranked.slice(0, 12).map((x) => `${x.wins}/85  ${JSON.stringify(Object.fromEntries(keys.map((k) => [k, x.w[k]])))}`).join("\n"));
   const spread = ranked.map((x) => x.wins);
   console.error(`${grid.length} combinations; best ${spread[0]}, median ${median(spread)}, worst ${spread.at(-1)} of 85`);
-  fs.mkdirSync(path.join(here, "out"), { recursive: true });
-  fs.writeFileSync(path.join(here, "out", `r1-sweep-${SWEEP}.json`), JSON.stringify(ranked, null, 2) + "\n");
+  fs.mkdirSync(DEV_OUT, { recursive: true });
+  fs.writeFileSync(path.join(DEV_OUT, `r1-sweep-${SWEEP}.json`), JSON.stringify(ranked, null, 2) + "\n");
   process.exit(0);
 }
 
@@ -233,8 +235,8 @@ const verdict = r1Verdict(summary.passed, summary.tasks, all.filter((t) => t.ref
 console.error(`gate: ${verdict.gate}; beats the reference by 10 points or more: ${verdict.beatsReferenceBy10Points}`);
 
 if (MODE === "dev") {
-  fs.mkdirSync(path.join(here, "out"), { recursive: true });
-  fs.writeFileSync(path.join(here, "out", "r1-dev.json"), JSON.stringify({ weights: WEIGHTS, summary, verdict, repositories: repos }, null, 2) + "\n");
+  fs.mkdirSync(DEV_OUT, { recursive: true });
+  fs.writeFileSync(path.join(DEV_OUT, "r1-dev.json"), JSON.stringify({ weights: WEIGHTS, summary, verdict, repositories: repos }, null, 2) + "\n");
 } else {
   const date = new Date().toISOString().slice(0, 10);
   const commit = runs.at(-1).commit;
