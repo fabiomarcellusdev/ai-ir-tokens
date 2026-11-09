@@ -8,7 +8,8 @@ points an agent to line ranges, used with the agent's own Read and Edit tools. E
 | Step | What it is | Costs | Gate | If it misses |
 |---|---|---|---|---|
 | 1 | A free, deterministic measurement: given only a task's description, does a budgeted map list the files the change touched? The ranking is built on development commits, then tested once on C0's 85 tasks. | Nothing: no model is called | R1 (`docs/contract.md`, "Gate R1 in detail") | The project stops |
-| 2 | A small paid pilot: real agent runs, with and without the map, measuring cost per completed task (with prompt caching) and pass rate. Its budget is decided after step 1 passes, within the owner's $100 of API credits, through an API key with a Console spending limit. | Set before it runs, for the owner's yes | Written before the pilot runs | The project stops |
+| 1b | **Added by decision 0008 (owner, 2026-11-09) after R1 missed (31 of 85, 36.5%).** The final free gate: a map that learns from earlier history, reads the task's issue and may add one folder's map, tested once on 17 fresh repositories. | Nothing but read-only calls to GitHub's API | R2 (`docs/contract.md`, "Gate R2 in detail") | The project stops for good |
+| 2 | A small paid pilot: real agent runs, with and without the map, measuring cost per completed task (with prompt caching) and pass rate. Its budget is decided after step 1b passes, within the owner's $100 of API credits, through an API key with a Console spending limit. | Set before it runs, for the owner's yes | Written before the pilot runs | The project stops |
 | 3 | A new roadmap for the product, only if steps 1 and 2 pass | — | — | — |
 
 The map's design, from decision 0007: it loads at session start in a stable, cached part of the agent's context that

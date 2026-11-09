@@ -1,6 +1,7 @@
 # Proposal: a map that learns from finished tasks
 
-**Status: proposed (owner's idea, 2026-11-09; written up by the lead). Nothing here is decided.** Gate R1 missed
+**Status: accepted (owner, 2026-11-09) as decision 0008; the gate is "Gate R2 in detail" in `docs/contract.md`.** The
+text below is kept as the proposal was written. Gate R1 missed
 (31 of 85 tasks, 36.5%, against 70%; `docs/contract.md`, "The result of gate R1"). By decision 0007 the project stops
 unless a new, dated decision gives a reason to continue. This proposal is input for that decision. If the owner
 accepts it, a decision record (0008) and a new gate in `docs/contract.md` come next, both fixed before any number of
