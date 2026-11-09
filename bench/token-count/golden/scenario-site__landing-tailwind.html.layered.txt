@@ -1,19 +1,19 @@
 site/index.html
   title Acme – Invoices that pay themselves
-  @n1 header#top.site-header  
-    @n2 nav.navbar  7 link, 1 svg
-  @n3 main  
-    @n4 section.hero  h1 "Invoices that pay themselves"  2 link, 1 img
-    @n5 section#how-it-works.features  h2 "Everything you need to get paid"  3 svg, 3 article
-    @n6 section#pricing.pricing  h2 "Simple pricing"  2 link, 2 card
-    @n7 section#signup.signup  h2 "Try Acme free for 30 days"
-      @n8 form.signup__form  2 field
-  @n9 footer.site-footer  6 link
+  @n1 header#top.site-header  L13-32
+    @n2 nav.navbar  L14-31  7 link, 1 svg
+  @n3 main  L34-119
+    @n4 section.hero  L35-48  h1 "Invoices that pay themselves"  2 link, 1 img
+    @n5 section#how-it-works.features  L50-75  h2 "Everything you need to get paid"  3 svg, 3 article
+    @n6 section#pricing.pricing  L77-102  h2 "Simple pricing"  2 link, 2 card
+    @n7 section#signup.signup  L104-118  h2 "Try Acme free for 30 days"
+      @n8 form.signup__form  L106-117  2 field
+  @n9 footer.site-footer  L121-135  6 link
 site/landing-tailwind.html
   title Acme Analytics
-  @n1 .relative  h1 "Know what your users do, not just where they click"  3 link, 1 img
-  @n2 section.bg-white  h2 "Ship faster"  4 svg
-  @n3 footer.bg-slate-900  3 link
+  @n1 .relative  L10-36  h1 "Know what your users do, not just where they click"  3 link, 1 img
+  @n2 section.bg-white  L38-93  h2 "Ship faster"  4 svg
+  @n3 footer.bg-slate-900  L95-104  3 link
 dl.grid.max-w-xl.grid-cols-1.gap-x-8.gap-y-10.lg:max-w-none.lg:grid-cols-2.lg:gap-y-16
   .relative.pl-16
     dt.text-base.font-semibold.leading-7.text-slate-900

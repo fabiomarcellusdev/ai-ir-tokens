@@ -348,7 +348,8 @@ export function htmlMap(file, doc, ids) {
     if (ids.has(n)) {
       const id = attr(n, "id"), cls = (attr(n, "class") ?? "").split(/\s+/).filter(Boolean)[0];
       const name = (n.tagName === "div" && (id || cls) ? "" : n.tagName) + (id ? "#" + id : "") + (cls ? "." + cls : "");
-      out.push(`${"  ".repeat(depth)}@${ids.get(n)} ${name}  ${summary(n)}`);
+      const loc = n.sourceCodeLocation, range = loc ? `L${loc.startLine}-${loc.endLine ?? loc.startLine}` : "";
+      out.push(`${"  ".repeat(depth)}@${ids.get(n)} ${name}  ${[range, summary(n)].filter(Boolean).join("  ")}`.trimEnd());
       depth++;
     }
     for (const c of n.childNodes ?? []) list(c, depth);
@@ -363,6 +364,8 @@ export function htmlPlain(text, doc) {
 }
 
 export function htmlViews(file, text) {
+  // A leading byte-order mark is not content: left in, it makes the parser put the head's children in the body.
+  text = text.replace(/^﻿/, "");
   const doc = parse5.parse(text, { sourceCodeLocationInfo: true });
   const ids = htmlIds(doc);
   return {
@@ -445,16 +448,18 @@ export const blockKey = (sel) => {
 export function cssMap(file, root) {
   const out = [file];
   let rid = 0;
+  // The line range of a node or of a run of rules, as the TypeScript map writes it (`L3-9`).
+  const lines = (a, b) => (a.source?.start && b.source?.end ? `  L${a.source.start.line}-${b.source.end.line}` : "");
   (function w(c, depth) {
     let group = null;
-    const flush = () => { if (group) out.push(`${"  ".repeat(depth)}@r${group.from}${group.to > group.from ? "-r" + group.to : ""} ${group.key}${group.to > group.from ? "* (" + (group.to - group.from + 1) + " rules)" : ""}${group.vars ? " (" + group.vars + " custom properties)" : ""}`); group = null; };
+    const flush = () => { if (group) out.push(`${"  ".repeat(depth)}@r${group.from}${group.to > group.from ? "-r" + group.to : ""} ${group.key}${group.to > group.from ? "* (" + (group.to - group.from + 1) + " rules)" : ""}${group.vars ? " (" + group.vars + " custom properties)" : ""}${lines(group.first, group.last)}`); group = null; };
     for (const n of c.nodes ?? []) {
-      if (n.type === "atrule" && n.nodes) { flush(); out.push(`${"  ".repeat(depth)}@${n.name} ${n.params}`); w(n, depth + 1); continue; }
+      if (n.type === "atrule" && n.nodes) { flush(); out.push(`${"  ".repeat(depth)}@${n.name} ${n.params}${lines(n, n)}`); w(n, depth + 1); continue; }
       if (n.type !== "rule") continue;
       const id = ++rid, key = blockKey(n.selector);
       const vars = n.nodes.filter((d) => d.type === "decl" && d.prop.startsWith("--")).length;
-      if (group && group.key === key) group.to = id;
-      else { flush(); group = { key, from: id, to: id, vars }; }
+      if (group && group.key === key) { group.to = id; group.last = n; }
+      else { flush(); group = { key, from: id, to: id, vars, first: n, last: n }; }
     }
     flush();
   })(root, 1);
