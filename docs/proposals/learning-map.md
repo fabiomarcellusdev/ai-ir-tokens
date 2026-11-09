@@ -92,6 +92,26 @@ Each arm shows what one idea adds, so a gain cannot hide behind another one.
 5. **Arm D, one folder's map on demand,** needs a rule for which folder a simulated agent asks for (for example, the
    folder of the top-ranked file). A real agent's choice is measured only in the paid pilot.
 
+## The owner's answers (owner, 2026-11-09)
+
+One round of questions settled the open decisions. Decision record 0008 and gate R2 in `docs/contract.md` will hold
+them as rules, after the line ranges for HTML and CSS are in the map (so the gate names that version of the map).
+
+1. **Continue, with one final gate, R2.** A miss at R2 stops the project for good, with no further rescope.
+2. **Fresh test tasks from new repositories,** picked by the corpus rule before any measurement: the 7 reserve
+   repositories, plus new ones, up to 17. The development tasks come from the same repositories, by R1's rule.
+3. **R1's bar:** at least 70% of the tasks with every changed file in the map, at 25% of the baseline. Arm E (all
+   three ideas together) decides the gate; arms A to D are reported beside it. The tokens of a folder's map on demand
+   count against the same budget.
+4. **The description for arm C:** the text of the issue that the task's pull request links, where one exists, read
+   through GitHub's API with `gh`; elsewhere, the commit message. The pull request's own text is reported beside the
+   gate as a best case. The fetched texts stay in the temporary cache, never in this repository, and only the ranking
+   reads them. (Of R1's 85 tasks, 44 name a pull request and 3 link an issue in the commit message.)
+5. **The lessons come from every earlier commit** of the replay that passed the task rule, as the tool would learn
+   from git history on day one. They never include the task itself or anything after it. The results say that this is
+   a best case for learning.
+6. **Arm D's folder:** the folder of the top-ranked file that is not in the cut map; exactly one folder per task.
+
 ## Prior art (from memory, not verified yet)
 
 - **Co-change mining:** Zimmermann et al., "Mining Version Histories to Guide Software Changes" (ICSE 2004, the ROSE

@@ -4,13 +4,16 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Gate R1: missed** (decision 0007; branch `p0/bench-r1-ranking`). The one test run passed 31 of 85 (36.5%) against
-70% (`docs/contract.md`, "The result of gate R1"). The ranking was tuned on the development tasks only (34/85, 40.0%).
-By decision 0007, a miss stops the project unless a new, dated decision gives a reason to continue.
+**The owner continues with one final gate, R2** (owner, 2026-11-09): a map that learns from finished tasks
+(`docs/proposals/learning-map.md`, with the owner's answers). Gate R1 missed: 31 of 85 (36.5%) against 70%
+(`docs/contract.md`, "The result of gate R1"). A miss at R2 stops the project for good.
 
 ## Next
 
-1. The owner decides: stop, or continue with a new decision record and its reason.
+1. Line ranges in the HTML and CSS map entries (`docs/follow-ups.md`).
+2. The secret scan and the safer git calls for `corpus.mjs` (before the GitHub API calls of gate R2).
+3. Decision record 0008 and gate R2 in `docs/contract.md`, fixed before any of R2's numbers exist.
+4. Gate R2's code and its one test run.
 
 ## Closed
 
