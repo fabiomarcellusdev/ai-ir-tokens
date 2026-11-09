@@ -439,6 +439,7 @@ docs/
                         0003: the agents and the security defences; 0004: branches; 0005: the task pipeline,
                         owner approval and quiet hours; 0006: the licence)
   measurements/         One file per measurement run
+  proposals/            Ideas written up for the owner's decision; a proposal becomes a decision record or is closed
   prior-art.md          Existing tools and papers, and how this project differs
   algorithm-targets.md  Hat 5's register of methods
   follow-ups.md         Known gaps
