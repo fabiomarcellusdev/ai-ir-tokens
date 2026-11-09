@@ -4,18 +4,14 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Phase 0, gate C0: missed** (2026-11-08; `docs/contract.md`). The follow-up measurements: W, the writing side, is not
-reached (edit operations save 14.5% against search and replace; threshold 40%); V, finer code views, is reached (the
-smallest unit saves 78.8%; threshold 65%). Next: the owner decides to rescope or stop, with a decision record.
+**Branch `p0/docs-rescope`: the rescope** (owner, 2026-11-08; decision 0007). Gate C0 missed; the project narrows to a
+budgeted map that points to line ranges. Next: gate R1, a free measurement (`docs/contract.md`), built on development
+commits and tested once on C0's 85 tasks. A miss stops the project.
 
-## Next: phase 0, measure before building
+## Next
 
-Decide with the owner, before any run:
-
-1. The 20 public repositories and their commits (React apps, Node services, static sites, a Tailwind site).
-2. The task scenarios for them, so "map plus code needed" uses real tasks.
-3. Whether an Anthropic API key is available for the token-counting endpoint (gate C0 is judged by it).
-4. Gate C0's final number and how the median is taken (`docs/contract.md`).
+1. Gate R1's code (the ranked map and its measurement), with an independent review, then the run.
+2. Only if R1 passes: the pilot's design and budget, for the owner's yes.
 
 ## Closed
 
@@ -31,3 +27,5 @@ Decide with the owner, before any run:
   (decision 0004, amendment "parallel checkouts").
 - 2026-11-08: the tool-neutral rules in `AGENTS.md` (decision 0003, amendment "AGENTS.md"); four adapted skills instead of
   a plugin (decision 0003, amendment "mattpocock-skills").
+- 2026-11-08: phase 0: gate C0 missed (median -165.8%); W not reached (14.5%), V reached (78.8%)
+  (`docs/contract.md`; `docs/measurements/2026-11-08-phase0-*`).
