@@ -62,8 +62,9 @@ test("a setting in the user's global configuration does not reach git (with a co
     const plain = spawnSync("git", ["-C", repo, "config", "--get", "ai-ir-tokens-test.marker"], { env, encoding: "utf8" });
     assert.equal(plain.stdout.trim(), "seen", "the control: the marker is visible without the isolation");
     // The module in a child process with the same home folder: the marker must not show.
-    const code = `import("${new URL("./safe-git.mjs", import.meta.url).href}").then((m) => { process.stdout.write(m.git(${JSON.stringify(repo)}, ["config", "--get", "ai-ir-tokens-test.marker"], { ok: true }).stdout ?? ""); });`;
-    const child = spawnSync(process.execPath, ["-e", code], { env, encoding: "utf8" });
+    // A fixed script; the module's address and the repository's path arrive as arguments, never inside the code.
+    const code = 'const m = await import(process.argv[1]); process.stdout.write(m.git(process.argv[2], ["config", "--get", "ai-ir-tokens-test.marker"], { ok: true }).stdout ?? "");';
+    const child = spawnSync(process.execPath, ["--input-type=module", "-e", code, new URL("./safe-git.mjs", import.meta.url).href, repo], { env, encoding: "utf8" });
     assert.equal(child.stdout.trim(), "", `the marker reached git: ${child.stderr}`);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
