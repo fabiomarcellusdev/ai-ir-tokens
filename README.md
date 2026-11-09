@@ -11,10 +11,11 @@ The goal is that a completed coding task costs much less, with a pass rate no mo
 prompt caching as agents use it. The working target is **at least 40% less**; the exact number is fixed before the
 pilot runs. A saving that costs accuracy is not a saving.
 
-> **Status: both tests missed, nothing built.** The first plan failed its test on real code, and the project was
-> rescoped (`docs/decisions/0007-rescope-after-c0.md`). The rescoped plan's free test, gate R1, missed too (36.5%
-> against 70%). By decision 0007 the project stops, unless the owner records a reason to continue. No model has run a
-> task with this tool.
+> **Status: two tests missed, one final test to go, nothing built.** The first plan failed its test on real code, and
+> the project was rescoped (`docs/decisions/0007-rescope-after-c0.md`). The rescoped plan's free test, gate R1, missed
+> too (36.5% against 70%). The owner continues with one final free test, gate R2: a map that learns from finished tasks
+> (`docs/decisions/0008-learning-map-and-gate-r2.md`). A miss at R2 ends the project. No model has run a task with
+> this tool.
 
 ## What phase 0 found
 
@@ -50,8 +51,11 @@ numbers measure the cost of reading, not of finding.
    **Result: missed, 31 of 85 (36.5%)**, counted with o200k_base. A keyword ranking passed 20.0%, and a perfect
    ranking could pass 81.2% at this budget. The ranking was tuned on 85 other commits and run once on the test tasks
    (`docs/measurements/2026-11-09-r1-test.md`).
+   **Step 1b, the final free test (gate R2):** the same question on 17 fresh repositories, with a map that learns
+   which files earlier changes needed, the task's issue text in place of the commit message, and one folder's map on
+   request, each measured on its own and all together. A miss ends the project for good.
 2. **Step 2, a small paid pilot:** real agent runs, with and without the map, measuring cost per completed task and
-   pass rate. Only if step 1 passes.
+   pass rate. Only if step 1b passes.
 
 Each step can end the project. The plan is in `docs/roadmap.md`; the gates are in `docs/contract.md`.
 

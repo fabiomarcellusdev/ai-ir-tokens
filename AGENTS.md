@@ -44,8 +44,9 @@ hours.
 ## Status (2026-11-09)
 
 Phase 0 is done: gate C0 missed, and the project is rescoped (decision 0007). Gate R1, the free measurement of a
-budgeted map, missed on 2026-11-09: 31 of 85 tasks (36.5%) against 70% (`docs/contract.md`). By decision 0007 the
-project stops unless the owner records a reason to continue. The only code is the measurement scripts in
+budgeted map, missed on 2026-11-09: 31 of 85 tasks (36.5%) against 70% (`docs/contract.md`). The owner continues
+with one final free gate, R2: a map that learns from earlier history, tested on 17 fresh repositories (decision 0008).
+A miss at R2 stops the project for good. The only code is the measurement scripts in
 `bench/token-count/`. **No model has run a task with this tool, so accuracy is unmeasured.** The project name is `ai-ir-tokens`. The licence is Apache-2.0 (decision 0006). The npm
 package name is not chosen (`docs/follow-ups.md`).
 

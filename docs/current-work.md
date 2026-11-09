@@ -4,16 +4,15 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**The owner continues with one final gate, R2** (owner, 2026-11-09): a map that learns from finished tasks
-(`docs/proposals/learning-map.md`, with the owner's answers). Gate R1 missed: 31 of 85 (36.5%) against 70%
-(`docs/contract.md`, "The result of gate R1"). A miss at R2 stops the project for good.
+**Gate R2, the final free gate** (decision 0008; branch `p0/docs-decision-0008`). Its rules are in `docs/contract.md`,
+"Gate R2 in detail", fixed before any repository is picked. A miss at R2 stops the project for good. Done before it:
+the HTML and CSS line ranges (#22), the secret scan and the safer git calls (#23).
 
 ## Next
 
-1. Line ranges in the HTML and CSS map entries (`docs/follow-ups.md`).
-2. The secret scan and the safer git calls for `corpus.mjs` (before the GitHub API calls of gate R2).
-3. Decision record 0008 and gate R2 in `docs/contract.md`, fixed before any of R2's numbers exist.
-4. Gate R2's code and its one test run.
+1. Pick the 13 new repositories by the contract's rule; the owner approves the list of 17.
+2. Pick the tasks: commit the development list and the sealed test list's hash, before any ranking work.
+3. Build the lessons, the issue texts and the folder's map; tune on the development tasks only; freeze; one test run.
 
 ## Closed
 
