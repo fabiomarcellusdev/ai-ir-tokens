@@ -1,0 +1,1233 @@
+{
+ "about": "The committed record of gate R2's repository search. The saved responses (r2-search/<day>/, git-ignored, on the machine that ran r2-select.mjs) hold third-party text; this digest keeps only the fields the tests read, in search order, and each file's SHA-256 (of the file as saved).",
+ "selectionDay": "2026-11-10",
+ "files": {
+  "node-service-p1.json": {
+   "sha256": "b07c5e2da6847376c489da4eaaa34002ce5332eb95885067e97fb7167291e633",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [
+    {
+     "name": "payloadcms/payload",
+     "stars": 45743,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-10T00:00:22Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "apollographql/apollo-server",
+     "stars": 13957,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T21:01:01Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "graphile/crystal",
+     "stars": 12934,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T17:49:19Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ],
+   "itemsInFile": 100,
+   "itemsListed": 3
+  },
+  "node-service-p2.json": {
+   "sha256": "9118931a691ce558d1a8a383ecfa807c334702c3425b5d6582e7cd06b6d7daba",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p3.json": {
+   "sha256": "f4a47194a8228d5c69d3f9726174f885e4c07c74b500b227d78301687096c8a8",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p4.json": {
+   "sha256": "e095bce9b9f151017c369f4cbc88d9e8df2c3d29f3d6aae834621906678e52b3",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p5.json": {
+   "sha256": "cfc2ddce19a91a3bd3c5b87779dc10bb255c8f9b25d01d78c9d3e0cd368aa605",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p6.json": {
+   "sha256": "38df5a501526bf3f911d6dcc140f7b9273a3c56fdec4cdaa12fb4e3f70855841",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p7.json": {
+   "sha256": "df3a4307133b3a30e68d5ff1ae994342dafbf23f3bb427ea6e13309217feeab8",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p8.json": {
+   "sha256": "d08295db1ca859bc4fb56119f443f11adbeffa67922445561e376b0f69f977da",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p9.json": {
+   "sha256": "9cbada96051dba9b7a7df7de5bbc1b96e34069f7625702521b9b0ece7db39668",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-p10.json": {
+   "sha256": "b515786b21101c81d3d1678a962aea661c3f4a78e9f9d466d6a9b3990b320a37",
+   "totalCount": 26415,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p1.json": {
+   "sha256": "cdf619575399de37d33d89120fa01f1f3557257030f75f7c23a6f5a76d8e848c",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [
+    {
+     "name": "immich-app/immich",
+     "stars": 118644,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "AGPL-3.0",
+     "pushedAt": "2026-11-09T23:51:32Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "nestjs/nest",
+     "stars": 76989,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T19:21:08Z",
+     "excludedTopics": [
+      "framework"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "twentyhq/twenty",
+     "stars": 60712,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "NOASSERTION",
+     "pushedAt": "2026-11-10T00:21:12Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "refinedev/refine",
+     "stars": 36020,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-09-10T12:56:35Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "amplication/amplication",
+     "stars": 16008,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "NOASSERTION",
+     "pushedAt": "2026-06-30T13:46:55Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "apitable/apitable",
+     "stars": 15662,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "AGPL-3.0",
+     "pushedAt": "2026-09-06T11:26:21Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "Sairyss/domain-driven-hexagon",
+     "stars": 15015,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2024-06-11T05:47:51Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "ghostfolio/ghostfolio",
+     "stars": 9680,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "AGPL-3.0",
+     "pushedAt": "2026-11-09T05:16:05Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "cooderl/wewe-rss",
+     "stars": 9620,
+     "private": false,
+     "fork": false,
+     "archived": true,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-03-20T00:22:37Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "vendurehq/vendure",
+     "stars": 8571,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "NOASSERTION",
+     "pushedAt": "2026-11-09T19:29:45Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "bookorbit/bookorbit",
+     "stars": 6265,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "AGPL-3.0",
+     "pushedAt": "2026-11-09T22:34:44Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "remnawave/panel",
+     "stars": 5343,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "AGPL-3.0",
+     "pushedAt": "2026-11-09T16:04:35Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "stonith404/pingvin-share",
+     "stars": 4645,
+     "private": false,
+     "fork": false,
+     "archived": true,
+     "isTemplate": false,
+     "licence": "BSD-2-Clause",
+     "pushedAt": "2026-05-18T20:19:06Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "brocoders/nestjs-boilerplate",
+     "stars": 4422,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": true,
+     "licence": "MIT",
+     "pushedAt": "2026-11-10T00:08:34Z",
+     "excludedTopics": [
+      "boilerplate"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "nestjsx/crud",
+     "stars": 4318,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-10-13T10:33:10Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "growchief/growchief",
+     "stars": 3508,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "AGPL-3.0",
+     "pushedAt": "2025-10-13T05:36:00Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "lujakob/nestjs-realworld-example-app",
+     "stars": 3363,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "other or none",
+     "pushedAt": "2024-03-10T17:51:47Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "ts-rest/ts-rest",
+     "stars": 3340,
+     "private": false,
+     "fork": false,
+     "archived": true,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-10-26T19:40:46Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "pezzolabs/pezzo",
+     "stars": 3279,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "Apache-2.0",
+     "pushedAt": "2026-11-08T16:53:59Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ],
+   "itemsInFile": 100,
+   "itemsListed": 19
+  },
+  "node-service-decorators-p2.json": {
+   "sha256": "5cbd08a0204ff692decce2288b12f59cb25af39fd34b8fb30b59ec376d5132d3",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p3.json": {
+   "sha256": "9fed205d31e670f3c459a342621ce43e17714cad6c479b06adcfcb27f70fab2e",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p4.json": {
+   "sha256": "35f3421e8c1f5b0cda04f95b7406d91f79311b3091575ec8b7a8260e25a1ca56",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p5.json": {
+   "sha256": "627914b03ed537ae5195e7fd2df14e580d4967a2597685e8930ed011f97b138d",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p6.json": {
+   "sha256": "c90204ba1fcd10149b63bcb4606b57712d7d6884f82847a569c3a3e4d9d5c0e9",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p7.json": {
+   "sha256": "85951d8f38cb26ba6187569c3ea9a9a0e345c87bc25e112fda08cd65efb25138",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p8.json": {
+   "sha256": "4a0800469b78dbb3a0e3f4e7f77175bb2c2a9ea3eff238c59e883de1078fdde4",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p9.json": {
+   "sha256": "1e217feed84b60bda4d62495f8612d01ac80bcc2b31e1fc4db29df46fee792cf",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "node-service-decorators-p10.json": {
+   "sha256": "061cc12f03a1e3dbb1fa431094d94368e34335818f335988f1bc89931ae16e29",
+   "totalCount": 23542,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p1.json": {
+   "sha256": "934e087ed25f64671a5df551ea5721e96d76645ea27fcc4387a552c526ac2780",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [
+    {
+     "name": "freeCodeCamp/freeCodeCamp",
+     "stars": 458825,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "BSD-3-Clause",
+     "pushedAt": "2026-11-09T23:39:43Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "morluto/rea",
+     "stars": 447009,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T23:00:04Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "shadcn-ui/ui",
+     "stars": 127740,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T10:36:48Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "ant-design/ant-design",
+     "stars": 100127,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-10T00:15:34Z",
+     "excludedTopics": [
+      "ui-library"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "storybookjs/storybook",
+     "stars": 91505,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T22:21:51Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "ChatGPTNextWeb/NextChat",
+     "stars": 88942,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-10-20T10:19:31Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ],
+   "itemsInFile": 100,
+   "itemsListed": 6
+  },
+  "react-app-p2.json": {
+   "sha256": "4094147009ffcd89fe75bcac738553763b9baf5e71c90e535a125e66ce4a8dc1",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p3.json": {
+   "sha256": "ed47d481bb2528845afa81671782c90abea14f647067ef10695191d8356fc34c",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p4.json": {
+   "sha256": "94f5a394ac1156eb150609e766146781bd576aad7f1ba2b74b92b6a0ecf18524",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p5.json": {
+   "sha256": "86b404558ccb9ec3669ab28d0abaf2ce080002669a5a7a42a160d62f8cbc1f9c",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p6.json": {
+   "sha256": "4545c9955173be8f0626e76c1cc61975d28881043170195134f046137642199e",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p7.json": {
+   "sha256": "edc6300fd46e86c2e3869baee3fcf5028980c20ecf6709989ee0d34f5e6eaf1d",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p8.json": {
+   "sha256": "a60b63edb0dac28d8b6eb37784f1215f86ebfa99a0f77587b3bc77ba863d4ed3",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p9.json": {
+   "sha256": "17b4cd77c138b819c863ec39bf2d1e9ef385cce4dcacd0da6c12d771d616da82",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "react-app-p10.json": {
+   "sha256": "cf92258b76a99c993005147eacdfaad15cfcc8fd993e32e0d660fbc86d8a4090",
+   "totalCount": 207353,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "reserve-CookSleep__gpt_image_playground.json": {
+   "sha256": "3169b209881d5ad48a8f2924c2370d9a5a4e6adf308ffb93565a5d2c4bcd759a",
+   "items": [
+    {
+     "name": "CookSleep/gpt_image_playground",
+     "stars": 4059,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-07T12:47:52Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ]
+  },
+  "reserve-ncdai__chanhdai.com.json": {
+   "sha256": "a5c53309a1a0f8e165b49308dec764002f05d6d924d61ecc3d0925ee4226867d",
+   "items": [
+    {
+     "name": "ncdai/chanhdai.com",
+     "stars": 2420,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T15:57:00Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ]
+  },
+  "reserve-neovim__neovim.github.io.json": {
+   "sha256": "ea4538eb2c989aad12fa08c8b9462a6be2e1dbf4c9c2618c652eaaa473375d52",
+   "items": [
+    {
+     "name": "neovim/neovim.github.io",
+     "stars": 642,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-10-18T11:23:04Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ]
+  },
+  "reserve-umami-software__umami.json": {
+   "sha256": "3eb21eed2e2ffa51074ea36380917176d8cdaf8fb41fbe1145835a8c89c2b75c",
+   "items": [
+    {
+     "name": "umami-software/umami",
+     "stars": 40021,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-10T00:57:53Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ]
+  },
+  "static-site-p1.json": {
+   "sha256": "9b7e21ad3acc4ce194504cb7faba305c5b711c49ea8c9af19a4ad464409d96c6",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [
+    {
+     "name": "mouredev/python-web",
+     "stars": 4802,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "Apache-2.0",
+     "pushedAt": "2026-10-30T06:54:54Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "ItzSudhan/Discord-MusicBot",
+     "stars": 3261,
+     "private": false,
+     "fork": false,
+     "archived": true,
+     "isTemplate": false,
+     "licence": "NOASSERTION",
+     "pushedAt": "2026-04-23T15:47:32Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "privacytools/privacytools.io",
+     "stars": 3142,
+     "private": false,
+     "fork": false,
+     "archived": true,
+     "isTemplate": false,
+     "licence": "CC0-1.0",
+     "pushedAt": "2022-06-24T13:57:34Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "openai/gpt-5-coding-examples",
+     "stars": 1912,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2025-12-11T18:57:41Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "rampatra/wedding-website",
+     "stars": 1851,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "GPL-3.0",
+     "pushedAt": "2025-10-08T15:02:13Z",
+     "excludedTopics": [
+      "template"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "jenil/bulmaswatch",
+     "stars": 1639,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2023-04-12T05:56:47Z",
+     "excludedTopics": [
+      "framework"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "jenil/chota",
+     "stars": 1549,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-10-13T05:16:40Z",
+     "excludedTopics": [
+      "framework"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "flexdinesh/dev-landing-page",
+     "stars": 1348,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": true,
+     "licence": "MIT",
+     "pushedAt": "2024-05-20T21:51:36Z",
+     "excludedTopics": [
+      "boilerplate"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "jeffreytse/jekyll-theme-yat",
+     "stars": 1206,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2025-04-29T04:30:48Z",
+     "excludedTopics": [
+      "awesome"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "SethClydesdale/genki-study-resources",
+     "stars": 1097,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-08-24T03:00:22Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "tgnav/tgnav.github.io",
+     "stars": 982,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "GPL-3.0",
+     "pushedAt": "2026-11-08T19:01:32Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "KeenRivals/bestmotherfucking.website",
+     "stars": 924,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "CC0-1.0",
+     "pushedAt": "2026-08-17T16:39:17Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "CharlesPikachu/musicsquare",
+     "stars": 893,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "Apache-2.0",
+     "pushedAt": "2026-08-21T17:48:00Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "vsoch/watchme",
+     "stars": 862,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MPL-2.0",
+     "pushedAt": "2022-08-05T23:11:32Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "chekromul/uikit-ecommerce-template",
+     "stars": 827,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2024-07-15T09:34:06Z",
+     "excludedTopics": [
+      "template"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "istio/istio.io",
+     "stars": 821,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "Apache-2.0",
+     "pushedAt": "2026-11-10T00:21:53Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ],
+   "itemsInFile": 100,
+   "itemsListed": 16
+  },
+  "static-site-p2.json": {
+   "sha256": "74ee14f1aeb5d79308ccb326ad73b7c0ba0d54e4a7814aa285479c85835a5b3b",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p3.json": {
+   "sha256": "536c950efa4d29aa07581d5542c05743d1dcf17e0f9f722e3a7dda4117d1fffb",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p4.json": {
+   "sha256": "82c753a7385b6483848aaa19679a79a9d229a2d85d84bd3d3414dffb55749c95",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p5.json": {
+   "sha256": "bc9f4080316d9e7fd35449a73a12a30c09fda159d062452a524907f3e8b1dd1a",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p6.json": {
+   "sha256": "41b242ec0f4f348929206da201ed9cf1b30299c4dfa26a54b58e3985fcae14fd",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p7.json": {
+   "sha256": "d73a24d97fb3403c51b5dae5fa42de7f5bbdcece8051a4fb07f0a6dccb02c53f",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p8.json": {
+   "sha256": "fc28d58286893a27084cc6b8e39f0dd4b2039d0fce52df4475b2a420e78a2001",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p9.json": {
+   "sha256": "4a84601ecfde79bd35bb819feabad447748d687b60d78cfcf31100d1da82e88e",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "static-site-p10.json": {
+   "sha256": "256786085946ee4ee3c49c0830bbd29ed826ebc7c3cb54428d6ec00d7e554e7b",
+   "totalCount": 25470,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p1.json": {
+   "sha256": "2ea8e6cd13487aeb794f780604670b80006ffce17dea5c75b90c2bf5b5aba2ae",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [
+    {
+     "name": "Evavic44/portfolio-ideas",
+     "stars": 6410,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-08-02T17:14:29Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "Renovamen/playground-macos",
+     "stars": 3503,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2024-05-02T05:49:01Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "ncdai/chanhdai.com",
+     "stars": 2420,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T15:57:00Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "tbakerx/react-resume-template",
+     "stars": 2146,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": true,
+     "licence": "MIT",
+     "pushedAt": "2024-08-13T20:52:53Z",
+     "excludedTopics": [
+      "template"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "chetanverma16/react-portfolio-template",
+     "stars": 1709,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": true,
+     "licence": "other or none",
+     "pushedAt": "2025-07-17T08:35:49Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "codebucks27/Next.js-Developer-Portfolio-Starter-Code",
+     "stars": 1355,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "other or none",
+     "pushedAt": "2026-10-26T12:02:17Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "Naresh-Khatri/3d-portfolio",
+     "stars": 1346,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": true,
+     "licence": "MIT",
+     "pushedAt": "2026-10-28T04:33:57Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "santifer/cv-santiago",
+     "stars": 865,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "other or none",
+     "pushedAt": "2026-10-26T08:34:43Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "nelsonlaidev/nelsonlai.dev",
+     "stars": 846,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-09T01:13:32Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "theodorusclarence/theodorusclarence.com",
+     "stars": 825,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "GPL-3.0",
+     "pushedAt": "2025-01-08T14:43:14Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "markhorn-dev/astro-sphere",
+     "stars": 696,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2025-06-16T12:04:02Z",
+     "excludedTopics": [
+      "template"
+     ],
+     "hasTopics": true
+    },
+    {
+     "name": "enjidev/enji.dev",
+     "stars": 593,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "other or none",
+     "pushedAt": "2025-10-26T20:51:23Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "sanidhyy/space-portfolio",
+     "stars": 546,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-11-05T13:56:08Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "aulianza/aulianza.id",
+     "stars": 529,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "GPL-3.0",
+     "pushedAt": "2026-11-03T07:43:35Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "NuroDev/nuro.dev",
+     "stars": 515,
+     "private": false,
+     "fork": false,
+     "archived": true,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2024-05-26T04:11:50Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "RyanFitzgerald/devfolio",
+     "stars": 491,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2025-02-20T21:11:21Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    },
+    {
+     "name": "shubh73/devfolio",
+     "stars": 456,
+     "private": false,
+     "fork": false,
+     "archived": false,
+     "isTemplate": false,
+     "licence": "MIT",
+     "pushedAt": "2026-10-25T08:16:30Z",
+     "excludedTopics": [],
+     "hasTopics": true
+    }
+   ],
+   "itemsInFile": 100,
+   "itemsListed": 17
+  },
+  "tailwind-site-p2.json": {
+   "sha256": "0d409c8ad04b21d335b3c66eec140f70e46ed90ca90fb5b150a240be7674e036",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p3.json": {
+   "sha256": "609582e7bfb909de9743237dff537a833ba64d75bc9e4651e2fad4abcad6be93",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p4.json": {
+   "sha256": "cc9682f9fc81865fb18559ba968da1c3a87aafe3e77aaa58fbf966e967f2fe9c",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p5.json": {
+   "sha256": "dee6956fa92bd3de9429bc2402b38ac5d1435884419340bd74376b6dfe85d68a",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p6.json": {
+   "sha256": "2c7a23542798c27f59c7c90dd3d2c3205f9d2d9210739f64c2fdc895ac54a514",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p7.json": {
+   "sha256": "437211deb5209158e3d914e442a071675c76d91eb20adef8db73be397b89da5b",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p8.json": {
+   "sha256": "110506b03ca0e15e001315a15dcfef56dca13d39ab8769b09ba3bb60e199cd69",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p9.json": {
+   "sha256": "459f1a9ca92e0ec92b1f9dcc283d0cb69e92c5c60c9c0408d4b78b4a25043a82",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  },
+  "tailwind-site-p10.json": {
+   "sha256": "a44cde3c705a1ede53cf0def714d95f826c985162a55a34df3e644960d64c64a",
+   "totalCount": 10449,
+   "incompleteResults": false,
+   "items": [],
+   "itemsInFile": 100,
+   "itemsListed": 0
+  }
+ }
+}

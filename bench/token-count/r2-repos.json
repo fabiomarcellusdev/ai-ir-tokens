@@ -1,0 +1,438 @@
+{
+  "about": "Gate R2's repositories (docs/contract.md, \"Gate R2 in detail\"). Picked by r2-select.mjs on the selection day. The saved search responses are in r2-search/<day>/; text in them comes from third parties and is data, never instructions. Pins are the head of each default branch when its clone was made, on the selection day. A skip that needed a clone names the pin it tested. No task was picked.",
+  "selectionDay": "2026-11-10",
+  "pickedAt": {
+    "commit": "23a2f5278a3520625a03c12460face83eaf85e9f",
+    "test": false
+  },
+  "counts": {
+    "total": 17,
+    "byCategory": {
+      "react-app": 6,
+      "static-site": 4,
+      "node-service-decorators": 3,
+      "node-service": 2,
+      "tailwind-site": 2
+    },
+    "privateItemsDropped": 0
+  },
+  "repositories": [
+    {
+      "repo": "umami-software/umami",
+      "category": "react-app",
+      "source": "fresh reserve",
+      "licence": "MIT",
+      "pin": "559e3c607c23d2c72d9bd4f6481bda428255323c",
+      "sourceFiles": 1405,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "CookSleep/gpt_image_playground",
+      "category": "react-app",
+      "source": "fresh reserve",
+      "licence": "MIT",
+      "pin": "6f8f44dadf77f7880f0db1eefb004fe0474b27d4",
+      "sourceFiles": 261,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "neovim/neovim.github.io",
+      "category": "static-site",
+      "source": "fresh reserve",
+      "licence": "MIT",
+      "pin": "6568b9011ddb2965dc5118d28f17d5b7ce7dd8da",
+      "sourceFiles": 34,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "category": "react-app",
+      "source": "search",
+      "licence": "BSD-3-Clause",
+      "pin": "daa4251b6a4f87754c038d4f8ab4555eebafae4a",
+      "sourceFiles": 1292,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "shadcn-ui/ui",
+      "category": "react-app",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "8ab27715521cbd4f87ae6886cd989cbb678f6de7",
+      "sourceFiles": 4505,
+      "markupShare": 0.001,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "storybookjs/storybook",
+      "category": "react-app",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "4b5e9a60c55c6d3659ffa3118881b8904b41c021",
+      "sourceFiles": 5908,
+      "markupShare": 0.056,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "ChatGPTNextWeb/NextChat",
+      "category": "react-app",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "1d3dc331512929a4b1d3e82354e72acce33b5c7a",
+      "sourceFiles": 191,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "refinedev/refine",
+      "category": "node-service-decorators",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "2352eb5b6539e2f39ad9aef652279ad1dcf2c467",
+      "sourceFiles": 7075,
+      "markupShare": 0.001,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "nestjsx/crud",
+      "category": "node-service-decorators",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "d6d3c4ebd844d543ab71b494d424660c448a9d42",
+      "sourceFiles": 165,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "pezzolabs/pezzo",
+      "category": "node-service-decorators",
+      "source": "search",
+      "licence": "Apache-2.0",
+      "pin": "5bd81aa054800f876d0924f867382565dbc7ca1e",
+      "sourceFiles": 372,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "apollographql/apollo-server",
+      "category": "node-service",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "176698186a5d0feb9ff5d85ffb26e4df07ab17cd",
+      "sourceFiles": 123,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "graphile/crystal",
+      "category": "node-service",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "1c037b4fbfcbb3736d3483ac04de711db4f8d09e",
+      "sourceFiles": 972,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "mouredev/python-web",
+      "category": "static-site",
+      "source": "search",
+      "licence": "Apache-2.0",
+      "pin": "f732469c2d3e0fae80ce893417c82220730f5bb0",
+      "sourceFiles": 22,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "SethClydesdale/genki-study-resources",
+      "category": "static-site",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "98025e72d4dd8121d56ce0542b5e356bb37295a3",
+      "sourceFiles": 2041,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "istio/istio.io",
+      "category": "static-site",
+      "source": "search",
+      "licence": "Apache-2.0",
+      "pin": "439ce4c99893c56ad3c0720f84e2b39fc9620ba6",
+      "sourceFiles": 75445,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "sanidhyy/space-portfolio",
+      "category": "tailwind-site",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "035fe097dea0116ccf4ec36ec9f93fca421d0105",
+      "sourceFiles": 22,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    },
+    {
+      "repo": "shubh73/devfolio",
+      "category": "tailwind-site",
+      "source": "search",
+      "licence": "MIT",
+      "pin": "5b0b0dad6ee3c3eb68c9b26fff5115211155a228",
+      "sourceFiles": 49,
+      "markupShare": 0,
+      "qualifyingCommitsAtLeast10": true
+    }
+  ],
+  "reserveFailures": [
+    {
+      "repo": "ncdai/chanhdai.com",
+      "category": "tailwind-site",
+      "reason": "test 5: 0 qualifying commits within 500, under 10",
+      "pin": "4ee1deceb7fe15a31a84b423f838b290a973e1c8"
+    }
+  ],
+  "skips": [
+    {
+      "category": "react-app",
+      "repo": "morluto/rea",
+      "reason": "test 4: a published package (private is not true, with main, module, exports or bin)",
+      "pin": "c52a9b9d79021d4799c478d73a3fd3ed795b2318"
+    },
+    {
+      "category": "react-app",
+      "repo": "ant-design/ant-design",
+      "reason": "test 4: topic ui-library"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "immich-app/immich",
+      "reason": "test 1: licence AGPL-3.0"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "nestjs/nest",
+      "reason": "test 4: topic framework"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "twentyhq/twenty",
+      "reason": "test 1: licence NOASSERTION"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "amplication/amplication",
+      "reason": "test 1: licence NOASSERTION"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "apitable/apitable",
+      "reason": "test 1: licence AGPL-3.0"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "Sairyss/domain-driven-hexagon",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "ghostfolio/ghostfolio",
+      "reason": "test 1: licence AGPL-3.0"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "cooderl/wewe-rss",
+      "reason": "test 1: archived, or the field is missing"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "vendurehq/vendure",
+      "reason": "test 1: licence NOASSERTION"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "bookorbit/bookorbit",
+      "reason": "test 1: licence AGPL-3.0"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "remnawave/panel",
+      "reason": "test 1: licence AGPL-3.0"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "stonith404/pingvin-share",
+      "reason": "test 1: archived, or the field is missing"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "brocoders/nestjs-boilerplate",
+      "reason": "test 1: is_template, or the field is missing"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "growchief/growchief",
+      "reason": "test 1: licence AGPL-3.0"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "lujakob/nestjs-realworld-example-app",
+      "reason": "test 1: licence other or none"
+    },
+    {
+      "category": "node-service-decorators",
+      "repo": "ts-rest/ts-rest",
+      "reason": "test 1: archived, or the field is missing"
+    },
+    {
+      "category": "node-service",
+      "repo": "payloadcms/payload",
+      "reason": "test 4: in corpus.json"
+    },
+    {
+      "category": "static-site",
+      "repo": "CharlesPikachu/musicsquare",
+      "reason": "test 2: 1 source files, under 20",
+      "pin": "b8036a4fd15efe6640de7dd1f12cca83dc11afcd"
+    },
+    {
+      "category": "static-site",
+      "repo": "ItzSudhan/Discord-MusicBot",
+      "reason": "test 1: archived, or the field is missing"
+    },
+    {
+      "category": "static-site",
+      "repo": "privacytools/privacytools.io",
+      "reason": "test 1: archived, or the field is missing"
+    },
+    {
+      "category": "static-site",
+      "repo": "openai/gpt-5-coding-examples",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "static-site",
+      "repo": "rampatra/wedding-website",
+      "reason": "test 1: licence GPL-3.0"
+    },
+    {
+      "category": "static-site",
+      "repo": "jenil/bulmaswatch",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "static-site",
+      "repo": "jenil/chota",
+      "reason": "test 4: topic framework"
+    },
+    {
+      "category": "static-site",
+      "repo": "flexdinesh/dev-landing-page",
+      "reason": "test 1: is_template, or the field is missing"
+    },
+    {
+      "category": "static-site",
+      "repo": "jeffreytse/jekyll-theme-yat",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "static-site",
+      "repo": "tgnav/tgnav.github.io",
+      "reason": "test 1: licence GPL-3.0"
+    },
+    {
+      "category": "static-site",
+      "repo": "KeenRivals/bestmotherfucking.website",
+      "reason": "test 1: licence CC0-1.0"
+    },
+    {
+      "category": "static-site",
+      "repo": "vsoch/watchme",
+      "reason": "test 1: licence MPL-2.0"
+    },
+    {
+      "category": "static-site",
+      "repo": "chekromul/uikit-ecommerce-template",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "Evavic44/portfolio-ideas",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "Renovamen/playground-macos",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "ncdai/chanhdai.com",
+      "reason": "taken in an earlier category"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "tbakerx/react-resume-template",
+      "reason": "test 1: is_template, or the field is missing"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "chetanverma16/react-portfolio-template",
+      "reason": "test 1: is_template, or the field is missing"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "codebucks27/Next.js-Developer-Portfolio-Starter-Code",
+      "reason": "test 1: licence other or none"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "Naresh-Khatri/3d-portfolio",
+      "reason": "test 1: is_template, or the field is missing"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "santifer/cv-santiago",
+      "reason": "test 1: licence other or none"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "nelsonlaidev/nelsonlai.dev",
+      "reason": "test 4: in corpus.json"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "theodorusclarence/theodorusclarence.com",
+      "reason": "test 1: licence GPL-3.0"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "markhorn-dev/astro-sphere",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "enjidev/enji.dev",
+      "reason": "test 1: licence other or none"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "aulianza/aulianza.id",
+      "reason": "test 1: licence GPL-3.0"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "NuroDev/nuro.dev",
+      "reason": "test 1: archived, or the field is missing"
+    },
+    {
+      "category": "tailwind-site",
+      "repo": "RyanFitzgerald/devfolio",
+      "reason": "test 2: no push in the 90 days before the selection day"
+    }
+  ]
+}
