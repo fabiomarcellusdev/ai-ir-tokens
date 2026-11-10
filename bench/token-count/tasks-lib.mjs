@@ -9,18 +9,28 @@ import { tok } from "./views.mjs";
 
 export const WALK_LIMIT = 500;
 
-/** Rule 3: a modified file has a declaration, landmark or CSS rule group that the change touches, at the parent. */
+/**
+ * Rule 3: a modified file has a declaration, landmark or CSS rule group that the change touches, at the parent.
+ * As in C0 (clarification 6): a git error or a TypeScript or HTML parser failure skips the whole commit, even when
+ * another file would pass; a CSS parser failure skips only that file.
+ */
 function touchesParsedUnit(dir, commit, parent, files) {
+  let touches = false;
   for (const f of files) {
-    const text = norm(fileAt(dir, parent, f));
-    const ranges = changedRanges(norm(diffOf(dir, parent, commit, f)));
+    let text, ranges;
     try {
-      if (/\.(tsx?|jsx?|mjs|cjs)$/i.test(f) && tsChangedStatements(f, text, ranges).length) return true;
-      if (/\.html?$/i.test(f) && htmlChangedCode(text, ranges)) return true;
-      if (/\.css$/i.test(f) && cssChangedCode(text, ranges)) return true;
-    } catch { /* a file a parser cannot read does not count */ }
+      text = norm(fileAt(dir, parent, f));
+      ranges = changedRanges(norm(diffOf(dir, parent, commit, f)));
+    } catch { return false; }
+    if (/\.(tsx?|jsx?|mjs|cjs)$/i.test(f)) {
+      try { if (tsChangedStatements(f, text, ranges).length) touches = true; } catch { return false; }
+    } else if (/\.html?$/i.test(f)) {
+      try { if (htmlChangedCode(text, ranges)) touches = true; } catch { return false; }
+    } else if (/\.css$/i.test(f)) {
+      try { if (cssChangedCode(text, ranges)) touches = true; } catch { /* a CSS file that does not parse does not count */ }
+    }
   }
-  return false;
+  return touches;
 }
 
 /**
@@ -45,7 +55,7 @@ export function taskOf(dir, commit, { withBaseline = false } = {}) {
 
 /**
  * The first `max` commits that pass the task rule, walking back from `pin` along the first parent, at most
- * `WALK_LIMIT` commits. `skip` first commits of the walk are passed over (used to start after the test tasks).
+ * `WALK_LIMIT` commits.
  */
 export function walkTasks(dir, pin, { max, withBaseline = false } = {}) {
   if (!isSha(pin)) throw new Error("a bad pin");
