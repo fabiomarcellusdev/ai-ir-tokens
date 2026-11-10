@@ -4,13 +4,14 @@ Keep this file short. When a task closes, replace its notes with one line and a 
 
 ## Now
 
-**Gate R2, the final free gate** (decision 0008; branch `p0/docs-decision-0008`). Its rules are in `docs/contract.md`,
+**Gate R2, the final free gate** (decision 0008; branch `p0/bench-r2-select`). Its rules are in `docs/contract.md`,
 "Gate R2 in detail", fixed before any repository is picked. A miss at R2 stops the project for good. Done before it:
-the HTML and CSS line ranges (#22), the secret scan and the safer git calls (#23).
+the HTML and CSS line ranges (#22), the secret scan and the safer git calls (#23), and the selection of the 17
+repositories on 2026-11-10 (`r2-repos.json`, awaiting the owner's approval).
 
 ## Next
 
-1. Pick the 13 new repositories by the contract's rule; the owner approves the list of 17.
+1. The owner approves the list of 17 repositories (`bench/token-count/r2-repos.json`); then the pull request is merged.
 2. Pick the tasks: commit the development list and the sealed test list's hash, before any ranking work.
 3. Build the lessons, the issue texts and the folder's map; tune on the development tasks only; freeze; one test run.
 

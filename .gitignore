@@ -8,3 +8,6 @@ bench/token-count/out/
 .local/
 CLAUDE.local.md
 private-docs/
+# Gate R2's saved search responses hold third-party text (descriptions, topics); they stay on this machine.
+# bench/token-count/r2-search-digest.json is the committed record (bench/token-count/r2-digest.mjs).
+bench/token-count/r2-search/*/

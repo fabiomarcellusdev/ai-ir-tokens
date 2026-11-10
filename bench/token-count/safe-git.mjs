@@ -36,9 +36,10 @@ export const isRepoName = (s) => typeof s === "string" && /^[\w.-]+\/[\w.-]+$/.t
 export const isSha = (s) => typeof s === "string" && /^[0-9a-f]{40}$/.test(s);
 
 /** Runs git on `dir` (absolute) from this repository's folder. Throws on a non-zero exit unless `ok`. */
-export function git(dir, args, { input, buffer = false, ok = false } = {}) {
+export function git(dir, args, { input, buffer = false, ok = false, timeout } = {}) {
   const r = spawnSync("git", ["-C", dir, "--literal-pathspecs", "-c", "core.quotePath=false", "-c", "log.showSignature=false", ...args],
-    { cwd: TRUSTED_CWD, env: gitEnv, input, maxBuffer: BATCH_BYTES * 2, ...(buffer ? {} : { encoding: "utf8" }) });
+    { cwd: TRUSTED_CWD, env: gitEnv, input, maxBuffer: BATCH_BYTES * 2, ...(timeout ? { timeout } : {}), ...(buffer ? {} : { encoding: "utf8" }) });
+  if (r.error?.code === "ETIMEDOUT") throw new Error(`git ${args[0]} timed out in ${path.basename(dir)}`);
   if (ok) return r;
   if (r.status !== 0) throw new Error(`git ${args[0]} failed in ${path.basename(dir)}: ${String(r.stderr).trim().slice(0, 300)}`);
   return r.stdout;

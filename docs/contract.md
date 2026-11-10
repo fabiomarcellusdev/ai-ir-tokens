@@ -418,3 +418,14 @@ Every outcome is fixed here, before the run.
 - **The folder is chosen by a rule,** not by an agent. How a real agent chooses is measured only in the pilot.
 - **An issue is written by a project's maintainers;** a user's request to an agent may say more or less.
 - Whether an agent uses the map well, what a completed task costs, and accuracy. Step 2, the pilot, measures those.
+
+### Amendments
+
+- **2026-11-10, how the search evidence is kept (lead; the owner approves by merging the pull request that adds it).**
+  "The repositories", item 3, says the script commits the raw search responses. The privacy lint rightly refuses
+  them: third-party descriptions in the responses hold two of the owner's private terms, and public repository names
+  can too. The lint is not weakened. The raw responses (`bench/token-count/r2-search/<day>/`, 54 files, 31 MB) stay on
+  the machine that ran `r2-select.mjs`, git-ignored, with a data warning. `bench/token-count/r2-search-digest.json` is
+  committed instead: for each result the walk read (each category up to its last pick), the fields the tests read and
+  no free text, and for every file its SHA-256, so anyone who runs the same searches can compare, and a test repeats
+  the walk's cheap tests from the digest. This changes where the evidence lives, not any rule that decides an outcome.
